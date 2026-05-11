@@ -1,0 +1,86 @@
+Now that you’re starting to see the patterns between each page, I want to make sure we preserve a few important things moving forward.
+
+First, I want subtle differentiation between every systems page. I do not want them to feel duplicated or templated. They should feel connected as part of the same ecosystem, but each one should carry its own emotional atmosphere, personality, pacing, and environmental behavior.
+
+I’m also very serious about typography.
+
+Typography is a major part of how people understand the system. If people cannot clearly see hierarchy, they will not emotionally or cognitively understand the page correctly.
+
+A lot of the typography still feels too small.
+
+I need:
+
+* larger hero typography
+* stronger section headers
+* clearer visual hierarchy
+* more distinction between typography styles
+* more intentional font contrast
+* stronger readability across the entire experience
+
+I want users to immediately feel the difference between:
+
+* hero typography
+* editorial typography
+* operational labels
+* metadata
+* supporting body copy
+* system indicators
+
+Typography needs to feel architectural and intentional, not passive.
+
+Regarding Version 2 of the homepage:
+
+I both like it and dislike it at the same time.
+
+I would actually rather you recreate that image from scratch instead of trying to evolve the current version too heavily.
+
+There’s something missing from the newer version.
+
+The reason the original worked is because it felt like a living neural ecosystem built from the FORM color system itself.
+
+The different colors represented the different layers of FORM:
+
+* intelligence
+* execution
+* creativity
+* experience
+* ministry
+* humanity
+
+It felt alive because it behaved like a connected ecosystem.
+
+It flowed naturally, but it could also occasionally pulse, jolt, or activate in subtle ways. The motion should feel organic and intelligent — not rapid, chaotic, or hyperactive.
+
+I do not want constant fast movement.
+
+I want:
+
+* flowing movement
+* subtle intelligence behavior
+* occasional activation
+* environmental responsiveness
+* motion that feels alive
+* movement that behaves like an ecosystem
+
+It should feel more like life than animation.
+
+Right now, the newer version is visually impressive, but I feel like we are losing some of the emotional intelligence and ecosystem behavior that made the original compelling.
+
+There’s a certain life missing.
+
+Also, I love the stacked lockup treatment:
+
+* form.
+* The Future Needs FORM.
+* Vision Needs Structure.
+
+That composition is strong.
+
+However, remember:
+the editorial logo is not the primary FORM identity.
+
+The primary core version of the logo should be the dominant central identity on the homepage.
+
+I am okay with the editorial logo living in the upper-left corner as part of the navigation system or supporting identity layer, but the main hero/logo moment should use the primary FORM core logo.
+
+That distinction matters a lot for brand hierarchy and identity consistency.
