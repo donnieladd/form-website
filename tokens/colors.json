@@ -1,0 +1,29 @@
+{
+  "form": {
+    "foundation": {
+      "onyx":  "#0A0A0A",
+      "stone": "#F2F2F0",
+      "steel": "#1E232B",
+      "white": "#FFFFFF"
+    },
+    "signal": {
+      "signalGreen":   "#39FF14",
+      "criticalSignal": "#7CFF00"
+    },
+    "accent": {
+      "infrastructureBlue": "#2962FF",
+      "executionAmber":     "#FF8A00"
+    },
+    "purpleLayer": {
+      "cognitiveViolet":      "#8B5CF6",
+      "deepSpectralPurple":   "#6D28D9",
+      "quantumAmethyst":      "#A78BFA",
+      "midnightIndigoPurple": "#4C1D95",
+      "syntheticOrchid":      "#C084FC",
+      "cosmicMulberry":       "#7E22CE"
+    },
+    "humanity": {
+      "cosmicRose": "#9B4DFF"
+    }
+  }
+}

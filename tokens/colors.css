@@ -1,0 +1,36 @@
+/* ============================================================
+   FORM. CANONICAL COLOR SYSTEM
+   Official Locked Production Values — Version 1.0
+   Source of truth for all frontend implementations.
+   ============================================================ */
+
+:root {
+
+  /* ── CORE FOUNDATION ── */
+  --onyx:  #0A0A0A;
+  --stone: #F2F2F0;
+  --steel: #1E232B;
+  --white: #FFFFFF;
+
+  /* ── PRIMARY SIGNAL ── */
+  --signal-green: #39FF14;
+
+  /* ── SECONDARY ACCENTS ── */
+  --infrastructure-blue: #2962FF;
+  --execution-amber:     #FF8A00;
+
+  /* ── PURPLE LAYER ── */
+  --cognitive-violet:       #8B5CF6;
+  --deep-spectral-purple:   #6D28D9;
+  --quantum-amethyst:       #A78BFA;
+  --midnight-indigo-purple: #4C1D95;
+  --synthetic-orchid:       #C084FC;
+  --cosmic-mulberry:        #7E22CE;
+
+  /* ── HUMANITY LAYER ── */
+  --cosmic-rose: #9B4DFF;
+
+  /* ── ELEVATED SIGNAL ── */
+  --critical-signal: #7CFF00;
+
+}
