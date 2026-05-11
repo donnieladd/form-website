@@ -192,6 +192,16 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
   #veil{opacity:0!important;}#hero-bg{animation:none!important;}.scan{display:none;}
 }
+
+/* ── TIER LEVEL GATES — numeric equivalents, readable by any page CSS ── */
+[data-tier-level="1"] #hero-bg{animation:none!important;}
+[data-tier-level="1"] .scan{animation-duration:36s;}
+[data-tier-level="1"] #grain{opacity:.012;}
+[data-tier-level="2"] #hero-bg{animation:none!important;}
+[data-tier-level="2"] .scan{animation:none!important;display:none!important;}
+[data-tier-level="2"] #grain{display:none!important;}
+[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring{display:none!important;}
+[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto!important;}
 </style>
 </head>
 <body>

@@ -108,9 +108,16 @@
 
   /* ── RESTORE EFFECTS ON TIER UPGRADE (minimal → reduced) ───
      If benchmark upgrades provisional-minimal to reduced, apply
-     the reduced-tier degradation (not full effects).             */
+     the reduced-tier degradation (not full effects).
+     Also ensures dataset.tierLevel stays consistent with
+     dataset.perf — performance-tier.js is authoritative but
+     this rAF guard covers any late-binding CSS consumers.        */
   function _onTierChange(newTier, prevTier) {
     _enforceDegrade(newTier);
+    requestAnimationFrame(function() {
+      var lvl = newTier === 'minimal' ? '2' : newTier === 'reduced' ? '1' : '0';
+      document.documentElement.dataset.tierLevel = lvl;
+    });
   }
 
   /* ── MAIN INIT ──────────────────────────────────────────────

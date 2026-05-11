@@ -7,6 +7,12 @@
      'reduced' — mid-range or prefers-reduced-motion, effects scaled
      'minimal' — low-end device or forced, effects stripped
 
+   Also sets document.documentElement.dataset.tierLevel to a
+   numeric degradation depth:
+     '0' — full (no degradation)
+     '1' — reduced (atmospheric effects scaled)
+     '2' — minimal (effects stripped)
+
    Also exposes window.FORM_TIER (same string) for JS access.
    ============================================================ */
 
@@ -15,6 +21,11 @@
 
   var html = document.documentElement;
   var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── TIER → NUMERIC LEVEL ── */
+  function _tierToLevel(t) {
+    return t === 'minimal' ? '2' : t === 'reduced' ? '1' : '0';
+  }
 
   /* ── SYNCHRONOUS HARDWARE SCORE ── */
   var score = 0;
@@ -40,6 +51,7 @@
   }
 
   html.dataset.perf = tier;
+  html.dataset.tierLevel = _tierToLevel(tier);
   window.FORM_TIER = tier;
 
   /* ── CANCEL REGISTRY — page subsystems push teardown fns here ── */
@@ -97,6 +109,7 @@
 
     if(next !== current) {
       html.dataset.perf = next;
+      html.dataset.tierLevel = _tierToLevel(next);
       window.FORM_TIER = next;
       applyJSTierEffects(next, current);
     }

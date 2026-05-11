@@ -442,6 +442,12 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 [data-perf="minimal"] #cdot,[data-perf="minimal"] #cring,[data-perf="minimal"] .scan{display:none;}
 [data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto;}
 
+/* ── TIER LEVEL GATES — numeric equivalents, readable by any page CSS ── */
+[data-tier-level="1"] *{animation-duration:calc(var(--dur,1s)*2)!important;}
+[data-tier-level="2"] #veil{opacity:0!important;}
+[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring,[data-tier-level="2"] .scan{display:none;}
+[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto;}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
   #veil{opacity:0!important;}
