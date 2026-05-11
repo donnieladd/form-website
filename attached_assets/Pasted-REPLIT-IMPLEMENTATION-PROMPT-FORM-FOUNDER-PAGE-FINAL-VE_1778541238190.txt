@@ -1,0 +1,418 @@
+REPLIT IMPLEMENTATION PROMPT — FORM. FOUNDER PAGE (FINAL VERSION)
+
+Build the FORM. Founder page using the provided visual reference as the structural source of truth.
+
+This is a cinematic operational intelligence page introducing:
+
+Dontae Ladson — Founder & Chief Systems Architect.
+
+The page should feel:
+
+* cinematic
+* premium
+* emotionally intelligent
+* operationally refined
+* luxury-grade
+* future-facing
+* human-centered
+* spatial
+* immersive
+
+Use:
+
+* Next.js
+* Tailwind
+* Framer Motion
+* GSAP only where necessary
+* modular component architecture
+* GPU-accelerated effects
+* responsive cinematic scaling
+
+DO NOT redesign the page.
+
+Preserve:
+
+* overall layout structure
+* hierarchy
+* typography pacing
+* environmental spacing
+* visual restraint
+* cinematic atmosphere
+* operational UI language
+
+⸻
+
+PAGE STRUCTURE
+
+SECTION 01 — HERO
+
+Two-column cinematic hero layout.
+
+LEFT SIDE
+
+Include:
+
+* Founder label
+* Large typography:
+    “Dontae Ladson”
+* Supporting line:
+    “Systems architect. Creative leader. Operational futurist.”
+* Supporting introduction paragraph
+* Signature element
+* Four capability cards/icons beneath introduction
+
+RIGHT SIDE
+
+* Large cinematic founder portrait
+* Eclipse / halo environmental lighting system behind portrait
+* Floating metadata labels:
+    * Strategist
+    * Creative
+    * Operator
+    * Systems Thinker
+    * Leader
+
+The eclipse behind the founder image is critical.
+
+It should feel:
+
+* cinematic
+* dimensional
+* atmospheric
+* restrained
+* premium
+* spatial
+
+Not sci-fi.
+Not Marvel.
+Not cyberpunk.
+
+Think:
+
+luxury editorial futurism.
+
+The portrait should sit naturally inside the environment.
+
+⸻
+
+IMAGE SYSTEM
+
+There should be:
+
+THREE TOTAL IMAGE PLACEMENTS
+
+The page should support:
+
+* image replacement
+* responsive cinematic cropping
+* CMS-ready image swapping
+* layered atmospheric overlays
+
+IMAGE 01 — PRIMARY HERO PORTRAIT
+
+Large dominant founder portrait in hero section.
+
+This is the emotional anchor of the page.
+
+IMAGE 02 — EDITORIAL WORKSPACE IMAGE
+
+Mid-page cinematic portrait.
+
+Founder seated in operational/creative environment.
+
+This image should feel:
+
+* thoughtful
+* grounded
+* leadership-oriented
+* architectural
+* intelligent
+
+IMAGE 03 — CINEMATIC ENVIRONMENT IMAGE
+
+Lower-page horizontal cinematic image.
+
+This image should feel:
+
+* immersive
+* premium
+* emotionally intelligent
+* future-facing
+* connected to systems, creativity, or leadership
+
+Could include:
+
+* production environment
+* creative environment
+* systems environment
+* cinematic workspace
+* operational intelligence atmosphere
+
+All image containers should support:
+
+* subtle glow integration
+* atmospheric blending
+* edge gradients
+* premium compositing
+
+⸻
+
+SECTION 02 — FOUNDER STORY
+
+Three-column cinematic structure.
+
+LEFT
+
+Editorial founder image block.
+
+CENTER
+
+Founder narrative:
+
+* background
+* systems philosophy
+* operational thinking
+* multidisciplinary experience
+
+RIGHT
+
+“The Architecture Behind FORM.” philosophy block.
+
+Preserve:
+
+* strong typography hierarchy
+* readable copy width
+* negative space
+* operational framing
+
+Typography must feel:
+
+* editorial
+* architectural
+* spacious
+* premium
+* readable
+
+Avoid:
+
+* tiny text
+* compressed layouts
+* dense UI feeling
+
+⸻
+
+SECTION 03 — SYSTEMS THINKING
+
+Horizontal operational philosophy cards/icons.
+
+Should feel:
+
+* clean
+* structured
+* responsive
+* interactive
+
+Hover behavior:
+
+* subtle signal glow
+* environmental response
+* restrained motion
+* premium interaction feedback
+
+No cheap animation behavior.
+
+⸻
+
+SECTION 04 — ECOSYSTEM + EXPERIENCE
+
+LEFT
+
+Operational ecosystem explanation.
+
+Include:
+
+* category tags
+* operational capabilities
+* systems ecosystem language
+
+RIGHT
+
+Wide cinematic environmental portrait.
+
+Large cinematic horizontal image block.
+
+This should feel:
+
+* executive
+* premium
+* atmospheric
+* future-facing
+* operationally grounded
+
+⸻
+
+SECTION 05 — FINAL CTA
+
+Large cinematic closing statement:
+
+“The future needs FORM.”
+
+Include:
+
+* supporting philosophy copy
+* CTA button
+* atmospheric signal systems
+* environmental glow
+* cinematic motion
+
+This section should feel:
+
+* emotionally resonant
+* spacious
+* premium
+* conclusive
+
+⸻
+
+ENVIRONMENT SYSTEMS
+
+The page background should feel:
+
+* alive
+* breathing
+* dimensional
+* atmospheric
+* intelligent
+
+Add:
+
+* subtle neural mesh systems
+* cinematic particle drift
+* restrained signal activity
+* environmental movement
+* soft atmospheric glow systems
+
+Motion should feel:
+
+* physically believable
+* luxurious
+* calm
+* emotionally intelligent
+
+NO:
+
+* excessive parallax
+* noisy animation
+* gamer aesthetics
+* aggressive motion systems
+
+⸻
+
+COLOR SYSTEM
+
+Use FORM. ecosystem colors intentionally.
+
+Foundation:
+
+* Onyx black
+* Steel
+* Stone
+* subtle Signal Green accents
+
+Signal Green:
+#39FF14
+
+Use green surgically:
+
+* focal moments
+* hover systems
+* signal indicators
+* operational highlights
+
+Avoid oversaturation.
+
+The Founder page should feel:
+
+* executive
+* grounded
+* human-centered
+* intelligent
+* restrained
+
+⸻
+
+TYPOGRAPHY RULES
+
+Typography is critical.
+
+Use:
+
+* large cinematic headers
+* editorial spacing
+* strong readability
+* layered hierarchy
+* spacious rhythm
+
+Avoid:
+
+* tiny typography
+* cramped spacing
+* generic startup aesthetics
+* overly bold heavy typography
+
+Typography should feel:
+
+Apple meets A24 meets future-facing operational intelligence.
+
+⸻
+
+PERFORMANCE
+
+All effects must remain:
+
+* performant
+* GPU-accelerated
+* optimized
+* smooth
+* responsive
+
+Maintain:
+
+* cinematic rendering
+* stable motion
+* clean transitions
+* high-end polish
+
+No lag.
+No freezing.
+No overloaded animation systems.
+
+⸻
+
+FINAL FEELING
+
+The final page should feel like:
+
+a cinematic founder introduction rendered inside a living operational intelligence ecosystem.
+
+Not a normal portfolio.
+Not a startup founder bio.
+
+This should feel:
+
+* iconic
+* intentional
+* emotionally intelligent
+* culturally aware
+* operationally sophisticated
+* future-facing
+* luxury-grade
+
+Comparable to:
+
+* Apple
+* A24
+* OpenAI
+* Nike
+* Fear of God
+* high-end editorial technology storytelling.
