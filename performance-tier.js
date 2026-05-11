@@ -130,8 +130,12 @@
     } else if(t === 'reduced') {
       /* Do NOT drain cancel registry — timer/loop subsystems that were running
          at full tier remain active and self-adapt (they read dataset.perf live). */
+      /* perf-observer.js applies grain opacity from the CSS token value;
+         this fallback fires only during the ~300ms benchmark window before
+         perf-observer DOMContentLoaded runs. */
       var grain2 = document.getElementById('grain');
-      if(grain2) grain2.style.opacity = '0.011';
+      var _grainOp = (window.PERF_CONFIG && window.PERF_CONFIG.GRAIN_OPACITY_REDUCED) ? window.PERF_CONFIG.GRAIN_OPACITY_REDUCED : 0.012;
+      if(grain2) grain2.style.opacity = String(_grainOp);
     }
     /* Notify all registered upgrade/change handlers so subsystems that were
        skipped at provisional-minimal init can reactivate (cursor ring,

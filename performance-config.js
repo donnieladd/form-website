@@ -26,6 +26,19 @@ window.PERF_CONFIG = {
   MAX_SVG_KB:         40,
   FONT_BUDGET_KB:     80,
 
+  /* ── DEGRADATION THRESHOLDS (mirror tokens/rendering-hierarchy.css) ──
+     JS-side source of truth for tier degradation values.
+     perf-observer.js reads the CSS custom properties at DOMContentLoaded
+     and reconciles these values if the stylesheet overrides them.
+
+     Degradation order enforced by perf-observer.js:
+       Tier-4 first → Tier-0 → Tier-1
+     ──────────────────────────────────────────────────────────────────── */
+  PARTICLE_FRACTION_REDUCED:        0.35,  /* --tier-bg-degrade-particle-min  */
+  GRAIN_OPACITY_REDUCED:            0.012, /* --opacity-grain-reduced          */
+  MAX_NODES_REDUCED:                46,    /* ceil(MAX_NODES * 0.35)           */
+  SIGNAL_CHECK_INTERVAL_REDUCED:    500,   /* signal interval at reduced (ms)  */
+
   DOMAIN_DENSITY: {
     Intelligence: 1.00,
     Execution:    1.00,

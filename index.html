@@ -8,6 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
 <script src="/performance-tier.js"></script>
 <script src="/performance-config.js"></script>
+<script src="/perf-observer.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
@@ -294,11 +295,11 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 /* ── PERFORMANCE TIER GATES ── */
 
 /* Reduced — slow atmospheric motion, halve grain */
-[data-perf="reduced"] #bg{animation-duration:76s;}
+[data-perf="reduced"] #bg{animation:none!important;}
 [data-perf="reduced"] .scan{animation-duration:44s;}
 [data-perf="reduced"] .swheel{animation-duration:4.8s;}
 [data-perf="reduced"] #sb-status-dot{animation-duration:3.6s;}
-[data-perf="reduced"] #grain{opacity:.011;}
+[data-perf="reduced"] #grain{opacity:.012;}
 
 /* Minimal — strip all atmospheric animation */
 [data-perf="minimal"] #bg{animation:none!important;}
@@ -419,7 +420,7 @@ var tier=window.FORM_TIER||'full';
 const grainEl=document.getElementById('grain');
 if(grainEl){
   if(tier==='minimal'){grainEl.parentNode&&grainEl.parentNode.removeChild(grainEl);}
-  else if(tier==='reduced'){grainEl.style.opacity='0.011';}
+  else if(tier==='reduced'){grainEl.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
 }
 
 /* ── CURSOR ── */
@@ -431,7 +432,8 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.
 function _startCursorRing(){
   if(reducedMotion)return;
   (function cl(){
-    if((document.documentElement.dataset.perf||'full')==='minimal')return;
+    var _pt=document.documentElement.dataset.perf||'full';
+    if(_pt==='minimal'||_pt==='reduced')return;
     rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
   })();
 }
@@ -611,7 +613,7 @@ function zoneColor(xFrac){
 
 /* Particles — counts scaled per performance tier */
 const _N_FULL=PERF_CONFIG.MAX_NODES;
-const N=_canvasTier==='minimal'?30:_canvasTier==='reduced'?Math.ceil(_N_FULL/2):_N_FULL;
+const N=_canvasTier==='minimal'?30:_canvasTier==='reduced'?(PERF_CONFIG.MAX_NODES_REDUCED||Math.ceil(_N_FULL/2)):_N_FULL;
 const CONN_RADIUS=_canvasTier==='reduced'?Math.ceil(PERF_CONFIG.CONN_RADIUS*0.75):PERF_CONFIG.CONN_RADIUS;
 const SPEED_RANGE=[PERF_CONFIG.SPEED_MIN,PERF_CONFIG.SPEED_MAX];
 

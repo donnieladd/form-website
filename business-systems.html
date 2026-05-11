@@ -11,6 +11,8 @@
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="/performance-tier.js"></script>
+<script src="/performance-config.js"></script>
+<script src="/perf-observer.js"></script>
 <link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -243,10 +245,10 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
 
 /* ── PERFORMANCE TIER GATES ── */
 
-[data-perf="reduced"] #hero-bg{animation-duration:80s;}
+[data-perf="reduced"] #hero-bg{animation:none!important;}
 [data-perf="reduced"] #geo-center svg{animation-duration:80s;}
 [data-perf="reduced"] .scan{animation-duration:36s;}
-[data-perf="reduced"] #grain{opacity:.011;}
+[data-perf="reduced"] #grain{opacity:.012;}
 
 [data-perf="minimal"] #hero-bg{animation:none!important;}
 [data-perf="minimal"] #geo-center svg{animation:none!important;}
@@ -671,7 +673,7 @@ const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matche
 const grain=document.getElementById('grain');
 if(grain){
   if(tier==='minimal'){grain.parentNode&&grain.parentNode.removeChild(grain);}
-  else if(tier==='reduced'){grain.style.opacity='0.011';}
+  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
 }
 
 /* ── CURSOR ── */
@@ -684,7 +686,7 @@ if(tier==='minimal'){
   let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
   if(!reducedMotion){
-    (function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);})();
+    (function cl(){var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal'||_pt==='reduced')return;rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);})();
   }
   document.querySelectorAll('a,.cat-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
