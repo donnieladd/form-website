@@ -445,6 +445,8 @@ const ZONE_COLORS=[
 ];
 
 function zoneColor(xFrac){
+  if(!isFinite(xFrac)||isNaN(xFrac))xFrac=0;
+  xFrac=Math.max(0,Math.min(1,xFrac));
   const t=xFrac*(ZONE_COLORS.length-1);
   const i=Math.floor(t);
   const f=t-i;
