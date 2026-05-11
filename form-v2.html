@@ -171,40 +171,18 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   position:absolute;
   top:0;left:0;right:0;
   display:flex;flex-direction:column;align-items:center;
-  padding-top:calc(38vh - 8vw);
+  padding-top:calc(36vh - 6.6vw);
   pointer-events:none;
   text-align:center;
 }
 
-/* CONTINUUM MARK — primary brand identity */
-#mark-wrap{
-  width:clamp(140px,15vw,210px);
-  height:clamp(140px,15vw,210px);
-  position:relative;
-  opacity:0;animation:fadein 1.8s cubic-bezier(.16,1,.3,1) 3.0s forwards;
-  flex-shrink:0;
-}
-#mark-svg{width:100%;height:100%;}
-#mark-ring{
-  filter:drop-shadow(0 0 12px rgba(255,255,255,.35)) drop-shadow(0 0 32px rgba(255,255,255,.15));
-}
-#mark-sq{
-  filter:drop-shadow(0 0 8px rgba(57,255,20,.9)) drop-shadow(0 0 22px rgba(57,255,20,.5));
-  animation:sq-pulse 3.2s ease-in-out infinite 5s;
-}
-@keyframes sq-pulse{
-  0%,100%{filter:drop-shadow(0 0 8px rgba(57,255,20,.8)) drop-shadow(0 0 22px rgba(57,255,20,.4));}
-  50%    {filter:drop-shadow(0 0 18px rgba(57,255,20,1)) drop-shadow(0 0 50px rgba(57,255,20,.65));}
-}
-
-/* WORDMARK below mark */
+/* PRIMARY WORDMARK */
 .wm{
   font-family:'Satoshi',sans-serif;
-  font-size:5.5vw;font-weight:400;line-height:1;letter-spacing:-.02em;
+  font-size:13.2vw;font-weight:400;line-height:1;letter-spacing:-.02em;
   color:#fff;display:flex;align-items:baseline;gap:.03em;
-  opacity:0;animation:fadeup 1.4s cubic-bezier(.16,1,.3,1) 3.3s forwards;
-  text-shadow:0 0 60px rgba(255,255,255,.1),0 2px 40px rgba(0,0,0,.7);
-  margin-top:1.4rem;
+  opacity:0;animation:fadeup 1.5s cubic-bezier(.16,1,.3,1) 3.0s forwards;
+  text-shadow:0 0 80px rgba(255,255,255,.12);
 }
 .wmsq{
   display:inline-block;
@@ -217,13 +195,13 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 /* Tag lines */
 .sub{
   font-family:'IBM Plex Mono',monospace;
-  font-size:1.05rem;font-weight:400;
+  font-size:.98rem;font-weight:400;
   letter-spacing:.12em;line-height:2.1;
   text-transform:uppercase;
   color:rgba(242,242,240,.88);
-  max-width:700px;
-  margin-top:2.4rem;
-  opacity:0;animation:fadeup 1.2s cubic-bezier(.16,1,.3,1) 3.6s forwards;
+  max-width:640px;
+  margin-top:14vh;
+  opacity:0;animation:fadeup 1.2s cubic-bezier(.16,1,.3,1) 3.4s forwards;
   text-shadow:0 2px 28px rgba(0,0,0,.98),0 1px 6px rgba(0,0,0,.85);
 }
 .sub .g{color:#39FF14;font-weight:500;}
@@ -346,29 +324,13 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   <!-- HERO STACK: Continuum Mark → form. → taglines → CTA -->
   <div id="hero-stack">
 
-    <!-- PRIMARY IDENTITY: The Continuum Mark -->
-    <div id="mark-wrap">
-      <svg id="mark-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ring: thick arc ~325° with tapered opening at upper-right -->
-        <g id="mark-ring">
-          <!-- Outer arc path: starts at ~55°, goes clockwise ~325° to ~40° -->
-          <path d="M 80.2,28.2 A 38,38 0 1,0 74.5,23.5"
-            fill="none" stroke="white" stroke-width="10.5" stroke-linecap="round"/>
-        </g>
-        <!-- Intelligence square: embedded at lower-right of ring (~130°) -->
-        <rect id="mark-sq" x="69.5" y="66" width="14" height="14" fill="#39FF14"/>
-      </svg>
-    </div>
-
-    <!-- EDITORIAL WORDMARK — supporting identity below mark -->
+    <!-- PRIMARY WORDMARK -->
     <div class="wm">form<span class="wmsq"></span></div>
 
-    <!-- TAGLINES -->
+    <!-- DOCTRINE TAGLINES — FORM language only -->
     <p class="sub">
-      We design connected systems<br>
-      that adapt, amplify human potential,<br>
-      and create lasting impact<br>
-      across <span class="g">every area</span> of your world.
+      Intelligent enough to unsettle.<br>
+      Structured enough to <span class="g">scale.</span>
     </p>
 
     <div class="hero-line"></div>

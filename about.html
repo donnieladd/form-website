@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM. — About</title>
+<meta name="description" content="FORM. is an AI-augmented operational intelligence company. We build the systems, structures, and infrastructure that make organizations function at their highest level.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{cursor:none;}
+body{background:#0A0A0A;-webkit-font-smoothing:antialiased;display:flex;height:100vh;overflow:hidden;}
+:root{
+  --ac:#39FF14;--ac-rgb:57,255,20;
+  --onyx:#0A0A0A;--stone:#F2F2F0;
+}
+
+/* ── CURSOR ── */
+#cdot{position:fixed;z-index:9000;width:5px;height:5px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px var(--ac),0 0 20px rgba(var(--ac-rgb),.4);}
+#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s;}
+body.hl  #cring{width:40px;height:40px;border-color:rgba(var(--ac-rgb),.88);}
+body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22px rgba(var(--ac-rgb),.3);}
+
+#grain{position:fixed;inset:0;z-index:1;opacity:.02;mix-blend-mode:overlay;pointer-events:none;}
+.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.03),transparent);animation:scan-run 22s linear infinite 5s;}
+@keyframes scan-run{from{top:-1px}to{top:100vh}}
+#veil{position:fixed;inset:0;background:#0A0A0A;z-index:900;pointer-events:none;animation:veil-open 2s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes veil-open{0%,25%{opacity:1}100%{opacity:0}}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* ── SIDEBAR ── */
+#sidebar{position:fixed;top:0;left:0;bottom:0;width:130px;z-index:50;display:flex;flex-direction:column;background:rgba(10,10,10,.92);backdrop-filter:blur(14px);border-right:1px solid rgba(var(--ac-rgb),.08);opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 1.2s forwards;}
+#sb-logo-wrap{padding:1.4rem 1.1rem 1.5rem;border-bottom:1px solid rgba(var(--ac-rgb),.06);}
+#sb-logo{height:26px;width:auto;display:block;cursor:none;}
+#sb-nav-wrap{flex:1;display:flex;flex-direction:row;padding:.8rem 0;overflow:hidden;}
+#sb-timeline{width:18px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;}
+.tl-seg{width:1px;background:rgba(var(--ac-rgb),.07);flex:1;}
+.tl-dot{width:4px;height:4px;border-radius:50%;background:rgba(var(--ac-rgb),.16);flex-shrink:0;margin:1px 0;}
+.tl-dot.on{background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.4);}
+#sb-links{flex:1;display:flex;flex-direction:column;padding:0 .8rem 0 .4rem;}
+.sb-link{font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.3);text-decoration:none;cursor:none;padding:.4rem .4rem;transition:color .25s;display:block;white-space:nowrap;line-height:1.2;}
+.sb-link:hover{color:rgba(242,242,240,.72);}
+.sb-link.active{color:var(--ac);font-weight:500;}
+#sb-brackets{padding:.5rem .9rem;display:flex;justify-content:center;}
+.sb-brkt{width:34px;height:34px;position:relative;}
+.sb-brkt::before,.sb-brkt::after,.sb-brkt .b2::before,.sb-brkt .b2::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(var(--ac-rgb),.25);border-style:solid;}
+.sb-brkt::before{top:0;left:0;border-width:1px 0 0 1px;}
+.sb-brkt::after{top:0;right:0;border-width:1px 1px 0 0;}
+.sb-brkt .b2::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.sb-brkt .b2::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+#sb-status{padding:.8rem 1rem 1rem;border-top:1px solid rgba(var(--ac-rgb),.06);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.28);line-height:1.9;}
+.ac{color:var(--ac);}
+
+/* ── MAIN ── */
+#main{margin-left:130px;flex:1;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;}
+#main::-webkit-scrollbar{width:2px;}
+#main::-webkit-scrollbar-thumb{background:rgba(var(--ac-rgb),.18);border-radius:2px;}
+
+/* ════ HERO ════ */
+#hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+#hero-bg{position:absolute;inset:-5%;width:110%;height:110%;z-index:0;animation:bg-drift 55s ease-in-out infinite;}
+#hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:saturate(.6) brightness(.22);}
+@keyframes bg-drift{0%{transform:scale(1) translate(0,0);}50%{transform:scale(1.01) translate(-8px,-5px);}100%{transform:scale(1) translate(0,0);}}
+#hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(10,10,10,.98) 0%,rgba(10,10,10,.75) 50%,rgba(10,10,10,.4) 100%);}
+#hero-ov2{position:absolute;bottom:0;left:0;right:0;height:25%;z-index:2;background:linear-gradient(to bottom,transparent,rgba(10,10,10,.98));}
+
+#hero-topbar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.6rem;background:linear-gradient(to bottom,rgba(10,10,10,.65),transparent);}
+.breadcrumb{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,242,240,.4);}
+.breadcrumb .ac{color:var(--ac);}
+.hero-tr{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,242,240,.45);}
+.hero-tr .ac{color:var(--ac);}
+
+#hero-body{position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 1.6rem 2.5rem;max-width:680px;}
+
+.hero-title{font-family:'Satoshi',sans-serif;font-weight:500;line-height:1.0;letter-spacing:.04em;text-transform:uppercase;opacity:0;animation:fadeup 1s cubic-bezier(.16,1,.3,1) 1.4s forwards;}
+.hero-title .line1{color:var(--stone);display:block;font-size:5.2vw;}
+.hero-title .line2{color:var(--ac);display:block;font-size:5.2vw;text-shadow:0 0 40px rgba(var(--ac-rgb),.25);}
+
+.hero-sub1{font-family:'Satoshi',sans-serif;font-size:1.12rem;font-weight:400;line-height:1.7;color:rgba(242,242,240,.78);max-width:480px;margin-top:1.6rem;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 1.75s forwards;}
+
+.hero-doctrine{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(var(--ac-rgb),.65);max-width:420px;margin-top:1.2rem;line-height:2;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 2.0s forwards;}
+
+.hero-cta{display:inline-flex;align-items:center;gap:1rem;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.88);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.25);padding:.85rem 1.8rem;width:fit-content;margin-top:2rem;transition:border-color .3s,color .3s,box-shadow .3s;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 2.2s forwards;}
+.hero-cta:hover{border-color:var(--ac);color:var(--ac);box-shadow:0 0 22px rgba(var(--ac-rgb),.14);}
+
+/* ════ SECTION BASE ════ */
+.section{padding:3.5rem 1.6rem;border-top:1px solid rgba(255,255,255,.04);}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(242,242,240,.35);margin-bottom:2rem;padding-bottom:.65rem;border-bottom:1px solid rgba(var(--ac-rgb),.09);}
+.section-heading{font-family:'Satoshi',sans-serif;font-size:1.8rem;font-weight:500;color:var(--stone);line-height:1.1;margin-bottom:.6rem;}
+.section-heading .ac{color:var(--ac);}
+
+/* ════ WHO WE ARE ════ */
+#who{background:#0A0A0A;}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;margin-top:2rem;}
+.who-left{}
+.who-statement{font-family:'Satoshi',sans-serif;font-size:1.55rem;font-weight:500;line-height:1.25;color:var(--stone);margin-bottom:1.4rem;}
+.who-statement .ac{color:var(--ac);}
+.who-body{font-family:'Satoshi',sans-serif;font-size:.92rem;font-weight:400;line-height:1.9;color:rgba(242,242,240,.55);}
+.who-body + .who-body{margin-top:.9rem;}
+.who-right{display:flex;flex-direction:column;gap:1rem;margin-top:.3rem;}
+.who-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);padding:1.1rem 1.2rem;}
+.who-card-label{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(var(--ac-rgb),.5);margin-bottom:.45rem;}
+.who-card-text{font-family:'Satoshi',sans-serif;font-size:.84rem;line-height:1.65;color:rgba(242,242,240,.65);}
+
+/* ════ WHAT WE BUILD ════ */
+#what{background:rgba(6,8,6,1);}
+.build-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.04);margin-top:2rem;}
+.build-item{background:#0A0A0A;padding:1.8rem 1.5rem;position:relative;}
+.build-num{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.18em;color:rgba(var(--ac-rgb),.35);margin-bottom:1rem;}
+.build-icon{width:32px;height:32px;color:rgba(var(--ac-rgb),.55);margin-bottom:.9rem;}
+.build-icon svg{width:100%;height:100%;}
+.build-title{font-family:'Satoshi',sans-serif;font-size:1.05rem;font-weight:500;color:var(--stone);margin-bottom:.6rem;line-height:1.2;}
+.build-desc{font-family:'Satoshi',sans-serif;font-size:.82rem;line-height:1.7;color:rgba(242,242,240,.5);}
+.build-item::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--ac);transition:height .5s cubic-bezier(.16,1,.3,1);}
+.build-item:hover::before{height:100%;}
+
+/* ════ WHO WE SERVE ════ */
+#serve{background:#0A0A0A;}
+.serve-intro{font-family:'Satoshi',sans-serif;font-size:1.05rem;line-height:1.75;color:rgba(242,242,240,.6);max-width:620px;margin-top:1rem;margin-bottom:2.2rem;}
+.serve-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.serve-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);padding:1.2rem 1rem;cursor:none;transition:border-color .3s,background .3s;}
+.serve-card:hover{border-color:rgba(var(--ac-rgb),.3);background:rgba(var(--ac-rgb),.02);}
+.serve-card-icon{width:22px;height:22px;color:rgba(var(--ac-rgb),.45);margin-bottom:.7rem;}
+.serve-card-icon svg{width:100%;height:100%;}
+.serve-card-title{font-family:'Satoshi',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,242,240,.75);margin-bottom:.4rem;}
+.serve-card-desc{font-family:'Satoshi',sans-serif;font-size:.72rem;line-height:1.6;color:rgba(242,242,240,.38);}
+
+/* ════ PRINCIPLES ════ */
+#principles{background:rgba(6,8,6,1);border-top:1px solid rgba(var(--ac-rgb),.06);}
+.principles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(255,255,255,.03);margin-top:2rem;}
+.principle{background:rgba(6,8,6,1);padding:2rem 1.8rem;}
+.p-num{font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.16em;color:rgba(var(--ac-rgb),.35);margin-bottom:.6rem;}
+.p-title{font-family:'Satoshi',sans-serif;font-size:1.2rem;font-weight:500;color:var(--stone);margin-bottom:.7rem;line-height:1.2;}
+.p-title .ac{color:var(--ac);}
+.p-body{font-family:'Satoshi',sans-serif;font-size:.83rem;line-height:1.8;color:rgba(242,242,240,.5);}
+
+/* ════ SIGNAL QUOTE ════ */
+#signal-quote{background:#0A0A0A;padding:4.5rem 1.6rem;border-top:1px solid rgba(var(--ac-rgb),.06);text-align:center;}
+.sq-line1{font-family:'Satoshi',sans-serif;font-size:2rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--stone);line-height:1.15;margin-bottom:.3rem;}
+.sq-line1 .ac{color:var(--ac);}
+.sq-line2{font-family:'IBM Plex Mono',monospace;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.38);margin-top:.8rem;}
+.sq-divider{width:32px;height:1px;background:rgba(var(--ac-rgb),.35);margin:.9rem auto 0;}
+
+/* ════ CTA ════ */
+#cta-banner{position:relative;padding:4.5rem 1.6rem;overflow:hidden;border-top:1px solid rgba(var(--ac-rgb),.07);}
+#cta-bg{position:absolute;inset:0;z-index:0;}
+#cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:saturate(.5) brightness(.16);}
+#cta-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(10,10,10,.9) 0%,rgba(10,10,10,.6) 100%);}
+#cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.cta-heading{font-family:'Satoshi',sans-serif;font-size:2rem;font-weight:500;line-height:1.1;color:var(--stone);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.04em;}
+.cta-heading .ac{color:var(--ac);}
+.cta-sub{font-family:'Satoshi',sans-serif;font-size:.84rem;font-weight:400;color:rgba(242,242,240,.45);line-height:1.8;max-width:420px;margin-top:.6rem;}
+.cta-buttons{display:flex;flex-direction:column;gap:.7rem;min-width:260px;}
+.cta-btn-primary{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.73rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;background:var(--ac);color:#0A0A0A;text-decoration:none;cursor:none;padding:.95rem 1.8rem;transition:background .3s,box-shadow .3s;}
+.cta-btn-primary:hover{background:#8dff4a;box-shadow:0 0 28px rgba(var(--ac-rgb),.3);}
+.cta-btn-secondary{display:flex;align-items:center;gap:.6rem;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.73rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.72);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.22);padding:.9rem 1.8rem;transition:border-color .3s,color .3s;}
+.cta-btn-secondary:hover{border-color:rgba(242,242,240,.55);color:var(--stone);}
+
+/* ════ FOOTER ════ */
+#footer{background:#0A0A0A;border-top:1px solid rgba(var(--ac-rgb),.06);padding:1.6rem 1.6rem .9rem;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.18);}
+.footer-tagline{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.25);}
+.footer-tagline .ac{color:var(--ac);}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  #veil{opacity:0!important;}
+  #sidebar,#hero-body .hero-title,.hero-sub1,.hero-doctrine,.hero-cta{opacity:1!important;}
+}
+</style>
+</head>
+<body>
+
+<div id="veil"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+<div class="scan"></div>
+<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:1;opacity:.02;mix-blend-mode:overlay;pointer-events:none;"><filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gf)"/></svg>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div id="sb-logo-wrap"><a href="/"><img id="sb-logo" src="/logo.svg" alt="FORM."></a></div>
+  <div id="sb-nav-wrap">
+    <div id="sb-timeline">
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot on"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div>
+    </div>
+    <nav id="sb-links">
+      <a href="/ecosystem.html" class="sb-link">Ecosystem</a>
+      <a href="/business-systems.html" class="sb-link">Business Systems</a>
+      <a href="/executive-systems.html" class="sb-link">Executive &amp; Ops</a>
+      <a href="/intelligence-systems.html" class="sb-link">Intelligence Systems</a>
+      <a href="/ministry-systems.html" class="sb-link">Ministry Systems</a>
+      <a href="/creative-systems.html" class="sb-link">Creative Systems</a>
+      <a href="#" class="sb-link">Industry Systems</a>
+      <a href="/about.html" class="sb-link active">About Form</a>
+      <a href="#" class="sb-link">Insights</a>
+      <a href="#" class="sb-link">Resources</a>
+      <a href="#" class="sb-link">Pricing</a>
+      <a href="#" class="sb-link">Contact</a>
+    </nav>
+  </div>
+  <div id="sb-brackets"><div class="sb-brkt"><div class="b2"></div></div></div>
+  <div id="sb-status">System Status<br><span class="ac">Operational •</span></div>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div id="hero-bg"><img src="/bg.avif" alt=""></div>
+    <div id="hero-ov"></div>
+    <div id="hero-ov2"></div>
+
+    <div id="hero-topbar">
+      <div class="breadcrumb">/ <span class="ac">About Form</span></div>
+      <div class="hero-tr">Vision Needs <span class="ac">Structure.</span></div>
+    </div>
+
+    <div id="hero-body">
+      <h1 class="hero-title">
+        <span class="line1">About</span>
+        <span class="line2">Form.</span>
+      </h1>
+      <p class="hero-sub1">We are not an agency. We are not a consultancy.<br>We are the operating system behind forward-thinking organizations, ministries, and movements.</p>
+      <p class="hero-doctrine">Institutional Intelligence. Disruptive Cognition.</p>
+      <a href="#who" class="hero-cta">Our Story →</a>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section id="who" class="section">
+    <div class="section-label">01 — Who We Are</div>
+    <div class="who-grid">
+      <div class="who-left">
+        <p class="who-statement">FORM. exists because most organizations fail not from <span class="ac">lack of vision</span> — but from lack of form.</p>
+        <p class="who-body">Vision without infrastructure is just an idea. Ambition without architecture collapses under its own weight. Great organizations fail every day — not because the mission was wrong, but because the systems weren't built to carry it.</p>
+        <p class="who-body">FORM. is an AI-augmented operational intelligence company. We build the systems, structures, and infrastructure that make organizations function at their highest level — and keep functioning as they scale.</p>
+        <p class="who-body">We work at the intersection of strategy, systems, and intelligence. We don't just advise. We build.</p>
+      </div>
+      <div class="who-right">
+        <div class="who-card">
+          <div class="who-card-label">What we are</div>
+          <div class="who-card-text">An AI-augmented operational intelligence company that builds integrated systems, transforms organizations, and creates the infrastructure that makes lasting impact possible.</div>
+        </div>
+        <div class="who-card">
+          <div class="who-card-label">What we are not</div>
+          <div class="who-card-text">We are not a traditional agency. We are not a coaching program. We are not a software vendor. We are a systems builder — and we operate differently because we have to.</div>
+        </div>
+        <div class="who-card">
+          <div class="who-card-label">The difference</div>
+          <div class="who-card-text">Most firms give you a plan and leave. FORM. builds the plan and stays long enough to make sure it holds. We invest in outcomes, not engagements.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE BUILD -->
+  <section id="what" class="section">
+    <div class="section-label">02 — What We Build</div>
+    <div class="build-grid">
+      <div class="build-item">
+        <div class="build-num">01</div>
+        <div class="build-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="build-title">Operational Intelligence</div>
+        <div class="build-desc">Systems that see what others can't. We build the intelligence infrastructure that gives organizations clarity, foresight, and the ability to act decisively before problems become crises.</div>
+      </div>
+      <div class="build-item">
+        <div class="build-num">02</div>
+        <div class="build-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </div>
+        <div class="build-title">Organizational Architecture</div>
+        <div class="build-desc">Structures built to hold weight and grow. We design the operating frameworks, governance systems, and team architectures that allow organizations to scale without losing coherence.</div>
+      </div>
+      <div class="build-item">
+        <div class="build-num">03</div>
+        <div class="build-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="build-title">AI-Augmented Execution</div>
+        <div class="build-desc">Intelligence integrated into every workflow. We deploy AI infrastructure that doesn't just automate tasks — it amplifies the capacity of your team and accelerates the pace of your mission.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE SERVE -->
+  <section id="serve" class="section">
+    <div class="section-label">03 — Who We Serve</div>
+    <p class="serve-intro">FORM. works with organizations that are serious about building something that lasts. Our clients share a common need: the vision is there, but the infrastructure to support it isn't — yet.</p>
+    <div class="serve-grid">
+      <div class="serve-card">
+        <div class="serve-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="serve-card-title">Executive Teams</div>
+        <div class="serve-card-desc">Leaders who need their organizations to operate as fast as they think.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="serve-card-title">Growing Organizations</div>
+        <div class="serve-card-desc">Companies scaling fast and needing systems that can keep up with their growth.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="serve-card-title">Ministries &amp; Movements</div>
+        <div class="serve-card-desc">Mission-driven organizations that need the operational backbone to match their calling.</div>
+      </div>
+      <div class="serve-card">
+        <div class="serve-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="serve-card-title">Creative Brands</div>
+        <div class="serve-card-desc">Creative companies that need operational intelligence behind their visual power.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section id="principles" class="section">
+    <div class="section-label">04 — How We Think</div>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="p-num">01</div>
+        <div class="p-title">Restraint is <span class="ac">sophistication.</span></div>
+        <div class="p-body">We don't add complexity to prove intelligence. We remove everything that doesn't serve the mission. The simplest system that works is the most powerful. We build for clarity — and clarity scales.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">02</div>
+        <div class="p-title">Systems must <span class="ac">move people.</span></div>
+        <div class="p-body">Infrastructure isn't just functional — it's emotional. The organizations we build for don't just operate better. They feel different. Their teams move with confidence. Their leaders act with clarity. That's what real infrastructure does.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">03</div>
+        <div class="p-title">Intelligence <span class="ac">integrates.</span></div>
+        <div class="p-body">AI is not a feature. It is a layer. We integrate intelligence into every system, workflow, and decision point — not as an add-on, but as the connective tissue that makes the whole organism more capable.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">04</div>
+        <div class="p-title">We build what <span class="ac">outlives us.</span></div>
+        <div class="p-body">The best system is the one that keeps working long after we leave. We design for permanence — documentation, redundancy, training, evolution. We want organizations to be stronger after us, not dependent on us.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNAL QUOTE -->
+  <section id="signal-quote">
+    <div class="sq-line1">The Future Needs <span class="ac">Form.</span></div>
+    <div class="sq-divider"></div>
+    <div class="sq-line2">Vision without infrastructure is just an idea.</div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta-banner">
+    <div id="cta-bg"><img src="/bg.avif" alt=""></div>
+    <div id="cta-inner">
+      <div>
+        <div class="cta-heading">Ready to build <span class="ac">form?</span></div>
+        <p class="cta-sub">Start with a strategy briefing. We'll assess your organization's current operational architecture and identify the highest-leverage systems to build first.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="cta-btn-primary">Start A Strategy Briefing</a>
+        <a href="/ecosystem.html" class="cta-btn-secondary">Explore the Ecosystem →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 FORM. All Rights Reserved.</div>
+      <div class="footer-tagline">Intelligence In Motion. <span class="ac">Impact That Lasts.</span></div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+/* ── VIEWPORT SCALE ── */
+(function(){
+  const DW=1440,DH=900;
+  function s(){document.documentElement.style.zoom=Math.min(innerWidth/DW,innerHeight/DH,1);}
+  s();window.addEventListener('resize',s);
+})();
+
+(function(){
+'use strict';
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+document.querySelectorAll('a,.serve-card,.build-item,.principle').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+});
+document.querySelectorAll('.cta-btn-primary,.cta-btn-secondary,.hero-cta').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
+});
+})();
+</script>
+</body>
+</html>
