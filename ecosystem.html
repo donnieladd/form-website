@@ -3,37 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM. — Ecosystem / System Pathways</title>
+<title>FORM. — Ecosystem</title>
 <meta name="description" content="Intelligent systems for business, executive, creative, ministry, and everything in between. One ecosystem. Infinite impact.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FORM. — Ecosystem / System Pathways">
-<meta property="og:description" content="One ecosystem. Infinite impact.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{cursor:none;}
-body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;display:flex;}
-
-/* ── BACKGROUND ── */
-#bg{position:fixed;inset:-5%;width:110%;height:110%;z-index:0;transform-origin:center;animation:bg-breathe 34s ease-in-out infinite;}
-#bg img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;}
-@keyframes bg-breathe{
-  0%  {transform:scale(1)     translate(0,0);}
-  20% {transform:scale(1.006) translate(-5px,3px);}
-  50% {transform:scale(1.01)  translate(-8px,-5px);}
-  75% {transform:scale(1.006) translate(4px,5px);}
-  100%{transform:scale(1)     translate(0,0);}
-}
-#grain{position:fixed;inset:0;z-index:1;opacity:.024;mix-blend-mode:overlay;pointer-events:none;}
-#veil{position:fixed;inset:0;background:#000;z-index:900;pointer-events:none;animation:veil-open 2.4s cubic-bezier(.16,1,.3,1) forwards;}
-@keyframes veil-open{0%,30%{opacity:1}100%{opacity:0}}
-@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadein{from{opacity:0}to{opacity:1}}
-
-.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(57,255,20,.03),transparent);animation:scan-run 18s linear infinite 4s;}
-@keyframes scan-run{from{top:-1px}to{top:100vh}}
+body{background:#0A0A0A;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;display:flex;}
 
 /* ── CURSOR ── */
 #cdot{position:fixed;z-index:9000;width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
@@ -41,293 +19,275 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
 body.hl  #cring{width:40px;height:40px;border-color:rgba(57,255,20,.88);}
 body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.28);}
 
+/* ── OVERLAYS ── */
+#grain{position:fixed;inset:0;z-index:1;opacity:.022;mix-blend-mode:overlay;pointer-events:none;}
+.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(57,255,20,.03),transparent);animation:scan-run 20s linear infinite 4s;}
+@keyframes scan-run{from{top:-1px}to{top:100vh}}
+#veil{position:fixed;inset:0;background:#0A0A0A;z-index:900;pointer-events:none;animation:veil-open 2.4s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes veil-open{0%,30%{opacity:1}100%{opacity:0}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── BRACKET CORNERS ── */
+.brkt{position:fixed;width:28px;height:28px;z-index:10;pointer-events:none;}
+.brkt::before,.brkt::after,.brkt .i::before,.brkt .i::after{content:'';position:absolute;width:10px;height:10px;border-color:rgba(57,255,20,.22);border-style:solid;}
+.brkt::before{top:0;left:0;border-width:1px 0 0 1px;}
+.brkt::after{top:0;right:0;border-width:1px 1px 0 0;}
+.brkt .i::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.brkt .i::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+#btl{top:8px;left:138px;}
+#btr{top:8px;right:8px;}
+#bbl{bottom:8px;left:138px;}
+#bbr{bottom:8px;right:8px;}
+
 /* ── SIDEBAR ── */
 #sidebar{
   position:relative;z-index:20;
   width:130px;flex-shrink:0;
   display:flex;flex-direction:column;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  background:rgba(10,10,10,.95);
   border-right:1px solid rgba(57,255,20,.1);
-  padding:0;
-  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 1.6s forwards;
+  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 1.4s forwards;
 }
-#sb-logo-wrap{padding:1.6rem 1.2rem 2rem;border-bottom:1px solid rgba(57,255,20,.08);}
-#sb-logo{height:28px;width:auto;display:block;cursor:none;}
+#sb-logo-wrap{padding:1.4rem 1.1rem 1.8rem;border-bottom:1px solid rgba(57,255,20,.07);}
+#sb-logo{height:24px;width:auto;display:block;cursor:none;}
 
-/* Timeline + nav combined */
-#sb-nav-wrap{
-  flex:1;display:flex;flex-direction:row;
-  padding:1.6rem 0;
-}
-#sb-timeline{
-  width:18px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-  padding:0.2rem 0;gap:0;
-}
-.tl-seg{width:1px;background:rgba(57,255,20,.12);flex:1;}
-.tl-dot{width:4px;height:4px;border-radius:50%;background:rgba(57,255,20,.25);flex-shrink:0;margin:2px 0;}
-.tl-dot.on{background:#39FF14;box-shadow:0 0 6px #39FF14,0 0 14px rgba(57,255,20,.4);}
-
-#sb-links{flex:1;display:flex;flex-direction:column;gap:0;padding:0 0.8rem 0 0.4rem;}
+#sb-links{flex:1;display:flex;flex-direction:column;padding:1.8rem .8rem .6rem;}
 .sb-link{
   font-family:'IBM Plex Mono',monospace;
-  font-size:.64rem;font-weight:400;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(242,242,240,.45);
+  font-size:.6rem;font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(242,242,240,.32);
   text-decoration:none;cursor:none;
-  padding:.7rem 0.4rem;
-  transition:color .25s;
-  display:block;white-space:nowrap;
+  padding:.62rem .4rem;
+  transition:color .25s;display:block;white-space:nowrap;
 }
-.sb-link:hover{color:rgba(242,242,240,.85);}
+.sb-link:hover{color:rgba(242,242,240,.75);}
 .sb-link.active{color:#39FF14;font-weight:500;}
 
+#sb-crosshair{display:flex;justify-content:center;padding:1.4rem 0;}
+.crosshair{width:22px;height:22px;position:relative;}
+.crosshair::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(57,255,20,.22);transform:translateX(-50%);}
+.crosshair::after{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(57,255,20,.22);transform:translateY(-50%);}
+.crosshair-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 5px #39FF14;}
+
 #sb-status{
-  padding:1.2rem 1rem 1.4rem;
-  border-top:1px solid rgba(57,255,20,.08);
+  padding:.8rem 1rem 1.2rem;
+  border-top:1px solid rgba(57,255,20,.07);
   font-family:'IBM Plex Mono',monospace;
-  font-size:.6rem;font-weight:400;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(242,242,240,.38);
+  font-size:.55rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(242,242,240,.28);
   line-height:1.9;
 }
 .g{color:#39FF14;}
-.g-em{color:#39FF14;font-style:italic;}
 
 /* ── MAIN ── */
-#main{
-  flex:1;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
-}
+#main{flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column;}
 
-/* ── HERO TOP BAR ── */
-#hero-wrap{
-  position:relative;flex-shrink:0;
-  height:42vh;overflow:hidden;
+/* ── WAVE CANVAS ── */
+#wave-wrap{position:relative;flex-shrink:0;height:42vh;overflow:hidden;}
+#waveCanvas{display:block;width:100%;height:100%;}
+#coords{
+  position:absolute;top:1rem;right:1.4rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+  letter-spacing:.1em;color:rgba(242,242,240,.35);line-height:1.8;
+  text-align:right;z-index:5;
 }
-/* Dark gradient over lower part of hero image for readability */
-#hero-wrap::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.08) 0%,rgba(0,0,0,.62) 100%);
-  pointer-events:none;z-index:2;
+#eco-title{
+  position:absolute;bottom:1.2rem;left:1.4rem;z-index:5;
+  opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.6s forwards;
 }
-
-#top-bar{
-  position:absolute;top:0;left:0;right:0;z-index:5;
-  display:flex;justify-content:space-between;align-items:flex-start;
-  padding:1rem 1.4rem 0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.45) 0%,transparent 100%);
+#eco-title h1{
+  font-family:'Satoshi',sans-serif;font-size:2.4rem;font-weight:500;
+  color:#F2F2F0;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;
 }
-.breadcrumb{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.68rem;font-weight:400;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(242,242,240,.55);
-  opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 2s forwards;
-}
-.breadcrumb .g{color:#39FF14;}
-.corner-tr-info{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.72rem;font-weight:400;letter-spacing:.1em;
-  text-transform:uppercase;color:rgba(242,242,240,.75);
-  text-align:right;line-height:1.9;
-  text-shadow:0 1px 8px rgba(0,0,0,.8);
-  opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 2.1s forwards;
-}
-
-/* Bracket boxes */
-.bbox{position:relative;padding:8px 12px;background:rgba(0,0,0,.3);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
-.bbox::before,.bbox::after,.bc::before,.bc::after{content:'';position:absolute;width:12px;height:12px;border-color:rgba(57,255,20,.65);border-style:solid;}
-.bbox::before{top:0;left:0;border-width:1px 0 0 1px;}
-.bbox::after {top:0;right:0;border-width:1px 1px 0 0;}
-.bc::before  {bottom:0;left:0;border-width:0 0 1px 1px;}
-.bc::after   {bottom:0;right:0;border-width:0 1px 1px 0;}
-
-/* Hero headline */
-#hero-content{
-  position:absolute;bottom:0;left:0;right:0;z-index:5;
-  padding:0 1.4rem 1.4rem;
-}
-.hero-title{
-  font-family:'Satoshi',sans-serif;
-  font-size:4.8vw;font-weight:700;line-height:1.08;letter-spacing:-.01em;
-  color:#fff;
-  text-shadow:0 2px 32px rgba(0,0,0,.9);
-  opacity:0;animation:fadeup 1s cubic-bezier(.16,1,.3,1) 1.8s forwards;
-}
-.hero-title .g{color:#39FF14;}
-.hero-sub{
-  font-family:'Satoshi',sans-serif;
-  font-size:.95rem;font-weight:400;line-height:1.7;
-  color:rgba(242,242,240,.82);
-  max-width:460px;
-  margin-top:.8rem;
-  text-shadow:0 1px 12px rgba(0,0,0,.9);
-  opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 2.0s forwards;
+#eco-title h1 .g{color:#39FF14;}
+#eco-sub{
+  font-family:'Satoshi',sans-serif;font-size:.8rem;color:rgba(242,242,240,.45);
+  margin-top:.4rem;max-width:380px;line-height:1.7;
 }
 
 /* ── CARDS ── */
 #cards-wrap{
-  flex:1;
-  display:flex;
-  gap:8px;
-  padding:10px 12px;
-  overflow:hidden;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  flex:1;gap:0;
+  border-top:1px solid rgba(255,255,255,.05);
 }
+
 .card{
-  flex:1;
-  display:flex;flex-direction:column;
-  background:rgba(4,6,8,.82);
-  border:1px solid rgba(255,255,255,.08);
-  padding:1rem 1rem 0.9rem;
-  position:relative;overflow:hidden;
-  cursor:none;
-  transition:border-color .3s;
-  opacity:0;animation:fadeup .7s cubic-bezier(.16,1,.3,1) var(--d,2.2s) forwards;
+  position:relative;display:flex;flex-direction:column;
+  border-right:1px solid rgba(255,255,255,.05);
+  background:#0A0A0A;cursor:none;
+  overflow:hidden;
+  transition:border-color .35s;
 }
-.card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,transparent 60%);
+.card:last-child{border-right:none;}
+.card:hover{border-color:rgba(var(--cc-rgb),.3);}
+.card.active{border:1.5px solid rgba(var(--cc-rgb),.55);z-index:2;box-shadow:0 0 28px rgba(var(--cc-rgb),.08),inset 0 0 20px rgba(var(--cc-rgb),.03);}
+
+/* Per-card CSS variables */
+.c01{--cc:#39FF14;--cc-rgb:57,255,20;}
+.c02{--cc:#2962FF;--cc-rgb:41,98,255;}
+.c03{--cc:#7CFF00;--cc-rgb:124,255,0;}
+.c04{--cc:#FF8A00;--cc-rgb:255,138,0;}
+.c05{--cc:#9B4DFF;--cc-rgb:155,77,255;}
+
+/* Card visual (environmental image) */
+.card-vis{position:relative;height:42%;overflow:hidden;flex-shrink:0;}
+.card-vis-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+}
+.c01 .card-vis-bg{filter:hue-rotate(0deg) saturate(1.3) brightness(.5);}
+.c02 .card-vis-bg{filter:hue-rotate(200deg) saturate(1.2) brightness(.4);}
+.c03 .card-vis-bg{filter:hue-rotate(20deg) saturate(1.5) brightness(.55);}
+.c04 .card-vis-bg{filter:hue-rotate(115deg) saturate(2) brightness(.48);}
+.c05 .card-vis-bg{filter:hue-rotate(268deg) saturate(1.3) brightness(.42);}
+
+.card-vis-ov{
+  position:absolute;inset:0;
   pointer-events:none;
 }
-.card:hover{border-color:var(--cc);}
+.c01 .card-vis-ov{background:radial-gradient(ellipse at 50% 90%, rgba(57,255,20,.18) 0%, transparent 65%);}
+.c02 .card-vis-ov{background:radial-gradient(ellipse at 35% 80%, rgba(41,98,255,.2) 0%, transparent 65%);}
+.c03 .card-vis-ov{background:radial-gradient(ellipse at 50% 60%, rgba(124,255,0,.22) 0%, transparent 60%);}
+.c04 .card-vis-ov{background:radial-gradient(ellipse at 60% 75%, rgba(255,138,0,.22) 0%, transparent 65%);}
+.c05 .card-vis-ov{background:radial-gradient(ellipse at 50% 85%, rgba(155,77,255,.22) 0%, transparent 65%);}
 
+.card-vis-top{
+  position:absolute;top:0;left:0;right:0;
+  height:45%;
+  background:linear-gradient(to bottom,rgba(10,10,10,.6),transparent);
+  z-index:2;pointer-events:none;
+}
+.card-vis-bot{
+  position:absolute;bottom:0;left:0;right:0;
+  height:55%;
+  background:linear-gradient(to top,rgba(10,10,10,.95),transparent);
+  z-index:2;pointer-events:none;
+}
+
+/* Card num + icon area */
 .card-num{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.65rem;font-weight:400;letter-spacing:.18em;
-  color:rgba(242,242,240,.3);margin-bottom:.6rem;
+  position:absolute;top:.55rem;left:.65rem;z-index:5;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:400;
+  letter-spacing:.08em;color:rgba(242,242,240,.55);
+}
+.card-icon-wrap{
+  position:absolute;bottom:.6rem;left:50%;transform:translateX(-50%);
+  z-index:5;
 }
 .card-icon{
-  width:32px;height:32px;margin-bottom:.65rem;
-  color:var(--cc);opacity:.9;
-}
-.card-icon svg{width:100%;height:100%;}
-.card-title{
-  font-family:'Satoshi',sans-serif;
-  font-size:.82rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(10,10,10,.82);backdrop-filter:blur(6px);
+  border:1px solid rgba(var(--cc-rgb),.35);
+  display:flex;align-items:center;justify-content:center;
   color:var(--cc);
-  line-height:1.3;margin-bottom:.55rem;
+}
+.card-icon svg{width:16px;height:16px;}
+
+/* Card body */
+.card-body{
+  flex:1;display:flex;flex-direction:column;
+  padding:.7rem .75rem .55rem;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.card-title{
+  font-family:'Satoshi',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.05em;text-transform:uppercase;
+  color:var(--cc);line-height:1.22;margin-bottom:.35rem;
+  min-height:1.7rem;
 }
 .card-desc{
-  font-family:'Satoshi',sans-serif;
-  font-size:.72rem;font-weight:400;line-height:1.6;
-  color:rgba(242,242,240,.58);
-  margin-bottom:.7rem;
+  font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:400;
+  color:rgba(242,242,240,.38);line-height:1.55;margin-bottom:.5rem;
 }
-.card-items{
-  flex:1;list-style:none;
-  display:flex;flex-direction:column;gap:3px;
-  margin-bottom:.75rem;
-}
+.card-divider{height:1px;background:rgba(255,255,255,.05);margin-bottom:.45rem;}
+.card-items{list-style:none;display:flex;flex-direction:column;gap:3px;flex:1;}
 .card-items li{
-  font-family:'Satoshi',sans-serif;
-  font-size:.66rem;font-weight:400;line-height:1.4;
-  color:rgba(242,242,240,.55);
-  display:flex;align-items:baseline;gap:.4rem;
+  display:flex;align-items:center;gap:.35rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.5rem;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(242,242,240,.38);line-height:1.4;
 }
 .card-items li::before{
-  content:'';
-  width:5px;height:5px;border-radius:50%;
-  background:var(--cc);opacity:.7;flex-shrink:0;
-  margin-top:2px;
+  content:'';width:3px;height:3px;border-radius:50%;
+  background:rgba(var(--cc-rgb),.45);flex-shrink:0;
+}
+.card-cta-wrap{
+  border-top:1px solid rgba(255,255,255,.06);
+  margin-top:.45rem;padding-top:.45rem;
+  display:flex;justify-content:flex-end;
 }
 .card-cta{
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.6rem;font-weight:500;letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--cc);text-decoration:none;cursor:none;
-  border:1px solid currentColor;
-  padding:.5rem .8rem;
-  transition:background .3s,box-shadow .3s;
-  margin-top:auto;opacity:.8;
+  display:flex;align-items:center;gap:.5rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(var(--cc-rgb),.65);text-decoration:none;cursor:none;
+  border:1px solid rgba(var(--cc-rgb),.22);
+  padding:.3rem .55rem;
+  transition:background .25s,color .25s,border-color .25s;
 }
-.card-cta:hover{background:rgba(255,255,255,.06);opacity:1;}
-
-/* Active card (03 - Intelligent) */
-.card.active{
-  border-color:var(--cc);
-  box-shadow:0 0 0 1px var(--cc),inset 0 0 30px rgba(255,20,147,.06),0 0 40px rgba(255,20,147,.12);
-}
-.card.active .card-cta{opacity:1;}
+.card-cta:hover{background:rgba(var(--cc-rgb),.08);color:var(--cc);border-color:rgba(var(--cc-rgb),.5);}
 
 /* ── BOTTOM BAR ── */
 #bottom-bar{
   flex-shrink:0;
-  display:flex;align-items:center;
-  padding:.8rem 1.4rem;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  border-top:1px solid rgba(57,255,20,.1);
-  gap:2rem;
-  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 2.6s forwards;
+  display:flex;align-items:center;gap:1.5rem;
+  padding:.65rem 1.4rem;
+  background:rgba(10,10,10,.95);
+  border-top:1px solid rgba(57,255,20,.07);
 }
-.bottom-left{display:flex;align-items:center;gap:1rem;flex-shrink:0;}
-.hex-icon{width:40px;height:40px;flex-shrink:0;}
-.hex-icon svg{width:100%;height:100%;}
+.form-cube{color:rgba(57,255,20,.65);flex-shrink:0;}
+.form-cube svg{width:36px;height:36px;}
 .bottom-tagline{
-  font-family:'Satoshi',sans-serif;
-  font-size:.88rem;font-weight:700;letter-spacing:.06em;
-  text-transform:uppercase;color:#fff;
-  white-space:nowrap;line-height:1.35;
+  font-family:'Satoshi',sans-serif;font-size:.85rem;font-weight:500;
+  color:#F2F2F0;white-space:nowrap;letter-spacing:.02em;
 }
+.bottom-tagline .g{color:#39FF14;}
 .bottom-desc{
-  font-family:'Satoshi',sans-serif;
-  font-size:.75rem;font-weight:400;line-height:1.65;
-  color:rgba(242,242,240,.6);
-  max-width:360px;flex:1;
+  flex:1;
+  font-family:'Satoshi',sans-serif;font-size:.65rem;
+  color:rgba(242,242,240,.38);line-height:1.65;
+  border-left:1px solid rgba(255,255,255,.06);
+  padding-left:1.4rem;
 }
 .how-btn{
-  display:inline-flex;align-items:center;gap:.8rem;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.75rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(242,242,240,.9);text-decoration:none;cursor:none;
-  border:1px solid rgba(242,242,240,.35);
-  padding:.7rem 1.8rem;white-space:nowrap;
-  transition:border-color .3s,color .3s,box-shadow .3s;
-  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid rgba(57,255,20,.35);
+  color:rgba(57,255,20,.75);
+  text-decoration:none;cursor:none;
+  padding:.6rem 1.5rem;white-space:nowrap;
+  transition:background .3s,color .3s,border-color .3s;
 }
-.how-btn:hover{border-color:rgba(242,242,240,.75);color:#fff;box-shadow:0 0 20px rgba(255,255,255,.08);}
+.how-btn:hover{background:rgba(57,255,20,.07);color:#39FF14;border-color:#39FF14;}
 
-/* ── ABSOLUTE CORNER ELEMENTS ── */
-#cm-tr-eco{
-  position:absolute;top:1rem;right:1.4rem;z-index:6;
-  opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 2.1s forwards;
+/* ── CORNER LABELS ── */
+#corner-bl{position:fixed;bottom:3rem;left:138px;z-index:10;padding:.5rem .8rem;pointer-events:none;}
+#corner-br{position:fixed;bottom:3rem;right:.8rem;z-index:10;padding:.5rem .8rem;pointer-events:none;text-align:right;}
+.corner-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:.52rem;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(242,242,240,.22);
 }
-#cm-bl-eco,#cm-br-eco{
-  position:absolute;z-index:6;
-  opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 2.4s forwards;
-}
-#cm-bl-eco{bottom:5%;left:0.5%;}
-#cm-br-eco{bottom:5%;right:.8%;}
-.corner-label{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.67rem;font-weight:400;letter-spacing:.13em;
-  text-transform:uppercase;color:rgba(242,242,240,.72);
-  line-height:1.85;
-  text-shadow:0 1px 8px rgba(0,0,0,.8);
-}
-#cm-br-eco .corner-label{text-align:right;}
+.corner-lbl .g{color:#39FF14;}
 
-/* Scroll indicator */
-#scroll{
-  position:absolute;bottom:12.5%;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  z-index:6;pointer-events:none;
-  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 3.0s forwards;
+/* ── SCROLL INDICATOR ── */
+#scroll-ind{
+  position:fixed;bottom:.8rem;left:50%;transform:translateX(-50%);
+  z-index:15;display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  opacity:0;animation:fadein .8s ease 2.5s forwards;
+  pointer-events:none;
 }
-.smouse{width:18px;height:28px;border:1px solid rgba(242,242,240,.28);border-radius:9px;display:flex;justify-content:center;padding-top:5px;}
-.swheel{width:1.5px;height:4px;background:rgba(242,242,240,.4);border-radius:2px;animation:sdrop 2.2s ease-in-out infinite;}
-@keyframes sdrop{0%{opacity:1;transform:translateY(0)}60%{opacity:.15;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}
-.slbl{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.35);white-space:nowrap;}
+.smouse{width:16px;height:24px;border:1px solid rgba(57,255,20,.28);border-radius:8px;display:flex;justify-content:center;padding-top:4px;}
+.swheel{width:2px;height:5px;background:rgba(57,255,20,.55);border-radius:1px;animation:wheel-scroll 2s ease-in-out infinite;}
+@keyframes wheel-scroll{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(4px);opacity:1}}
+.slbl{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.28);}
 
-/* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  *,*::before,*::after{animation-duration:.01ms!important;}
   #veil{opacity:0!important;}
-  .hero-title,.hero-sub,.card,#sidebar,#bottom-bar,.breadcrumb,.corner-tr-info,#cm-tr-eco,#cm-bl-eco,#cm-br-eco,#scroll{opacity:1!important;}
-  #bg{animation:none!important;}
-  .scan{display:none;}
+  #sidebar,#eco-title,#scroll-ind{opacity:1!important;}
 }
 </style>
 </head>
@@ -336,206 +296,212 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 <div id="cdot"></div>
 <div id="cring"></div>
 <div class="scan"></div>
+<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:1;opacity:.022;mix-blend-mode:overlay;pointer-events:none;"><filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gf)"/></svg>
 
-<div id="bg"><img src="/bg.avif" alt=""></div>
-<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:1;opacity:.024;mix-blend-mode:overlay;pointer-events:none;">
-  <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
-  <rect width="100%" height="100%" filter="url(#gf)"/>
-</svg>
+<!-- Bracket corners -->
+<div class="brkt" id="btl"><div class="i"></div></div>
+<div class="brkt" id="btr"><div class="i"></div></div>
+<div class="brkt" id="bbl"><div class="i"></div></div>
+<div class="brkt" id="bbr"><div class="i"></div></div>
 
 <!-- ══ SIDEBAR ══ -->
 <aside id="sidebar">
-  <div id="sb-logo-wrap">
-    <a href="/"><img id="sb-logo" src="/logo.svg" alt="FORM."></a>
-  </div>
-  <div id="sb-nav-wrap">
-    <div id="sb-timeline">
-      <div class="tl-seg"></div>
-      <div class="tl-dot on"></div>
-      <div class="tl-seg"></div>
-      <div class="tl-dot"></div>
-      <div class="tl-seg"></div>
-      <div class="tl-dot"></div>
-      <div class="tl-seg"></div>
-      <div class="tl-dot"></div>
-      <div class="tl-seg"></div>
-      <div class="tl-dot"></div>
-      <div class="tl-seg"></div>
-    </div>
-    <nav id="sb-links">
-      <a href="/ecosystem.html" class="sb-link active">Ecosystem</a>
-      <a href="#" class="sb-link">About Form</a>
-      <a href="#" class="sb-link">Resources</a>
-      <a href="#" class="sb-link">Pricing</a>
-      <a href="#" class="sb-link">Contact</a>
-    </nav>
-  </div>
-  <div id="sb-status">
-    System Status<br>
-    <span class="g">Active •</span>
-  </div>
+  <div id="sb-logo-wrap"><a href="/"><img id="sb-logo" src="/logo.svg" alt="FORM."></a></div>
+  <nav id="sb-links">
+    <a href="#" class="sb-link">About Form</a>
+    <a href="#" class="sb-link">Resources</a>
+    <a href="#" class="sb-link">Pricing</a>
+    <a href="#" class="sb-link">Contact</a>
+  </nav>
+  <div id="sb-crosshair"><div class="crosshair"><div class="crosshair-dot"></div></div></div>
+  <div id="sb-status">System Status<br><span class="g">Active •</span></div>
 </aside>
 
 <!-- ══ MAIN ══ -->
 <main id="main">
 
-  <!-- Hero with background -->
-  <div id="hero-wrap">
-    <div id="top-bar">
-      <div class="breadcrumb">›Ecosystem / <span class="g">System Pathways</span></div>
-      <div id="cm-tr-eco">
-        <div class="bbox"><div class="bc"></div>
-          <div class="corner-label" style="text-align:right;">Operational Intelligence<br>For A <span class="g">Complex</span> World.<br><br>33.7490° N<br>84.3880° W</div>
-        </div>
-      </div>
-    </div>
-    <div id="hero-content">
-      <h1 class="hero-title">The Future<br>Needs <span class="g">Form.</span></h1>
-      <p class="hero-sub">
-        Intelligent systems for business, executive,<br>
-        creative, ministry, and everything in between.<br>
-        One ecosystem. <span class="g-em">Infinite impact.</span>
-      </p>
+  <!-- ── WAVE VISUALIZATION ── -->
+  <div id="wave-wrap">
+    <canvas id="waveCanvas"></canvas>
+    <div id="coords">33.7498° N<br>84.3088° W</div>
+    <div id="eco-title">
+      <h1>The Future<br>Needs <span class="g">Form.</span></h1>
+      <p id="eco-sub">One ecosystem. Intelligent systems.<br>Built for <span class="g">infinite impact.</span></p>
     </div>
   </div>
 
-  <!-- 5 Service Cards -->
+  <!-- ── 5 SYSTEM CARDS ── -->
   <div id="cards-wrap">
 
     <!-- 01 Business Systems -->
-    <div class="card" style="--cc:#39FF14;--d:2.15s;">
-      <div class="card-num">01</div>
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
-        </svg>
+    <div class="card c01">
+      <div class="card-vis">
+        <img src="/bg.avif" class="card-vis-bg" alt="">
+        <div class="card-vis-ov"></div>
+        <div class="card-vis-top"></div>
+        <div class="card-vis-bot"></div>
+        <div class="card-num">01</div>
+        <div class="card-icon-wrap"><div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          </svg>
+        </div></div>
       </div>
-      <div class="card-title">Business<br>Systems</div>
-      <div class="card-desc">Operational intelligence for future-forward organizations.</div>
-      <ul class="card-items">
-        <li>Strategy &amp; Growth</li>
-        <li>Operations &amp; Workflows</li>
-        <li>Customer Experience</li>
-        <li>Data &amp; Intelligence</li>
-        <li>AI Integration</li>
-      </ul>
-      <a href="/business-systems.html" class="card-cta">Explore Business Systems →</a>
+      <div class="card-body">
+        <div class="card-title">Business<br>Systems</div>
+        <div class="card-desc">Operational intelligence for future-forward organizations.</div>
+        <div class="card-divider"></div>
+        <ul class="card-items">
+          <li>Strategy &amp; Growth</li>
+          <li>Operations &amp; Workflows</li>
+          <li>Customer Experience</li>
+          <li>Data &amp; Intelligence</li>
+          <li>AI Integration</li>
+        </ul>
+        <div class="card-cta-wrap"><a href="/business-systems.html" class="card-cta">→</a></div>
+      </div>
     </div>
 
     <!-- 02 Executive & Operations -->
-    <div class="card" style="--cc:#2962FF;--d:2.25s;">
-      <div class="card-num">02</div>
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
+    <div class="card c02">
+      <div class="card-vis">
+        <img src="/bg.avif" class="card-vis-bg" alt="">
+        <div class="card-vis-ov"></div>
+        <div class="card-vis-top"></div>
+        <div class="card-vis-bot"></div>
+        <div class="card-num">02</div>
+        <div class="card-icon-wrap"><div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div></div>
       </div>
-      <div class="card-title">Executive &amp;<br>Operations Systems</div>
-      <div class="card-desc">Leadership infrastructure for clarity, alignment, and execution.</div>
-      <ul class="card-items">
-        <li>Executive Advisory</li>
-        <li>Leadership Systems</li>
-        <li>Operational Architecture</li>
-        <li>Performance Intelligence</li>
-        <li>Risk &amp; Compliance</li>
-      </ul>
-      <a href="/executive-systems.html" class="card-cta">Explore Executive Systems →</a>
+      <div class="card-body">
+        <div class="card-title">Executive &amp;<br>Operations</div>
+        <div class="card-desc">Leadership infrastructure for clarity, alignment, and execution.</div>
+        <div class="card-divider"></div>
+        <ul class="card-items">
+          <li>Executive Advisory</li>
+          <li>Leadership Systems</li>
+          <li>Operational Architecture</li>
+          <li>Performance Intelligence</li>
+          <li>Risk &amp; Compliance</li>
+        </ul>
+        <div class="card-cta-wrap"><a href="/executive-systems.html" class="card-cta">→</a></div>
+      </div>
     </div>
 
-    <!-- 03 Intelligent Systems (active) -->
-    <div class="card active" style="--cc:#7CFF00;--d:2.35s;">
-      <div class="card-num">03</div>
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-        </svg>
+    <!-- 03 Intelligence Systems (active) -->
+    <div class="card c03 active">
+      <div class="card-vis">
+        <img src="/bg.avif" class="card-vis-bg" alt="">
+        <div class="card-vis-ov"></div>
+        <div class="card-vis-top"></div>
+        <div class="card-vis-bot"></div>
+        <div class="card-num">03</div>
+        <div class="card-icon-wrap"><div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+          </svg>
+        </div></div>
       </div>
-      <div class="card-title">Intelligence<br>Systems</div>
-      <div class="card-desc">AI systems and workflows that amplify intelligence and automate what matters.</div>
-      <ul class="card-items">
-        <li>AI Workflows &amp; Automations</li>
-        <li>Intelligent Agents</li>
-        <li>System Integrations</li>
-        <li>Data Orchestration</li>
-        <li>Relay Platform</li>
-        <li>MinistryOS</li>
-        <li>Augmented Intelligence</li>
-      </ul>
-      <a href="/intelligence-systems.html" class="card-cta">Explore Intelligent Systems →</a>
+      <div class="card-body">
+        <div class="card-title">Intelligence<br>Systems</div>
+        <div class="card-desc">AI systems and workflows that amplify intelligence and automate what matters.</div>
+        <div class="card-divider"></div>
+        <ul class="card-items">
+          <li>AI Workflows &amp; Automations</li>
+          <li>Intelligent Agents</li>
+          <li>System Integrations</li>
+          <li>Data Orchestration</li>
+          <li>Relay Platform</li>
+          <li>MinistryOS</li>
+          <li>Augmented Intelligence</li>
+        </ul>
+        <div class="card-cta-wrap"><a href="/intelligence-systems.html" class="card-cta">→</a></div>
+      </div>
     </div>
 
     <!-- 04 Creative Systems -->
-    <div class="card" style="--cc:#FF8A00;--d:2.45s;">
-      <div class="card-num">04</div>
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-        </svg>
+    <div class="card c04">
+      <div class="card-vis">
+        <img src="/bg.avif" class="card-vis-bg" alt="">
+        <div class="card-vis-ov"></div>
+        <div class="card-vis-top"></div>
+        <div class="card-vis-bot"></div>
+        <div class="card-num">04</div>
+        <div class="card-icon-wrap"><div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+        </div></div>
       </div>
-      <div class="card-title">Creative<br>Systems</div>
-      <div class="card-desc">Cinematic intelligence for brands, media, and creative vision.</div>
-      <ul class="card-items">
-        <li>Brand &amp; Identity Systems</li>
-        <li>Content &amp; Media Production</li>
-        <li>Creative Direction</li>
-        <li>Campaign &amp; Launch Systems</li>
-        <li>AI-Enhanced Workflows</li>
-        <li>FRAME &amp; Brand Studio</li>
-      </ul>
-      <a href="/creative-systems.html" class="card-cta">Explore Creative Systems →</a>
+      <div class="card-body">
+        <div class="card-title">Creative<br>Systems</div>
+        <div class="card-desc">Cinematic intelligence for brands, media, and creative vision.</div>
+        <div class="card-divider"></div>
+        <ul class="card-items">
+          <li>Brand &amp; Identity Systems</li>
+          <li>Content &amp; Media Production</li>
+          <li>Creative Direction</li>
+          <li>Campaign &amp; Launch Systems</li>
+          <li>AI-Enhanced Workflows</li>
+          <li>FRAME &amp; Brand Studio</li>
+        </ul>
+        <div class="card-cta-wrap"><a href="/creative-systems.html" class="card-cta">→</a></div>
+      </div>
     </div>
 
     <!-- 05 Ministry Systems -->
-    <div class="card" style="--cc:#9B4DFF;--d:2.55s;">
-      <div class="card-num">05</div>
-      <div class="card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="8" x2="19" y2="8"/>
-        </svg>
+    <div class="card c05">
+      <div class="card-vis">
+        <img src="/bg.avif" class="card-vis-bg" alt="">
+        <div class="card-vis-ov"></div>
+        <div class="card-vis-top"></div>
+        <div class="card-vis-bot"></div>
+        <div class="card-num">05</div>
+        <div class="card-icon-wrap"><div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="8" x2="19" y2="8"/>
+          </svg>
+        </div></div>
       </div>
-      <div class="card-title">Ministry<br>Systems</div>
-      <div class="card-desc">Operational infrastructure for churches, movements, and people.</div>
-      <ul class="card-items">
-        <li>People &amp; Discipleship</li>
-        <li>Worship &amp; Communications</li>
-        <li>Care &amp; Engagement</li>
-        <li>Ministry Operations</li>
-        <li>Community &amp; Impact</li>
-      </ul>
-      <a href="/ministry-systems.html" class="card-cta">Explore Ministry Systems →</a>
+      <div class="card-body">
+        <div class="card-title">Ministry<br>Systems</div>
+        <div class="card-desc">Operational infrastructure for churches, movements, and people.</div>
+        <div class="card-divider"></div>
+        <ul class="card-items">
+          <li>People &amp; Discipleship</li>
+          <li>Worship &amp; Communications</li>
+          <li>Care &amp; Engagement</li>
+          <li>Ministry Operations</li>
+          <li>Community &amp; Impact</li>
+        </ul>
+        <div class="card-cta-wrap"><a href="/ministry-systems.html" class="card-cta">→</a></div>
+      </div>
     </div>
 
   </div>
 
-  <!-- Bottom Bar -->
+  <!-- ── BOTTOM BAR ── -->
   <div id="bottom-bar">
-    <div class="bottom-left">
-      <div class="hex-icon">
-        <svg viewBox="0 0 48 48" fill="none" stroke="rgba(57,255,20,.7)" stroke-width="1.5">
-          <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5"/>
-          <polygon points="24,11 37,18.5 37,33.5 24,41 11,33.5 11,18.5" stroke-opacity=".35"/>
-        </svg>
-      </div>
-      <div class="bottom-tagline">One Ecosystem.<br>Built For <span class="g">Impact.</span></div>
+    <div class="form-cube">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M20,4 L34,12 L34,28 L20,36 L6,28 L6,12 Z" stroke-opacity=".7"/>
+        <path d="M20,4 L20,20 M34,12 L20,20 M6,12 L20,20 M20,20 L20,36 M20,20 L34,28 M20,20 L6,28" stroke-opacity=".35"/>
+      </svg>
     </div>
-    <p class="bottom-desc">We design connected systems that remove friction, unlock human potential, and create lasting impact across every area of your world.</p>
+    <div class="bottom-tagline">One Ecosystem. Built For <span class="g">Impact.</span></div>
+    <p class="bottom-desc">We design connected systems that remove friction, unlock human potential,<br>and create lasting impact across every area of your world.</p>
     <a href="#" class="how-btn">How We Build →</a>
   </div>
 
-  <!-- Bottom corner labels -->
-  <div id="cm-bl-eco">
-    <div class="bbox"><div class="bc"></div>
-      <div class="corner-label">Vision Needs <span class="g">Structure.</span></div>
-    </div>
-  </div>
-  <div id="cm-br-eco">
-    <div class="bbox"><div class="bc"></div>
-      <div class="corner-label">The Future Needs <span class="g">Form.</span></div>
-    </div>
-  </div>
+  <!-- Corner labels -->
+  <div id="corner-bl"><div class="corner-lbl">Vision Needs <span class="g">Structure.</span></div></div>
+  <div id="corner-br"><div class="corner-lbl">The Future Needs <span class="g">Form.</span></div></div>
 
   <!-- Scroll indicator -->
-  <div id="scroll">
+  <div id="scroll-ind">
     <div class="smouse"><div class="swheel"></div></div>
     <div class="slbl">Scroll to Explore</div>
   </div>
@@ -546,49 +512,176 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 /* ── VIEWPORT SCALE ── */
 (function(){
   const DW=1440,DH=900;
-  function applyScale(){
-    const s=Math.min(window.innerWidth/DW,window.innerHeight/DH,1);
-    document.documentElement.style.zoom=s;
-  }
-  applyScale();
-  window.addEventListener('resize',applyScale);
+  function s(){document.documentElement.style.zoom=Math.min(innerWidth/DW,innerHeight/DH,1);}
+  s();window.addEventListener('resize',s);
 })();
 
+/* ── CURSOR ── */
 (function(){
-'use strict';
-/* Cursor */
-const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-(function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
-document.querySelectorAll('a,.card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
-});
-document.querySelectorAll('.card-cta,.how-btn').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
-});
-
-/* Parallax */
-const bg=document.getElementById('bg');
-let tpx=0,tpy=0,cpx=0,cpy=0;
-document.addEventListener('mousemove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e.clientY/innerHeight-.5)*2;});
-(function pl(){
-  cpx+=(tpx-cpx)*.022;cpy+=(tpy-cpy)*.022;
-  bg.style.marginLeft=(cpx*9)+'px';bg.style.marginTop=(cpy*6)+'px';
-  requestAnimationFrame(pl);
+  const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+  document.querySelectorAll('a,.card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+  });
+  document.querySelectorAll('.card-cta,.how-btn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
+  });
 })();
 
-/* UTC Clock */
-const clk=document.getElementById('utc-clock-eco');
-if(clk){
-  function tick(){
-    const n=new Date(),h=String(n.getUTCHours()).padStart(2,'0'),m=String(n.getUTCMinutes()).padStart(2,'0'),s=String(n.getUTCSeconds()).padStart(2,'0');
-    clk.textContent='UTC '+h+':'+m+':'+s;
+/* ── WAVE CANVAS ── */
+(function(){
+  const canvas = document.getElementById('waveCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  const SYS = [
+    { color:'#39FF14', rgb:[57,255,20],   cx:0.10, beam:false },
+    { color:'#2962FF', rgb:[41,98,255],   cx:0.30, beam:false },
+    { color:'#7CFF00', rgb:[124,255,0],   cx:0.50, beam:true  },
+    { color:'#FF8A00', rgb:[255,138,0],   cx:0.70, beam:false },
+    { color:'#9B4DFF', rgb:[155,77,255],  cx:0.90, beam:false },
+  ];
+
+  function resize(){
+    const wrap = canvas.parentElement;
+    W = canvas.width  = wrap.clientWidth;
+    H = canvas.height = wrap.clientHeight;
+    initParticles();
   }
-  tick();setInterval(tick,1000);
-}
+
+  function initParticles(){
+    particles = [];
+    SYS.forEach((sys, si) => {
+      const zone  = 0.17 * W;
+      const baseY = H * 0.72;
+      const peak  = sys.beam ? 0.55 : 0.15; // beam zone goes higher
+      const count = sys.beam ? 65 : 45;
+
+      for(let i = 0; i < count; i++){
+        const px = sys.cx * W + (Math.random() - 0.5) * zone * 1.2;
+        const py = baseY - Math.random() * (peak * H);
+        particles.push({
+          x:px, y:py, ox:px, baseY:py,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.004 + Math.random() * 0.009,
+          amp:   12  + Math.random() * 28,
+          drift: (Math.random() - 0.5) * 0.12,
+          size:  0.7 + Math.random() * 2.2,
+          alpha: 0.3 + Math.random() * 0.65,
+          rgb: sys.rgb, color: sys.color,
+          si, isBeam: false,
+        });
+      }
+
+      if(sys.beam){
+        for(let i = 0; i < 42; i++){
+          particles.push({
+            x: sys.cx * W + (Math.random() - 0.5) * 22,
+            y: H * Math.random(),
+            ox: sys.cx * W,
+            baseY: H * 0.75,
+            phase:0, speed:0, amp:0, drift:(Math.random()-0.5)*0.15,
+            vy: -(0.6 + Math.random() * 1.8),
+            size: 0.5 + Math.random() * 2,
+            alpha: 0.15 + Math.random() * 0.75,
+            rgb: sys.rgb, color: sys.color,
+            si, isBeam: true,
+          });
+        }
+      }
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Background
+    ctx.fillStyle = '#0A0A0A';
+    ctx.fillRect(0,0,W,H);
+
+    // Per-system glow orbs
+    SYS.forEach(sys => {
+      const gx = sys.cx * W;
+      const gy = H * 0.78;
+      const r  = W * 0.17;
+      const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,r);
+      g.addColorStop(0, `rgba(${sys.rgb},${sys.beam ? 0.14 : 0.09})`);
+      g.addColorStop(1, `rgba(${sys.rgb},0)`);
+      ctx.fillStyle = g;
+      ctx.fillRect(gx - r, gy - r, r*2, r*2);
+    });
+
+    // Beam column glow
+    const bx = 0.5 * W;
+    const bg2 = ctx.createLinearGradient(bx, 0, bx, H);
+    bg2.addColorStop(0,   'rgba(124,255,0,0)');
+    bg2.addColorStop(0.25,'rgba(124,255,0,0.012)');
+    bg2.addColorStop(0.65,'rgba(124,255,0,0.04)');
+    bg2.addColorStop(1,   'rgba(124,255,0,0.07)');
+    ctx.fillStyle = bg2;
+    ctx.fillRect(bx - 55, 0, 110, H);
+
+    // Update particles
+    particles.forEach(p => {
+      if(p.isBeam){
+        p.y += p.vy;
+        p.x += p.drift;
+        if(p.y < -5 || Math.abs(p.x - p.ox) > 28){
+          p.y = p.baseY + Math.random() * H * 0.12;
+          p.x = p.ox + (Math.random()-0.5) * 18;
+        }
+      } else {
+        p.phase += p.speed;
+        p.y      = p.baseY + Math.sin(p.phase) * p.amp;
+        p.x     += p.drift;
+        if(Math.abs(p.x - p.ox) > 0.10 * W) p.drift *= -1;
+      }
+    });
+
+    // Connections (batched per system)
+    SYS.forEach((sys, si) => {
+      const sp = particles.filter(p => p.si === si);
+      ctx.beginPath();
+      for(let i = 0; i < sp.length; i++){
+        for(let j = i+1; j < sp.length; j++){
+          const a = sp[i], b = sp[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const d2 = dx*dx + dy*dy;
+          if(d2 < 4900){ // 70px
+            const alpha = (1 - d2/4900) * 0.18;
+            ctx.strokeStyle = `rgba(${sys.rgb},${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+    });
+
+    // Particles
+    ctx.shadowBlur = 0;
+    particles.forEach(p => {
+      ctx.shadowBlur  = p.isBeam ? 10 : 5;
+      ctx.shadowColor = p.color;
+      ctx.fillStyle   = `rgba(${p.rgb},${p.alpha})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.shadowBlur = 0;
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
 })();
 </script>
 </body>
