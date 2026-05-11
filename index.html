@@ -6,6 +6,7 @@
 <title>FORM. — Operational Intelligence</title>
 <meta name="description" content="FORM. designs connected systems that adapt, amplify human potential, and create lasting impact.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
+<script src="/performance-tier.js"></script>
 <script src="/performance-config.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -289,6 +290,27 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   .wm,.sub,.hero-line,.enter-btn,#mark-wrap,.cm,#tl-left,#domains,#nav,#scroll{opacity:1!important;transform:none!important;}
   #bg{animation:none!important;}.scan{display:none;}
 }
+
+/* ── PERFORMANCE TIER GATES ── */
+
+/* Reduced — slow atmospheric motion, halve grain */
+[data-perf="reduced"] #bg{animation-duration:76s;}
+[data-perf="reduced"] .scan{animation-duration:44s;}
+[data-perf="reduced"] .swheel{animation-duration:4.8s;}
+[data-perf="reduced"] #sb-status-dot{animation-duration:3.6s;}
+[data-perf="reduced"] #grain{opacity:.011;}
+
+/* Minimal — strip all atmospheric animation */
+[data-perf="minimal"] #bg{animation:none!important;}
+[data-perf="minimal"] .scan{animation:none!important;display:none!important;}
+[data-perf="minimal"] .swheel{animation:none!important;}
+[data-perf="minimal"] #sb-status-dot{animation:none!important;}
+[data-perf="minimal"] #grain{display:none!important;}
+[data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none!important;}
+[data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto!important;}
+[data-perf="minimal"] #bg-ov{display:none!important;}
+[data-perf="minimal"] #ecocanvas{display:none!important;}
+[data-perf="reduced"] #bg-ov{opacity:.72;}
 </style>
 </head>
 <body>
@@ -380,6 +402,8 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 <script>
 /* ── REDUCED MOTION GATE — shared across all IIFEs ── */
 var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ── PERFORMANCE TIER — set by performance-tier.js before first paint ── */
+var tier=window.FORM_TIER||'full';
 
 /* ── VIEWPORT SCALE ── */
 (function(){
@@ -391,13 +415,28 @@ var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 (function(){
 'use strict';
 
+/* ── GRAIN ── */
+const grainEl=document.getElementById('grain');
+if(grainEl){
+  if(tier==='minimal'){grainEl.parentNode&&grainEl.parentNode.removeChild(grainEl);}
+  else if(tier==='reduced'){grainEl.style.opacity='0.011';}
+}
+
 /* ── CURSOR ── */
+/* Always define vars outside if/else so FORM_TIER_ONCHANGE callbacks can
+   access them if tier upgrades from provisional-minimal to reduced. */
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
 let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-if(!reducedMotion){
-(function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
+function _startCursorRing(){
+  if(reducedMotion)return;
+  (function cl(){
+    if((document.documentElement.dataset.perf||'full')==='minimal')return;
+    rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
+  })();
 }
+if(tier!=='minimal')_startCursorRing();
+/* Hover effects always active — CSS [data-perf="minimal"] hides cursor elements */
 document.querySelectorAll('a,.dom').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
@@ -414,7 +453,15 @@ const bg=document.getElementById('bg');
 let tpx=0,tpy=0,cpx=0,cpy=0;
 document.addEventListener('mousemove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e.clientY/innerHeight-.5)*2;});
 if(!reducedMotion){
-(function pl(){cpx+=(tpx-cpx)*.022;cpy+=(tpy-cpy)*.022;bg.style.marginLeft=(cpx*9)+'px';bg.style.marginTop=(cpy*6)+'px';requestAnimationFrame(pl);})();
+  var _plFrame=0;
+  (function pl(){
+    var _pt=document.documentElement.dataset.perf||'full';
+    if(_pt==='minimal')return;
+    _plFrame++;
+    var _plSkip=_pt==='reduced'?3:1;
+    if(_plFrame%_plSkip===0){cpx+=(tpx-cpx)*.022;cpy+=(tpy-cpy)*.022;if(bg){bg.style.marginLeft=(cpx*9)+'px';bg.style.marginTop=(cpy*6)+'px';}}
+    requestAnimationFrame(pl);
+  })();
 }
 
 /* ── DOMAIN SYSTEM + BG HUE CYCLING ── */
@@ -454,7 +501,10 @@ doms.forEach(d=>{
 });
 
 function doCycle(){
+  const _lt=document.documentElement.dataset.perf||'full';
+  if(_lt==='minimal')return;
   if(userHoveringDoms)return;
+  const _cm=_lt==='reduced'?2:1;
   doms.forEach(x=>x.classList.remove('dom-active'));
   const d=doms[cycleIdx%doms.length];
   d.classList.add('dom-active');
@@ -463,20 +513,40 @@ function doCycle(){
   bgImg.style.filter=hues[label]||'';
   setTimeout(()=>{
     if(!userHoveringDoms){d.classList.remove('dom-active');bgImg.style.transition='filter 2s ease-out';bgImg.style.filter='';}
-  },2400);
+  },2400*_cm);
   cycleIdx++;
   scheduleCycle();
 }
-function scheduleCycle(){clearTimeout(cycleTimer);cycleTimer=setTimeout(doCycle,4200);}
-setTimeout(()=>scheduleCycle(),7500);
+function scheduleCycle(){
+  clearTimeout(cycleTimer);
+  const _lt=document.documentElement.dataset.perf||'full';
+  if(_lt!=='minimal'){const _cm=_lt==='reduced'?2:1;cycleTimer=setTimeout(doCycle,4200*_cm);}
+}
+var _initCycleTimer=null;
+var _cycleStarted=(tier!=='minimal');
+if(tier==='minimal'&&bgImg){bgImg.style.filter='hue-rotate(0deg)';}
+else{
+  const _initMult=tier==='reduced'?2:1;
+  _initCycleTimer=setTimeout(()=>scheduleCycle(),7500*_initMult);
+}
 
 // Occasional intelligence flicker
+var _iFlickTimer=null,_iFlickInit=null,_iFlickStarted=(tier!=='minimal');
 function iFlick(){
+  const _lt=document.documentElement.dataset.perf||'full';
+  if(_lt==='minimal')return;
   bgImg.style.transition='filter .04s';bgImg.style.filter='brightness(1.04)';
   setTimeout(()=>{bgImg.style.transition='filter 2.5s ease-out';bgImg.style.filter='';},40);
-  setTimeout(iFlick,14000+Math.random()*20000);
+  const _iDelay=_lt==='reduced'?(27000+Math.random()*40000):(14000+Math.random()*20000);
+  _iFlickTimer=setTimeout(iFlick,_iDelay);
 }
-setTimeout(iFlick,18000);
+if(tier!=='minimal')_iFlickInit=setTimeout(iFlick,18000);
+
+/* ONE teardown handle — applyJSTierEffects drains this on post-benchmark downgrade */
+if(window.FORM_TIER_CANCEL)window.FORM_TIER_CANCEL.push(function(){
+  clearTimeout(cycleTimer);clearTimeout(_initCycleTimer);
+  clearTimeout(_iFlickTimer);clearTimeout(_iFlickInit);
+});
 
 /* ── UTC CLOCK ── */
 const clk=document.getElementById('utc-clock');
@@ -489,11 +559,26 @@ function tickClock(){
 }
 tickClock();setInterval(tickClock,1000);
 
+/* ── TIER UPGRADE HANDLER (main IIFE) ── */
+/* Fired by performance-tier.js when benchmark upgrades tier (e.g. minimal→reduced).
+   Reactivates subsystems that were skipped at provisional-minimal init. */
+if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,prevTier){
+  if(prevTier==='minimal'&&newTier!=='minimal'){
+    /* Restart cursor ring loop (was never started at provisional minimal) */
+    _startCursorRing();
+    /* Start hue cycle if not already running */
+    if(!_cycleStarted){_cycleStarted=true;scheduleCycle();}
+    /* Start iFlick if not already scheduled */
+    if(!_iFlickStarted){_iFlickStarted=true;_iFlickInit=setTimeout(iFlick,5000);}
+  }
+});
+
 })();
 
 /* ── ECOSYSTEM CANVAS: Living Neural Network ── */
 (function(){
 'use strict';
+const _canvasTier=window.FORM_TIER||'full';
 const canvas=document.getElementById('ecocanvas');
 const ctx=canvas.getContext('2d');
 let W,H;
@@ -524,9 +609,10 @@ function zoneColor(xFrac){
   };
 }
 
-/* Particles — counts clamped to PERF_CONFIG at spawn time */
-const N=PERF_CONFIG.MAX_NODES;
-const CONN_RADIUS=PERF_CONFIG.CONN_RADIUS;
+/* Particles — counts scaled per performance tier */
+const _N_FULL=PERF_CONFIG.MAX_NODES;
+const N=_canvasTier==='minimal'?30:_canvasTier==='reduced'?Math.ceil(_N_FULL/2):_N_FULL;
+const CONN_RADIUS=_canvasTier==='reduced'?Math.ceil(PERF_CONFIG.CONN_RADIUS*0.75):PERF_CONFIG.CONN_RADIUS;
 const SPEED_RANGE=[PERF_CONFIG.SPEED_MIN,PERF_CONFIG.SPEED_MAX];
 
 function mkParticle(){
@@ -600,7 +686,12 @@ function propagate(fromIdx,color,depth){
   },delay);
 }
 
-setInterval(tryFireSignal, PERF_CONFIG.SIGNAL_CHECK_INTERVAL_MS); // check frequently, fires sparingly
+/* Gate signal interval — minimal tier never starts canvas work */
+var _tryFireInterval=null;
+if(_canvasTier!=='minimal'){
+  _tryFireInterval=setInterval(tryFireSignal, PERF_CONFIG.SIGNAL_CHECK_INTERVAL_MS);
+  if(window.FORM_TIER_CANCEL)window.FORM_TIER_CANCEL.push(function(){clearInterval(_tryFireInterval);});
+}
 
 /* ── ECOSYSTEM INTERACTION INTELLIGENCE ── */
 
@@ -677,8 +768,43 @@ document.querySelectorAll('.dom').forEach(dom=>{
   ecoHover(dom,'domain',col);
 });
 
+/* SVG snapshot — replaces canvas with a static SVG scatter on minimal tier.
+   Canvas is hidden; an inline SVG with zone-colored dot particles is injected.
+   Called at init and from draw() self-termination path. Idempotent. */
+var _svgInjected=false;
+function _injectSVGSnapshot(){
+  if(_svgInjected)return;
+  _svgInjected=true;
+  /* Hide canvas (CSS [data-perf="minimal"] also hides it, but belt-and-suspenders) */
+  canvas.style.display='none';
+  if(!W||!H)return;
+  var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('id','eco-svg-snap');
+  svg.setAttribute('width','100%');
+  svg.setAttribute('height','100%');
+  /* Match canvas stacking/blend exactly */
+  var cz=window.getComputedStyle(canvas).zIndex;
+  svg.style.cssText='position:fixed;inset:0;mix-blend-mode:screen;opacity:.88;pointer-events:none;z-index:'+(cz||'2')+';';
+  /* Scatter ~30 particles across the viewport in zone hues */
+  for(var _si=0;_si<30;_si++){
+    var _sx=Math.random()*W,_sy=Math.random()*H;
+    var _sc=zoneColor(_sx/W);
+    var _sr=(0.4+Math.random()*1.1).toFixed(2);
+    var _sa=(0.22+Math.random()*0.35).toFixed(3);
+    var c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',_sx.toFixed(1));c.setAttribute('cy',_sy.toFixed(1));
+    c.setAttribute('r',_sr);
+    c.setAttribute('fill','rgba('+_sc.r+','+_sc.g+','+_sc.b+','+_sa+')');
+    svg.appendChild(c);
+  }
+  document.body.appendChild(svg);
+}
+
 let _frameStart=performance.now();
 function draw(){
+  /* Dynamic tier check — self-terminate if benchmark downgraded tier to minimal */
+  const _lt=document.documentElement.dataset.perf||'full';
+  if(_lt==='minimal'){_injectSVGSnapshot();return;}
   if(!W||!H){requestAnimationFrame(draw);return;}
 
   /* Frame-time guard — dev builds only (gated on DEBUG_PERF) */
@@ -775,6 +901,8 @@ function draw(){
         ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.05+fade*0.18+sigStrength*0.45)*0.92).toFixed(3)})`;
         ctx.lineWidth=0.45+sigStrength*0.7;
       } else {
+        /* Reduced tier: skip drawing faint ambient connections below opacity threshold */
+        if((document.documentElement.dataset.perf||'full')==='reduced'&&fade*0.10<0.04)continue;
         const mid=zoneColor(((a.x+b.x)*.5)/W);
         ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.03+fade*0.10)*0.82).toFixed(3)})`;
         ctx.lineWidth=0.38;
@@ -824,12 +952,38 @@ function draw(){
 
 /* Pause canvas when tab not visible — prevents frame backlog on return */
 document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden&&!reducedMotion)requestAnimationFrame(draw);
+  const _lt=document.documentElement.dataset.perf||'full';
+  if(!document.hidden&&!reducedMotion&&_lt!=='minimal')requestAnimationFrame(draw);
 });
 
 window.addEventListener('resize',resize);
 resize();
-if(!reducedMotion)requestAnimationFrame(draw);
+if(_canvasTier==='minimal'){
+  /* Provisional minimal — inject SVG snapshot, no rAF loop ever started.
+     FORM_TIER_ONCHANGE handler below restarts canvas if tier upgrades. */
+  _injectSVGSnapshot();
+} else if(!reducedMotion){
+  requestAnimationFrame(draw);
+}
+
+/* ── TIER UPGRADE HANDLER (canvas IIFE) ── */
+/* Reactivates canvas when benchmark upgrades from provisional-minimal to reduced. */
+if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,prevTier){
+  if(prevTier==='minimal'&&newTier!=='minimal'&&_svgInjected){
+    /* Remove SVG snapshot and restart animated canvas */
+    var snap=document.getElementById('eco-svg-snap');
+    if(snap&&snap.parentNode)snap.parentNode.removeChild(snap);
+    _svgInjected=false;
+    canvas.style.display='';
+    /* Start tryFire interval if not running */
+    if(!_tryFireInterval){
+      _tryFireInterval=setInterval(tryFireSignal,PERF_CONFIG.SIGNAL_CHECK_INTERVAL_MS);
+      if(window.FORM_TIER_CANCEL)window.FORM_TIER_CANCEL.push(function(){clearInterval(_tryFireInterval);});
+    }
+    /* Restart draw loop */
+    if(!reducedMotion)requestAnimationFrame(draw);
+  }
+});
 
 /* ── CINEMATIC PAGE EXIT ── */
 (function(){
