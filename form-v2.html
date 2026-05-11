@@ -59,7 +59,7 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
 }
 
 /* Canvas — ecosystem network, additive blend on top of bg */
-#ecocanvas{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.72;}
+#ecocanvas{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.88;}
 
 /* Grain */
 #grain{position:fixed;inset:0;z-index:3;opacity:.022;mix-blend-mode:overlay;pointer-events:none;}
@@ -327,10 +327,10 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
     <!-- PRIMARY WORDMARK -->
     <div class="wm">form<span class="wmsq"></span></div>
 
-    <!-- DOCTRINE TAGLINES — FORM language only -->
+    <!-- FORM ICONIC TAGLINES -->
     <p class="sub">
-      Intelligent enough to unsettle.<br>
-      Structured enough to <span class="g">scale.</span>
+      The future needs <span class="g">form.</span><br>
+      Vision Needs Structure.
     </p>
 
     <div class="hero-line"></div>
@@ -484,9 +484,9 @@ function zoneColor(xFrac){
 }
 
 /* Particles */
-const N=92;
-const CONN_RADIUS=145;
-const SPEED_RANGE=[0.12,0.32];
+const N=130;
+const CONN_RADIUS=160;
+const SPEED_RANGE=[0.08,0.22];
 
 function mkParticle(){
   const x=Math.random()*W;

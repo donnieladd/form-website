@@ -1,0 +1,106 @@
+VERSION 3 DIRECTION NOTES
+
+First, regarding the logo system:
+
+I do like this logo treatment, but I’m officially positioning this version as the Authority version of the FORM. logo system — not the primary front-facing identity.
+
+The Primary Core version of the FORM. logo is still the main identity and should remain the dominant version used throughout the experience.
+
+That is:
+- the most marketable version
+- the clearest version
+- the most recognizable version
+- the strongest ecosystem identity
+
+The Primary Core logo should live:
+- in the hero center
+- across the majority of the site
+- throughout the primary experience architecture
+
+The Editorial version and the Authority version should appear more selectively and intentionally.
+
+Examples:
+- Editorial logo → supporting moments, atmospheric/editorial sections, navigation layers
+- Authority logo → enterprise moments, declarations, high-impact system states, institutional sections
+
+The homepage hero itself should always prioritize the Primary Core FORM. logo.
+
+I’ll make sure all official logo variants are provided so the hierarchy stays consistent.
+
+—
+
+Now regarding the page layout itself:
+
+I really like the direction of this page structure.
+
+This feels much closer to Version 3.
+
+What I like:
+- the overall composition
+- the pacing
+- the hierarchy
+- the modular spacing
+- the balance between atmosphere and structure
+- the ecosystem layering
+- the stronger operational framing
+- the clearer sectional rhythm
+- the improved content architecture
+
+It feels like it’s building on the strongest parts of the current FORM. system instead of reinventing everything.
+
+That’s important.
+
+I do NOT want us drifting into random redesigns.
+
+I want evolution through refinement.
+
+This layout feels like:
+- FORM. becoming more mature
+- more productized
+- more operational
+- more ecosystem-driven
+- more premium
+- more intentional
+
+It still preserves:
+- cinematic atmosphere
+- environmental intelligence
+- operational identity
+- ecosystem behavior
+- emotional depth
+
+while improving:
+- clarity
+- scalability
+- usability
+- visual rhythm
+- system organization
+
+That’s the direction we should continue pushing.
+
+The major thing:
+replace all placeholder/non-FORM logos with the actual FORM. identity system.
+
+I want:
+- official FORM. logos
+- proper logo hierarchy
+- proper ecosystem consistency
+- accurate visual governance
+
+The structure is what I’m responding to here — not the temporary branding elements.
+
+Let’s treat this as:
+# VERSION 3 FOUNDATION DIRECTION
+
+Then refine:
+- environmental life
+- atmospheric intelligence
+- typography hierarchy
+- motion behavior
+- ecosystem differentiation
+- responsive orchestration
+- signal systems
+- operational layering
+- living neural behavior
+
+from there.
