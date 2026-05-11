@@ -495,6 +495,7 @@ document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;});
 /* Signal propagation system */
 let lastSignal=0;
 function tryFireSignal(){
+  if(!W||!H)return;
   const now=Date.now();
   if(now-lastSignal < 4800)return;
   // Pick a random particle to activate
@@ -548,6 +549,7 @@ let attract=null;
 let ambDrift={vx:0,vy:0,str:0};
 let lastAmb=Date.now(), nextAmb=11000+Math.random()*9000;
 function tryAmbientDrift(){
+  if(!W||!H)return;
   const now=Date.now();
   if(now-lastAmb<nextAmb)return;
   const ang=Math.random()*Math.PI*2;
@@ -598,6 +600,8 @@ document.querySelectorAll('.dom').forEach(dom=>{
 });
 
 function draw(){
+  if(!W||!H){requestAnimationFrame(draw);return;}
+
   // Ambient drift lifecycle
   tryAmbientDrift();
   if(ambDrift.str>0.001){ambDrift.str*=0.991;ambDrift.vx*=0.991;ambDrift.vy*=0.991;}
