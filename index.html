@@ -6,6 +6,7 @@
 <title>FORM. — Operational Intelligence</title>
 <meta name="description" content="FORM. designs connected systems that adapt, amplify human potential, and create lasting impact.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
+<script src="/performance-config.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -318,6 +319,9 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 </div>
 
 <script>
+/* ── REDUCED MOTION GATE — shared across all IIFEs ── */
+var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ── VIEWPORT SCALE ── */
 (function(){
   const DW=1440,DH=900;
@@ -332,7 +336,9 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
 let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+if(!reducedMotion){
 (function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+}
 document.querySelectorAll('a,.dom').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
@@ -348,7 +354,9 @@ document.querySelectorAll('a,.dom').forEach(el=>{
 const bg=document.getElementById('bg');
 let tpx=0,tpy=0,cpx=0,cpy=0;
 document.addEventListener('mousemove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e.clientY/innerHeight-.5)*2;});
+if(!reducedMotion){
 (function pl(){cpx+=(tpx-cpx)*.022;cpy+=(tpy-cpy)*.022;bg.style.marginLeft=(cpx*9)+'px';bg.style.marginTop=(cpy*6)+'px';requestAnimationFrame(pl);})();
+}
 
 /* ── DOMAIN SYSTEM + BG HUE CYCLING ── */
 const bgImg=document.getElementById('bg-img');
@@ -457,10 +465,10 @@ function zoneColor(xFrac){
   };
 }
 
-/* Particles */
-const N=130;
-const CONN_RADIUS=160;
-const SPEED_RANGE=[0.08,0.22];
+/* Particles — counts clamped to PERF_CONFIG at spawn time */
+const N=PERF_CONFIG.MAX_NODES;
+const CONN_RADIUS=PERF_CONFIG.CONN_RADIUS;
+const SPEED_RANGE=[PERF_CONFIG.SPEED_MIN,PERF_CONFIG.SPEED_MAX];
 
 function mkParticle(){
   const x=Math.random()*W;
@@ -494,10 +502,12 @@ document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;});
 
 /* Signal propagation system */
 let lastSignal=0;
+let _activeSignals=0; // concurrent propagation chain counter — capped at MAX_ACTIVE_SIGNALS
 function tryFireSignal(){
   if(!W||!H)return;
   const now=Date.now();
-  if(now-lastSignal < 4800)return;
+  if(now-lastSignal < PERF_CONFIG.SIGNAL_MIN_INTERVAL_MS)return;
+  if(_activeSignals>=PERF_CONFIG.MAX_ACTIVE_SIGNALS)return; // concurrency cap
   // Pick a random particle to activate
   const idx=Math.floor(Math.random()*pts.length);
   const p=pts[idx];
@@ -505,12 +515,13 @@ function tryFireSignal(){
   p.signal=1.0;
   p.signalColor=c;
   // Propagate to nearest neighbors sequentially
+  _activeSignals++;
   propagate(idx,c,0);
   lastSignal=now;
 }
 
 function propagate(fromIdx,color,depth){
-  if(depth>6)return;
+  if(depth>PERF_CONFIG.MAX_SIGNAL_DEPTH){_activeSignals=Math.max(0,_activeSignals-1);return;}
   const from=pts[fromIdx];
   // Find nearest unactivated neighbor within radius
   let best=-1,bestDist=Infinity;
@@ -521,7 +532,7 @@ function propagate(fromIdx,color,depth){
     const d=Math.sqrt(dx*dx+dy*dy);
     if(d<CONN_RADIUS&&d<bestDist){bestDist=d;best=i;}
   }
-  if(best<0)return;
+  if(best<0){_activeSignals=Math.max(0,_activeSignals-1);return;}
   const delay=200+depth*80+Math.random()*120;
   setTimeout(()=>{
     pts[best].signal=0.85;
@@ -530,13 +541,14 @@ function propagate(fromIdx,color,depth){
   },delay);
 }
 
-setInterval(tryFireSignal, 200); // check frequently, fires sparingly
+setInterval(tryFireSignal, PERF_CONFIG.SIGNAL_CHECK_INTERVAL_MS); // check frequently, fires sparingly
 
 /* ── ECOSYSTEM INTERACTION INTELLIGENCE ── */
 
-// Environmental pulse pool — expanding atmospheric rings from hover points
+// Environmental pulse pool — expanding atmospheric rings from hover points (clamped to MAX_ENV_PULSES)
 const ENV_PULSES=[];
 function firePulse(x,y,col,intensity){
+  if(ENV_PULSES.length>=PERF_CONFIG.MAX_ENV_PULSES)return;
   ENV_PULSES.push({x,y,r:0,maxR:38+Math.random()*32,
     alpha:(intensity||0.4)*0.30,color:col||{r:57,g:255,b:20},
     spd:0.038+Math.random()*0.028});
@@ -606,8 +618,21 @@ document.querySelectorAll('.dom').forEach(dom=>{
   ecoHover(dom,'domain',col);
 });
 
+let _frameStart=performance.now();
 function draw(){
   if(!W||!H){requestAnimationFrame(draw);return;}
+
+  /* Frame-time guard — dev builds only (gated on DEBUG_PERF) */
+  if(PERF_CONFIG.DEBUG_PERF){
+    const _now=performance.now();
+    const _elapsed=_now-_frameStart;
+    if(_elapsed>PERF_CONFIG.SOFT_FLOOR_FRAME_MS){
+      console.warn('[PERF] Frame critically over budget: '+_elapsed.toFixed(2)+'ms (soft floor '+PERF_CONFIG.SOFT_FLOOR_FRAME_MS+'ms)');
+    } else if(_elapsed>PERF_CONFIG.TARGET_FRAME_MS){
+      console.warn('[PERF] Frame over target: '+_elapsed.toFixed(2)+'ms (target '+PERF_CONFIG.TARGET_FRAME_MS+'ms)');
+    }
+    _frameStart=_now;
+  }
 
   // Ambient drift lifecycle
   tryAmbientDrift();
@@ -655,9 +680,9 @@ function draw(){
       p.vy+=ambDrift.vy*0.06;
     }
 
-    /* Speed cap */
+    /* Speed cap — hard clamp from PERF_CONFIG */
     const spd=Math.sqrt(p.vx*p.vx+p.vy*p.vy);
-    if(spd>0.38){p.vx*=0.38/spd;p.vy*=0.38/spd;}
+    if(spd>PERF_CONFIG.SPEED_CAP){p.vx*=PERF_CONFIG.SPEED_CAP/spd;p.vy*=PERF_CONFIG.SPEED_CAP/spd;}
     if(spd<0.10){p.vx*=1.15;p.vy*=1.15;}
 
     p.x+=p.vx;p.y+=p.vy;
@@ -740,12 +765,12 @@ function draw(){
 
 /* Pause canvas when tab not visible — prevents frame backlog on return */
 document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden)requestAnimationFrame(draw);
+  if(!document.hidden&&!reducedMotion)requestAnimationFrame(draw);
 });
 
 window.addEventListener('resize',resize);
 resize();
-requestAnimationFrame(draw);
+if(!reducedMotion)requestAnimationFrame(draw);
 
 /* ── CINEMATIC PAGE EXIT ── */
 (function(){
