@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM. — Operational Intelligence</title>
+<meta name="description" content="AI-augmented operational infrastructure and intelligence. The future needs form.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{cursor:none;}
+body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── LAYERS ── */
+#bg{position:fixed;inset:-4%;width:108%;height:108%;z-index:0;transform-origin:center;will-change:transform;}
+#bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.35) saturate(.8);}
+
+#wave-canvas{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;}
+
+#grain{position:fixed;inset:0;z-index:3;opacity:.028;mix-blend-mode:overlay;pointer-events:none;}
+
+/* Atmospheric haze — middle depth layer */
+#haze{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 90% 55% at 50% 82%, rgba(57,255,20,.055) 0%, rgba(57,255,20,.018) 35%, transparent 70%);
+}
+
+/* Veil entrance */
+#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 3.6s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes veil-open{0%,40%{opacity:1}100%{opacity:0}}
+
+/* Scan line */
+.scan{position:fixed;left:0;right:0;height:2px;z-index:5;pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(57,255,20,.06) 20%,rgba(57,255,20,.11) 50%,rgba(57,255,20,.06) 80%,transparent 100%);
+  animation:scan-run 32s linear infinite 14s;opacity:0;animation-fill-mode:forwards;}
+@keyframes scan-run{0%{top:-2px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100vh;opacity:0}}
+
+/* Cursor */
+#cdot{position:fixed;z-index:9000;width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
+#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
+body.hl  #cring{width:38px;height:38px;border-color:rgba(57,255,20,.9);}
+body.hcta #cring{width:64px;height:64px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.3);}
+
+/* ── UI LAYER ── */
+#ui{position:fixed;inset:0;z-index:10;pointer-events:none;}
+#ui a{pointer-events:auto;}
+
+/* ── NAV ── */
+#nav{
+  position:absolute;top:0;left:0;right:0;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.6rem;
+  background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 100%);
+  opacity:0;animation:fadein .8s ease 2.8s forwards;
+}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeup-slow{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+#logo{height:34px;width:auto;cursor:none;display:block;}
+#nav-right{display:flex;align-items:center;gap:2rem;}
+#utc-clock{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;color:rgba(57,255,20,.75);}
+#strat{font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,242,240,.8);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.32);padding:.5rem 1.5rem;transition:color .3s,border-color .3s;white-space:nowrap;}
+#strat:hover{color:#fff;border-color:rgba(242,242,240,.8);}
+
+/* ── HERO (LEFT-ALIGNED) ── */
+#hero{
+  position:absolute;
+  top:50%;transform:translateY(-54%);
+  left:5.5%;
+  max-width:680px;
+  pointer-events:none;
+}
+.wm{
+  font-family:'Satoshi',sans-serif;
+  font-size:8.8vw;font-weight:500;line-height:0.95;
+  letter-spacing:-.01em;
+  color:#F2F2F0;
+  display:flex;align-items:baseline;gap:.03em;
+  opacity:0;animation:fadeup 1.4s cubic-bezier(.16,1,.3,1) 2.8s forwards;
+  text-shadow:0 2px 60px rgba(0,0,0,.6);
+}
+.wmsq{
+  display:inline-block;
+  width:.115em;height:.115em;
+  background:#39FF14;flex-shrink:0;
+  margin-bottom:.07em;
+  box-shadow:0 0 14px rgba(57,255,20,.9),0 0 45px rgba(57,255,20,.5);
+}
+
+.hero-tag1{
+  font-family:'Satoshi',sans-serif;
+  font-size:2.05rem;font-weight:400;line-height:1.15;
+  color:rgba(242,242,240,.82);
+  margin-top:.85rem;
+  opacity:0;animation:fadeup 1.1s cubic-bezier(.16,1,.3,1) 3.2s forwards;
+  text-shadow:0 2px 24px rgba(0,0,0,.9);
+  white-space:nowrap;
+}
+.hero-tag1 .g{color:#39FF14;font-weight:500;}
+
+.hero-tag2{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.9rem;font-weight:400;letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(242,242,240,.5);
+  margin-top:.55rem;
+  opacity:0;animation:fadeup 1s cubic-bezier(.16,1,.3,1) 3.5s forwards;
+  text-shadow:0 1px 12px rgba(0,0,0,.95);
+}
+
+.hero-divider{
+  width:36px;height:1px;background:rgba(57,255,20,.4);
+  margin-top:1.8rem;
+  opacity:0;animation:fadein .8s ease 3.8s forwards;
+}
+
+.enter-btn{
+  display:inline-flex;align-items:center;gap:1.2rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.88rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;
+  color:#39FF14;text-decoration:none;cursor:none;
+  border:1px solid rgba(57,255,20,.65);
+  background:rgba(0,0,0,.22);
+  padding:1.15rem 3.8rem;white-space:nowrap;
+  pointer-events:auto;
+  margin-top:1.8rem;
+  opacity:0;animation:fadeup-slow .9s cubic-bezier(.16,1,.3,1) 4.1s forwards;
+  transition:background .4s,border-color .4s,box-shadow .4s,letter-spacing .4s,color .4s;
+  box-shadow:0 0 0 1px rgba(57,255,20,.1),inset 0 0 18px rgba(57,255,20,.03);
+}
+.enter-btn:hover{
+  background:rgba(57,255,20,.09);border-color:#39FF14;
+  box-shadow:0 0 35px rgba(57,255,20,.25),0 0 0 1px rgba(57,255,20,.28),inset 0 0 24px rgba(57,255,20,.05);
+  letter-spacing:.34em;color:#7CFF00;
+}
+.enter-btn .arr{font-size:1.4rem;line-height:1;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.enter-btn:hover .arr{transform:translateX(7px);}
+
+/* ── CORNER ELEMENTS ── */
+.cm{position:absolute;z-index:20;opacity:0;animation:fadein .7s ease 3.9s forwards;}
+.cm-inner{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  line-height:1.85;color:rgba(242,242,240,.72);
+  padding:8px 12px;
+  background:rgba(0,0,0,.28);backdrop-filter:blur(5px);
+  border:1px solid rgba(57,255,20,.1);
+  position:relative;
+}
+.cm-inner::before,.cm-inner::after,.cm-inner .i::before,.cm-inner .i::after{content:'';position:absolute;width:10px;height:10px;border-color:rgba(57,255,20,.55);border-style:solid;}
+.cm-inner::before{top:0;left:0;border-width:1px 0 0 1px;}
+.cm-inner::after{top:0;right:0;border-width:1px 1px 0 0;}
+.cm-inner .i::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.cm-inner .i::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+.g{color:#39FF14;}
+
+#cm-tl{top:7.5%;left:2.2%;}
+#cm-tr{top:7.5%;right:2.2%;} #cm-tr .cm-inner{text-align:right;}
+#cm-bl{bottom:13%;left:2.2%;}
+
+/* Status dot */
+#status-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#39FF14;box-shadow:0 0 5px #39FF14;margin-right:.35em;vertical-align:middle;animation:sdot-beat 1.4s ease-in-out infinite;}
+@keyframes sdot-beat{0%,100%{opacity:1;box-shadow:0 0 5px #39FF14}55%{opacity:.25;box-shadow:none}}
+
+/* Coordinates micro-drift — updated by JS */
+#coord-lat{display:inline;}
+#coord-lon{display:inline;}
+
+/* ── BOTTOM PILLAR STRIP ── */
+#pillars{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;
+  border-top:1px solid rgba(57,255,20,.1);
+  opacity:0;animation:fadein .8s ease 4.5s forwards;
+}
+.pillar{
+  flex:1;
+  padding:.85rem 2.2rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(242,242,240,.38);
+  border-right:1px solid rgba(57,255,20,.07);
+  line-height:1.7;
+  transition:color .3s;
+}
+.pillar:last-child{border-right:none;}
+.pillar:hover{color:rgba(242,242,240,.65);}
+.pillar .plus{color:rgba(57,255,20,.6);margin-right:.4em;}
+
+/* ── DOCTRINE LINE (cycles through key statements) ── */
+#doctrine-wrap{
+  position:absolute;right:2.8%;top:50%;transform:translateY(-50%);
+  max-width:220px;text-align:right;
+  opacity:0;animation:fadein .7s ease 4.2s forwards;
+}
+#doctrine-text{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(242,242,240,.28);line-height:1.9;
+}
+#doc-cursor{display:inline-block;width:1.5px;height:.8em;background:#39FF14;margin-left:1px;vertical-align:middle;animation:doc-blink .65s step-end infinite;}
+@keyframes doc-blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── FIELD STATUS (right side, below doctrine) ── */
+#field-status{
+  position:absolute;right:2.8%;top:calc(50% + 80px);
+  opacity:0;animation:fadein .7s ease 4.4s forwards;
+  text-align:right;
+}
+.fs-row{display:flex;align-items:center;justify-content:flex-end;gap:.6rem;margin-bottom:.4rem;}
+.fs-label{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.22);}
+.fs-bar{width:42px;height:1.5px;background:rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.fs-fill{position:absolute;top:0;left:0;height:100%;background:#39FF14;transition:width .4s;}
+.fs-val{font-family:'IBM Plex Mono',monospace;font-size:.5rem;color:rgba(57,255,20,.55);letter-spacing:.06em;min-width:28px;}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;}
+  #veil{opacity:0!important;}
+  #nav,#hero .wm,.hero-tag1,.hero-tag2,.hero-divider,.enter-btn,.cm,#pillars,#doctrine-wrap,#field-status{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div id="veil"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+<div class="scan"></div>
+
+<!-- Environment -->
+<div id="bg"><img src="/bg.avif" alt=""></div>
+<div id="haze"></div>
+
+<!-- Living Field Canvas -->
+<canvas id="wave-canvas"></canvas>
+
+<!-- Film grain -->
+<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:3;opacity:.028;mix-blend-mode:overlay;pointer-events:none;">
+  <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#gf)"/>
+</svg>
+
+<!-- UI -->
+<div id="ui">
+
+  <nav id="nav">
+    <a href="/"><img id="logo" src="/logo.svg" alt="FORM."></a>
+    <div id="nav-right">
+      <span id="utc-clock"></span>
+      <a id="strat" href="/ecosystem.html">Strategy Call&thinsp;→</a>
+    </div>
+  </nav>
+
+  <!-- Hero — left aligned -->
+  <div id="hero">
+    <div class="wm">form<span class="wmsq" id="wmsq"></span></div>
+    <div class="hero-tag1">the future needs <span class="g">form.</span></div>
+    <div class="hero-tag2">Vision Needs Structure.</div>
+    <div class="hero-divider"></div>
+    <a class="enter-btn" href="/ecosystem.html">Enter Form <span class="arr">→</span></a>
+  </div>
+
+  <!-- Corners -->
+  <div id="cm-tl" class="cm"><div class="cm-inner"><div class="i"></div>Operational Intelligence<br>For A <span class="g">Complex</span> World.</div></div>
+  <div id="cm-tr" class="cm"><div class="cm-inner"><div class="i"></div><span id="coord-lat">33.7490° N</span><br><span id="coord-lon">84.3880° W</span><br><span id="utc-clock-corner" style="color:rgba(57,255,20,.8);font-size:.68rem;"></span></div></div>
+  <div id="cm-bl" class="cm"><div class="cm-inner"><div class="i"></div><span id="status-dot"></span>System Status<br><span class="g">Operational</span></div></div>
+
+  <!-- Doctrine cycling text (right) -->
+  <div id="doctrine-wrap">
+    <div id="doctrine-text"><span id="doc-content"></span><span id="doc-cursor"></span></div>
+  </div>
+
+  <!-- Field status readout -->
+  <div id="field-status">
+    <div class="fs-row"><span class="fs-label">Signal</span><div class="fs-bar"><div class="fs-fill" id="sig-fill" style="width:72%"></div></div><span class="fs-val" id="sig-val">0.72</span></div>
+    <div class="fs-row"><span class="fs-label">Density</span><div class="fs-bar"><div class="fs-fill" id="den-fill" style="width:85%"></div></div><span class="fs-val" id="den-val">0.85</span></div>
+    <div class="fs-row"><span class="fs-label">Flow</span><div class="fs-bar"><div class="fs-fill" id="flow-fill" style="width:61%"></div></div><span class="fs-val" id="flow-val">0.61</span></div>
+  </div>
+
+  <!-- Bottom pillars -->
+  <div id="pillars">
+    <div class="pillar"><span class="plus">+</span>Operational<br>Intelligence</div>
+    <div class="pillar"><span class="plus">+</span>AI-Augmented<br>Ecosystems</div>
+    <div class="pillar"><span class="plus">+</span>Organizational<br>Architecture</div>
+    <div class="pillar"><span class="plus">+</span>Future-Facing<br>Infrastructure</div>
+  </div>
+
+</div>
+
+<script>
+/* ── VIEWPORT SCALE ── */
+(function(){
+  const DW=1440,DH=900;
+  function s(){document.documentElement.style.zoom=Math.min(innerWidth/DW,innerHeight/DH,1);}
+  s();window.addEventListener('resize',s);
+})();
+
+/* ── CURSOR ── */
+(function(){
+  const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+  document.querySelectorAll('a').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+  });
+  document.querySelectorAll('.enter-btn,#strat').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
+  });
+})();
+
+/* ── BACKGROUND PARALLAX ── */
+(function(){
+  const bg=document.getElementById('bg');
+  let tx=0,ty=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{tx=(e.clientX/innerWidth-.5)*2;ty=(e.clientY/innerHeight-.5)*2;});
+  (function pl(){cx+=(tx-cx)*.018;cy+=(ty-cy)*.018;bg.style.marginLeft=(cx*10)+'px';bg.style.marginTop=(cy*7)+'px';requestAnimationFrame(pl);})();
+})();
+
+/* ── CLOCKS + COORDINATE MICRO-DRIFT ── */
+(function(){
+  const clk1=document.getElementById('utc-clock');
+  const clk2=document.getElementById('utc-clock-corner');
+  const latEl=document.getElementById('coord-lat');
+  const lonEl=document.getElementById('coord-lon');
+  const BASE_LAT=33.7490, BASE_LON=84.3880;
+  function tick(){
+    const n=new Date();
+    const h=String(n.getUTCHours()).padStart(2,'0');
+    const m=String(n.getUTCMinutes()).padStart(2,'0');
+    const s=String(n.getUTCSeconds()).padStart(2,'0');
+    const t=`UTC ${h}:${m}:${s}`;
+    clk1.textContent=t; clk2.textContent=t;
+    const ts=Date.now()/1000;
+    const lat=(BASE_LAT+Math.sin(ts*0.00009)*0.0004).toFixed(4);
+    const lon=(BASE_LON+Math.cos(ts*0.00007)*0.0003).toFixed(4);
+    latEl.textContent=lat+'° N';
+    lonEl.textContent=lon+'° W';
+  }
+  tick();setInterval(tick,1000);
+})();
+
+/* ── DOCTRINE ROTATOR ── */
+(function(){
+  const LINES=[
+    'Vision deserves\ninfrastructure.',
+    'Organizations fail because\ntheir ideas lack form.',
+    'Institutional intelligence.\nDisruptive cognition.',
+    'Not simulated.\nOperational.',
+    'Intelligence in motion.\nImpact that lasts.',
+    'The future belongs to\norganizations that integrate.',
+    'form. works beneath\nthe visible layer.',
+    'Structured enough to scale.\nIntelligent enough to adapt.',
+  ];
+  const el=document.getElementById('doc-content');
+  let li=0,ci=0,state='wait-start',hold=0;
+  const SPEED=38,HOLD=2800,FADE_OUT=600;
+
+  function step(){
+    if(state==='wait-start'){
+      state='typing';ci=0;
+      setTimeout(step,200);return;
+    }
+    if(state==='typing'){
+      const full=LINES[li];
+      if(ci<=full.length){
+        el.textContent=full.substring(0,ci).replace(/\n/g,' · ');
+        ci++;
+        setTimeout(step,SPEED+Math.random()*18);
+      } else {
+        state='holding';hold=0;
+        setTimeout(step,HOLD);
+      }
+      return;
+    }
+    if(state==='holding'){
+      state='clearing';
+      el.style.transition='opacity '+FADE_OUT+'ms';
+      el.style.opacity='0';
+      setTimeout(()=>{
+        el.textContent='';el.style.transition='';el.style.opacity='1';
+        li=(li+1)%LINES.length;state='typing';ci=0;
+        setTimeout(step,200);
+      },FADE_OUT);
+    }
+  }
+  setTimeout(step,4800);
+})();
+
+/* ── FIELD STATUS ANIMATION ── */
+(function(){
+  const sigs=[
+    {fill:'sig-fill',val:'sig-val',base:0.68,amp:0.18,freq:0.0009},
+    {fill:'den-fill',val:'den-val',base:0.82,amp:0.12,freq:0.0007},
+    {fill:'flow-fill',val:'flow-val',base:0.58,amp:0.22,freq:0.0011},
+  ];
+  function upd(){
+    const t=Date.now();
+    sigs.forEach(s=>{
+      const v=Math.max(0.15,Math.min(0.98,s.base+Math.sin(t*s.freq)*s.amp));
+      document.getElementById(s.fill).style.width=(v*100).toFixed(1)+'%';
+      document.getElementById(s.val).textContent=v.toFixed(2);
+    });
+    requestAnimationFrame(upd);
+  }
+  upd();
+})();
+
+/* ── LIVING FIELD WAVE CANVAS ── */
+(function(){
+'use strict';
+const canvas=document.getElementById('wave-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,frame=0;
+
+/* Grid config */
+const COLS=52, ROWS=20;
+const WORLD_W=1440; // matches design width
+const WORLD_D=700;
+const HORIZON_Y_FRAC=0.90;   // where front row appears (% from top)
+const VANISH_Y_FRAC=0.44;    // where back row converges (vanishing horizon)
+
+/* Mouse world approx */
+let mouseScreenX=720,mouseScreenY=450;
+document.addEventListener('mousemove',e=>{mouseScreenX=e.clientX;mouseScreenY=e.clientY;});
+
+/* Particles grid */
+const pts=[];
+for(let r=0;r<ROWS;r++){
+  for(let c=0;c<COLS;c++){
+    const wx=(c/(COLS-1)-0.5)*WORLD_W;
+    const wz=(r/(ROWS-1))*WORLD_D;
+    pts.push({wx,wz,wy:0,sx:0,sy:0,alpha:0,sz:0,r,c});
+  }
+}
+
+function waveY(wx,wz,t){
+  const x=wx*0.0028, z=wz*0.0035;
+  return(
+    Math.sin(x*2.3+t*0.7)*40
+   +Math.sin(z*2.0-t*0.58)*32
+   +Math.sin((x+z)*1.7+t*0.44)*24
+   +Math.sin(x*4.1-t*1.18)*15
+   +Math.sin(z*3.0+t*0.82)*11
+   +Math.sin((x-z)*2.5-t*0.36)*8
+   +Math.sin(x*1.2+z*2.2+t*0.25)*6
+  );
+}
+
+/* Simplified perspective projection.
+   Maps world (wx,wy,wz) to screen (sx,sy).
+   Z=0 → bottom, Z=WORLD_D → horizon */
+function project(wx,wy,wz){
+  const t=wz/WORLD_D; // 0 near, 1 far
+  const easeT=t*t*(3-2*t); // smooth easing for depth falloff
+  const HORIZ=H*HORIZON_Y_FRAC;
+  const VANISH=H*VANISH_Y_FRAC;
+  // Base Y: linear interpolation horiz→vanish as depth increases
+  const baseY=HORIZ-easeT*(HORIZ-VANISH);
+  // Wave height effect: wy pushes up, reduced at far
+  const yScale=0.55*(1-easeT*0.45);
+  const sy=baseY-wy*yScale;
+  // X: perspective narrowing
+  const xScale=(1.0-easeT*0.58)*(W/WORLD_W);
+  const sx=wx*xScale+W*0.5;
+  return{sx,sy,depth:WORLD_D-wz};
+}
+
+function getMousWorld(){
+  // Invert: what wave X position does the mouse correspond to?
+  const mx=mouseScreenX-W*0.5;
+  // Rough estimate: middle depth
+  const t=0.45;
+  const xScale=(1.0-t*0.58)*(W/WORLD_W);
+  return{wx:mx/xScale,wz:WORLD_D*t};
+}
+
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+}
+
+/* Heartbeat function — cardiac waveform */
+function heartbeat(t){
+  const period=0.9;
+  const ph=(t%period)/period;
+  return(
+    Math.exp(-Math.pow((ph-0.22)*10,2))
+   +0.48*Math.exp(-Math.pow((ph-0.36)*17,2))
+  );
+}
+
+/* Green square heartbeat */
+const wmsq=document.getElementById('wmsq');
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+
+  const t=frame*0.016;
+  frame++;
+
+  /* Heartbeat */
+  const hb=heartbeat(t);
+
+  /* Green square pulse */
+  const glowR=Math.round(14+hb*22);
+  const glowS=Math.round(45+hb*50);
+  wmsq.style.boxShadow=`0 0 ${glowR}px rgba(57,255,20,${0.85+hb*0.15}),0 0 ${glowS}px rgba(57,255,20,${0.4+hb*0.28})`;
+
+  /* Ambient environmental glow beneath field — middle-depth atmosphere */
+  const grd=ctx.createRadialGradient(W*0.5,H*0.82,0,W*0.5,H*0.82,W*0.58);
+  grd.addColorStop(0,`rgba(57,255,20,${0.04+hb*0.018})`);
+  grd.addColorStop(0.5,`rgba(57,255,20,0.012)`);
+  grd.addColorStop(1,'rgba(57,255,20,0)');
+  ctx.fillStyle=grd;
+  ctx.fillRect(0,0,W,H);
+
+  /* Mouse world position */
+  const mw=getMousWorld();
+
+  /* Update particle positions */
+  for(let i=0;i<pts.length;i++){
+    const p=pts[i];
+    let y=waveY(p.wx,p.wz,t);
+
+    /* Mouse interaction — gaussian elevation bump */
+    const dx=p.wx-mw.wx;
+    const dz=p.wz-(mw.wz+80);
+    const distSq=dx*dx+dz*dz;
+    const bump=48*Math.exp(-distSq/55000);
+    y+=bump;
+
+    /* Heartbeat global field lift (very subtle) */
+    y+=hb*12*Math.exp(-Math.pow(p.wz/WORLD_D-0.4,2)*8);
+
+    p.wy=y;
+    const proj=project(p.wx,p.wy,p.wz);
+    p.sx=proj.sx;p.sy=proj.sy;p.depth=proj.depth;
+    const depthT=p.wz/WORLD_D;
+    const bright=Math.max(0,Math.min(1,(y+85)/170));
+    p.alpha=Math.max(0.05,(0.1+bright*0.82)*(0.35+depthT*0.65));
+    p.sz=Math.max(0.4,0.5+bright*2.4);
+  }
+
+  /* Draw connections — horizontal (row neighbors) */
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS-1;c++){
+      const a=pts[r*COLS+c];
+      const b=pts[r*COLS+c+1];
+      const avg=(a.alpha+b.alpha)*0.5;
+      if(avg<0.08)continue;
+      const lineAlpha=avg*0.55;
+      ctx.beginPath();
+      ctx.moveTo(a.sx,a.sy);
+      ctx.lineTo(b.sx,b.sy);
+      ctx.strokeStyle=`rgba(57,255,20,${lineAlpha.toFixed(3)})`;
+      ctx.lineWidth=0.55;
+      ctx.stroke();
+    }
+  }
+
+  /* Draw connections — vertical (column neighbors / depth lines) */
+  for(let r=0;r<ROWS-1;r++){
+    for(let c=0;c<COLS;c++){
+      const a=pts[r*COLS+c];
+      const b=pts[(r+1)*COLS+c];
+      const avg=(a.alpha+b.alpha)*0.5;
+      if(avg<0.07)continue;
+      const lineAlpha=avg*0.38;
+      ctx.beginPath();
+      ctx.moveTo(a.sx,a.sy);
+      ctx.lineTo(b.sx,b.sy);
+      ctx.strokeStyle=`rgba(57,255,20,${lineAlpha.toFixed(3)})`;
+      ctx.lineWidth=0.45;
+      ctx.stroke();
+    }
+  }
+
+  /* Draw particles — sorted far→near (painters' order) */
+  /* Already stored in row order (r=0 front, r=ROWS-1 back).
+     Draw back rows first (highest r) so front rows render on top. */
+  for(let r=ROWS-1;r>=0;r--){
+    for(let c=0;c<COLS;c++){
+      const p=pts[r*COLS+c];
+      if(p.alpha<0.06)continue;
+      // Glow on bright peak particles
+      if(p.alpha>0.55&&p.sz>1.8){
+        ctx.shadowBlur=10;
+        ctx.shadowColor='rgba(57,255,20,0.7)';
+      } else if(p.alpha>0.35){
+        ctx.shadowBlur=4;
+        ctx.shadowColor='rgba(57,255,20,0.4)';
+      } else {
+        ctx.shadowBlur=0;
+      }
+      ctx.fillStyle=`rgba(57,255,20,${p.alpha.toFixed(3)})`;
+      ctx.beginPath();
+      ctx.arc(p.sx,p.sy,p.sz,0,Math.PI*2);
+      ctx.fill();
+    }
+  }
+  ctx.shadowBlur=0;
+
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize',resize);
+resize();
+requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
