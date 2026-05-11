@@ -48,10 +48,17 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
 .tl-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,20,147,.22);flex-shrink:0;margin:2px 0;}
 .tl-dot.on{background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.4);}
 #sb-links{flex:1;display:flex;flex-direction:column;padding:0 .8rem 0 .4rem;}
-.sb-link{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:rgba(242,242,240,.4);text-decoration:none;cursor:none;padding:.62rem .4rem;transition:color .25s;display:block;white-space:nowrap;}
+.sb-link{font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.38);text-decoration:none;cursor:none;padding:.52rem .4rem;transition:color .25s;display:block;white-space:nowrap;}
 .sb-link:hover{color:rgba(242,242,240,.8);}
 .sb-link.active{color:var(--ac);font-weight:500;}
-#sb-status{padding:1rem 1rem 1.2rem;border-top:1px solid rgba(255,20,147,.08);font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.35);line-height:1.9;}
+#sb-brackets{padding:.6rem .9rem;display:flex;justify-content:center;}
+.sb-brkt{width:34px;height:34px;position:relative;}
+.sb-brkt::before,.sb-brkt::after,.sb-brkt .b2::before,.sb-brkt .b2::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(255,20,147,.3);border-style:solid;}
+.sb-brkt::before{top:0;left:0;border-width:1px 0 0 1px;}
+.sb-brkt::after{top:0;right:0;border-width:1px 1px 0 0;}
+.sb-brkt .b2::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.sb-brkt .b2::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+#sb-status{padding:.9rem 1rem 1.1rem;border-top:1px solid rgba(255,20,147,.08);font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.32);line-height:1.9;}
 
 /* Utility */
 .g{color:#39FF14;}
@@ -164,7 +171,10 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
 .footer-val-icon svg{width:15px;height:15px;}
 .footer-val-text{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.38);line-height:1.6;}
 .footer-val-text .p{color:var(--ac);}
-.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.2);text-align:center;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.2);}
+.footer-tagline{font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.28);}
+.footer-tagline .p{color:var(--ac);}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
@@ -193,18 +203,24 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
       <div class="tl-seg"></div><div class="tl-dot"></div>
       <div class="tl-seg"></div><div class="tl-dot"></div>
       <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
       <div class="tl-seg"></div>
     </div>
     <nav id="sb-links">
       <a href="/ecosystem.html" class="sb-link">Ecosystem</a>
       <a href="/ministry-systems.html" class="sb-link active">Ministry Systems</a>
-      <a href="#" class="sb-link">Business Systems</a>
+      <a href="/business-systems.html" class="sb-link">Business Systems</a>
+      <a href="#" class="sb-link">Intelligence Systems</a>
+      <a href="#" class="sb-link">Industry Systems</a>
       <a href="#" class="sb-link">About Form</a>
       <a href="#" class="sb-link">Resources</a>
       <a href="#" class="sb-link">Pricing</a>
       <a href="#" class="sb-link">Contact</a>
     </nav>
   </div>
+  <div id="sb-brackets"><div class="sb-brkt"><div class="b2"></div></div></div>
   <div id="sb-status">System Status<br><span class="p">Active •</span></div>
 </aside>
 
@@ -485,7 +501,10 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
         <div class="footer-val-text">Intelligence In<br>Service Of <span class="p">People.</span></div>
       </div>
     </div>
-    <div class="footer-copy">© 2024 Form. All Rights Reserved.</div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Form. All Rights Reserved.</div>
+      <div class="footer-tagline">The Future Needs <span class="p">Form.</span></div>
+    </div>
   </footer>
 
 </main>
