@@ -98,12 +98,20 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 #strat{
   font-family:'IBM Plex Mono',monospace;
   font-size:.875rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(242,242,240,.85);text-decoration:none;cursor:none;
-  border:1px solid rgba(242,242,240,.38);
+  color:rgba(242,242,240,.82);text-decoration:none;cursor:none;
+  border:1px solid rgba(242,242,240,.28);
   padding:.55rem 1.6rem;white-space:nowrap;
-  transition:color .35s,border-color .35s;
+  background:rgba(0,0,0,.18);
+  box-shadow:0 0 0 1px rgba(57,255,20,.05),inset 0 0 14px rgba(255,255,255,.02);
+  transition:color .4s,border-color .4s,box-shadow .5s,background .4s,letter-spacing .4s;
 }
-#strat:hover{color:#fff;border-color:rgba(242,242,240,.8);}
+#strat:hover{
+  color:rgba(57,255,20,.95);
+  border-color:rgba(57,255,20,.58);
+  background:rgba(57,255,20,.04);
+  box-shadow:0 0 26px rgba(57,255,20,.16),0 0 0 1px rgba(57,255,20,.18),inset 0 0 18px rgba(57,255,20,.04);
+  letter-spacing:.21em;
+}
 
 /* ── CORNER ELEMENTS ── */
 .cm{position:absolute;z-index:20;opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 4.2s forwards;}
@@ -152,20 +160,13 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   text-align:center;
 }
 
-/* PRIMARY WORDMARK */
+/* PRIMARY CORE LOGO — main ecosystem identity */
 .wm{
-  font-family:'Satoshi',sans-serif;
-  font-size:13.2vw;font-weight:400;line-height:1;letter-spacing:-.02em;
-  color:#fff;display:flex;align-items:baseline;gap:.03em;
+  display:block;
+  width:clamp(240px,28vw,430px);
+  height:auto;
   opacity:0;animation:fadeup 1.5s cubic-bezier(.16,1,.3,1) 3.0s forwards;
-  text-shadow:0 0 80px rgba(255,255,255,.12);
-}
-.wmsq{
-  display:inline-block;
-  width:.12em;height:.12em;
-  background:#39FF14;flex-shrink:0;
-  margin-bottom:.07em;
-  box-shadow:0 0 14px rgba(57,255,20,.9),0 0 45px rgba(57,255,20,.5);
+  filter:drop-shadow(0 0 55px rgba(255,255,255,.07));
 }
 
 /* Tag lines */
@@ -259,7 +260,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#"><img id="logo" src="/logo.svg" alt="FORM."></a>
+    <a href="#"><img id="logo" src="/logo-editorial-2.svg" alt="FORM."></a>
     <ul id="nav-links">
       <li><a href="/ecosystem.html">Ecosystem</a></li>
       <li><a href="#">About</a></li>
@@ -297,8 +298,8 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   <!-- HERO STACK: Continuum Mark → form. → taglines → CTA -->
   <div id="hero-stack">
 
-    <!-- PRIMARY WORDMARK -->
-    <div class="wm">form<span class="wmsq"></span></div>
+    <!-- PRIMARY CORE LOGO — hero ecosystem identity -->
+    <img class="wm" src="/logo-core-final-2.svg" alt="FORM.">
 
     <!-- FORM LOCKUP -->
     <p class="sub">
@@ -573,35 +574,29 @@ function draw(){
     if(p.signal<0.01)p.signal=0;
   }
 
-  /* Draw connections */
+  /* Draw connections — optimised: dist² early-exit, no per-line gradient */
+  const CR2=CONN_RADIUS*CONN_RADIUS;
   for(let i=0;i<pts.length-1;i++){
     for(let j=i+1;j<pts.length;j++){
       const a=pts[i],b=pts[j];
       const dx=b.x-a.x,dy=b.y-a.y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist>CONN_RADIUS)continue;
-
+      const dist2=dx*dx+dy*dy;
+      if(dist2>CR2)continue;
+      const dist=Math.sqrt(dist2);
       const fade=1-dist/CONN_RADIUS;
-      const isSignal=a.signal>0.1||b.signal>0.1;
       const sigStrength=Math.max(a.signal,b.signal);
 
-      let ca,cb;
-      if(isSignal&&sigStrength>0.15){
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      if(sigStrength>0.15){
         const sc=a.signal>b.signal?(a.signalColor||zoneColor(a.x/W)):(b.signalColor||zoneColor(b.x/W));
-        ca=cb=sc;
-        const lineAlpha=(0.06+fade*0.22+sigStrength*0.55)*0.95;
-        ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${lineAlpha.toFixed(3)})`;
-        ctx.lineWidth=0.6+sigStrength*1.2;ctx.stroke();
+        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.06+fade*0.22+sigStrength*0.55)*0.95).toFixed(3)})`;
+        ctx.lineWidth=0.6+sigStrength*1.2;
       } else {
-        ca=zoneColor(a.x/W);cb=zoneColor(b.x/W);
-        const lineAlpha=(0.04+fade*0.12)*0.85;
-        const grad=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-        grad.addColorStop(0,`rgba(${ca.r},${ca.g},${ca.b},${lineAlpha.toFixed(3)})`);
-        grad.addColorStop(1,`rgba(${cb.r},${cb.g},${cb.b},${lineAlpha.toFixed(3)})`);
-        ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle=grad;ctx.lineWidth=0.45;ctx.stroke();
+        const mid=zoneColor(((a.x+b.x)*.5)/W);
+        ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.04+fade*0.12)*0.85).toFixed(3)})`;
+        ctx.lineWidth=0.45;
       }
+      ctx.stroke();
     }
   }
 
@@ -631,9 +626,35 @@ function draw(){
   requestAnimationFrame(draw);
 }
 
+/* Pause canvas when tab not visible — prevents frame backlog on return */
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden)requestAnimationFrame(draw);
+});
+
 window.addEventListener('resize',resize);
 resize();
 requestAnimationFrame(draw);
+
+/* ── CINEMATIC PAGE EXIT ── */
+(function(){
+  const veil=document.getElementById('veil');
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href||href==='#'||href.startsWith('http')||href.startsWith('mailto'))return;
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      const dest=href;
+      veil.style.animation='none';
+      veil.style.opacity='0';
+      veil.style.pointerEvents='all';
+      requestAnimationFrame(()=>{
+        veil.style.transition='opacity .55s cubic-bezier(.7,0,.3,1)';
+        veil.style.opacity='1';
+        setTimeout(()=>{ window.location.href=dest; },580);
+      });
+    });
+  });
+})();
 })();
 </script>
 </body>

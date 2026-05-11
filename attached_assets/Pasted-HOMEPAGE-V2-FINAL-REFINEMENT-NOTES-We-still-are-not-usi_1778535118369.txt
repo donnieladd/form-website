@@ -1,0 +1,181 @@
+HOMEPAGE V2 — FINAL REFINEMENT NOTES
+
+We still are not using the correct logo hierarchy.
+
+To clarify:
+
+The file labeled:
+“Primary Core Final”
+is the official Primary Core version of the FORM. logo.
+
+That is the logo that should live:
+
+* in the center hero
+* as the dominant homepage identity
+* throughout the primary ecosystem experience
+
+The logo currently sitting in the center is actually the Editorial version.
+
+That version should instead live:
+
+* in the upper-left navigation area
+* as a supporting identity element
+* in editorial/system contexts
+
+The hierarchy matters.
+
+Primary Core = main ecosystem identity.
+Editorial = supporting atmospheric/editorial identity.
+Authority = high-impact institutional identity.
+
+That structure needs to remain consistent across the entire experience.
+
+—
+
+Now regarding Version 2 of the homepage:
+
+This is it.
+
+Seriously.
+
+This direction is finally landing in the way I envisioned it.
+
+The atmosphere, pacing, hierarchy, ecosystem behavior, and emotional tone are all starting to come together correctly.
+
+Now we are no longer redesigning.
+
+We are refining.
+
+That’s a huge shift.
+
+—
+
+I noticed there were some environmental motion elements that initially looked great, but then froze once the rest of the page motion started activating.
+
+We need to run performance tests and optimize those systems.
+
+The environmental motion needs to remain:
+
+* alive
+* smooth
+* responsive
+* continuous
+
+without:
+
+* freezing
+* stuttering
+* dropping frames
+* competing with page transitions
+
+The environment should always feel like:
+
+a living intelligence ecosystem.
+
+Not layered animations fighting each other.
+
+—
+
+Also:
+we need to start thinking deeply about transition choreography between pages.
+
+Not just the pages themselves.
+
+The transitions matter.
+
+I want navigation to feel:
+
+* seamless
+* cinematic
+* intentional
+* fluid
+* emotionally connected
+
+Meaning:
+
+* how a page exits matters
+* how the next page enters matters
+* how motion carries between states matters
+* how atmosphere evolves matters
+* how signals transition matters
+
+Every transition should feel like:
+
+movement through one connected ecosystem.
+
+Not separate pages loading independently.
+
+That level of detail matters.
+
+—
+
+The “Enter FORM.” button is excellent right now.
+
+The glow behavior is strong.
+The positioning is strong.
+The balance is strong.
+
+Keep pushing that direction.
+
+However:
+the “Strategy Call” CTA is currently weak.
+
+It has:
+
+* no presence
+* no glow hierarchy
+* no atmospheric response
+* no premium interaction behavior
+
+Right now it feels disconnected from the rest of the system.
+
+It needs:
+
+* subtle glow behavior
+* interaction hierarchy
+* environmental integration
+* premium hover response
+* stronger visual weight
+
+Not louder.
+Just more intentional.
+
+Right now the “Enter FORM.” CTA feels premium.
+The “Strategy Call” CTA does not.
+
+—
+
+At this stage, the homepage is mostly about refinement.
+
+The foundation is there.
+
+Now the question becomes:
+
+How do we make this feel like:
+
+a million-dollar product experience?
+
+Not by adding more.
+
+By refining:
+
+* motion timing
+* interaction hierarchy
+* environmental responsiveness
+* typography balance
+* glow discipline
+* transition choreography
+* atmospheric layering
+* performance smoothness
+* ecosystem continuity
+
+That’s the level we’re entering now.
+
+And honestly:
+it’s starting to feel like something Apple would release.
+
+That was always the goal.
+
+Not flashy futurism.
+
+Refined, cinematic, emotionally intelligent operational design.
