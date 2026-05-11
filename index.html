@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FORM. — Operational Intelligence</title>
+
+<!-- Open Graph / Social -->
+<meta name="description" content="FORM. designs connected systems that adapt, amplify human potential, and create lasting impact across every area of your world.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FORM. — Operational Intelligence">
+<meta property="og:description" content="We design connected systems that adapt, amplify human potential, and create lasting impact across every area of your world.">
+<meta property="og:image" content="/logo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FORM. — Operational Intelligence">
+<meta name="twitter:description" content="We design connected systems that adapt, amplify human potential, and create lasting impact.">
+
+<!-- Favicon: green square matching brand -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
+
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -43,6 +57,9 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
   display:flex;align-items:center;justify-content:space-between;
   padding:0 2.4rem;
   opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 3.0s forwards;
+  background:linear-gradient(to bottom,rgba(0,0,0,.52) 0%,rgba(0,0,0,0) 100%);
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
 }
 #logo{height:38px;width:auto;cursor:none;display:block;}
 #nav-links{
@@ -221,6 +238,22 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
 #cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
 body.hl  #cring{width:40px;height:40px;border-color:rgba(57,255,20,.88);}
 body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.28);}
+
+/* ── DOMAIN ACTIVE STATE (auto-cycle) ── */
+.dom.dom-active{color:rgba(242,242,240,.98);}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  #veil{opacity:0!important;}
+  .wm,.sub,.hero-line,.enter-btn,.cm,#tl-left,#domains,#nav,#scroll{opacity:1!important;}
+  #bg{animation:none!important;}
+  .scan{display:none;}
+}
 </style>
 </head>
 <body>
@@ -251,7 +284,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   </nav>
 
   <div id="cm-tl" class="cm"><div class="bbox"><div class="bc"></div>Operational Intelligence<br>For A <span class="g">Complex</span> World.</div></div>
-  <div id="cm-tr" class="cm"><div class="bbox"><div class="bc"></div>33.7490° N<br>84.3880° W</div></div>
+  <div id="cm-tr" class="cm"><div class="bbox"><div class="bc"></div>33.7490° N<br>84.3880° W<br><span id="utc-clock" style="color:#39FF14;letter-spacing:.08em;"></span></div></div>
   <div id="cm-bl" class="cm"><div class="bbox"><div class="bc"></div>System Status<br><span class="g">Operational</span></div></div>
   <div id="cm-br" class="cm"><div class="bbox"><div class="bc"></div>Intelligence In Motion.<br><span class="g">Impact That Lasts.</span></div></div>
 
@@ -330,11 +363,47 @@ document.addEventListener('mousemove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e
 
 const bgImg=document.querySelector('#bg img');
 const hues={Intelligence:'hue-rotate(210deg) saturate(1.1)',Execution:'hue-rotate(-18deg) saturate(1.15)',Creativity:'hue-rotate(-38deg) saturate(1.1)',Experience:'hue-rotate(18deg) saturate(1.1)',Ministry:'hue-rotate(258deg) saturate(1.1)',Humanity:'hue-rotate(298deg) saturate(1.1)'};
-document.querySelectorAll('.dom').forEach(d=>{
+const doms=Array.from(document.querySelectorAll('.dom'));
+let userHoveringDoms=false,cycleIdx=0,cycleTimer=null;
+
+doms.forEach(d=>{
   const label=d.childNodes[0].textContent.trim();
-  d.addEventListener('mouseenter',()=>{bgImg.style.transition='filter .5s ease-out';bgImg.style.filter=hues[label]||'';});
-  d.addEventListener('mouseleave',()=>{bgImg.style.transition='filter .8s ease-out';bgImg.style.filter='';});
+  d.addEventListener('mouseenter',()=>{
+    userHoveringDoms=true;
+    clearTimeout(cycleTimer);
+    doms.forEach(x=>x.classList.remove('dom-active'));
+    d.classList.add('dom-active');
+    bgImg.style.transition='filter .5s ease-out';
+    bgImg.style.filter=hues[label]||'';
+  });
+  d.addEventListener('mouseleave',()=>{
+    userHoveringDoms=false;
+    d.classList.remove('dom-active');
+    bgImg.style.transition='filter .8s ease-out';
+    bgImg.style.filter='';
+    scheduleCycle();
+  });
 });
+
+function doCycle(){
+  if(userHoveringDoms)return;
+  doms.forEach(x=>x.classList.remove('dom-active'));
+  const d=doms[cycleIdx%doms.length];
+  d.classList.add('dom-active');
+  const label=d.childNodes[0].textContent.trim();
+  bgImg.style.transition='filter 1.2s ease-out';
+  bgImg.style.filter=hues[label]||'';
+  setTimeout(()=>{
+    if(!userHoveringDoms){d.classList.remove('dom-active');bgImg.style.transition='filter 1.8s ease-out';bgImg.style.filter='';}
+  },2200);
+  cycleIdx++;
+  scheduleCycle();
+}
+function scheduleCycle(){
+  clearTimeout(cycleTimer);
+  cycleTimer=setTimeout(doCycle,3800);
+}
+setTimeout(()=>scheduleCycle(),7000);
 
 function iFlick(){
   bgImg.style.transition='filter .04s';bgImg.style.filter='brightness(1.06)';
@@ -343,10 +412,22 @@ function iFlick(){
 }
 setTimeout(iFlick,15000);
 
-document.querySelectorAll('.dom').forEach((d,i)=>{
+doms.forEach((d,i)=>{
   d.style.opacity='0';
   d.style.animation=`fadein .5s cubic-bezier(.16,1,.3,1) ${4.1+i*.08}s forwards`;
 });
+
+/* ── LIVE UTC CLOCK ── */
+const clk=document.getElementById('utc-clock');
+function tickClock(){
+  const now=new Date();
+  const hh=String(now.getUTCHours()).padStart(2,'0');
+  const mm=String(now.getUTCMinutes()).padStart(2,'0');
+  const ss=String(now.getUTCSeconds()).padStart(2,'0');
+  clk.textContent=`UTC ${hh}:${mm}:${ss}`;
+}
+tickClock();
+setInterval(tickClock,1000);
 })();
 </script>
 </body>
