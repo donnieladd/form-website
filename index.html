@@ -17,11 +17,12 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
 #bg{position:fixed;inset:-5%;width:110%;height:110%;z-index:0;transform-origin:center;will-change:transform;animation:bg-breathe 38s ease-in-out infinite;}
 #bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:filter 1.4s ease-out;}
 @keyframes bg-breathe{
-  0%  {transform:scale(1)     translate(0,0);}
-  25% {transform:scale(1.007) translate(-7px,4px);}
-  55% {transform:scale(1.012) translate(-10px,-6px);}
-  80% {transform:scale(1.006) translate(5px,6px);}
-  100%{transform:scale(1)     translate(0,0);}
+  0%  {transform:scale(1.00)  translate(0,0)      rotate(0deg);}
+  18% {transform:scale(1.006) translate(-8px,5px)  rotate(-.04deg);}
+  40% {transform:scale(1.011) translate(-11px,-7px) rotate(.03deg);}
+  62% {transform:scale(1.008) translate(6px,-4px)  rotate(-.02deg);}
+  80% {transform:scale(1.005) translate(7px,8px)   rotate(.04deg);}
+  100%{transform:scale(1.00)  translate(0,0)      rotate(0deg);}
 }
 
 /* Dark radial vignette — darkens edges, keeps center alive */
@@ -473,7 +474,7 @@ function mkParticle(){
     x,y,
     vx:Math.cos(angle)*speed,
     vy:Math.sin(angle)*speed,
-    r:0.6+Math.random()*1.8,
+    r:0.4+Math.random()*1.1,
     alpha:0.3+Math.random()*0.5,
     // Signal state for propagation
     signal:0,          // 0-1, decays over time
@@ -539,9 +540,9 @@ setInterval(tryFireSignal, 200); // check frequently, fires sparingly
 // Environmental pulse pool — expanding atmospheric rings from hover points
 const ENV_PULSES=[];
 function firePulse(x,y,col,intensity){
-  ENV_PULSES.push({x,y,r:0,maxR:80+Math.random()*70,
-    alpha:(intensity||0.4)*0.26,color:col||{r:57,g:255,b:20},
-    spd:0.032+Math.random()*0.022});
+  ENV_PULSES.push({x,y,r:0,maxR:38+Math.random()*32,
+    alpha:(intensity||0.4)*0.30,color:col||{r:57,g:255,b:20},
+    spd:0.038+Math.random()*0.028});
 }
 
 // Gentle particle attractor — particles drift toward hovered element
@@ -576,11 +577,18 @@ function ecoHover(el,type,col){
   el.addEventListener('mouseenter',()=>{
     const rc=el.getBoundingClientRect();
     const cx=rc.left+rc.width*.5, cy=rc.top+rc.height*.5;
-    const intensity=type==='cta'?0.68:type==='domain'?0.54:0.34;
+    const intensity=type==='cta'?0.68:type==='domain'?0.56:0.52;
+    // Primary pulse at element position
     firePulse(cx,cy,col,intensity);
-    firePulse(cx+(Math.random()-.5)*44,cy+(Math.random()-.5)*28,col,intensity*.38);
-    attract={x:cx,y:cy,strength:type==='cta'?0.009:0.004};
-    if(type==='cta'||type==='domain')triggerSignalAt(cx,cy);
+    // Tight secondary pulse — atmospheric diffusion
+    firePulse(cx+(Math.random()-.5)*28,cy+(Math.random()-.5)*18,col,intensity*.42);
+    // Nav gets a third whisper pulse further out
+    if(type==='nav'){
+      firePulse(cx+(Math.random()-.5)*55,cy+(Math.random()-.5)*40,col,intensity*.22);
+    }
+    attract={x:cx,y:cy,strength:type==='cta'?0.009:type==='nav'?0.007:0.004};
+    // All types trigger signal propagation — nav included
+    triggerSignalAt(cx,cy);
   });
   el.addEventListener('mouseleave',()=>{attract=null;});
 }
@@ -683,12 +691,12 @@ function draw(){
       ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
       if(sigStrength>0.15){
         const sc=a.signal>b.signal?(a.signalColor||zoneColor(a.x/W)):(b.signalColor||zoneColor(b.x/W));
-        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.06+fade*0.22+sigStrength*0.55)*0.95).toFixed(3)})`;
-        ctx.lineWidth=0.6+sigStrength*1.2;
+        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.05+fade*0.18+sigStrength*0.45)*0.92).toFixed(3)})`;
+        ctx.lineWidth=0.45+sigStrength*0.7;
       } else {
         const mid=zoneColor(((a.x+b.x)*.5)/W);
-        ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.04+fade*0.12)*0.85).toFixed(3)})`;
-        ctx.lineWidth=0.45;
+        ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.03+fade*0.10)*0.82).toFixed(3)})`;
+        ctx.lineWidth=0.38;
       }
       ctx.stroke();
     }
@@ -714,14 +722,14 @@ function draw(){
     const isActive=p.signal>0.1;
     const baseAlpha=0.22+p.alpha*0.45;
     const a=isActive?Math.min(0.98,baseAlpha+p.signal*0.7):baseAlpha;
-    const r=isActive?p.r*(1+p.signal*1.8):p.r;
+    const r=isActive?p.r*(1+p.signal*0.9):p.r;
 
     if(isActive&&p.signal>0.3){
-      ctx.shadowBlur=12+p.signal*18;
-      ctx.shadowColor=`rgba(${p.signalColor?p.signalColor.r:c.r},${p.signalColor?p.signalColor.g:c.g},${p.signalColor?p.signalColor.b:c.b},0.8)`;
+      ctx.shadowBlur=4+p.signal*7;
+      ctx.shadowColor=`rgba(${p.signalColor?p.signalColor.r:c.r},${p.signalColor?p.signalColor.g:c.g},${p.signalColor?p.signalColor.b:c.b},0.7)`;
     } else if(a>0.45){
-      ctx.shadowBlur=4;
-      ctx.shadowColor=`rgba(${c.r},${c.g},${c.b},0.4)`;
+      ctx.shadowBlur=2;
+      ctx.shadowColor=`rgba(${c.r},${c.g},${c.b},0.3)`;
     } else {
       ctx.shadowBlur=0;
     }
