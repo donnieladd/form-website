@@ -205,10 +205,7 @@ body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22
 <div id="cdot"></div>
 <div id="cring"></div>
 <div class="scan"></div>
-<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:1;opacity:.022;mix-blend-mode:overlay;pointer-events:none;">
-  <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
-  <rect width="100%" height="100%" filter="url(#gf)"/>
-</svg>
+<img id="grain" src="/grain.svg" alt="" style="position:fixed;inset:0;z-index:1;opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;">
 
 <!-- ══ SIDEBAR ══ -->
 <aside id="sidebar">
