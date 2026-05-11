@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM. — Intelligence Systems</title>
+<meta name="description" content="Advanced intelligence infrastructure that detects, analyzes, and responds to what matters most. Built for awareness, protection, and decisive action.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%237CFF00'/%3E%3C/svg%3E">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{cursor:none;}
+body{background:#0A0A0A;-webkit-font-smoothing:antialiased;display:flex;height:100vh;overflow:hidden;}
+:root{
+  --ac:#7CFF00;--ac-rgb:124,255,0;
+  --onyx:#0A0A0A;--stone:#F2F2F0;
+}
+
+/* ── CURSOR ── */
+#cdot{position:fixed;z-index:9000;width:5px;height:5px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px var(--ac),0 0 20px rgba(var(--ac-rgb),.4);}
+#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s;}
+body.hl  #cring{width:40px;height:40px;border-color:rgba(var(--ac-rgb),.88);}
+body.hcta #cring{width:56px;height:56px;border-color:var(--ac);box-shadow:0 0 22px rgba(var(--ac-rgb),.3);}
+
+/* Grain & scan */
+#grain{position:fixed;inset:0;z-index:1;opacity:.02;mix-blend-mode:overlay;pointer-events:none;}
+.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.03),transparent);animation:scan-run 20s linear infinite 4s;}
+@keyframes scan-run{from{top:-1px}to{top:100vh}}
+#veil{position:fixed;inset:0;background:#0A0A0A;z-index:900;pointer-events:none;animation:veil-open 2s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes veil-open{0%,25%{opacity:1}100%{opacity:0}}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes threat-pulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.4);}}
+@keyframes ring-expand{0%{opacity:.5;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-50%) scale(2.8);}}
+@keyframes scanline{0%{top:0%}100%{top:100%}}
+@keyframes signal-blink{0%,90%,100%{opacity:1}92%,98%{opacity:.3}}
+
+/* ── SIDEBAR ── */
+#sidebar{position:fixed;top:0;left:0;bottom:0;width:130px;z-index:50;display:flex;flex-direction:column;background:rgba(10,10,10,.92);backdrop-filter:blur(14px);border-right:1px solid rgba(124,255,0,.1);opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 1.2s forwards;}
+#sb-logo-wrap{padding:1.4rem 1.1rem 1.5rem;border-bottom:1px solid rgba(124,255,0,.07);}
+#sb-logo{height:26px;width:auto;display:block;cursor:none;}
+#sb-nav-wrap{flex:1;display:flex;flex-direction:row;padding:.8rem 0;overflow:hidden;}
+#sb-timeline{width:18px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;}
+.tl-seg{width:1px;background:rgba(124,255,0,.08);flex:1;}
+.tl-dot{width:4px;height:4px;border-radius:50%;background:rgba(124,255,0,.18);flex-shrink:0;margin:1px 0;}
+.tl-dot.on{background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.4);}
+#sb-links{flex:1;display:flex;flex-direction:column;padding:0 .8rem 0 .4rem;}
+.sb-link{font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.32);text-decoration:none;cursor:none;padding:.4rem .4rem;transition:color .25s;display:block;white-space:nowrap;line-height:1.2;}
+.sb-link:hover{color:rgba(242,242,240,.72);}
+.sb-link.active{color:var(--ac);font-weight:500;}
+#sb-brackets{padding:.5rem .9rem;display:flex;justify-content:center;}
+.sb-brkt{width:34px;height:34px;position:relative;}
+.sb-brkt::before,.sb-brkt::after,.sb-brkt .b2::before,.sb-brkt .b2::after{content:'';position:absolute;width:8px;height:8px;border-color:rgba(124,255,0,.28);border-style:solid;}
+.sb-brkt::before{top:0;left:0;border-width:1px 0 0 1px;}
+.sb-brkt::after{top:0;right:0;border-width:1px 1px 0 0;}
+.sb-brkt .b2::before{bottom:0;left:0;border-width:0 0 1px 1px;}
+.sb-brkt .b2::after{bottom:0;right:0;border-width:0 1px 1px 0;}
+#sb-status{padding:.8rem 1rem 1rem;border-top:1px solid rgba(124,255,0,.07);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,242,240,.28);line-height:1.9;}
+.ac{color:var(--ac);}
+
+/* ── MAIN ── */
+#main{margin-left:130px;flex:1;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth;}
+#main::-webkit-scrollbar{width:2px;}
+#main::-webkit-scrollbar-thumb{background:rgba(124,255,0,.2);border-radius:2px;}
+
+/* ════ HERO ════ */
+#hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+#hero-bg{position:absolute;inset:-5%;width:110%;height:110%;z-index:0;animation:bg-drift 50s ease-in-out infinite;}
+#hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:hue-rotate(195deg) saturate(.7) brightness(.25);}
+@keyframes bg-drift{0%{transform:scale(1) translate(0,0);}50%{transform:scale(1.01) translate(-8px,-5px);}100%{transform:scale(1) translate(0,0);}}
+#hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,rgba(10,10,10,.97) 0%,rgba(10,10,10,.7) 48%,rgba(10,10,10,.3) 100%);}
+#hero-ov2{position:absolute;bottom:0;left:0;right:0;height:22%;z-index:2;background:linear-gradient(to bottom,transparent,rgba(10,10,10,.98));}
+
+#hero-topbar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.6rem;background:linear-gradient(to bottom,rgba(10,10,10,.7),transparent);}
+.breadcrumb{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,242,240,.45);}
+.breadcrumb .ac{color:var(--ac);}
+.hero-tr{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,242,240,.55);}
+.hero-tr .ac{color:var(--ac);animation:signal-blink 6s ease-in-out infinite;}
+
+#hero-body{position:relative;z-index:5;flex:1;display:grid;grid-template-columns:1fr 1fr;padding:1.8rem 1.6rem 2rem;align-items:center;gap:2rem;}
+
+/* Left */
+#hero-left{display:flex;flex-direction:column;justify-content:center;}
+.hero-title{font-family:'Satoshi',sans-serif;font-weight:500;line-height:1.0;letter-spacing:.05em;text-transform:uppercase;opacity:0;animation:fadeup 1s cubic-bezier(.16,1,.3,1) 1.5s forwards;}
+.hero-title .line1{color:var(--stone);display:block;font-size:5.8vw;}
+.hero-title .line2{color:var(--ac);display:block;font-size:5.8vw;text-shadow:0 0 40px rgba(var(--ac-rgb),.3);}
+
+/* Critical signal badge */
+.cs-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ac);border:1px solid rgba(var(--ac-rgb),.35);padding:.45rem 1rem;width:fit-content;margin-top:1.1rem;position:relative;overflow:hidden;opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.7s forwards;}
+.cs-badge::before{content:'';position:absolute;left:-100%;top:0;bottom:0;width:60%;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.08),transparent);animation:badge-sweep 3s linear infinite 2.5s;}
+@keyframes badge-sweep{from{left:-100%}to{left:200%}}
+.cs-dot{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px var(--ac);animation:threat-pulse 1.8s ease-in-out infinite;}
+
+.hero-sub1{font-family:'Satoshi',sans-serif;font-size:1.05rem;font-weight:400;line-height:1.6;color:rgba(242,242,240,.82);max-width:380px;margin-top:1.4rem;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 1.85s forwards;}
+.hero-sub2{font-family:'Satoshi',sans-serif;font-size:.88rem;line-height:1.75;color:rgba(242,242,240,.55);max-width:380px;margin-top:.55rem;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 2s forwards;}
+.hero-sub2 .ac{color:var(--ac);}
+.hero-cta{display:inline-flex;align-items:center;gap:1rem;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.88);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.28);padding:.82rem 1.8rem;width:fit-content;margin-top:1.8rem;transition:border-color .3s,color .3s,box-shadow .3s;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 2.1s forwards;}
+.hero-cta:hover{border-color:var(--ac);color:var(--ac);box-shadow:0 0 24px rgba(var(--ac-rgb),.15);}
+
+/* Right — world map */
+#hero-right{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadein 1.4s cubic-bezier(.16,1,.3,1) 1.8s forwards;}
+#map-wrap{position:relative;width:100%;max-width:500px;}
+#world-map{width:100%;height:auto;display:block;}
+
+/* Continent fills */
+.continent{fill:rgba(124,255,0,.04);stroke:rgba(124,255,0,.15);stroke-width:.5;}
+
+/* Threat nodes */
+.t-node{position:absolute;transform:translate(-50%,-50%);}
+.t-node-dot{width:7px;height:7px;border-radius:50%;background:#FF3B30;box-shadow:0 0 10px #FF3B30,0 0 22px rgba(255,59,48,.4);animation:threat-pulse 2.2s ease-in-out infinite;}
+.t-node-ring{position:absolute;top:50%;left:50%;width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,59,48,.4);animation:ring-expand 2.2s ease-out infinite;}
+.t-node-ring2{position:absolute;top:50%;left:50%;width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,59,48,.25);animation:ring-expand 2.2s ease-out infinite .6s;}
+
+/* HUD card */
+#hud-card{position:absolute;top:4%;right:0;background:rgba(10,10,10,.88);border:1px solid rgba(255,59,48,.45);padding:.7rem .85rem;min-width:155px;backdrop-filter:blur(10px);}
+.hud-label{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,59,48,.9);margin-bottom:.25rem;display:flex;align-items:center;gap:.4rem;}
+.hud-alert-dot{width:5px;height:5px;border-radius:50%;background:#FF3B30;box-shadow:0 0 6px #FF3B30;animation:signal-blink 1.4s ease-in-out infinite;}
+.hud-level{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#FF3B30;margin-bottom:.5rem;padding-bottom:.4rem;border-bottom:1px solid rgba(255,59,48,.18);}
+.hud-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.28rem;}
+.hud-key{font-family:'IBM Plex Mono',monospace;font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.32);}
+.hud-val{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.06em;color:rgba(242,242,240,.65);}
+.hud-waveform{margin-top:.45rem;height:18px;display:flex;align-items:center;gap:2px;}
+.hud-bar{width:3px;background:#FF3B30;border-radius:1px;opacity:.7;animation:threat-pulse 1.8s ease-in-out infinite;}
+
+/* Graticule / scan */
+#map-scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.25),transparent);animation:scanline 6s linear infinite;pointer-events:none;top:0;}
+
+/* ════ SYSTEMS / CAPABILITIES ════ */
+#systems{background:#0A0A0A;padding:3.2rem 1.6rem 1.5rem;}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(242,242,240,.4);margin-bottom:1.8rem;padding-bottom:.7rem;border-bottom:1px solid rgba(124,255,0,.1);}
+.sys-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.sys-card{background:rgba(10,10,10,.95);border:1px solid rgba(255,255,255,.05);padding:1rem .9rem;display:flex;flex-direction:column;cursor:none;transition:border-color .3s,box-shadow .3s;}
+.sys-card:hover{border-color:rgba(var(--ac-rgb),.35);box-shadow:0 0 18px rgba(var(--ac-rgb),.06);}
+.sys-icon{width:24px;height:24px;color:var(--ac);margin-bottom:.65rem;opacity:.8;}
+.sys-icon svg{width:100%;height:100%;}
+.sys-title{font-family:'Satoshi',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);line-height:1.25;margin-bottom:.4rem;}
+.sys-desc{font-family:'Satoshi',sans-serif;font-size:.64rem;color:rgba(242,242,240,.45);line-height:1.55;margin-bottom:.6rem;}
+.sys-items{list-style:none;display:flex;flex-direction:column;gap:3px;flex:1;margin-bottom:.7rem;}
+.sys-items li{font-family:'Satoshi',sans-serif;font-size:.61rem;color:rgba(242,242,240,.44);line-height:1.45;display:flex;align-items:baseline;gap:.35rem;}
+.sys-items li::before{content:'•';color:var(--ac);opacity:.5;font-size:.5rem;flex-shrink:0;}
+.sys-cta{display:inline-flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono',monospace;font-size:.54rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(var(--ac-rgb),.7);text-decoration:none;cursor:none;border:1px solid rgba(var(--ac-rgb),.22);padding:.38rem .6rem;margin-top:auto;transition:background .3s,border-color .3s,color .3s;}
+.sys-cta:hover{background:rgba(var(--ac-rgb),.07);border-color:var(--ac);color:var(--ac);}
+
+#pricing-note{text-align:center;padding:1.2rem 1.6rem 2rem;background:#0A0A0A;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,242,240,.28);line-height:2.1;border-top:1px solid rgba(124,255,0,.05);}
+#pricing-note .ac{color:var(--ac);}
+
+/* ════ WHY + ECOSYSTEM ════ */
+#why-section{background:rgba(6,8,6,1);padding:3.8rem 1.6rem;display:grid;grid-template-columns:1fr 1.35fr;gap:4rem;border-top:1px solid rgba(124,255,0,.07);}
+.why-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.3);margin-bottom:.3rem;}
+.why-heading{font-family:'Satoshi',sans-serif;font-size:1.7rem;font-weight:500;color:var(--stone);margin-bottom:1.3rem;line-height:1.15;}
+.why-heading .ac{color:var(--ac);}
+.why-body{font-family:'Satoshi',sans-serif;font-size:.88rem;font-weight:400;line-height:1.95;color:rgba(242,242,240,.55);margin-bottom:1.8rem;}
+.why-btn{display:inline-flex;align-items:center;gap:.8rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.65);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.2);padding:.65rem 1.4rem;transition:border-color .3s,color .3s;}
+.why-btn:hover{border-color:var(--ac);color:var(--ac);}
+
+.eco-wrap{display:flex;flex-direction:column;}
+.eco-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.3);margin-bottom:1.5rem;}
+.eco-diagram{position:relative;width:100%;max-width:420px;height:260px;margin:0 auto;}
+.eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:98px;height:98px;border-radius:50%;background:rgba(var(--ac-rgb),.04);border:1.5px solid rgba(var(--ac-rgb),.4);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.47rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);line-height:1.5;box-shadow:0 0 28px rgba(var(--ac-rgb),.12),inset 0 0 16px rgba(var(--ac-rgb),.03);}
+.eco-left{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;}
+.eco-right{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;}
+.eco-node{display:flex;align-items:center;gap:.5rem;}
+.eco-node.rev{flex-direction:row-reverse;}
+.eco-node-icon{width:30px;height:30px;border-radius:50%;background:rgba(var(--ac-rgb),.03);border:1px solid rgba(var(--ac-rgb),.25);display:flex;align-items:center;justify-content:center;color:rgba(var(--ac-rgb),.65);flex-shrink:0;}
+.eco-node-icon svg{width:13px;height:13px;}
+.eco-node-lbl{font-family:'IBM Plex Mono',monospace;font-size:.46rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,242,240,.5);line-height:1.45;}
+.eco-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+
+/* ════ PROCESS ════ */
+#process{background:#0A0A0A;padding:3.8rem 1.6rem;border-top:1px solid rgba(124,255,0,.07);}
+.process-heading{font-family:'Satoshi',sans-serif;font-size:1.4rem;font-weight:500;color:var(--stone);margin-bottom:2.4rem;}
+.process-heading .ac{color:var(--ac);}
+.process-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:38px;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.15),rgba(var(--ac-rgb),.28),rgba(var(--ac-rgb),.15),transparent);}
+.p-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .5rem;position:relative;z-index:1;}
+.p-step-num{font-family:'IBM Plex Mono',monospace;font-size:.54rem;letter-spacing:.16em;color:rgba(var(--ac-rgb),.45);margin-bottom:.4rem;}
+.p-step-icon{width:44px;height:44px;border-radius:50%;background:#0A0A0A;border:1px solid rgba(var(--ac-rgb),.2);display:flex;align-items:center;justify-content:center;color:rgba(var(--ac-rgb),.55);margin-bottom:.6rem;}
+.p-step-icon svg{width:18px;height:18px;}
+.p-step-arrow{font-size:.85rem;color:rgba(var(--ac-rgb),.28);position:absolute;top:38px;right:-5px;transform:translateY(-50%);z-index:2;}
+.p-step:last-child .p-step-arrow{display:none;}
+.p-step-title{font-family:'IBM Plex Mono',monospace;font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:.4rem;}
+.p-step-desc{font-family:'Satoshi',sans-serif;font-size:.63rem;font-weight:400;color:rgba(242,242,240,.42);line-height:1.6;max-width:130px;}
+
+/* ════ CTA ════ */
+#cta-banner{position:relative;padding:5rem 1.6rem;overflow:hidden;border-top:1px solid rgba(124,255,0,.08);}
+#cta-bg{position:absolute;inset:0;z-index:0;}
+#cta-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:hue-rotate(195deg) saturate(.6) brightness(.18);}
+#cta-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(10,10,10,.88) 0%,rgba(10,10,10,.55) 100%);}
+#cta-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.cta-heading{font-family:'Satoshi',sans-serif;font-size:1.95rem;font-weight:500;line-height:1.1;color:var(--stone);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.04em;}
+.cta-heading .ac{color:var(--ac);}
+.cta-sub{font-family:'Satoshi',sans-serif;font-size:.82rem;font-weight:400;color:rgba(242,242,240,.45);line-height:1.8;max-width:430px;margin-top:.8rem;}
+.cta-buttons{display:flex;flex-direction:column;gap:.7rem;min-width:260px;}
+.cta-btn-primary{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.73rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;background:var(--ac);color:#0A0A0A;text-decoration:none;cursor:none;padding:.9rem 1.8rem;white-space:nowrap;transition:background .3s,box-shadow .3s;}
+.cta-btn-primary:hover{background:#9fff33;box-shadow:0 0 30px rgba(var(--ac-rgb),.35);}
+.cta-btn-secondary{display:flex;align-items:center;gap:.6rem;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.73rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.75);text-decoration:none;cursor:none;border:1px solid rgba(242,242,240,.25);padding:.85rem 1.8rem;white-space:nowrap;transition:border-color .3s,color .3s;}
+.cta-btn-secondary:hover{border-color:rgba(242,242,240,.6);color:var(--stone);}
+
+/* ════ FOOTER ════ */
+#footer{background:#0A0A0A;border-top:1px solid rgba(124,255,0,.07);padding:1.8rem 1.6rem 1rem;}
+.footer-values{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.04);margin-bottom:1rem;}
+.footer-val{display:flex;align-items:flex-start;gap:.55rem;}
+.footer-val-icon{color:rgba(var(--ac-rgb),.35);flex-shrink:0;margin-top:1px;}
+.footer-val-icon svg{width:14px;height:14px;}
+.footer-val-text{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.3);line-height:1.7;}
+.footer-val-text .ac{color:var(--ac);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.18);}
+.footer-tagline{font-family:'IBM Plex Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,242,240,.25);}
+.footer-tagline .ac{color:var(--ac);}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  #veil{opacity:0!important;}
+  .cs-dot,.t-node-dot,.t-node-ring,.t-node-ring2,.hud-alert-dot,.hud-bar{animation:none!important;}
+  #hero-left .hero-title,#hero-left .hero-cta,.cs-badge,.hero-sub1,.hero-sub2,#hero-right,#sidebar{opacity:1!important;}
+}
+</style>
+</head>
+<body>
+<div id="veil"></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+<div class="scan"></div>
+<svg id="grain" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="position:fixed;inset:0;z-index:1;opacity:.02;mix-blend-mode:overlay;pointer-events:none;"><filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#gf)"/></svg>
+
+<!-- ══ SIDEBAR ══ -->
+<aside id="sidebar">
+  <div id="sb-logo-wrap"><a href="/"><img id="sb-logo" src="/logo.svg" alt="FORM."></a></div>
+  <div id="sb-nav-wrap">
+    <div id="sb-timeline">
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot on"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div><div class="tl-dot"></div>
+      <div class="tl-seg"></div>
+    </div>
+    <nav id="sb-links">
+      <a href="/ecosystem.html" class="sb-link">Ecosystem</a>
+      <a href="/business-systems.html" class="sb-link">Business Systems</a>
+      <a href="/executive-systems.html" class="sb-link">Executive &amp; Ops</a>
+      <a href="/intelligence-systems.html" class="sb-link active">Intelligence Systems</a>
+      <a href="/ministry-systems.html" class="sb-link">Ministry Systems</a>
+      <a href="/creative-systems.html" class="sb-link">Creative Systems</a>
+      <a href="#" class="sb-link">Industry Systems</a>
+      <a href="#" class="sb-link">About Form</a>
+      <a href="#" class="sb-link">Insights</a>
+      <a href="#" class="sb-link">Resources</a>
+      <a href="#" class="sb-link">Pricing</a>
+      <a href="#" class="sb-link">Contact</a>
+    </nav>
+  </div>
+  <div id="sb-brackets"><div class="sb-brkt"><div class="b2"></div></div></div>
+  <div id="sb-status">System Status<br><span class="ac">Critical Signal •</span></div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main id="main">
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div id="hero-bg"><img src="/bg.avif" alt=""></div>
+    <div id="hero-ov"></div>
+    <div id="hero-ov2"></div>
+
+    <div id="hero-topbar">
+      <div class="breadcrumb">/ Ecosystem / <span class="ac">Intelligence Systems</span></div>
+      <div class="hero-tr">Intelligence In Service Of <span class="ac">Truth.</span></div>
+    </div>
+
+    <div id="hero-body">
+      <div id="hero-left">
+        <h1 class="hero-title">
+          <span class="line1">Intelligence</span>
+          <span class="line2">Systems</span>
+        </h1>
+        <div class="cs-badge">
+          <div class="cs-dot"></div>
+          Critical Signal Active →→
+        </div>
+        <p class="hero-sub1">Advanced intelligence infrastructure<br>that detects, analyzes, and responds<br>to what matters most.</p>
+        <p class="hero-sub2">Built for awareness, protection,<br>and decisive <span class="ac">action.</span></p>
+        <a href="#" class="hero-cta">View Intelligence Briefing →</a>
+      </div>
+
+      <!-- World map visualization -->
+      <div id="hero-right">
+        <div id="map-wrap">
+          <div id="map-scanline"></div>
+
+          <!-- World map SVG -->
+          <svg id="world-map" viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Graticule -->
+            <line x1="0" y1="70" x2="500" y2="70" stroke="rgba(124,255,0,.04)" stroke-width=".5"/>
+            <line x1="0" y1="140" x2="500" y2="140" stroke="rgba(124,255,0,.06)" stroke-width=".5"/>
+            <line x1="0" y1="210" x2="500" y2="210" stroke="rgba(124,255,0,.04)" stroke-width=".5"/>
+            <line x1="125" y1="0" x2="125" y2="280" stroke="rgba(124,255,0,.04)" stroke-width=".5"/>
+            <line x1="250" y1="0" x2="250" y2="280" stroke="rgba(124,255,0,.06)" stroke-width=".5"/>
+            <line x1="375" y1="0" x2="375" y2="280" stroke="rgba(124,255,0,.04)" stroke-width=".5"/>
+
+            <!-- North America -->
+            <path class="continent" d="M56,31 L14,47 L22,36 L38,20 L90,14 L140,18 L175,28 L174,62 L164,70 L163,100 L148,114 L128,120 L108,120 L82,113 L55,100 L30,82 L22,62 Z"/>
+            <!-- Greenland -->
+            <path class="continent" d="M155,8 L210,5 L218,20 L202,32 L165,34 L152,22 Z"/>
+            <!-- South America -->
+            <path class="continent" d="M148,114 L165,112 L185,118 L200,135 L210,158 L205,188 L190,208 L168,218 L148,210 L130,195 L115,172 L112,148 L120,130 Z"/>
+            <!-- Europe -->
+            <path class="continent" d="M218,18 L252,12 L278,22 L282,38 L268,50 L255,58 L238,56 L222,48 Z"/>
+            <!-- British Isles -->
+            <path class="continent" d="M228,22 L238,18 L240,28 L232,34 L226,30 Z"/>
+            <!-- Africa -->
+            <path class="continent" d="M222,56 L268,50 L295,65 L310,88 L308,120 L295,152 L275,172 L252,180 L232,168 L216,148 L210,118 L212,88 Z"/>
+            <!-- Arabian Peninsula -->
+            <path class="continent" d="M278,52 L320,48 L332,62 L328,80 L312,88 L295,82 L282,68 Z"/>
+            <!-- India -->
+            <path class="continent" d="M308,64 L345,60 L352,78 L342,100 L325,114 L308,108 L298,88 Z"/>
+            <!-- Russia / N. Asia -->
+            <path class="continent" d="M278,10 L370,5 L450,10 L472,22 L470,38 L445,46 L415,50 L382,52 L348,52 L320,60 L308,64 L295,58 L280,48 Z"/>
+            <!-- China / East Asia -->
+            <path class="continent" d="M348,52 L420,48 L452,58 L462,78 L445,96 L418,106 L388,106 L360,95 L345,80 L350,65 Z"/>
+            <!-- Korean Peninsula -->
+            <path class="continent" d="M432,70 L445,68 L450,80 L440,90 L432,84 Z"/>
+            <!-- Japan -->
+            <path class="continent" d="M455,60 L470,56 L477,70 L466,82 L456,76 Z"/>
+            <!-- SE Asia -->
+            <path class="continent" d="M388,106 L432,102 L452,112 L455,125 L432,128 L400,122 Z"/>
+            <!-- Australia -->
+            <path class="continent" d="M382,150 C 418,142 452,150 470,165 L 474,188 462,212 440,222 415,225 390,215 374,198 370,175 Z"/>
+
+            <!-- Threat connection lines -->
+            <line x1="178" y1="62" x2="248" y2="38" stroke="rgba(255,59,48,.18)" stroke-width=".8" stroke-dasharray="3,4"/>
+            <line x1="248" y1="38" x2="295" y2="32" stroke="rgba(255,59,48,.18)" stroke-width=".8" stroke-dasharray="3,4"/>
+            <line x1="295" y1="32" x2="425" y2="60" stroke="rgba(255,59,48,.12)" stroke-width=".8" stroke-dasharray="3,4"/>
+            <line x1="178" y1="62" x2="248" y2="95" stroke="rgba(255,59,48,.12)" stroke-width=".8" stroke-dasharray="3,4"/>
+            <line x1="318" y1="68" x2="352" y2="88" stroke="rgba(255,59,48,.12)" stroke-width=".8" stroke-dasharray="3,4"/>
+            <line x1="172" y1="155" x2="178" y2="62" stroke="rgba(255,59,48,.1)" stroke-width=".8" stroke-dasharray="3,4"/>
+          </svg>
+
+          <!-- Threat nodes (positioned % relative to map container) -->
+          <div class="t-node" style="left:35.6%;top:22.1%"><!-- Washington DC --><div class="t-node-ring"></div><div class="t-node-ring2"></div><div class="t-node-dot"></div></div>
+          <div class="t-node" style="left:49.6%;top:13.6%"><!-- London --><div class="t-node-ring" style="animation-delay:.5s"></div><div class="t-node-ring2" style="animation-delay:1.1s"></div><div class="t-node-dot" style="animation-delay:.3s"></div></div>
+          <div class="t-node" style="left:59%;top:11.4%"><!-- Moscow --><div class="t-node-ring" style="animation-delay:1s"></div><div class="t-node-ring2" style="animation-delay:1.6s"></div><div class="t-node-dot" style="animation-delay:.7s"></div></div>
+          <div class="t-node" style="left:85%;top:21.4%"><!-- Beijing --><div class="t-node-ring" style="animation-delay:.8s"></div><div class="t-node-ring2" style="animation-delay:1.4s"></div><div class="t-node-dot" style="animation-delay:.5s"></div></div>
+          <div class="t-node" style="left:63.6%;top:24.3%"><!-- Tehran --><div class="t-node-ring" style="animation-delay:1.5s"></div><div class="t-node-ring2" style="animation-delay:.4s"></div><div class="t-node-dot" style="animation-delay:1.2s"></div></div>
+          <div class="t-node" style="left:49.6%;top:34%"><!-- Lagos --><div class="t-node-ring" style="animation-delay:.2s"></div><div class="t-node-ring2" style="animation-delay:.9s"></div><div class="t-node-dot" style="animation-delay:.6s"></div></div>
+          <div class="t-node" style="left:34.4%;top:55.4%"><!-- São Paulo --><div class="t-node-ring" style="animation-delay:1.2s"></div><div class="t-node-ring2" style="animation-delay:.7s"></div><div class="t-node-dot" style="animation-delay:.9s"></div></div>
+
+          <!-- HUD card — Threat Detected -->
+          <div id="hud-card">
+            <div class="hud-label"><div class="hud-alert-dot"></div>Threat Detected</div>
+            <div class="hud-level">Critical Level</div>
+            <div class="hud-row"><span class="hud-key">Threat Origin</span><span class="hud-val">Unknown</span></div>
+            <div class="hud-row"><span class="hud-key">Confidence</span><span class="hud-val">92.4%</span></div>
+            <div class="hud-row"><span class="hud-key">Signal Strength</span><span class="hud-val ac">Active</span></div>
+            <div class="hud-waveform">
+              <div class="hud-bar" style="height:6px;animation-delay:.1s"></div>
+              <div class="hud-bar" style="height:12px;animation-delay:.2s"></div>
+              <div class="hud-bar" style="height:8px;animation-delay:.3s"></div>
+              <div class="hud-bar" style="height:16px;animation-delay:.4s"></div>
+              <div class="hud-bar" style="height:10px;animation-delay:.5s"></div>
+              <div class="hud-bar" style="height:14px;animation-delay:.6s"></div>
+              <div class="hud-bar" style="height:6px;animation-delay:.7s"></div>
+              <div class="hud-bar" style="height:10px;animation-delay:.8s"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTELLIGENCE CAPABILITIES ── -->
+  <section id="systems">
+    <div class="section-label">Intelligence Capabilities .</div>
+    <div class="sys-grid">
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="sys-title">Threat Detection Systems</div>
+        <div class="sys-desc">Real-time detection of threats across digital, physical, and operational domains.</div>
+        <ul class="sys-items">
+          <li>Anomaly Detection</li>
+          <li>Behavior Analysis</li>
+          <li>Pattern Recognition</li>
+          <li>Dark Web Monitoring</li>
+          <li>Geo-Intelligence</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="sys-title">Intelligence Analysis Systems</div>
+        <div class="sys-desc">Contextual analysis that turns data into actionable intelligence.</div>
+        <ul class="sys-items">
+          <li>Data Correlation</li>
+          <li>Entity Resolution</li>
+          <li>Contextual Mapping</li>
+          <li>Predictive Modeling</li>
+          <li>Insight Generation</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="sys-title">Data Fusion Systems</div>
+        <div class="sys-desc">Unify multi-source data into a single source of truth for clearer understanding.</div>
+        <ul class="sys-items">
+          <li>Source Integration</li>
+          <li>Entity Modeling</li>
+          <li>Timeline Correlation</li>
+          <li>Data Normalization</li>
+          <li>Confidence Scoring</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="sys-title">Risk &amp; Impact Assessment Systems</div>
+        <div class="sys-desc">Assess risk, prioritize threats, and understand potential impact in real time.</div>
+        <ul class="sys-items">
+          <li>Risk Scoring</li>
+          <li>Impact Modeling</li>
+          <li>Vulnerability Mapping</li>
+          <li>Scenario Simulation</li>
+          <li>Mitigation Planning</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="sys-title">Alert &amp; Response Automation Systems</div>
+        <div class="sys-desc">Automated alerts and response workflows that reduce time and increase accuracy.</div>
+        <ul class="sys-items">
+          <li>Smart Alerting</li>
+          <li>Response Playbooks</li>
+          <li>Escalation Workflows</li>
+          <li>Integration Triggers</li>
+          <li>Incident Management</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+      <div class="sys-card">
+        <div class="sys-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="sys-title">Secure Intelligence Infrastructure</div>
+        <div class="sys-desc">Enterprise-grade infrastructure built for security, privacy, and operational integrity.</div>
+        <ul class="sys-items">
+          <li>Data Security</li>
+          <li>Access Controls</li>
+          <li>Audit &amp; Logging</li>
+          <li>Encryption Layer</li>
+          <li>Compliance Framework</li>
+        </ul>
+        <a href="#" class="sys-cta">View System →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="pricing-note">
+    Pricing ranges are general guidelines.<br>
+    Every intelligence system is unique. Let's build what's right for <span class="ac">you.</span>
+  </div>
+
+  <!-- ── WHY + ECOSYSTEM ── -->
+  <section id="why-section">
+    <div>
+      <div class="why-label">Why</div>
+      <div class="why-heading">Why <span class="ac">Form.</span></div>
+      <p class="why-body">In a world of uncertainty,<br>intelligence creates clarity.<br><br>We build systems that reveal truth,<br>reduce risk, and empower<br>decisive leadership.</p>
+      <a href="#" class="why-btn">Our Philosophy →</a>
+    </div>
+
+    <div class="eco-wrap">
+      <div class="eco-label">Your Intelligence Advantage</div>
+      <div class="eco-diagram">
+        <svg class="eco-svg" viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="95" y1="63" x2="185" y2="130" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+          <line x1="95" y1="130" x2="185" y2="130" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+          <line x1="95" y1="197" x2="185" y2="130" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+          <line x1="235" y1="130" x2="325" y2="63" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+          <line x1="235" y1="130" x2="325" y2="130" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+          <line x1="235" y1="130" x2="325" y2="197" stroke="rgba(124,255,0,.16)" stroke-width=".8" stroke-dasharray="3,4"/>
+        </svg>
+        <div class="eco-center">Your<br>Intelligence<br>Advantage</div>
+        <div class="eco-left">
+          <div class="eco-node"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div><div class="eco-node-lbl">Threat<br>Detection</div></div>
+          <div class="eco-node"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="eco-node-lbl">Intelligence<br>Analysis</div></div>
+          <div class="eco-node"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><div class="eco-node-lbl">Data<br>Fusion</div></div>
+        </div>
+        <div class="eco-right">
+          <div class="eco-node rev"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="eco-node-lbl" style="text-align:right;">Risk &amp; Impact<br>Assessment</div></div>
+          <div class="eco-node rev"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div><div class="eco-node-lbl" style="text-align:right;">Alert &amp; Response<br>Automation</div></div>
+          <div class="eco-node rev"><div class="eco-node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="eco-node-lbl" style="text-align:right;">Secure<br>Infrastructure</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ── -->
+  <section id="process">
+    <div class="process-heading">The <span class="ac">Form</span> Process</div>
+    <div class="process-grid">
+      <div class="p-step">
+        <div class="p-step-num">01</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+        <div class="p-step-arrow">→</div>
+        <div class="p-step-title">Identify</div>
+        <div class="p-step-desc">We identify risks, threats, and intelligence requirements.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">02</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="p-step-arrow">→</div>
+        <div class="p-step-title">Collect</div>
+        <div class="p-step-desc">We gather data from multiple sources across all relevant domains.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">03</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="p-step-arrow">→</div>
+        <div class="p-step-title">Analyze</div>
+        <div class="p-step-desc">We analyze and correlate data to uncover patterns and insights.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">04</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="p-step-arrow">→</div>
+        <div class="p-step-title">Assess</div>
+        <div class="p-step-desc">We assess risk, impact, and probability to prioritize action.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">05</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="p-step-arrow">→</div>
+        <div class="p-step-title">Respond</div>
+        <div class="p-step-desc">We trigger automated responses and deliver actionable alerts.</div>
+      </div>
+      <div class="p-step">
+        <div class="p-step-num">06</div>
+        <div class="p-step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+        <div class="p-step-title">Evolve</div>
+        <div class="p-step-desc">We learn and adapt continuously to stay ahead of emerging threats.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section id="cta-banner">
+    <div id="cta-bg"><img src="/bg.avif" alt=""></div>
+    <div id="cta-inner">
+      <div>
+        <div class="cta-heading">
+          Intelligence Is <span class="ac">Truth.</span><br>
+          Truth Drives <span class="ac">Action.</span><br>
+          Action Creates <span class="ac">Advantage.</span>
+        </div>
+        <p class="cta-sub">Book an intelligence systems briefing. We'll evaluate your environment, identify critical risks, and recommend intelligence infrastructure built for your mission.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="cta-btn-primary">Start Briefing</a>
+        <a href="#" class="cta-btn-secondary">View Intelligence Overview →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <div class="footer-values">
+      <div class="footer-val">
+        <div class="footer-val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="footer-val-text">Built For Awareness.<br>Designed For <span class="ac">Action.</span></div>
+      </div>
+      <div class="footer-val">
+        <div class="footer-val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="footer-val-text">Technology Should<br>Protect, Not <span class="ac">Expose.</span></div>
+      </div>
+      <div class="footer-val">
+        <div class="footer-val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="footer-val-text">See What Others Miss.<br>Act Before Others <span class="ac">Can.</span></div>
+      </div>
+      <div class="footer-val">
+        <div class="footer-val-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="footer-val-text">Intelligence In<br>Service Of <span class="ac">Truth.</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Form. All Rights Reserved.</div>
+      <div class="footer-tagline">The Future Needs <span class="ac">Form.</span></div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  const DW=1440,DH=900;
+  function applyScale(){const s=Math.min(window.innerWidth/DW,window.innerHeight/DH,1);document.documentElement.style.zoom=s;}
+  applyScale();window.addEventListener('resize',applyScale);
+})();
+(function(){
+'use strict';
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function cl(){rx+=(mx-rx)*.10;ry+=(my-ry)*.10;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(cl);})();
+document.querySelectorAll('a,.sys-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+});
+document.querySelectorAll('.sys-cta,.hero-cta,.cta-btn-primary,.cta-btn-secondary,.why-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
+});
+const heroBg=document.querySelector('#hero-bg');
+let tpx=0,tpy=0,cpx=0,cpy=0;
+document.addEventListener('mousemove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e.clientY/innerHeight-.5)*2;});
+(function pl(){cpx+=(tpx-cpx)*.018;cpy+=(tpy-cpy)*.018;if(heroBg){heroBg.style.marginLeft=(cpx*8)+'px';heroBg.style.marginTop=(cpy*5)+'px';}requestAnimationFrame(pl);})();
+})();
+</script>
+</body>
+</html>
