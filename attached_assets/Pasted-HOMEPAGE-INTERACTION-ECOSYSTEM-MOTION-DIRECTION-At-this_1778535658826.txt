@@ -1,0 +1,205 @@
+HOMEPAGE INTERACTION + ECOSYSTEM MOTION DIRECTION
+
+At this point, I definitely want this new homepage to become the official homepage.
+
+Go ahead and replace the old homepage with this Version 2 direction.
+
+This is the right foundation.
+
+Now the next layer is:
+
+interaction intelligence.
+
+We need to start thinking about:
+
+* JavaScript behaviors
+* motion systems
+* hover responses
+* environmental reactions
+* ecosystem choreography
+* atmospheric intelligence
+
+Right now the page looks incredible visually.
+
+But now it needs to feel:
+
+alive.
+
+I want the site to behave like a living ecosystem.
+
+That means:
+when users move through the page, hover elements, click things, or transition between sections, the environment should respond.
+
+Not aggressively.
+Not chaotically.
+
+But intentionally.
+
+—
+
+One important thing:
+I did NOT want all of the environmental movement removed.
+
+I actually liked a lot of the movement systems you added.
+
+The issue was:
+they became too fast, too disconnected, or they froze once other systems activated.
+
+Instead of removing them:
+
+* smooth them out
+* slow them down
+* make them more sporadic
+* make them feel environmental
+* make them feel alive
+
+The movement should feel like:
+
+* signal drift
+* neural activity
+* atmospheric intelligence
+* ecosystem behavior
+* particles moving through air
+* subtle electrical life
+
+Not constant animation.
+
+I want movement to happen:
+
+* occasionally
+* naturally
+* unexpectedly
+* softly
+
+Like:
+something drifting across the atmosphere every now and then.
+
+That’s what real life feels like.
+
+That’s the feeling I want.
+
+—
+
+Now regarding hover interactions:
+
+Every major interaction point should trigger some type of environmental response.
+
+Not just:
+
+* a box glow
+* a color change
+* a simple hover state
+
+That’s too basic.
+
+When someone hovers:
+
+* Ecosystem
+* About
+* Founder
+* Services
+* Pricing
+* Contact
+* Strategy Call
+* Enter FORM.
+
+something else in the environment should react.
+
+Examples:
+
+* atmospheric pulse
+* orbital activation
+* signal drift
+* nearby glow response
+* mesh movement
+* light diffusion
+* environmental shift
+* subtle energy transfer
+* background reaction
+* connected node activation
+
+The key idea is:
+
+interactions should affect the ecosystem around them.
+
+That’s what makes it feel alive.
+
+That’s what creates:
+
+a connected intelligence environment.
+
+For example:
+hovering “Strategy Call” should not only affect the button itself.
+
+It should:
+
+* trigger environmental light
+* affect nearby atmosphere
+* activate subtle signal behavior
+* create motion in surrounding layers
+* slightly shift glow hierarchy
+* wake up nearby systems
+
+Same thing with:
+
+* navigation items
+* ecosystem sections
+* panels
+* system cards
+* CTA modules
+
+Every interaction should feel:
+
+connected to the environment.
+
+Because that’s who FORM is.
+
+FORM is not isolated UI components.
+
+FORM is:
+
+a living operational ecosystem.
+
+That philosophy should be reflected in the interaction design itself.
+
+—
+
+The important balance:
+
+The effects cannot feel:
+
+* gimmicky
+* game-like
+* hyperactive
+* overly animated
+* distracting
+
+This should still feel:
+
+* luxury-grade
+* restrained
+* cinematic
+* emotionally intelligent
+* architecturally intentional
+
+Think:
+
+* Apple restraint
+* Kanye minimal futurism
+* Pharrell-level design taste
+* cinematic ecosystem intelligence
+* emotional environmental design
+
+Not:
+
+* flashy tech demos
+* Web3 chaos
+* over-designed interaction spam
+
+The motion should feel:
+
+intentional enough to notice,
+
+but restrained enough to feel believable.
+
+That’s the sweet spot.
