@@ -1,0 +1,284 @@
+/* ============================================================
+   FORM. RENDERING PRIORITY HIERARCHY
+   Tier Manifest — Version 1.0
+
+   Defines the six-tier compositor strategy governing every
+   render layer across all FORM. cinematic pages. This file
+   is the single source of truth for z-index bands, GPU
+   compositor hints, containment strategy, and degradation
+   behavior under load or prefers-reduced-motion.
+
+   Reference: FORM. CINEMATIC RENDERING DOCTRINE v1.0
+              FORM. MOTION DOCTRINE v1.0
+              FORM. ATMOSPHERE DOCTRINE v1.0
+   ============================================================ */
+
+/* ────────────────────────────────────────────────────────────
+   TIER TAXONOMY
+   ────────────────────────────────────────────────────────────
+
+   TIER 0 — BACKGROUND INTELLIGENCE      z-index: 0–2
+     The living canvas layer. AVIF atmospheric field, vignette
+     overlay, and the canvas neural network. Must render at all
+     times but degrades gracefully: particle count and signal
+     rate reduce under load; neural canvas halts entirely under
+     prefers-reduced-motion. Background breathing animation
+     suspends under reduced-motion.
+
+     Yield behavior: canvas particle count → signal rate →
+                     breathing animation → canvas halt
+
+   TIER 1 — ATMOSPHERE                   z-index: 3–9
+     Film grain, scan line, and any atmospheric gradient
+     overlay elements. Enrichment-only layers that enhance
+     cinematic depth and material realism. May simplify under
+     sustained load (grain opacity can reduce; scan line can
+     halt). Collapse SECOND in degradation sequence.
+
+     Yield behavior: scan line halts → grain opacity reduces
+
+   TIER 2 — HERO ENVIRONMENT             z-index: 10–19
+     First-frame landmark content — the UI container layer,
+     hero stacks, bracket corners, card grids, section heroes.
+     This tier is the minimum viable cinematic environment.
+     No atmospheric yield permitted. Must be fully rendered
+     before the veil lifts.
+
+     Yield behavior: NONE — preserved at all times
+
+   TIER 3 — NAVIGATION                   z-index: 20–49
+     Top navigation bar, sidebar, corner metadata elements.
+     Renders after veil lift animation completes. No yield
+     permitted. Must remain fully interactive and readable
+     at all times.
+
+     Yield behavior: NONE — immutable
+
+   TIER 4 — SECONDARY MOTION             z-index: 50–99
+     Scan lines, timeline pulses, domain orbit indicators,
+     cursor ring lag animation. Throttles FIRST under load —
+     animation-duration is the primary lever. Under
+     prefers-reduced-motion, this entire tier collapses
+     (animations set to 0.01ms).
+
+     Yield behavior: animation throttle → full collapse
+                     under prefers-reduced-motion
+
+   TIER 5 — CRITICAL UI                  z-index: 900+
+     Veil overlay, custom cursor dot and ring. Immutable.
+     The veil is the page entry gate and must always execute.
+     The cursor system is Critical UI infrastructure and
+     cannot be degraded. Under prefers-reduced-motion, the
+     veil is forced to opacity:0 immediately — not removed,
+     just bypassed.
+
+     Yield behavior: NONE — immutable
+
+   ────────────────────────────────────────────────────────────
+   DEGRADATION CASCADE (prefers-reduced-motion or load pressure)
+   ────────────────────────────────────────────────────────────
+
+   ORDER OF COLLAPSE:
+
+   1. TIER 4 — Secondary Motion throttles first
+      scan-run animation halted, cursor ring lag removed,
+      domain pulse animations halted
+
+   2. TIER 0 — Background Intelligence degrades
+      canvas particle count reduced, signal rate lowered,
+      bg-breathe animation suspended, parallax halted
+
+   3. TIER 1 — Atmosphere simplifies
+      scan line display:none, grain opacity reduced to .012
+
+   4. TIER 2 — Hero Environment preserved at all times
+      no degradation permitted
+
+   5. TIER 3 — Navigation preserved at all times
+      no degradation permitted
+
+   6. TIER 5 — Critical UI preserved at all times
+      veil opacity bypassed, cursor always rendered
+
+   ────────────────────────────────────────────────────────────
+   COMPOSITOR STRATEGY PER TIER
+   ────────────────────────────────────────────────────────────
+
+   TIER 0 — Background Intelligence
+     will-change: transform            (bg breathing animation)
+     contain: strict                   (canvas isolation)
+     isolation: isolate                (canvas blending context)
+
+   TIER 1 — Atmosphere
+     will-change: auto                 (static grain SVG)
+     contain: layout style             (scan line containment)
+     mix-blend-mode: overlay           (grain additive blend)
+
+   TIER 2 — Hero Environment
+     will-change: opacity              (fade-in animations)
+     contain: layout                   (hero stack)
+     pointer-events: none on container, auto on interactive
+
+   TIER 3 — Navigation
+     will-change: opacity              (sidebar/nav reveal)
+     backdrop-filter: blur(Xpx)        (glass panel effect)
+     contain: layout style             (sidebar isolation)
+
+   TIER 4 — Secondary Motion
+     will-change: top, opacity         (scan line, cursor ring)
+     contain: layout                   (scan line)
+     transition: width, height         (cursor ring)
+
+   TIER 5 — Critical UI
+     will-change: opacity              (veil, cursor)
+     pointer-events: none              (veil, cursor)
+     contain: layout style paint       (cursor)
+
+   ============================================================ */
+
+:root {
+
+  /* ── TIER Z-INDEX BANDS ── */
+
+  /* Tier 0 — Background Intelligence (band: 0–2) */
+  --z-tier-bg-intelligence:        0;
+  --z-tier-bg-intelligence-ov:     1;
+  --z-tier-bg-intelligence-canvas: 2;
+
+  /* Tier 1 — Atmosphere (band: 3–9) */
+  --z-tier-atmosphere:             3;    /* film grain overlay */
+  --z-tier-atmosphere-scan:        5;    /* horizontal luminance scan line */
+
+  /* Tier 2 — Hero Environment (band: 10–19) */
+  --z-tier-hero:                   10;
+  --z-tier-hero-corners:           10;   /* bracket marks, corner coordinate labels */
+  --z-tier-hero-content:           10;   /* hero topbar, hero-body, hero-content panels */
+  --z-tier-hero-scroll:            15;   /* scroll indicator — upper Tier-2 band */
+
+  /* Tier 3 — Navigation (band: 20–49) */
+  --z-tier-navigation:             20;
+  --z-tier-navigation-sidebar:     30;   /* product pages sidebar — within Navigation band */
+  --z-tier-navigation-corner-meta: 20;
+
+  /* Tier 4 — Secondary Motion (band: 50–99) */
+  --z-tier-secondary-motion:       50;
+
+  /* Tier 5 — Critical UI (band: 900+) */
+  --z-tier-critical:               900;
+  --z-tier-critical-veil:          900;   /* ecosystem + product pages */
+  --z-tier-critical-veil-index:    950;   /* index.html — deeper veil for longer open */
+  --z-tier-cursor-ring:            8999;
+  --z-tier-cursor-dot:             9000;
+
+  /* ── TIER MOTION TIMING TOKENS ── */
+
+  /* Tier 0 — Background Intelligence */
+  --motion-tier-bg-breathe-duration:   38s;    /* bg-breathe loop */
+  --motion-tier-bg-parallax-lag:       0.022;  /* lerp factor for parallax */
+
+  /* Tier 1 — Atmosphere */
+  --motion-tier-scan-duration:         22s;    /* scan-run on index */
+  --motion-tier-scan-duration-inner:   20s;    /* scan-run on product pages */
+  --motion-tier-scan-duration-fast:    18s;    /* scan-run on creative/exec */
+
+  /* Tier 4 — Secondary Motion */
+  --motion-tier-cursor-lag:            0.10;   /* cursor ring lerp factor */
+  --motion-tier-domain-cycle:          4200ms; /* domain cycling interval */
+  --motion-tier-domain-hold:           2400ms; /* domain active hold */
+  --motion-tier-sdrop-duration:        2.4s;   /* scroll wheel bounce */
+
+  /* Tier 5 — Critical UI */
+  --motion-tier-veil-duration:         4.0s;   /* index veil open */
+  --motion-tier-veil-duration-inner:   2.4s;   /* ecosystem veil */
+  --motion-tier-veil-duration-pages:   2.0s;   /* product page veil */
+
+  /* ── TIER OPACITY TOKENS ── */
+
+  /* Tier 0 — Background Intelligence */
+  --opacity-canvas:                    0.88;   /* ecocanvas screen blend */
+
+  /* Tier 1 — Atmosphere */
+  --opacity-grain:                     0.022;  /* grain overlay (all pages) */
+  --opacity-grain-reduced:             0.012;  /* grain under load pressure */
+
+  /* ── TIER FALLBACK FLAGS (read by JS PERF_CONFIG) ── */
+  /* These document the expected degradation thresholds.
+     Actual enforcement is via JS performance-config.js.   */
+
+  --tier-bg-degrade-particle-min:      0.35;   /* fraction of MAX_NODES */
+  --tier-bg-degrade-signal-rate-min:   0.4;    /* fraction of normal signal rate */
+
+}
+
+/* ────────────────────────────────────────────────────────────
+   SYSTEM CATEGORY MAP
+   Maps every composited system to a rendering category.
+   Categories govern when a system renders and how it degrades.
+   ────────────────────────────────────────────────────────────
+
+   CRITICAL — Must render on every frame, cannot be skipped.
+     Immutable; degradation: none.
+     Systems:
+       - #veil               Tier 5  Entry gate opacity gate
+       - #cdot / #cring      Tier 5  Custom cursor system
+       - #bg / #hero-bg      Tier 0  AVIF atmospheric field
+
+   DEFERRED — Renders after veil-lift or page-ready signal.
+     May yield under load; initializes via JS or CSS animation delay.
+     Systems:
+       - #sidebar            Tier 3  opacity:0 → fadein 1.2s
+       - #nav                Tier 3  opacity:0 → fadein 1.2s
+       - #hero-content       Tier 2  opacity:0 → fadeup 1.5s
+       - #hero-body          Tier 2  opacity:0 → fadeup 1.5s
+       - #eco-title          Tier 2  opacity:0 → fadeup 1.6s
+       - #scroll-ind         Tier 2  opacity:0 → fadein 2.5s
+       - .brkt / .brkt-ov    Tier 2  no animation, renders inline
+
+   LAZY-LOADED — Initializes after first paint or on user interaction.
+     Loaded via rAF or intersection; safe to defer.
+     Systems:
+       - ecocanvas           Tier 0  JS rAF loop, starts post-mount
+       - bg-breathe anim     Tier 0  CSS animation, starts on load
+       - domain orbit        Tier 4  JS interval, starts post-veil
+
+   MOTION-PRIORITY — Animation-driven systems that throttle under load.
+     Tier 4 degrades first; Tier 0 second; Tier 1 third.
+     Systems:
+       - .scan               Tier 1  scan-run CSS keyframe
+       - bg-breathe          Tier 0  bg-drift / bg-breathe CSS keyframe
+       - cursor ring lag     Tier 4  JS lerp rAF loop
+       - domain pulse        Tier 4  JS interval + CSS animation
+       - ecocanvas particles Tier 0  JS rAF loop, particle count
+
+   ATMOSPHERIC FALLBACK — Simplifies to static on reduced-motion.
+     Opacity / color retained; motion removed.
+     Systems:
+       - #grain              Tier 1  Static SVG overlay, always visible
+       - #bg-ov / #hero-ov   Tier 0  Static gradient, always rendered
+       - vignette overlays   Tier 0  Static gradient, immutable
+
+   ────────────────────────────────────────────────────────────  */
+
+/* ────────────────────────────────────────────────────────────
+   REDUCED MOTION TIER COLLAPSE MAP
+   Applied globally via prefers-reduced-motion media query.
+   Each page <style> block contains its own collapse rules;
+   this token file documents the canonical mapping.
+
+   Tier 4 (Secondary Motion) — ALL animations → 0.01ms
+     .scan { display:none }
+     cursor ring lag loop → not started
+     domain cycle → not started
+
+   Tier 0 (Background Intelligence) — canvas halts
+     ecocanvas JS loop → not started when reducedMotion=true
+     bg-breathe → animation:none
+     bg parallax rAF → not started
+
+   Tier 1 (Atmosphere) — scan display:none (covered by Tier 4)
+     grain remains but static (no animation on grain itself)
+
+   Tier 2 (Hero Environment) — opacity forced to 1, transform:none
+   Tier 3 (Navigation) — opacity forced to 1
+   Tier 5 (Critical UI) — veil opacity:0 forced, cursor renders
+   ──────────────────────────────────────────────────────────── */

@@ -9,13 +9,22 @@
 <script src="/performance-config.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{cursor:none;}
 body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;}
 
+/* ══════════════════════════════════════════════════════════
+   TIER-0: BACKGROUND INTELLIGENCE  (z-index band: 0–2)
+   Layers: #bg (AVIF field), #bg-ov (vignette), #ecocanvas (neural network)
+   will-change: transform | contain: strict on canvas | isolation: isolate
+   Degrades: particle count → signal rate → breathing animation → canvas halt
+   prefers-reduced-motion: bg-breathe:none, parallax halts, canvas halts
+   ══════════════════════════════════════════════════════════ */
+
 /* ── BACKGROUND — let the multi-color field show ── */
-#bg{position:fixed;inset:-5%;width:110%;height:110%;z-index:0;transform-origin:center;will-change:transform;animation:bg-breathe 38s ease-in-out infinite;}
+#bg{position:fixed;inset:-5%;width:110%;height:110%;z-index:var(--z-tier-bg-intelligence);transform-origin:center;will-change:transform;animation:bg-breathe 38s ease-in-out infinite;}
 #bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:filter 1.4s ease-out;}
 @keyframes bg-breathe{
   0%  {transform:scale(1.00)  translate(0,0)      rotate(0deg);}
@@ -26,8 +35,8 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
   100%{transform:scale(1.00)  translate(0,0)      rotate(0deg);}
 }
 
-/* Dark radial vignette — darkens edges, keeps center alive */
-#bg-ov{position:fixed;inset:0;z-index:1;pointer-events:none;
+/* TIER-0: Vignette overlay — atmospheric depth layer within bg intelligence band */
+#bg-ov{position:fixed;inset:0;z-index:var(--z-tier-bg-intelligence-ov);pointer-events:none;
   background:radial-gradient(ellipse 85% 85% at 50% 50%,
     rgba(0,0,0,.08) 0%,
     rgba(0,0,0,.32) 45%,
@@ -36,25 +45,54 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
   );
 }
 
-/* Canvas — ecosystem network, additive blend on top of bg */
-#ecocanvas{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.88;}
+/* TIER-0: Canvas — ecosystem neural network, additive blend | will-change:auto (JS-driven) | isolation:isolate */
+#ecocanvas{position:fixed;inset:0;z-index:var(--z-tier-bg-intelligence-canvas);pointer-events:none;mix-blend-mode:screen;opacity:.88;}
 
-/* Grain */
-#grain{position:fixed;inset:0;z-index:3;opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
+/* ══════════════════════════════════════════════════════════
+   TIER-1: ATMOSPHERE  (z-index band: 3–9)
+   Layers: #grain (film grain), .scan (horizontal scan line)
+   will-change: auto | contain: layout style | mix-blend-mode: overlay
+   Degrades: scan line halts → grain opacity reduces to --opacity-grain-reduced
+   prefers-reduced-motion: scan display:none, grain static
+   ══════════════════════════════════════════════════════════ */
 
-/* Veil */
-#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 4.0s cubic-bezier(.16,1,.3,1) forwards;}
+/* TIER-1: Grain — cinematic film texture, atmospheric humanity layer */
+#grain{position:fixed;inset:0;z-index:var(--z-tier-atmosphere);opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
+
+/* ══════════════════════════════════════════════════════════
+   TIER-5: CRITICAL UI  (z-index band: 900+)
+   Layers: #veil (entry gate), #cdot (cursor dot), #cring (cursor ring)
+   will-change: opacity | pointer-events: none | immutable — no yield
+   prefers-reduced-motion: veil opacity:0 forced (bypassed, not removed)
+   ══════════════════════════════════════════════════════════ */
+
+/* TIER-5: Veil — page entry gate, Critical UI, immutable */
+#veil{position:fixed;inset:0;background:#000;z-index:var(--z-tier-critical-veil-index);pointer-events:none;animation:veil-open 4.0s cubic-bezier(.16,1,.3,1) forwards;}
 @keyframes veil-open{0%,45%{opacity:1}100%{opacity:0}}
 
-/* Scan */
-.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;
+/* ══════════════════════════════════════════════════════════
+   TIER-1: ATMOSPHERE (continued)
+   .scan — horizontal luminance sweep, secondary atmospheric enrichment
+   Throttles FIRST under load. Halts under prefers-reduced-motion.
+   ══════════════════════════════════════════════════════════ */
+
+/* TIER-1: Scan line — atmospheric luminance sweep | Tier-4 boundary: first to throttle */
+.scan{position:fixed;left:0;right:0;height:1px;z-index:var(--z-tier-atmosphere-scan);pointer-events:none;
   background:linear-gradient(90deg,transparent,rgba(57,255,20,.04),transparent);
   animation:scan-run 22s linear infinite 10s;}
 @keyframes scan-run{from{top:-1px}to{top:100vh}}
 
-/* Cursor */
-#cdot{position:fixed;z-index:9000;width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
-#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
+/* ══════════════════════════════════════════════════════════
+   TIER-5: CRITICAL UI — Cursor system
+   Cursor dot and ring are Critical UI infrastructure.
+   Immutable — no yield, no degradation permitted.
+   prefers-reduced-motion: ring lag loop not started
+   ══════════════════════════════════════════════════════════ */
+
+/* TIER-5: Cursor dot — Critical UI, immutable | will-change: left, top */
+#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
+/* TIER-5: Cursor ring — Critical UI, immutable | Tier-4 lag animation halts under reduced-motion */
+#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
 body.hl  #cring{width:40px;height:40px;border-color:rgba(57,255,20,.88);}
 body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.28);}
 
@@ -62,8 +100,16 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── UI LAYER ── */
-#ui{position:fixed;inset:0;z-index:10;pointer-events:none;}
+/* ══════════════════════════════════════════════════════════
+   TIER-2: HERO ENVIRONMENT  (z-index band: 10–19)
+   Layers: #ui (container), #hero-stack, .wm, .sub, .enter-btn, #scroll
+   will-change: opacity | no yield — preserved at all times
+   First-frame landmark content. Must be fully rendered before veil lifts.
+   prefers-reduced-motion: opacity:1 forced, transform:none forced
+   ══════════════════════════════════════════════════════════ */
+
+/* TIER-2: UI container — Hero Environment root layer, contains all UI sub-layers */
+#ui{position:fixed;inset:0;z-index:var(--z-tier-hero);pointer-events:none;}
 #ui a,#ui .dom{pointer-events:auto;}
 
 /* ── BRACKET corners ── */
@@ -75,7 +121,15 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 .bc::after   {bottom:0;right:0;border-width:0 1px 1px 0;}
 .g{color:#39FF14;}
 
-/* ── NAV ── */
+/* ══════════════════════════════════════════════════════════
+   TIER-3: NAVIGATION  (z-index band: 20–49)
+   Layers: #nav, #nav-links, .cm (corner metadata), #tl-left, #domains
+   will-change: opacity | backdrop-filter: blur | immutable — no yield
+   Renders after veil lift animation completes.
+   prefers-reduced-motion: opacity:1 forced
+   ══════════════════════════════════════════════════════════ */
+
+/* TIER-3: Nav — Navigation, immutable, renders after veil lift */
 #nav{
   position:absolute;top:0;left:0;right:0;height:72px;
   display:flex;align-items:center;justify-content:space-between;
@@ -115,8 +169,8 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
   letter-spacing:.21em;
 }
 
-/* ── CORNER ELEMENTS ── */
-.cm{position:absolute;z-index:20;opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 4.2s forwards;}
+/* TIER-3: Corner metadata elements — Navigation tier, immutable, renders after veil */
+.cm{position:absolute;z-index:var(--z-tier-navigation);opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 4.2s forwards;}
 .cm .bbox{
   font-family:'IBM Plex Mono',monospace;
   font-size:.8rem;font-weight:400;letter-spacing:.12em;
@@ -128,13 +182,13 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 #cm-bl{bottom:4.5%;left:2%;}
 #cm-br{bottom:4.5%;right:2%;} #cm-br .bbox{text-align:right;}
 
-/* ── LEFT TIMELINE ── */
+/* ── TIER-3: NAVIGATION — Left timeline pulse indicator, immutable */
 #tl-left{position:absolute;left:1.6%;top:22%;bottom:43%;display:flex;flex-direction:column;align-items:center;opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 4.4s forwards;}
 .tseg{width:1px;flex:1;background:rgba(57,255,20,.12);}
 .tdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;background:rgba(57,255,20,.28);}
 .tdot.on{background:#39FF14;box-shadow:0 0 8px #39FF14,0 0 18px rgba(57,255,20,.4);}
 
-/* ── DOMAIN LIST (right) ── */
+/* ── TIER-3: NAVIGATION — Domain list, Navigation tier, immutable */
 #domains{
   position:absolute;right:2%;top:50%;transform:translateY(-50%);
   display:flex;flex-direction:column;align-items:flex-end;gap:.9rem;
@@ -152,7 +206,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 .dom.dom-active{color:rgba(242,242,240,.98);}
 .ddot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 
-/* ── HERO CENTER STACK ── */
+/* ── TIER-2: HERO ENVIRONMENT — Center stack, first-frame landmark content, no yield */
 #hero-stack{
   position:absolute;
   top:0;left:0;right:0;
@@ -218,7 +272,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 .enter-btn .arr{font-size:1.5rem;line-height:1;transition:transform .45s cubic-bezier(.16,1,.3,1);}
 .enter-btn:hover .arr{transform:translateX(8px);}
 
-/* ── SCROLL ── */
+/* ── TIER-2: HERO ENVIRONMENT — Scroll indicator, Hero Environment sub-element, no yield */
 #scroll{position:absolute;bottom:5.5%;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.55rem;opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 4.8s forwards;pointer-events:none;}
 .smouse{width:20px;height:32px;border:1px solid rgba(242,242,240,.28);border-radius:10px;display:flex;justify-content:center;padding-top:6px;}
 .swheel{width:2px;height:5px;background:rgba(242,242,240,.42);border-radius:2px;animation:sdrop 2.4s ease-in-out infinite;}
@@ -239,25 +293,30 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 </head>
 <body>
 
+<!-- TIER-5: CRITICAL UI — Veil entry gate | immutable | prefers-reduced-motion: opacity:0 forced -->
 <div id="veil"></div>
+<!-- TIER-5: CRITICAL UI — Cursor dot | immutable -->
 <div id="cdot"></div>
+<!-- TIER-5: CRITICAL UI — Cursor ring lag | ring lag loop halts under prefers-reduced-motion -->
 <div id="cring"></div>
+<!-- TIER-1: ATMOSPHERE — Horizontal scan line | first to throttle | display:none under reduced-motion -->
 <div class="scan"></div>
 
-<!-- The living field — bg.avif at near-full brightness for multi-color ecosystem -->
+<!-- TIER-0: BACKGROUND INTELLIGENCE — AVIF atmospheric field | will-change:transform | bg-breathe halts under reduced-motion -->
 <div id="bg"><img id="bg-img" src="/bg.avif" alt=""></div>
+<!-- TIER-0: BACKGROUND INTELLIGENCE — Vignette overlay | static gradient, no yield -->
 <div id="bg-ov"></div>
 
-<!-- Ecosystem canvas — sparse neural network, additive blend -->
+<!-- TIER-0: BACKGROUND INTELLIGENCE — Neural network canvas | screen blend | degrades: particle count → signal rate → halt -->
 <canvas id="ecocanvas"></canvas>
 
-<!-- Grain -->
+<!-- TIER-1: ATMOSPHERE — Film grain | opacity:.022 | mix-blend-mode:overlay | static SVG -->
 <img id="grain" src="/grain.svg" alt="">
 
-<!-- UI -->
+<!-- TIER-2: HERO ENVIRONMENT — UI root container | first-frame landmark content | no yield -->
 <div id="ui">
 
-  <!-- NAV -->
+  <!-- TIER-3: NAVIGATION — Top nav bar | immutable | renders after veil lift -->
   <nav id="nav">
     <a href="#"><img id="logo" src="/logo-editorial-2.svg" alt="FORM."></a>
     <ul id="nav-links">
@@ -271,20 +330,20 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
     <a id="strat" href="#">Strategy Call&thinsp;→</a>
   </nav>
 
-  <!-- CORNER BRACKETS -->
+  <!-- TIER-3: NAVIGATION — Corner metadata elements | immutable -->
   <div id="cm-tl" class="cm"><div class="bbox"><div class="bc"></div>Operational Intelligence<br>For A <span class="g">Complex</span> World.</div></div>
   <div id="cm-tr" class="cm"><div class="bbox"><div class="bc"></div>33.7490° N<br>84.3880° W<br><span id="utc-clock" style="color:#39FF14;letter-spacing:.08em;font-size:.78rem;"></span></div></div>
   <div id="cm-bl" class="cm"><div class="bbox"><div class="bc"></div><span id="sb-status-dot"></span>System Status<br><span class="g">Operational</span></div></div>
   <div id="cm-br" class="cm"><div class="bbox"><div class="bc"></div>Intelligence In Motion.<br><span class="g">Impact That Lasts.</span></div></div>
 
-  <!-- LEFT TIMELINE -->
+  <!-- TIER-3: NAVIGATION — Left timeline pulse indicator | immutable -->
   <div id="tl-left">
     <div class="tdot"></div><div class="tseg"></div>
     <div class="tdot on"></div><div class="tseg"></div>
     <div class="tdot"></div>
   </div>
 
-  <!-- DOMAIN LIST -->
+  <!-- TIER-3: NAVIGATION — Domain list with hue cycle | Navigation tier, immutable -->
   <div id="domains">
     <div class="dom">Intelligence<span class="ddot" style="background:#2962FF;box-shadow:0 0 8px #2962FF;margin-left:.65rem;"></span></div>
     <div class="dom">Execution<span class="ddot" style="background:#39FF14;box-shadow:0 0 8px #39FF14;margin-left:.65rem;"></span></div>
@@ -294,7 +353,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
     <div class="dom">Humanity<span class="ddot" style="background:#FF4E9B;box-shadow:0 0 8px #FF4E9B;margin-left:.65rem;"></span></div>
   </div>
 
-  <!-- HERO STACK: Continuum Mark → form. → taglines → CTA -->
+  <!-- TIER-2: HERO ENVIRONMENT — Hero center stack | logo, taglines, CTA | no yield -->
   <div id="hero-stack">
 
     <!-- PRIMARY CORE LOGO — hero ecosystem identity -->
@@ -310,7 +369,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
     <a class="enter-btn" href="/ecosystem.html">Enter Form<span class="arr">→</span></a>
   </div>
 
-  <!-- SCROLL INDICATOR -->
+  <!-- TIER-2: HERO ENVIRONMENT — Scroll indicator | Hero Environment sub-element -->
   <div id="scroll">
     <div class="smouse"><div class="swheel"></div></div>
     <div class="slbl">Scroll to Explore</div>
