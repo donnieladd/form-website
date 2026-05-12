@@ -223,13 +223,15 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
   font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;
   color:rgba(242,242,240,.52);
   opacity:0;animation:fadein .7s ease forwards;
+  white-space:nowrap;
 }
 .meta-dot{width:4px;height:4px;border-radius:50%;background:var(--ac);flex-shrink:0;box-shadow:0 0 6px var(--ac),0 0 12px rgba(var(--ac-rgb),.4);}
-#ml-strategist{top:20%;right:5%;animation-delay:2.1s;}
-#ml-creative   {top:31%;right:5%;animation-delay:2.25s;}
-#ml-operator   {top:42%;right:5%;animation-delay:2.4s;}
-#ml-systhinker {top:53%;right:5%;animation-delay:2.55s;}
-#ml-leader     {top:64%;right:5%;animation-delay:2.7s;}
+/* JS positions each label via inline style — angles set in the script */
+#ml-leader     {animation-delay:2.05s;}
+#ml-strategist {animation-delay:2.2s;}
+#ml-creative   {animation-delay:2.35s;}
+#ml-operator   {animation-delay:2.5s;}
+#ml-systhinker {animation-delay:2.65s;}
 
 /* ════════════════════════════════
    SECTION 02 — STORY
@@ -573,11 +575,11 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
       <img src="/founder-5.avif" alt="Dontae Ladson — Founder, FORM.">
     </div>
 
+    <div class="meta-label" id="ml-leader"><span class="meta-dot"></span>Leader</div>
     <div class="meta-label" id="ml-strategist"><span class="meta-dot"></span>Strategist</div>
     <div class="meta-label" id="ml-creative"><span class="meta-dot"></span>Creative</div>
     <div class="meta-label" id="ml-operator"><span class="meta-dot"></span>Operator</div>
     <div class="meta-label" id="ml-systhinker"><span class="meta-dot"></span>Systems Thinker</div>
-    <div class="meta-label" id="ml-leader"><span class="meta-dot"></span>Leader</div>
   </div>
 
 </section>
@@ -746,6 +748,59 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 </footer>
 
 </main>
+
+<!-- META LABEL ARC POSITIONING -->
+<script>
+function _placeMetaLabels(){
+  var ring=document.querySelector('.eclipse-ring1');
+  var panel=document.getElementById('hero-right');
+  if(!ring||!panel)return;
+  var rr=ring.getBoundingClientRect();
+  var pr=panel.getBoundingClientRect();
+  if(rr.width<10)return; /* bail if ring not yet painted */
+  var cx=(rr.left+rr.right)/2-pr.left;
+  var cy=(rr.top+rr.bottom)/2-pr.top;
+  var radius=rr.width/2;
+  var gap=22; /* px clearance outside the ring */
+  /* leave 165px of room so longest label stays visible inside panel */
+  var maxLeft=pr.width-165;
+
+  /* order: Leader → Strategist → Creative → Operator → Systems Thinker
+     angles 0°=top, clockwise; arc spans upper-right → lower-right */
+  var config=[
+    ['ml-leader',     28],
+    ['ml-strategist', 58],
+    ['ml-creative',   88],
+    ['ml-operator',  118],
+    ['ml-systhinker',148]
+  ];
+
+  config.forEach(function(item){
+    var id=item[0],deg=item[1];
+    var el=document.getElementById(id);
+    if(!el)return;
+    var rad=deg*Math.PI/180;
+    var lx=cx+(radius+gap)*Math.sin(rad);
+    var ly=cy-(radius+gap)*Math.cos(rad);
+    /* clamp so label never exits panel right edge */
+    if(lx>maxLeft)lx=maxLeft;
+    el.style.right='auto';
+    el.style.left=lx+'px';
+    el.style.top=ly+'px';
+    el.style.transform='translateY(-50%)';
+  });
+}
+/* run after paint so getBoundingClientRect is accurate */
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',function(){
+    requestAnimationFrame(function(){requestAnimationFrame(_placeMetaLabels);});
+  });
+}else{
+  requestAnimationFrame(function(){requestAnimationFrame(_placeMetaLabels);});
+}
+window.addEventListener('load',_placeMetaLabels);
+window.addEventListener('resize',_placeMetaLabels);
+</script>
 
 <!-- CURSOR + INTERACTIONS + PAGE EXIT -->
 <script>
