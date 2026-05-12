@@ -15,18 +15,19 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/field.css?v=1">
+<link rel="stylesheet" href="/field.css?v=2">
 <link rel="stylesheet" href="/nav-footer.css?v=11">
 <link rel="stylesheet" href="/rev.css?v=3">
 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{cursor:none;}
 body{
   background:#050608;min-height:100vh;overflow:hidden;
   -webkit-font-smoothing:antialiased;color:#f2f2f0;
   font-family:'Satoshi','Inter',system-ui,sans-serif;
+  cursor:default;
 }
+a,button{cursor:pointer;}
 
 /* ── grain — atmospheric film overlay above field, below content ── */
 #grain{
@@ -50,10 +51,14 @@ body{
   gap:3.2rem;
 }
 
-/* the wordmark — restrained satoshi, signal-green square dot */
+/* the wordmark — restrained satoshi + signal-green square dot
+   inline-flex layout so the dot is deterministically placed
+   right of the m's baseline regardless of font metrics */
 .hero-mark{
-  position:relative;display:inline-block;
-  line-height:.85;
+  display:inline-flex;
+  align-items:flex-end;
+  gap:clamp(8px, 1.1vw, 18px);
+  line-height:1;
 }
 .hero-word{
   display:inline-block;
@@ -61,6 +66,7 @@ body{
   font-weight:300;
   font-size:clamp(108px, 17vw, 260px);
   letter-spacing:-.04em;
+  line-height:.9;
   color:#f2f2f0;
   text-transform:lowercase;
   opacity:0;transform:translateY(22px);
@@ -68,13 +74,14 @@ body{
   text-shadow:0 0 60px rgba(5,6,8,.35);
 }
 .hero-dot{
-  position:absolute;
-  bottom:.05em;right:-.18em;
-  width:.18em;height:.18em;
+  display:inline-block;flex:0 0 auto;
+  width:clamp(18px, 2.55vw, 40px);
+  height:clamp(18px, 2.55vw, 40px);
+  margin-bottom:clamp(6px, .9vw, 14px);
   background:#39ff14;
   box-shadow:
-    0 0 18px rgba(57,255,20,.45),
-    0 0 36px rgba(57,255,20,.18);
+    0 0 18px rgba(57,255,20,.55),
+    0 0 38px rgba(57,255,20,.22);
   opacity:0;transform:scale(.5);
   animation:hero-dot 1.2s cubic-bezier(.16,1,.3,1) 1.3s forwards;
 }
@@ -111,7 +118,7 @@ body{
   letter-spacing:.32em;
   text-transform:uppercase;
   color:#39ff14;
-  text-decoration:none;cursor:none;
+  text-decoration:none;cursor:pointer;
   border:1px solid rgba(57,255,20,.55);
   padding:1.15rem 2.6rem;
   background:rgba(57,255,20,.025);
@@ -174,12 +181,12 @@ body{
   }
 }
 
-/* nav transparency on the homepage — let the field show through */
+/* nav transparency on the homepage — more glass-like, let the field breathe through */
 #topnav{
-  background:rgba(5,6,8,.42)!important;
-  backdrop-filter:blur(16px) saturate(1.1);
-  -webkit-backdrop-filter:blur(16px) saturate(1.1);
-  border-bottom:1px solid rgba(255,255,255,.05);
+  background:rgba(5,6,8,.18)!important;
+  backdrop-filter:blur(18px) saturate(1.15);
+  -webkit-backdrop-filter:blur(18px) saturate(1.15);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
 </style>
 </head>
@@ -226,7 +233,7 @@ body{
   v.0.1&nbsp;&nbsp;—&nbsp;&nbsp;may 2026
 </div>
 
-<script src="/field.js?v=1" defer></script>
+<script src="/field.js?v=2" defer></script>
 <script src="/rev.js?v=3" defer></script>
 <script src="/nav-footer.js?v=17" defer></script>
 

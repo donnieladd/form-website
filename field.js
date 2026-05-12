@@ -46,8 +46,8 @@
           x: Math.random() * W,
           y: Math.random() * H,
           r: Math.random() * 1.2 + 0.3,
-          vx: (Math.random() - 0.5) * 0.07,
-          vy: (Math.random() - 0.5) * 0.025,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.07,
           a: Math.random() * 0.45 + 0.18,
           phase: Math.random() * Math.PI * 2,
           green: Math.random() < 0.045
@@ -56,7 +56,7 @@
     }
 
     function frame() {
-      t += 0.0035;
+      t += 0.006;
       ctx.clearRect(0, 0, W, H);
       for (var i = 0; i < particles.length; i++) {
         var p = particles[i];
