@@ -1,0 +1,636 @@
+The FORM. website is not a traditional marketing website.
+
+It is a cinematic operational ecosystem.
+
+The experience should feel:
+intentional,
+restrained,
+architectural,
+human,
+intelligent,
+emotionally mature,
+and structurally precise.
+
+The site should never feel:
+templated,
+generic,
+startup-oriented,
+agency-like,
+over-designed,
+or trend-chasing.
+
+The core emotional objective is:
+confidence through restraint.
+
+FORM. should feel:
+like a worldview expressed through systems.
+
+Not:
+a company trying to sell services.
+
+⸻
+
+foundational site doctrine
+
+Every page inside the FORM. ecosystem must feel:
+connected,
+but emotionally distinct.
+
+This is critical.
+
+The site should NOT reuse:
+
+* identical hero layouts
+* identical atmospheric systems
+* identical section structures
+* identical pacing
+* identical panel systems
+* identical compositions
+* identical grid behavior
+* identical motion patterns
+
+Every page should feel:
+like entering a different operational layer of the same intelligence ecosystem.
+
+Think:
+shared DNA,
+different emotional environments.
+
+The site should feel:
+cohesive,
+not repetitive.
+
+⸻
+
+typography doctrine (LOCKED)
+
+This typography system is permanent and must govern every page, component, interaction, and layout decision.
+
+Typography inside FORM. is treated as:
+infrastructure.
+
+Not decoration.
+
+Typography communicates:
+clarity,
+confidence,
+intentionality,
+operational intelligence,
+and emotional control.
+
+⸻
+
+casing system
+
+primary rule
+
+Use lowercase typography for:
+
+* headers
+* navigation
+* section titles
+* product names
+* ecosystem labels
+* footer categories
+* operational labels
+
+Lowercase creates:
+humanity,
+restraint,
+modernity,
+and emotional balance.
+
+⸻
+
+uppercase rules
+
+Uppercase may ONLY be used for:
+
+* metadata
+* micro-labels
+* indexing systems
+* infrastructure annotations
+* small operational indicators
+
+Examples:
+
+[ 01 ]
+vision.
+operational systems
+ecosystem structure
+
+Uppercase should:
+
+* remain minimal
+* use increased tracking
+* feel infrastructural
+* never dominate layouts
+
+⸻
+
+typefaces
+
+primary typeface — satoshi
+
+Used for:
+
+* headers
+* body copy
+* UI systems
+* navigation
+* operational language
+* ecosystem structure
+* interface systems
+
+Tone:
+clean,
+modern,
+restrained,
+intelligent,
+highly legible.
+
+⸻
+
+editorial typeface — canela
+
+Used VERY sparingly.
+
+Maximum:
+5–10% of visible typography on a page.
+
+Used ONLY for:
+
+* emotional punctuation
+* cinematic emphasis
+* philosophical moments
+* selective highlighted words
+
+Examples:
+
+* “form.”
+* “the future needs form.”
+* “what’s next.”
+
+Canela should NEVER:
+
+* dominate layouts
+* become paragraph typography
+* overwhelm hierarchy
+* reduce clarity
+
+⸻
+
+mono/system typeface — ibm plex mono
+
+Used for:
+
+* metadata
+* indexing
+* system labels
+* operational annotations
+* topology indicators
+* interface microcopy
+
+Should feel:
+subtle,
+infrastructural,
+and intelligent.
+
+⸻
+
+layout doctrine
+
+alignment
+
+Default:
+left aligned.
+
+Centered alignment ONLY for:
+intentional emotional hero moments.
+
+Never overuse centered layouts.
+
+FORM. should feel:
+architectural,
+not performative.
+
+⸻
+
+spacing doctrine
+
+The site must breathe.
+
+Use:
+
+* generous vertical rhythm
+* intentional whitespace
+* cinematic pacing
+* controlled density
+* balanced negative space
+
+Avoid:
+
+* cramped layouts
+* excessive visual density
+* giant text walls
+* startup-style UI clutter
+
+Reading should feel:
+effortless.
+
+⸻
+
+color doctrine
+
+primary background
+
+Deep atmospheric near-black.
+
+Never flat black.
+
+Use subtle:
+
+* Infrastructure Blue diffusion
+* Cognitive Violet atmosphere
+* soft signal gradients
+* restrained orbital haze
+
+⸻
+
+typography colors
+
+Primary text:
+soft white.
+Never pure white.
+
+Secondary text:
+muted gray.
+
+Accent:
+Signal Green ONLY.
+
+No random greens.
+No neon lime.
+No trendy gradients.
+
+Signal Green is:
+identity infrastructure.
+
+Use intentionally.
+
+⸻
+
+motion doctrine
+
+Motion should feel:
+slow,
+calm,
+intentional,
+cinematic,
+premium.
+
+Avoid:
+
+* aggressive transitions
+* excessive parallax
+* flashy animations
+* startup-style interaction behavior
+* gimmicky motion systems
+
+Everything should feel:
+controlled.
+
+⸻
+
+atmosphere doctrine
+
+The website should feel:
+alive,
+but restrained.
+
+Background environments should contain:
+
+* subtle topology systems
+* atmospheric gradients
+* signal particles
+* orbital structures
+* cinematic grain
+* volumetric diffusion
+* intelligence field behavior
+
+But these elements must remain:
+secondary to typography and clarity.
+
+Never overwhelm readability.
+
+⸻
+
+page-specific emotional architecture
+
+Every page should feel emotionally distinct.
+
+⸻
+
+vision.
+
+Emotional tone:
+philosophical,
+immersive,
+future-facing,
+vast,
+cinematic,
+intelligent.
+
+Visual behavior:
+
+* large atmospheric environments
+* deep negative space
+* slow topology movement
+* cognitive signal systems
+* immersive pacing
+
+The page should feel:
+like entering the mind of FORM.
+
+⸻
+
+standards.
+
+This page combines:
+
+* core values
+* core principles
+
+into one unified operational doctrine page.
+
+This page replaces:
+
+* core values.
+* core principles.
+
+in the navigation.
+
+New nav item:
+
+standards.
+
+The page should feel:
+structured,
+disciplined,
+architectural,
+operational,
+human,
+and philosophically grounded.
+
+Less emotional atmosphere.
+More structural clarity.
+
+More grids.
+More line systems.
+More operational rhythm.
+
+This page explains:
+how FORM. behaves
+and
+how FORM. thinks.
+
+The page alternates between:
+behavioral standards
+and
+operational philosophy.
+
+⸻
+
+founder.
+
+Emotional tone:
+human,
+reflective,
+warm,
+cinematic,
+intimate,
+intelligent.
+
+Less infrastructure-heavy.
+
+More texture.
+More emotional pacing.
+More humanity.
+
+This page should feel:
+like understanding the source signal behind FORM.
+
+Not:
+a résumé page.
+
+⸻
+
+ecosystem.
+
+Emotional tone:
+connected,
+modular,
+adaptive,
+alive,
+systemic.
+
+This page introduces:
+the FORM. ecosystem architecture.
+
+The page should feel:
+like interacting with a living operational framework.
+
+Each ecosystem layer should feel visually distinct:
+
+* business systems
+* ministry systems
+* intelligence systems
+* creative systems
+* experience systems
+* executive systems
+
+Each should contain:
+its own atmosphere,
+motion behavior,
+and emotional pacing.
+
+⸻
+
+navigation system
+
+Final navigation structure:
+
+vision.
+standards.
+founder.
+ecosystem.
+start the conversation
+
+⸻
+
+CTA doctrine
+
+Replace all:
+
+* strategy call
+* consultation
+* book a call
+* schedule a consultation
+
+with:
+
+start the conversation
+
+The CTA should feel:
+human,
+calm,
+intentional,
+and relational.
+
+Never:
+salesy,
+transactional,
+or funnel-oriented.
+
+⸻
+
+CTA styling
+
+Typography:
+Satoshi Medium.
+
+Lowercase only.
+
+Minimal styling.
+
+No oversized buttons.
+
+No trendy SaaS aesthetics.
+
+The CTA should feel:
+architectural,
+premium,
+and restrained.
+
+Optional:
+tiny Signal Green indicator dot.
+
+Example:
+
+● start the conversation
+
+⸻
+
+rev. intelligence system
+
+FORM. will include an integrated AI intelligence layer called:
+
+rev.
+
+Rev. is NOT:
+a chatbot.
+
+Rev. is:
+an operational intelligence layer integrated throughout the ecosystem.
+
+Rev. should feel:
+calm,
+clear,
+emotionally intelligent,
+operationally mature,
+and highly intentional.
+
+Rev. should NEVER feel:
+hype-driven,
+overly conversational,
+sales-oriented,
+or gimmicky.
+
+⸻
+
+rev. v1 capabilities
+
+Rev. should initially support:
+
+* conversational navigation
+* explaining FORM.
+* helping users understand ecosystems
+* answering operational questions
+* recommending pathways
+* intelligent lead routing
+* onboarding guidance
+* ecosystem education
+* philosophy explanation
+* contextual recommendations
+
+⸻
+
+rev. visual philosophy
+
+DO NOT use:
+traditional chatbot UI patterns.
+
+Avoid:
+
+* giant floating chat bubbles
+* customer-support aesthetics
+* bright AI gimmicks
+* neon interfaces
+* intrusive widgets
+
+Rev. should feel:
+infrastructural.
+
+Possible interaction patterns:
+
+* intelligence dock
+* signal interface
+* command palette
+* adaptive sidebar
+* operational panel
+* ambient system prompt layer
+
+Rev. should feel:
+like integrated intelligence infrastructure.
+
+Not:
+website support chat.
+
+⸻
+
+development philosophy
+
+The site should be built:
+modularly,
+but not repetitively.
+
+Every component system should allow:
+
+* atmospheric variation
+* pacing variation
+* compositional flexibility
+* emotional differentiation
+
+The system should support:
+creative evolution
+without breaking ecosystem consistency.
+
+⸻
+
+final emotional objective
+
+When users experience the FORM. website,
+they should feel:
+
+clarity.
+trust.
+intelligence.
+restraint.
+humanity.
+operational maturity.
+intentionality.
+
+The site should feel:
+like entering a carefully constructed operational philosophy built for what comes next.
+
+The future needs form.
