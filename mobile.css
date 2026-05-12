@@ -68,6 +68,11 @@ body{
     -webkit-overflow-scrolling:touch;
     overscroll-behavior-y:none;
   }
+  /* honor the locked nav-footer mobile-menu lock contract on BOTH
+     roots — html stays scrollable by default on touch (above), so we
+     must freeze it explicitly when the mobile panel is open or
+     background scroll leaks through on iOS. */
+  html.nf-mobile-open,
   body.nf-mobile-open{overflow:hidden!important;}
   #main{
     height:auto!important;
@@ -351,17 +356,11 @@ body{
     animation:none!important;
   }
 
-  /* drop backdrop-filter on the nav — expensive on mobile GPUs.
-     compensate with a stronger background tint so the nav still
-     reads cleanly over atmosphere. */
-  #topnav{
-    backdrop-filter:none!important;
-    -webkit-backdrop-filter:none!important;
-    background:rgba(5,6,8,.82)!important;
-  }
-  #topnav .tn-dropdown,
+  /* drop backdrop-filter on heavy local elements only — never touch
+     #topnav. The nav is locked single-source-of-truth (nav-footer.css
+     v13) and must look identical sitewide; perf forks live elsewhere. */
   #contact-subnav,
-  .form-card,.glass,.tn-mobile-panel,.cap-strip{
+  .form-card,.glass,.cap-strip{
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
   }

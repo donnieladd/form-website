@@ -213,8 +213,8 @@
     var panel = document.getElementById('tn-mobile');
     if(!burgerBtn || !panel) return;
     var closeBtn = panel.querySelector('.tn-mobile-close');
-    function open(){ panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); document.body.classList.add('nf-mobile-open'); }
-    function close(){ panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.body.classList.remove('nf-mobile-open'); }
+    function open(){ panel.classList.add('open'); panel.setAttribute('aria-hidden','false'); document.documentElement.classList.add('nf-mobile-open'); document.body.classList.add('nf-mobile-open'); }
+    function close(){ panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('nf-mobile-open'); document.body.classList.remove('nf-mobile-open'); }
     burgerBtn.addEventListener('click', open);
     closeBtn.addEventListener('click', close);
     panel.addEventListener('click', function(e){ if(e.target === panel) close(); });
