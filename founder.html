@@ -164,8 +164,12 @@ body{
   color:var(--stone);
   margin:0;
 }
-.hero .h1 .last{display:block;color:var(--ac);text-shadow:0 0 22px rgba(var(--ac-rgb),.22);}
-.hero .h1 .last::after{content:'.';color:var(--ac);}
+.hero .h1 .last{display:block;color:var(--stone);text-shadow:none;}
+.hero .h1 .last::after{
+  content:'.';
+  color:var(--ac);
+  text-shadow:0 0 22px rgba(var(--ac-rgb),.45);
+}
 
 /* THE TITLE — large, prominent, architectural. impossible to miss. */
 .hero-title{
@@ -261,7 +265,8 @@ body{
       #050608        100%);
 }
 
-/* portrait — full-bleed in right column, floor-to-ceiling, cropped to fill */
+/* portrait — bounded inside right column, head clear of nav,
+   silhouette feathered into the cosmic field with violet+green halo */
 .portrait-stage{
   position:absolute;
   inset:0;
@@ -270,28 +275,48 @@ body{
   align-items:flex-end;
   justify-content:center;
   pointer-events:none;
+  padding-top:clamp(6rem,11vh,10rem);   /* keep forehead clear of top nav */
+  padding-bottom:0;
 }
 .portrait-stage img.portrait{
   width:auto;
-  max-width:115%;
-  height:100%;
+  max-width:92%;
+  height:auto;
+  max-height:min(86%, 940px);
   object-fit:contain;
   object-position:center bottom;
+  image-rendering:auto;
+  /* layered atmospheric halo — bridges the silhouette into the neural field */
   filter:
-    drop-shadow(0 36px 70px rgba(0,0,0,.75))
-    drop-shadow(0 0 60px rgba(var(--ac-rgb),.10));
+    drop-shadow(0  0 22px rgba(139,92,246,.22))     /* cognitive violet halo */
+    drop-shadow(0  0 48px rgba(var(--ac-rgb),.10))  /* signal-green diffusion */
+    drop-shadow(0  0 90px rgba(155,77,255,.16))     /* outer violet bloom */
+    drop-shadow(0 28px 50px rgba(0,0,0,.7))         /* grounding shadow */
+    drop-shadow(0  4px 12px rgba(5,6,8,.6));
+  /* feather the bottom edge so he dissolves into the field instead of hard-cutting */
+  -webkit-mask-image:linear-gradient(180deg,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 82%,
+    rgba(0,0,0,.55) 94%,
+    rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(180deg,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 82%,
+    rgba(0,0,0,.55) 94%,
+    rgba(0,0,0,0) 100%);
 }
+/* deeper grounding pool — anchors silhouette base in the field */
 .portrait-stage::after{
   content:'';
   position:absolute;left:50%;bottom:0;
-  width:80%;height:22%;
+  width:78%;height:26%;
   transform:translateX(-50%);
   background:radial-gradient(ellipse at 50% 100%,
-    rgba(5,6,8,.7) 0%,
-    rgba(5,6,8,.25) 45%,
-    transparent 80%);
+    rgba(5,6,8,.85) 0%,
+    rgba(5,6,8,.30) 50%,
+    transparent 82%);
   z-index:1;pointer-events:none;
-  filter:blur(8px);
+  filter:blur(10px);
 }
 
 /* scroll cue at bottom of hero — small architectural mark */
@@ -371,18 +396,7 @@ body{
 }
 .horizon .horizon-mark .ac{color:var(--ac);}
 
-.spine{
-  position:fixed;
-  top:50%;left:14px;
-  transform:translateY(-50%) rotate(-90deg);
-  transform-origin:left center;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--stone-4);
-  z-index:11;
-  pointer-events:none;
-}
-.spine .ac{color:var(--ac);}
+.spine{display:none;}
 
 /* hero ledger — full-width capability strip across the bottom */
 .cap-strip{
@@ -615,9 +629,6 @@ body{
 <body>
 
 <img src="/grain.svg" id="grain" alt="" aria-hidden="true">
-
-<!-- vertical spine -->
-<div class="spine" aria-hidden="true">produced by <span class="ac">FRAME</span></div>
 
 <main id="main">
 
