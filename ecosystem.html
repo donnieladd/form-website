@@ -328,15 +328,10 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 [data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto!important;}
 [data-perf="minimal"] #waveCanvas{display:none!important;}
 
-/* ── TIER LEVEL GATES — numeric equivalents, readable by any page CSS ── */
+/* ── TIER LEVEL GATES — page-specific overrides only (shared rules in rendering-hierarchy.css) ── */
 [data-tier-level="1"] .scan{animation-duration:40s;}
-[data-tier-level="1"] #grain{opacity:.012;}
 [data-tier-level="1"] .swheel{animation-duration:4s;}
-[data-tier-level="2"] .scan{animation:none!important;display:none!important;}
 [data-tier-level="2"] .swheel{animation:none!important;}
-[data-tier-level="2"] #grain{display:none!important;}
-[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring{display:none!important;}
-[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto!important;}
 [data-tier-level="2"] #waveCanvas{display:none!important;}
 </style>
 </head>

@@ -9,6 +9,7 @@
 <script src="/performance-tier.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{cursor:none;scroll-behavior:smooth;}
@@ -484,11 +485,9 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 [data-perf="minimal"] #cdot,[data-perf="minimal"] #cring,[data-perf="minimal"] .scan{display:none;}
 [data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto;}
 
-/* ── TIER LEVEL GATES — numeric equivalents, readable by any page CSS ── */
+/* ── TIER LEVEL GATES — page-specific overrides only (shared rules in rendering-hierarchy.css) ── */
 [data-tier-level="1"] *{animation-duration:calc(var(--dur,1s)*2)!important;}
 [data-tier-level="2"] #veil{opacity:0!important;}
-[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring,[data-tier-level="2"] .scan{display:none;}
-[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto;}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}

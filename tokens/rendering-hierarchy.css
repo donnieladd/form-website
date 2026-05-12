@@ -211,6 +211,31 @@
 }
 
 /* ────────────────────────────────────────────────────────────
+   TIER LEVEL GATES — shared CSS degradation rules
+   Applied site-wide when JS sets [data-tier-level] on <html>.
+   Per-page inline <style> blocks contain only page-specific
+   overrides (e.g. #hero-bg, #ecocanvas, #geo-center svg).
+   ────────────────────────────────────────────────────────────
+
+   TIER 1 — Atmosphere softens (medium load)
+     Grain opacity reduced; page-specific animations slow down.
+
+   TIER 2 — Full atmosphere collapse (high load)
+     Scan halted, grain hidden, custom cursor removed,
+     system cursor restored. Page-specific motion collapses
+     via per-page overrides.
+   ──────────────────────────────────────────────────────────── */
+
+/* Tier 1 — shared atmosphere softening */
+[data-tier-level="1"] #grain{opacity:.012;}
+
+/* Tier 2 — shared atmosphere collapse */
+[data-tier-level="2"] .scan{animation:none!important;display:none!important;}
+[data-tier-level="2"] #grain{display:none!important;}
+[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring{display:none!important;}
+[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto!important;}
+
+/* ────────────────────────────────────────────────────────────
    SYSTEM CATEGORY MAP
    Maps every composited system to a rendering category.
    Categories govern when a system renders and how it degrades.

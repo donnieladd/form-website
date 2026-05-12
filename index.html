@@ -313,20 +313,15 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 [data-perf="minimal"] #ecocanvas{display:none!important;}
 [data-perf="reduced"] #bg-ov{opacity:.72;}
 
-/* ── TIER LEVEL GATES — numeric equivalents, readable by any page CSS ── */
+/* ── TIER LEVEL GATES — page-specific overrides only (shared rules in rendering-hierarchy.css) ── */
 [data-tier-level="1"] #bg{animation:none!important;}
 [data-tier-level="1"] .scan{animation-duration:44s;}
 [data-tier-level="1"] .swheel{animation-duration:4.8s;}
 [data-tier-level="1"] #sb-status-dot{animation-duration:3.6s;}
-[data-tier-level="1"] #grain{opacity:.012;}
 [data-tier-level="1"] #bg-ov{opacity:.72;}
 [data-tier-level="2"] #bg{animation:none!important;}
-[data-tier-level="2"] .scan{animation:none!important;display:none!important;}
 [data-tier-level="2"] .swheel{animation:none!important;}
 [data-tier-level="2"] #sb-status-dot{animation:none!important;}
-[data-tier-level="2"] #grain{display:none!important;}
-[data-tier-level="2"] #cdot,[data-tier-level="2"] #cring{display:none!important;}
-[data-tier-level="2"] html,[data-tier-level="2"] body{cursor:auto!important;}
 [data-tier-level="2"] #bg-ov{display:none!important;}
 [data-tier-level="2"] #ecocanvas{display:none!important;}
 </style>
