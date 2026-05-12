@@ -319,17 +319,111 @@
       thread.scrollTop = thread.scrollHeight;
     }
 
+    // conversation history shared with the AI endpoint
+    var convo = []; // [{role:'user'|'assistant', content:''}]
+    var aiEnabled = null; // null=unknown, true/false after health check
+
+    // markdown-link → <a> + paragraph splitting + safe escape
+    function renderMarkdown(text) {
+      var safe = escapeHTML(text);
+      // [label](url)
+      safe = safe.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, url) {
+        var safeUrl = url.replace(/"/g, '&quot;');
+        return '<a href="' + safeUrl + '">' + label + '</a>';
+      });
+      // *italic* or _italic_ → <em>
+      safe = safe.replace(/(?:^|[\s(])\*([^*\n]+)\*/g, function (m, t) {
+        return m.charAt(0) === '*' ? '<em>' + t + '</em>' : m.charAt(0) + '<em>' + t + '</em>';
+      });
+      // already-emitted <em>…</em> from model survives because escapeHTML turned < into &lt;
+      // re-allow <em> tags only:
+      safe = safe.replace(/&lt;em&gt;([\s\S]*?)&lt;\/em&gt;/g, '<em>$1</em>');
+      // paragraph-split on double newline
+      var paras = safe.split(/\n\s*\n/);
+      return paras.map(function (p) { return p.trim(); }).filter(Boolean);
+    }
+
+    function checkAI() {
+      return fetch('/api/rev/health', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) { aiEnabled = !!(d && d.ai_enabled); return aiEnabled; })
+        .catch(function () { aiEnabled = false; return false; });
+    }
+
+    function askAI(message) {
+      return fetch('/api/rev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: message,
+          history: convo.slice(-10),
+          page: location.pathname || '/'
+        })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('rev_http_' + r.status);
+        return r.json();
+      }).then(function (d) {
+        if (!d || !d.reply) throw new Error('rev_empty');
+        return d.reply;
+      });
+    }
+
+    function renderAIReply(text) {
+      var paras = renderMarkdown(text);
+      var first = true;
+      paras.forEach(function (p) {
+        var editorial = /^<em>[\s\S]+<\/em>\.?$/.test(p) && p.length < 100;
+        if (first) {
+          pushMsg('rev', p, { editorial: editorial });
+          first = false;
+        } else {
+          var div = document.createElement('div');
+          div.className = 'rev-msg rev' + (editorial ? ' editorial' : '');
+          div.style.marginTop = '-12px';
+          div.innerHTML = p;
+          thread.appendChild(div);
+        }
+      });
+      thread.scrollTop = thread.scrollHeight;
+    }
+
     function handleAsk(q) {
       if (!q || !q.trim()) return;
-      pushMsg('user', escapeHTML(q));
+      var trimmed = q.trim();
+      pushMsg('user', escapeHTML(trimmed));
+      convo.push({ role: 'user', content: trimmed });
       var typing = pushTyping();
-      var parts = respond(q);
-      // calm pacing — never instant. measure of intelligence.
-      var delay = 520 + Math.min(900, q.length * 14);
-      setTimeout(function () {
-        typing.remove();
-        renderResponse(parts || ['i\'ll route you.']);
-      }, delay);
+      var minDelay = 380; // calm pacing floor
+      var t0 = Date.now();
+
+      function fallback() {
+        var parts = respond(trimmed);
+        var elapsed = Date.now() - t0;
+        var wait = Math.max(0, minDelay - elapsed);
+        setTimeout(function () {
+          typing.remove();
+          renderResponse(parts || ['i\'ll route you.']);
+          // capture canned text into convo for continuity
+          var flat = (parts || []).filter(function (p) { return typeof p === 'string'; }).join(' ').replace(/<[^>]+>/g, '');
+          if (flat) convo.push({ role: 'assistant', content: flat });
+        }, wait);
+      }
+
+      if (aiEnabled === false) { fallback(); return; }
+
+      askAI(trimmed).then(function (reply) {
+        var elapsed = Date.now() - t0;
+        var wait = Math.max(0, minDelay - elapsed);
+        setTimeout(function () {
+          typing.remove();
+          renderAIReply(reply);
+          convo.push({ role: 'assistant', content: reply });
+        }, wait);
+      }).catch(function () {
+        // graceful degrade to canned routing
+        aiEnabled = false;
+        fallback();
+      });
     }
 
     function escapeHTML(s) {
@@ -378,6 +472,9 @@
       input.value = '';
       handleAsk(q);
     });
+
+    // background: detect whether AI endpoint is enabled
+    checkAI();
   }
 
   if (document.readyState === 'loading') {
