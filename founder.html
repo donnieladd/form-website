@@ -170,63 +170,83 @@ body{
   max-width:680px;
   justify-self:end;
 }
-/* eclipse halo */
+/* eclipse halo — anchored at upper-center where the head sits */
 .eclipse{
   position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
   pointer-events:none;
 }
 .eclipse .ring{
-  width:78%;height:78%;
+  position:absolute;
+  top:6%;left:50%;transform:translateX(-50%);
+  width:72%;aspect-ratio:1/1;
   border-radius:50%;
-  border:1px solid rgba(var(--ac-rgb),.45);
+  border:1.5px solid rgba(var(--ac-rgb),.65);
   box-shadow:
-    inset 0 0 60px rgba(var(--ac-rgb),.10),
-    0 0 80px rgba(var(--ac-rgb),.18);
-  position:relative;
+    inset 0 0 80px rgba(var(--ac-rgb),.18),
+    0 0 100px rgba(var(--ac-rgb),.30),
+    0 0 220px rgba(var(--ac-rgb),.18);
   animation:eclipse-spin 90s linear infinite;
 }
 .eclipse .ring::before{
-  /* bright spotlight at top of ring */
+  /* bright spotlight at top of ring — the green sun */
   content:'';
-  position:absolute;top:-6px;left:50%;
-  width:14px;height:14px;border-radius:50%;
+  position:absolute;top:-14px;left:50%;
+  width:24px;height:24px;border-radius:50%;
   background:rgba(var(--ac-rgb),1);
   box-shadow:
-    0 0 18px rgba(var(--ac-rgb),.95),
-    0 0 50px rgba(var(--ac-rgb),.55),
-    0 0 120px rgba(var(--ac-rgb),.35);
+    0 0 30px rgba(var(--ac-rgb),1),
+    0 0 80px rgba(var(--ac-rgb),.85),
+    0 0 180px rgba(var(--ac-rgb),.55),
+    0 0 320px rgba(var(--ac-rgb),.30);
   transform:translateX(-50%);
 }
 .eclipse .glow{
-  position:absolute;top:-2%;left:50%;
-  width:60%;height:60%;
+  position:absolute;top:-4%;left:50%;
+  width:88%;aspect-ratio:1/1;
   transform:translate(-50%,0);
   background:radial-gradient(closest-side,
-    rgba(var(--ac-rgb),.35) 0%,
-    rgba(var(--ac-rgb),.16) 28%,
-    rgba(var(--ac-rgb),.04) 55%,
-    transparent 75%);
-  filter:blur(8px);
+    rgba(var(--ac-rgb),.55) 0%,
+    rgba(var(--ac-rgb),.28) 22%,
+    rgba(var(--ac-rgb),.10) 45%,
+    rgba(var(--ac-rgb),.02) 65%,
+    transparent 80%);
+  filter:blur(14px);
   pointer-events:none;
 }
 .eclipse .ring-2{
   position:absolute;
-  width:96%;height:96%;
+  top:0;left:50%;transform:translateX(-50%);
+  width:90%;aspect-ratio:1/1;
   border-radius:50%;
-  border:1px solid rgba(var(--ac-rgb),.10);
+  border:1px solid rgba(var(--ac-rgb),.16);
   animation:eclipse-spin-rev 160s linear infinite;
 }
-@keyframes eclipse-spin     { to{transform:rotate(360deg);} }
-@keyframes eclipse-spin-rev { to{transform:rotate(-360deg);} }
+@keyframes eclipse-spin     { from{transform:translateX(-50%) rotate(0deg);} to{transform:translateX(-50%) rotate(360deg);} }
+@keyframes eclipse-spin-rev { from{transform:translateX(-50%) rotate(0deg);} to{transform:translateX(-50%) rotate(-360deg);} }
 .eclipse .ring-2::after{
   content:'';position:absolute;top:50%;right:-3px;
-  width:5px;height:5px;border-radius:50%;background:rgba(var(--ac-rgb),.7);
-  box-shadow:0 0 12px rgba(var(--ac-rgb),.6);
+  width:6px;height:6px;border-radius:50%;background:rgba(var(--ac-rgb),.8);
+  box-shadow:0 0 14px rgba(var(--ac-rgb),.7);
   transform:translateY(-50%);
 }
 @media (prefers-reduced-motion: reduce){
   .eclipse .ring,.eclipse .ring-2{animation:none;}
+}
+
+/* under-portrait darkening to ground silhouette and mask cutout edge artifacts */
+.portrait-stage::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;
+  width:90%;height:60%;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 70%,
+    rgba(5,6,8,.78) 0%,
+    rgba(5,6,8,.45) 35%,
+    rgba(5,6,8,.12) 60%,
+    transparent 80%);
+  z-index:1;
+  pointer-events:none;
 }
 
 /* portrait sits on top of eclipse */
@@ -236,7 +256,10 @@ body{
   object-fit:contain;
   object-position:center bottom;
   z-index:2;
-  filter:drop-shadow(0 30px 60px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(var(--ac-rgb),.10));
+  filter:
+    drop-shadow(0 30px 60px rgba(0,0,0,.65))
+    drop-shadow(0 -8px 30px rgba(0,0,0,.5))
+    drop-shadow(0 0 50px rgba(var(--ac-rgb),.14));
 }
 
 /* hero side meta */
