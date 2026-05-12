@@ -38,15 +38,6 @@ body{
   overflow:hidden;
 }
 
-/* full-bleed reference image fixed to viewport — content scrolls over it */
-.page-bg{
-  position:fixed;inset:0;
-  width:100%;height:100%;
-  background:#050608 url('/founder-bg.avif') center center / cover no-repeat;
-  z-index:0;
-  pointer-events:none;
-}
-
 /* grain */
 #grain{
   position:fixed;inset:0;width:100%;height:100%;
@@ -441,9 +432,6 @@ body{
 </style>
 </head>
 <body>
-
-<!-- full-bleed reference backdrop, fixed to viewport — page content scrolls over it -->
-<div class="page-bg" aria-hidden="true"></div>
 
 <img src="/grain.svg" id="grain" alt="" aria-hidden="true">
 
