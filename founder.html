@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="/nav-footer.css?v=13">
 <link rel="stylesheet" href="/rev.css?v=3">
-<link rel="stylesheet" href="/mobile.css?v=8">
+<link rel="stylesheet" href="/mobile.css?v=9">
 
 <style>
 :root{
@@ -676,13 +676,16 @@ body{
   .spine{display:none;}
 }
 @media (max-width: 720px){
-  .section{padding:6rem clamp(1.2rem,5vw,2rem);}
-  .hero .h1{font-size:clamp(54px,15vw,96px);white-space:normal;}
-  .hero-title .txt{font-size:clamp(22px,5.2vw,32px);}
-  .hero-pull{font-size:clamp(20px,4.8vw,26px);}
-  .cap-strip{grid-template-columns:repeat(2,1fr);}
+  .section{padding:6rem 1.4rem;}
+  .hero .h1{font-size:clamp(54px,14vw,88px);white-space:normal;line-height:.94;}
+  .hero-title .txt{font-size:clamp(22px,5.2vw,30px);}
+  .hero-pull{font-size:clamp(20px,4.6vw,24px);}
+  .cap-strip{grid-template-columns:repeat(2,1fr);padding:1.2rem 1.4rem;}
   .sys-row{grid-template-columns:60px 1fr;gap:.8rem 1rem;}
   .sys-row .desc{grid-column:1 / -1;margin-top:.4rem;}
+  .horizon{height:160px;margin:0 1rem;}
+  .horizon .horizon-mark{font-size:.55rem;}
+  .close-band{padding:2.4rem 1.4rem 4rem;flex-direction:column;align-items:flex-start;gap:.8rem;}
 }
 </style>
 </head>
