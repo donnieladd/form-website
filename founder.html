@@ -285,22 +285,22 @@ body{
   padding-top:clamp(6rem,11vh,10rem);   /* keep forehead clear of top nav */
   padding-bottom:0;
 }
-/* DARKEN halo punched out of the cosmic field directly behind the portrait,
-   so the field reads clearly as background and the portrait is the front layer */
+/* SOFT darken halo behind portrait — keeps him as the front layer
+   but quiet enough that the cosmic field bleeds through his fading edges */
 .portrait-stage::before{
   content:'';
   position:absolute;
   left:50%;bottom:-2%;
   width:96%;height:96%;
   transform:translateX(-50%);
-  background:radial-gradient(ellipse 56% 68% at 50% 62%,
-    rgba(5,6,8,.78) 0%,
-    rgba(5,6,8,.50) 30%,
-    rgba(5,6,8,.22) 55%,
-    transparent 78%);
+  background:radial-gradient(ellipse 50% 60% at 50% 58%,
+    rgba(5,6,8,.55) 0%,
+    rgba(5,6,8,.32) 32%,
+    rgba(5,6,8,.12) 58%,
+    transparent 80%);
   z-index:0;
   pointer-events:none;
-  filter:blur(18px);
+  filter:blur(22px);
 }
 .portrait-stage img.portrait{
   position:relative;
@@ -312,34 +312,56 @@ body{
   object-fit:contain;
   object-position:center bottom;
   image-rendering:auto;
-  /* restrained shadow — portrait stays the front layer */
+  /* very restrained shadow — let the edges dissolve naturally */
   filter:
-    drop-shadow(0 28px 50px rgba(0,0,0,.7))
-    drop-shadow(0  4px 12px rgba(5,6,8,.65));
-  /* gentle bottom feather so he dissolves into the field, no hard cut */
-  -webkit-mask-image:linear-gradient(180deg,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 86%,
-    rgba(0,0,0,.6) 95%,
-    rgba(0,0,0,0) 100%);
-          mask-image:linear-gradient(180deg,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 86%,
-    rgba(0,0,0,.6) 95%,
-    rgba(0,0,0,0) 100%);
+    drop-shadow(0 24px 44px rgba(0,0,0,.55))
+    drop-shadow(0  4px 12px rgba(5,6,8,.5));
+  /* radial feather on ALL sides — emerges from the universe rather than
+     sitting on top of it. Core (face/chest) stays fully opaque, silhouette
+     edges (head crown, shoulders, sides, base) fade into the cosmic field. */
+  -webkit-mask-image:
+    radial-gradient(ellipse 78% 82% at 50% 42%,
+      rgba(0,0,0,1)   0%,
+      rgba(0,0,0,1)  46%,
+      rgba(0,0,0,.85) 64%,
+      rgba(0,0,0,.55) 80%,
+      rgba(0,0,0,.22) 92%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,1)  18%,
+      rgba(0,0,0,1)  82%,
+      rgba(0,0,0,.4) 96%,
+      rgba(0,0,0,0) 100%);
+  -webkit-mask-composite:source-in;
+          mask-image:
+    radial-gradient(ellipse 78% 82% at 50% 42%,
+      rgba(0,0,0,1)   0%,
+      rgba(0,0,0,1)  46%,
+      rgba(0,0,0,.85) 64%,
+      rgba(0,0,0,.55) 80%,
+      rgba(0,0,0,.22) 92%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.55) 0%,
+      rgba(0,0,0,1)  18%,
+      rgba(0,0,0,1)  82%,
+      rgba(0,0,0,.4) 96%,
+      rgba(0,0,0,0) 100%);
+  mask-composite:intersect;
 }
-/* deeper grounding pool at the silhouette base */
+/* lighter grounding pool — softer base anchor, no hard cut */
 .portrait-stage::after{
   content:'';
   position:absolute;left:50%;bottom:0;
-  width:78%;height:22%;
+  width:72%;height:18%;
   transform:translateX(-50%);
   background:radial-gradient(ellipse at 50% 100%,
-    rgba(5,6,8,.9) 0%,
-    rgba(5,6,8,.35) 50%,
+    rgba(5,6,8,.7) 0%,
+    rgba(5,6,8,.25) 50%,
     transparent 82%);
   z-index:1;pointer-events:none;
-  filter:blur(10px);
+  filter:blur(14px);
 }
 
 /* scroll cue at bottom of hero — small architectural mark */
