@@ -51,7 +51,7 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 ════════════════════════════════ */
 #hero{
   display:grid;
-  grid-template-columns:50% 50%;
+  grid-template-columns:52% 48%;
   min-height:100vh;
   padding-top:var(--nav-h);
   background:#000;
@@ -124,6 +124,13 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 #hero-right{
   position:relative;z-index:2;overflow:hidden;
   background:#000;
+}
+
+/* Orb zone — contains eclipse + portrait, shifted left to free a label column */
+#orb-zone{
+  position:absolute;
+  top:0;bottom:0;
+  left:0;right:22%;
 }
 
 /* ── ECLIPSE SYSTEM — large atmospheric orb centered in right panel ── */
@@ -227,12 +234,12 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
   white-space:nowrap;
 }
 .meta-dot{width:4px;height:4px;border-radius:50%;background:var(--ac);flex-shrink:0;box-shadow:0 0 6px var(--ac),0 0 12px rgba(var(--ac-rgb),.4);}
-/* JS positions each label via inline style — angles set in the script */
-#ml-leader     {animation-delay:2.05s;}
-#ml-strategist {animation-delay:2.2s;}
-#ml-creative   {animation-delay:2.35s;}
-#ml-operator   {animation-delay:2.5s;}
-#ml-systhinker {animation-delay:2.65s;}
+/* Right-column positioning — sits in the 22% strip outside #orb-zone */
+#ml-leader     {top:20%;right:3%;animation-delay:2.05s;}
+#ml-strategist {top:29%;right:3%;animation-delay:2.2s;}
+#ml-creative   {top:38%;right:3%;animation-delay:2.35s;}
+#ml-operator   {top:47%;right:3%;animation-delay:2.5s;}
+#ml-systhinker {top:56%;right:3%;animation-delay:2.65s;}
 
 /* ════════════════════════════════
    SECTION 02 — STORY
@@ -565,13 +572,15 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 
   <!-- RIGHT — portrait + eclipse -->
   <div id="hero-right">
-    <div class="eclipse-core"></div>
-    <div class="eclipse-ring1"></div>
-    <div class="eclipse-ring2"></div>
-    <div class="eclipse-arc"></div>
+    <div id="orb-zone">
+      <div class="eclipse-core"></div>
+      <div class="eclipse-ring1"></div>
+      <div class="eclipse-ring2"></div>
+      <div class="eclipse-arc"></div>
 
-    <div class="portrait-fill">
-      <img src="/founder-5.avif" alt="Dontae Ladson — Founder, FORM.">
+      <div class="portrait-fill">
+        <img src="/founder-5.avif" alt="Dontae Ladson — Founder, FORM.">
+      </div>
     </div>
 
     <div class="meta-label" id="ml-leader"><span class="meta-dot"></span>Leader</div>
@@ -747,59 +756,6 @@ body.hcta #cring{width:58px;height:58px;border-color:var(--ac);box-shadow:0 0 24
 </footer>
 
 </main>
-
-<!-- META LABEL ARC POSITIONING -->
-<script>
-function _placeMetaLabels(){
-  var ring=document.querySelector('.eclipse-ring1');
-  var panel=document.getElementById('hero-right');
-  if(!ring||!panel)return;
-  var rr=ring.getBoundingClientRect();
-  var pr=panel.getBoundingClientRect();
-  if(rr.width<10)return; /* bail if ring not yet painted */
-  var cx=(rr.left+rr.right)/2-pr.left;
-  var cy=(rr.top+rr.bottom)/2-pr.top;
-  var radius=rr.width/2;
-  var gap=22; /* px clearance outside the ring */
-  /* leave 165px of room so longest label stays visible inside panel */
-  var maxLeft=pr.width-165;
-
-  /* order: Leader → Strategist → Creative → Operator → Systems Thinker
-     angles 0°=top, clockwise; arc spans upper-right → lower-right */
-  var config=[
-    ['ml-leader',     28],
-    ['ml-strategist', 58],
-    ['ml-creative',   88],
-    ['ml-operator',  118],
-    ['ml-systhinker',148]
-  ];
-
-  config.forEach(function(item){
-    var id=item[0],deg=item[1];
-    var el=document.getElementById(id);
-    if(!el)return;
-    var rad=deg*Math.PI/180;
-    var lx=cx+(radius+gap)*Math.sin(rad);
-    var ly=cy-(radius+gap)*Math.cos(rad);
-    /* clamp so label never exits panel right edge */
-    if(lx>maxLeft)lx=maxLeft;
-    el.style.right='auto';
-    el.style.left=lx+'px';
-    el.style.top=ly+'px';
-    el.style.transform='translateY(-50%)';
-  });
-}
-/* run after paint so getBoundingClientRect is accurate */
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',function(){
-    requestAnimationFrame(function(){requestAnimationFrame(_placeMetaLabels);});
-  });
-}else{
-  requestAnimationFrame(function(){requestAnimationFrame(_placeMetaLabels);});
-}
-window.addEventListener('load',_placeMetaLabels);
-window.addEventListener('resize',_placeMetaLabels);
-</script>
 
 <!-- CURSOR + INTERACTIONS + PAGE EXIT -->
 <script>
