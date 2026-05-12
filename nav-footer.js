@@ -61,7 +61,7 @@
               '<a href="/ecosystem.html#labs" class="dd-parent">form. labs</a>' +
               '<a href="/ecosystem.html#relay" class="dd-up">RELAY</a>' +
               '<a href="/ecosystem.html#frame" class="dd-up">FRAME</a>' +
-              '<a href="/ecosystem.html#axis" class="dd-up">AXIS</a>' +
+              '<a href="/ecosystem.html#access" class="dd-up">ACCESS</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -103,7 +103,7 @@
           '<a href="/ecosystem.html#labs">form. labs</a>' +
           '<a href="/ecosystem.html#relay">RELAY</a>' +
           '<a href="/ecosystem.html#frame">FRAME</a>' +
-          '<a href="/ecosystem.html#axis">AXIS</a>' +
+          '<a href="/ecosystem.html#access">ACCESS</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>explore</h4>' +

@@ -272,6 +272,19 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 .ent.e-labs .ent-num,.ent.e-labs .ent-name .canela{color:rgba(var(--cv-rgb),.95);}
 .ent.e-labs .ent-atm{background:radial-gradient(ellipse 55% 45% at 70% 30%,rgba(var(--cv-rgb),.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(var(--ac-rgb),.025) 0%,transparent 60%);}
 
+/* labs sub-products — RELAY / FRAME / ACCESS */
+.labs-products{margin-top:4rem;padding-top:2.4rem;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);}
+.labs-product{background:#050608;padding:2.2rem 1.8rem;scroll-margin-top:calc(var(--nav-h) + 1.4rem);position:relative;transition:background .5s;}
+.labs-product:hover{background:rgba(var(--cv-rgb),.025);}
+.labs-product::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--cv);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--bezier);}
+.labs-product:hover::before{transform:scaleX(1);}
+.lp-num{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--cv-rgb),.55);margin-bottom:1.4rem;}
+.lp-name{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:1.2rem;letter-spacing:.22em;color:var(--stone);margin-bottom:.7rem;}
+.lp-tag{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.005em;color:rgba(var(--stone-rgb),.5);line-height:1.7;margin-bottom:1.4rem;}
+.lp-body{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.9rem;line-height:1.75;color:rgba(var(--stone-rgb),.7);}
+.lp-body em{font-family:'Canela','Georgia',serif;font-style:italic;color:rgba(var(--stone-rgb),.92);}
+@media (max-width:760px){.labs-products{grid-template-columns:1fr;}}
+
 .ent.e-continuum .ent-num,.ent.e-continuum .ent-name .canela{color:var(--ac);}
 .ent.e-continuum .ent-atm{background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(var(--ac-rgb),.04) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 30% 90%,rgba(var(--ib-rgb),.05) 0%,transparent 60%);}
 
@@ -574,6 +587,27 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
         <div class="ent-cap">tooling systems</div>
         <div class="ent-cap">rev. development</div>
         <div class="ent-cap">applied intelligence</div>
+      </div>
+
+      <div class="labs-products r">
+        <article class="labs-product" id="relay">
+          <div class="lp-num">[ labs / 01 ]</div>
+          <div class="lp-name">RELAY</div>
+          <div class="lp-tag">operational signal routing.</div>
+          <p class="lp-body">a coordination layer for teams running complex, multi-channel operations — <em>signal in, signal out, nothing lost between.</em></p>
+        </article>
+        <article class="labs-product" id="frame">
+          <div class="lp-num">[ labs / 02 ]</div>
+          <div class="lp-name">FRAME</div>
+          <div class="lp-tag">structural intelligence canvas.</div>
+          <p class="lp-body">an environment for mapping organizations, their decisions, and the architecture beneath them — <em>structure made visible.</em></p>
+        </article>
+        <article class="labs-product" id="access">
+          <div class="lp-num">[ labs / 03 ]</div>
+          <div class="lp-name">ACCESS</div>
+          <div class="lp-tag">long-arc operating system.</div>
+          <p class="lp-body">the platform underneath continuum partnerships — cadences, reviews, and compounding intelligence over years, <em>not engagements.</em></p>
+        </article>
       </div>
     </div>
   </div>

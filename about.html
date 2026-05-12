@@ -176,6 +176,54 @@ body.hcta #cring{width:44px;height:44px;border-color:rgba(var(--ac-rgb),.7);box-
 [data-tier-level="1"] #hero-bg{animation:none!important;}
 [data-tier-level="1"] .scan{animation-duration:44s;}
 [data-tier-level="2"] #hero-bg{animation:none!important;}
+
+/* ══════════════════════════════════
+   SUB-NAV (sticky in-page anchor strip)
+══════════════════════════════════ */
+#about-subnav{position:sticky;top:var(--nav-h);z-index:80;background:rgba(4,5,6,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
+.subnav-inner{max-width:1480px;margin:0 auto;padding:0 3rem;display:flex;align-items:center;gap:2.4rem;}
+.subnav-label{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--ac-rgb),.55);padding:1rem 0;border-right:1px solid rgba(255,255,255,.06);padding-right:2rem;}
+.subnav-links{display:flex;gap:1.8rem;flex:1;flex-wrap:wrap;}
+.subnav-links a{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.5);text-decoration:none;padding:1rem 0;position:relative;transition:color .3s;}
+.subnav-links a::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.subnav-links a:hover{color:rgba(242,242,240,.95);}
+.subnav-links a:hover::after,.subnav-links a.active::after{transform:scaleX(1);}
+.subnav-links a.active{color:var(--ac);}
+@media (max-width:760px){.subnav-inner{padding:0 1.2rem;gap:1rem;}.subnav-label{display:none;}.subnav-links{gap:1.2rem;overflow-x:auto;}}
+
+/* ══════════════════════════════════
+   ABOUT SUB-SECTIONS — vision / values / principles / faq
+══════════════════════════════════ */
+.sub-sec{border-top:1px solid rgba(255,255,255,.04);padding:6rem 3rem;scroll-margin-top:calc(var(--nav-h) + 64px);}
+.sub-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:34% 1fr;gap:4rem;}
+.sub-meta{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--ac-rgb),.5);margin-bottom:1.4rem;}
+.sub-h{font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(1.9rem,3vw,2.8rem);line-height:1.05;letter-spacing:-.012em;color:var(--stone);}
+.sub-h .canela{font-size:1.06em;}
+.sub-lead{font-family:'Satoshi',sans-serif;font-size:.92rem;line-height:1.85;color:rgba(242,242,240,.55);margin-top:1.4rem;max-width:340px;}
+.sub-body{font-family:'Satoshi',sans-serif;font-size:.95rem;line-height:1.85;color:rgba(242,242,240,.7);}
+.sub-body p + p{margin-top:1.1rem;}
+.sub-body strong{color:rgba(242,242,240,.92);font-weight:500;}
+
+/* shared item grid for values + principles */
+.sub-items{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);margin-top:.5rem;}
+.sub-item{background:#000;padding:1.6rem 1.5rem;position:relative;}
+.sub-item::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.sub-item:hover::before{transform:scaleX(1);}
+.sub-item-num{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.28em;color:rgba(var(--ac-rgb),.55);margin-bottom:.7rem;}
+.sub-item-title{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,242,240,.85);margin-bottom:.55rem;font-weight:500;}
+.sub-item-desc{font-family:'Satoshi',sans-serif;font-size:.8rem;line-height:1.7;color:rgba(242,242,240,.45);}
+@media (max-width:760px){.sub-inner{grid-template-columns:1fr;gap:2rem;}.sub-items{grid-template-columns:1fr;}.sub-sec{padding:4rem 1.4rem;}}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,.06);}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.06);}
+.faq-q{width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:1.4rem 0;display:flex;align-items:center;justify-content:space-between;gap:2rem;font-family:'Satoshi',sans-serif;font-weight:500;font-size:1rem;color:rgba(242,242,240,.92);letter-spacing:-.005em;transition:color .3s;}
+.faq-q:hover{color:var(--ac);}
+.faq-toggle{font-family:'IBM Plex Mono',monospace;font-size:.95rem;color:rgba(var(--ac-rgb),.7);flex-shrink:0;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.faq-item.open .faq-toggle{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.16,1,.3,1);font-family:'Satoshi',sans-serif;font-size:.9rem;line-height:1.85;color:rgba(242,242,240,.55);}
+.faq-a-inner{padding:0 0 1.6rem 0;max-width:680px;}
+.faq-item.open .faq-a{max-height:520px;}
 </style>
 <link rel="stylesheet" href="/nav-footer.css?v=13">
 <link rel="stylesheet" href="/mobile.css?v=6">
@@ -398,6 +446,22 @@ body.hcta #cring{width:44px;height:44px;border-color:rgba(var(--ac-rgb),.7);box-
   </div>
 </section>
 
+<!-- ══════ VISION ══════ -->
+<section class="sub-sec" id="vision">
+  <div class="sub-inner">
+    <div>
+      <div class="sub-meta">[ 01 ] Vision.</div>
+      <h2 class="sub-h">The future<br>needs <span class="canela">form.</span></h2>
+      <p class="sub-lead">A long-arc operating thesis — not a slogan.</p>
+    </div>
+    <div class="sub-body">
+      <p>FORM. exists because vision deserves infrastructure. Most organizations are not short on ideas — they are short on the systems to carry them. We build the operational layer that lets ambition compound.</p>
+      <p>Our work sits at the intersection of <strong>AI, operations, and creative direction</strong> — augmenting how organizations think, communicate, and execute. The future will not be built by faster tools alone. It will be built by clearer structure.</p>
+      <p>Every engagement is shaped by one belief: <strong>great ideas are not enough on their own.</strong> They need form.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════ WHY FORM ══════ -->
 <section id="why">
   <div id="why-left">
@@ -463,7 +527,7 @@ if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,pre
 const veil=document.getElementById('veil');
 document.querySelectorAll('a[href]').forEach(a=>{
   const href=a.getAttribute('href');
-  if(!href||href==='#'||href.startsWith('http')||href.startsWith('mailto'))return;
+  if(!href||href==='#'||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto'))return;
   a.addEventListener('click',function(e){
     e.preventDefault();
     veil.style.animation='none';
