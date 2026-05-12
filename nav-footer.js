@@ -5,6 +5,7 @@
   function isActive(p){
     if(p === '/' && IS_LANDING) return true;
     if(p === '/about.html' && path.indexOf('/about') === 0) return true;
+    if(p === '/vision.html' && path.indexOf('/vision') === 0) return true;
     if(p === '/ecosystem.html' && (path.indexOf('/ecosystem') === 0 || /-systems\.html$/.test(path))) return true;
     if(p === '/founder.html' && path.indexOf('/founder') === 0) return true;
     if(p === '/products.html' && path.indexOf('/products') === 0) return true;
@@ -39,6 +40,9 @@
             '</div>' +
             '<div class="dd-desc">FORM. is built on operational clarity, intentional systems, human-centered intelligence, and disciplined execution.</div>' +
           '</div>' +
+        '</div>' +
+        '<div class="tn-item">' +
+          '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision</a>' +
         '</div>' +
         '<div class="tn-item">' +
           '<a href="/founder.html" class="tn-link' + cls('/founder.html') + '">Founder</a>' +
@@ -149,6 +153,7 @@
       '<div class="tn-mobile-inner">' +
         '<a href="/" class="tn-mobile-link">Home</a>' +
         '<a href="/about.html" class="tn-mobile-link">about</a>' +
+        '<a href="/vision.html" class="tn-mobile-link">vision</a>' +
         '<a href="/founder.html" class="tn-mobile-link">Founder</a>' +
         '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem</a>' +
         '<a href="/products.html" class="tn-mobile-link">products</a>' +
