@@ -33,7 +33,7 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 ### Color (LOCKED)
 - Background: deep atmospheric near-black, never flat black. Subtle Infrastructure Blue diffusion, Cognitive Violet atmosphere, soft signal gradients.
 - Primary text: soft white (`#F2F2F0`), never pure white. Secondary text: muted gray.
-- Accent: **Signal Green `#39FF14` only**. No random greens, no neon lime, no trendy gradients. Signal Green is identity infrastructure — use intentionally.
+- Accent: **Signal Green `#39FF14` only** — sitewide, no exceptions. No random greens, no neon lime, no trendy gradients. Signal Green is identity infrastructure — use intentionally.
 - Color tokens defined in `tokens/colors.css`: `--ac` (Signal Green), `--ib` (Infrastructure Blue `#2962FF`), `--cv` (Cognitive Violet `#8B5CF6`), `--rose` (`#9B4DFF`), `--amber` (`#FF8A00`), `--stone` (`#F2F2F0`), `--onyx` (`#050608`).
 
 ### Motion (LOCKED)
