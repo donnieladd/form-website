@@ -110,6 +110,7 @@ body{
 .ch-title .dot{
   display:inline-block;
   width:.13em;height:.13em;
+  border-radius:50%;
   background:var(--ac);
   box-shadow:0 0 14px rgba(57,255,20,.55), 0 0 32px rgba(57,255,20,.22);
 }
@@ -181,37 +182,81 @@ body{
 .ch-vision{
   min-height:calc(100vh - 64px);
   padding-top:9rem;
-  padding-bottom:6rem;
+  padding-bottom:9rem;
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  grid-template-columns:minmax(0,7fr) minmax(0,5fr);
   gap:clamp(2rem,5vw,6rem);
   align-items:center;
 }
-.ch-vision .col-text{max-width:560px;}
+.ch-vision .col-text{max-width:none;}
 .ch-vision .label-pair{display:flex;flex-direction:column;gap:.55rem;}
-.ch-vision .ch-title{margin-top:.4rem;font-size:clamp(48px,6vw,96px);}
+.ch-vision .ch-title{
+  margin-top:.8rem;
+  font-size:clamp(96px,14vw,240px);
+  letter-spacing:-.058em;
+  line-height:.86;
+}
+.ch-vision .ch-title .dot{
+  width:.09em;height:.09em;
+  border-radius:50%;
+  align-self:flex-end;margin-bottom:.18em;
+}
+/* magazine-cover Canela pull — emotional punctuation, vast scale */
 .ch-vision .lede{
-  margin-top:3.2rem;
-  font-family:'Satoshi',sans-serif;
+  margin-top:2.6rem;
+  font-family:'Canela','Georgia',serif;
+  font-style:italic;
   font-weight:300;
-  font-size:clamp(34px,3.6vw,58px);
-  letter-spacing:-.025em;
-  line-height:1.06;
-  color:var(--stone);
-}
-.ch-vision .lede .ln{display:block;}
-.ch-vision .sub-lede{
-  margin-top:1.6rem;
-  font-family:'Satoshi',sans-serif;
-  font-weight:300;
-  font-size:clamp(18px,1.45vw,22px);
+  font-size:clamp(40px,4.8vw,80px);
   letter-spacing:-.012em;
-  line-height:1.4;
-  color:var(--stone-2);
-  max-width:38ch;
+  line-height:1.04;
+  color:var(--stone);
+  max-width:24ch;
 }
-.ch-vision .body{margin-top:2rem;max-width:44ch;}
+.ch-vision .lede .ac{color:var(--ac);font-style:italic;}
+.ch-vision .lede .ln{display:block;}
+.ch-vision .hero-rule{
+  width:88px;height:1px;background:var(--ac);
+  margin:2rem 0 .2rem;
+  box-shadow:0 0 12px rgba(57,255,20,.5);
+}
+.ch-vision .sub-lede{
+  margin-top:1.8rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(20px,1.6vw,26px);
+  letter-spacing:-.014em;
+  line-height:1.36;
+  color:var(--stone-2);
+  max-width:42ch;
+}
+.ch-vision .body{margin-top:2rem;max-width:54ch;font-size:clamp(1rem,1.05vw,1.15rem);line-height:1.74;}
 .ch-vision .cta-mono{margin-top:3.2rem;}
+
+/* ledger strip — page-context metadata across bottom of hero */
+.ledger{
+  position:absolute;
+  left:clamp(2rem,6vw,7rem);
+  right:clamp(2rem,6vw,7rem);
+  bottom:2.4rem;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:1.2rem;
+  padding-top:1.4rem;
+  border-top:1px solid var(--rule);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--stone-3);
+  z-index:2;
+  pointer-events:none;
+}
+.ledger .cell{display:flex;flex-direction:column;gap:.45rem;}
+.ledger .cell .k{color:var(--stone-4);font-size:.58rem;letter-spacing:.34em;}
+.ledger .cell .v{color:var(--stone-2);font-size:.66rem;letter-spacing:.28em;}
+.ledger .cell .v.ac{color:var(--ac);}
+@media (max-width: 980px){
+  .ledger{position:static;margin-top:4rem;grid-template-columns:repeat(2,1fr);left:auto;right:auto;}
+}
 
 /* scroll mark — bottom-left of hero */
 .scroll-mark{
@@ -520,8 +565,9 @@ body{
       <h1 class="ch-title" data-reveal data-d="2">
         <span>vision</span><span class="dot"></span>
       </h1>
+      <div class="hero-rule" data-reveal data-d="3" aria-hidden="true"></div>
       <div class="lede" data-reveal data-d="3">
-        <span class="ln">the future needs form.</span>
+        the future needs <span class="ac">form.</span>
       </div>
       <div class="sub-lede" data-reveal data-d="4">
         intelligence without structure creates noise.<br>
@@ -536,6 +582,13 @@ body{
       </a>
     </div>
     <div class="col-env" aria-hidden="true"></div>
+
+    <div class="ledger" aria-hidden="true">
+      <div class="cell"><span class="k">chapter</span><span class="v ac">[ 01 / 06 ]</span></div>
+      <div class="cell"><span class="k">tier</span><span class="v">cinematic entry</span></div>
+      <div class="cell"><span class="k">doctrine</span><span class="v">operational philosophy</span></div>
+      <div class="cell"><span class="k">signal</span><span class="v">rev. intelligence layer</span></div>
+    </div>
 
     <div class="scroll-mark" aria-hidden="true">
       <span>scroll</span>
