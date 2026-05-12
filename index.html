@@ -92,11 +92,11 @@ body{background:#000;height:100vh;overflow:hidden;-webkit-font-smoothing:antiali
    ══════════════════════════════════════════════════════════ */
 
 /* TIER-5: Cursor dot — Critical UI, immutable | will-change: left, top */
-#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
+#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(57,255,20,.7),0 0 14px rgba(57,255,20,.22);opacity:.85;}
 /* TIER-5: Cursor ring — Critical UI, immutable | Tier-4 lag animation halts under reduced-motion */
-#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
-body.hl  #cring{width:40px;height:40px;border-color:rgba(57,255,20,.88);}
-body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.28);}
+#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:22px;height:22px;border:1px solid rgba(57,255,20,.28);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .7s cubic-bezier(.16,1,.3,1),height .7s cubic-bezier(.16,1,.3,1),border-color .5s,box-shadow .5s;}
+body.hl  #cring{width:32px;height:32px;border-color:rgba(57,255,20,.55);}
+body.hcta #cring{width:44px;height:44px;border-color:rgba(57,255,20,.7);box-shadow:0 0 14px rgba(57,255,20,.16);}
 
 /* ── KEYFRAMES ── */
 @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -131,16 +131,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
    prefers-reduced-motion: opacity:1 forced
    ══════════════════════════════════════════════════════════ */
 
-/* TIER-3: Nav — Navigation, immutable, renders after veil lift */
-#nav{
-  position:absolute;top:0;left:0;right:0;height:72px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.4rem;
-  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 3.2s forwards;
-  background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 100%);
-  backdrop-filter:blur(2px);
-}
-#logo{height:36px;width:auto;cursor:none;display:block;}
+/* TIER-3: Nav — Navigation, immutable, renders after veil lift */#logo{height:36px;width:auto;cursor:none;display:block;}
 #nav-links{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   display:flex;align-items:center;gap:2.6rem;list-style:none;
@@ -181,8 +172,6 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 }
 #cm-tl{top:7%;left:2%;}
 #cm-tr{top:7%;right:2%;} #cm-tr .bbox{text-align:right;}
-#cm-bl{bottom:4.5%;left:2%;}
-#cm-br{bottom:4.5%;right:2%;} #cm-br .bbox{text-align:right;}
 
 /* ── TIER-3: NAVIGATION — Left timeline pulse indicator, immutable */
 #tl-left{position:absolute;left:1.6%;top:22%;bottom:43%;display:flex;flex-direction:column;align-items:center;opacity:0;animation:fadein .7s cubic-bezier(.16,1,.3,1) 4.4s forwards;}
@@ -221,7 +210,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 /* PRIMARY CORE LOGO — main ecosystem identity */
 .wm{
   display:block;
-  width:clamp(240px,28vw,430px);
+  width:clamp(300px,34vw,540px);
   height:auto;
   opacity:0;animation:fadeup 1.5s cubic-bezier(.16,1,.3,1) 3.0s forwards;
   filter:drop-shadow(0 0 55px rgba(255,255,255,.07));
@@ -229,13 +218,13 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 
 /* Tag lines */
 .sub{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.98rem;font-weight:400;
-  letter-spacing:.12em;line-height:2.1;
+  font-family:'Satoshi','Inter',sans-serif;
+  font-size:1.18rem;font-weight:400;
+  letter-spacing:.04em;line-height:2;
   text-transform:uppercase;
-  color:rgba(242,242,240,.88);
-  max-width:640px;
-  margin-top:14vh;
+  color:rgba(242,242,240,.92);
+  max-width:680px;
+  margin-top:13vh;
   opacity:0;animation:fadeup 1.2s cubic-bezier(.16,1,.3,1) 3.4s forwards;
   text-shadow:0 2px 28px rgba(0,0,0,.98),0 1px 6px rgba(0,0,0,.85);
 }
@@ -281,9 +270,7 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 @keyframes sdrop{0%{opacity:1;transform:translateY(0)}60%{opacity:.12;transform:translateY(5px)}100%{opacity:1;transform:translateY(0)}}
 .slbl{font-family:'IBM Plex Mono',monospace;font-size:.65rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.5);white-space:nowrap;}
 
-/* Status dot */
-#sb-status-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#39FF14;box-shadow:0 0 5px #39FF14;animation:sdot-beat 1.8s ease-in-out infinite;vertical-align:middle;margin-right:3px;}
-@keyframes sdot-beat{0%,100%{opacity:1}55%{opacity:.2}}
+/* Status dot */@keyframes sdot-beat{0%,100%{opacity:1}55%{opacity:.2}}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
@@ -297,16 +284,12 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 /* Reduced — slow atmospheric motion, halve grain */
 [data-perf="reduced"] #bg{animation:none!important;}
 [data-perf="reduced"] .scan{animation-duration:44s;}
-[data-perf="reduced"] .swheel{animation-duration:4.8s;}
-[data-perf="reduced"] #sb-status-dot{animation-duration:3.6s;}
-[data-perf="reduced"] #grain{opacity:.012;}
+[data-perf="reduced"] .swheel{animation-duration:4.8s;}[data-perf="reduced"] #grain{opacity:.012;}
 
 /* Minimal — strip all atmospheric animation */
 [data-perf="minimal"] #bg{animation:none!important;}
 [data-perf="minimal"] .scan{animation:none!important;display:none!important;}
-[data-perf="minimal"] .swheel{animation:none!important;}
-[data-perf="minimal"] #sb-status-dot{animation:none!important;}
-[data-perf="minimal"] #grain{display:none!important;}
+[data-perf="minimal"] .swheel{animation:none!important;}[data-perf="minimal"] #grain{display:none!important;}
 [data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none!important;}
 [data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto!important;}
 [data-perf="minimal"] #bg-ov{display:none!important;}
@@ -316,15 +299,14 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 /* ── TIER LEVEL GATES — page-specific overrides only (shared rules in rendering-hierarchy.css) ── */
 [data-tier-level="1"] #bg{animation:none!important;}
 [data-tier-level="1"] .scan{animation-duration:44s;}
-[data-tier-level="1"] .swheel{animation-duration:4.8s;}
-[data-tier-level="1"] #sb-status-dot{animation-duration:3.6s;}
-[data-tier-level="1"] #bg-ov{opacity:.72;}
+[data-tier-level="1"] .swheel{animation-duration:4.8s;}[data-tier-level="1"] #bg-ov{opacity:.72;}
 [data-tier-level="2"] #bg{animation:none!important;}
-[data-tier-level="2"] .swheel{animation:none!important;}
-[data-tier-level="2"] #sb-status-dot{animation:none!important;}
-[data-tier-level="2"] #bg-ov{display:none!important;}
+[data-tier-level="2"] .swheel{animation:none!important;}[data-tier-level="2"] #bg-ov{display:none!important;}
 [data-tier-level="2"] #ecocanvas{display:none!important;}
 </style>
+<link rel="stylesheet" href="/nav-footer.css?v=10">
+<link rel="stylesheet" href="/mobile.css?v=6">
+
 </head>
 <body>
 
@@ -352,24 +334,6 @@ body.hcta #cring{width:68px;height:68px;border-color:#39FF14;box-shadow:0 0 22px
 <div id="ui">
 
   <!-- TIER-3: NAVIGATION — Top nav bar | immutable | renders after veil lift -->
-  <nav id="nav">
-    <a href="#"><img id="logo" src="/logo-editorial-2.svg" alt="FORM."></a>
-    <ul id="nav-links">
-      <li><a href="/ecosystem.html">Ecosystem</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/founder.html">Founder</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <a id="strat" href="#">Strategy Call&thinsp;→</a>
-  </nav>
-
-  <!-- TIER-3: NAVIGATION — Corner metadata elements | immutable -->
-  <div id="cm-tl" class="cm"><div class="bbox"><div class="bc"></div>Operational Intelligence<br>For A <span class="g">Complex</span> World.</div></div>
-  <div id="cm-tr" class="cm"><div class="bbox"><div class="bc"></div>33.7490° N<br>84.3880° W<br><span id="utc-clock" style="color:#39FF14;letter-spacing:.08em;font-size:.78rem;"></span></div></div>
-  <div id="cm-bl" class="cm"><div class="bbox"><div class="bc"></div><span id="sb-status-dot"></span>System Status<br><span class="g">Operational</span></div></div>
-  <div id="cm-br" class="cm"><div class="bbox"><div class="bc"></div>Intelligence In Motion.<br><span class="g">Impact That Lasts.</span></div></div>
 
   <!-- TIER-3: NAVIGATION — Left timeline pulse indicator | immutable -->
   <div id="tl-left">
@@ -446,7 +410,7 @@ function _startCursorRing(){
   (function cl(){
     var _pt=document.documentElement.dataset.perf||'full';
     if(_pt==='minimal'||_pt==='reduced')return;
-    rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
+    rx=mx;ry=my;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
   })();
 }
 if(tier!=='minimal')_startCursorRing();
@@ -473,7 +437,7 @@ if(!reducedMotion){
     if(_pt==='minimal')return;
     _plFrame++;
     var _plSkip=_pt==='reduced'?3:1;
-    if(_plFrame%_plSkip===0){cpx+=(tpx-cpx)*.022;cpy+=(tpy-cpy)*.022;if(bg){bg.style.marginLeft=(cpx*9)+'px';bg.style.marginTop=(cpy*6)+'px';}}
+    if(_plFrame%_plSkip===0){cpx+=(tpx-cpx)*.012;cpy+=(tpy-cpy)*.012;if(bg){bg.style.marginLeft=(cpx*4)+'px';bg.style.marginTop=(cpy*2.5)+'px';}}
     requestAnimationFrame(pl);
   })();
 }
@@ -564,14 +528,16 @@ if(window.FORM_TIER_CANCEL)window.FORM_TIER_CANCEL.push(function(){
 
 /* ── UTC CLOCK ── */
 const clk=document.getElementById('utc-clock');
-function tickClock(){
-  const n=new Date();
-  const h=String(n.getUTCHours()).padStart(2,'0');
-  const m=String(n.getUTCMinutes()).padStart(2,'0');
-  const s=String(n.getUTCSeconds()).padStart(2,'0');
-  clk.textContent=`UTC ${h}:${m}:${s}`;
+if(clk){
+  function tickClock(){
+    const n=new Date();
+    const h=String(n.getUTCHours()).padStart(2,'0');
+    const m=String(n.getUTCMinutes()).padStart(2,'0');
+    const s=String(n.getUTCSeconds()).padStart(2,'0');
+    clk.textContent=`UTC ${h}:${m}:${s}`;
+  }
+  tickClock();setInterval(tickClock,1000);
 }
-tickClock();setInterval(tickClock,1000);
 
 /* ── TIER UPGRADE HANDLER (main IIFE) ── */
 /* Fired by performance-tier.js when benchmark upgrades tier (e.g. minimal→reduced).
@@ -632,14 +598,14 @@ const SPEED_RANGE=[PERF_CONFIG.SPEED_MIN,PERF_CONFIG.SPEED_MAX];
 function mkParticle(){
   const x=Math.random()*W;
   const y=Math.random()*H;
-  const speed=SPEED_RANGE[0]+Math.random()*(SPEED_RANGE[1]-SPEED_RANGE[0]);
+  const speed=(SPEED_RANGE[0]+Math.random()*(SPEED_RANGE[1]-SPEED_RANGE[0]))*0.55;
   const angle=Math.random()*Math.PI*2;
   return{
     x,y,
     vx:Math.cos(angle)*speed,
     vy:Math.sin(angle)*speed,
-    r:0.4+Math.random()*1.1,
-    alpha:0.3+Math.random()*0.5,
+    r:0.15+Math.random()*0.4,
+    alpha:0.22+Math.random()*0.38,
     // Signal state for propagation
     signal:0,          // 0-1, decays over time
     signalColor:null,  // {r,g,b} when active
@@ -853,22 +819,15 @@ function draw(){
       p.vy=Math.sin(angle)*spd;
     }
 
-    /* Very gentle mouse repulsion */
-    const dxm=p.x-mouseX,dym=p.y-mouseY;
-    const dm2=dxm*dxm+dym*dym;
-    if(dm2<18000&&dm2>0){
-      const dm=Math.sqrt(dm2);
-      const f=0.015*(1-dm/134);
-      p.vx+=dxm/dm*f;p.vy+=dym/dm*f;
-    }
+    /* Decoupled from cursor — environmental drift only (no mouse repulsion) */
 
-    /* Ecosystem attractor — gentle drift toward hover point */
+    /* Ecosystem attractor — quiet gravitational drift toward hover point */
     if(attract){
       const dxa=p.x-attract.x,dya=p.y-attract.y;
       const da2=dxa*dxa+dya*dya;
       if(da2<190000&&da2>0){
         const da=Math.sqrt(da2);
-        const f=attract.strength*(1-da/440);
+        const f=attract.strength*0.4*(1-da/440);
         p.vx-=dxa/da*f;p.vy-=dya/da*f;
       }
     }
@@ -912,14 +871,14 @@ function draw(){
       ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
       if(sigStrength>0.15){
         const sc=a.signal>b.signal?(a.signalColor||zoneColor(a.x/W)):(b.signalColor||zoneColor(b.x/W));
-        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.05+fade*0.18+sigStrength*0.45)*0.92).toFixed(3)})`;
-        ctx.lineWidth=0.45+sigStrength*0.7;
+        ctx.strokeStyle=`rgba(${sc.r},${sc.g},${sc.b},${((0.025+fade*0.10+sigStrength*0.26)*0.92).toFixed(3)})`;
+        ctx.lineWidth=0.32+sigStrength*0.45;
       } else {
         /* Reduced tier: skip drawing faint ambient connections below opacity threshold */
-        if((document.documentElement.dataset.perf||'full')==='reduced'&&fade*0.10<0.04)continue;
+        if((document.documentElement.dataset.perf||'full')==='reduced'&&fade*0.06<0.025)continue;
         const mid=zoneColor(((a.x+b.x)*.5)/W);
-        ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.03+fade*0.10)*0.82).toFixed(3)})`;
-        ctx.lineWidth=0.38;
+        ctx.strokeStyle=`rgba(${mid.r},${mid.g},${mid.b},${((0.018+fade*0.06)*0.82).toFixed(3)})`;
+        ctx.lineWidth=0.3;
       }
       ctx.stroke();
     }
@@ -948,11 +907,11 @@ function draw(){
     const r=isActive?p.r*(1+p.signal*0.9):p.r;
 
     if(isActive&&p.signal>0.3){
-      ctx.shadowBlur=4+p.signal*7;
-      ctx.shadowColor=`rgba(${p.signalColor?p.signalColor.r:c.r},${p.signalColor?p.signalColor.g:c.g},${p.signalColor?p.signalColor.b:c.b},0.7)`;
+      ctx.shadowBlur=2+p.signal*3.5;
+      ctx.shadowColor=`rgba(${p.signalColor?p.signalColor.r:c.r},${p.signalColor?p.signalColor.g:c.g},${p.signalColor?p.signalColor.b:c.b},0.42)`;
     } else if(a>0.45){
-      ctx.shadowBlur=2;
-      ctx.shadowColor=`rgba(${c.r},${c.g},${c.b},0.3)`;
+      ctx.shadowBlur=1;
+      ctx.shadowColor=`rgba(${c.r},${c.g},${c.b},0.18)`;
     } else {
       ctx.shadowBlur=0;
     }
@@ -1021,5 +980,6 @@ if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,pre
 })();
 })();
 </script>
+<script src="/nav-footer.js?v=10" defer></script>
 </body>
 </html>

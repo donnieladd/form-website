@@ -1,0 +1,297 @@
+FORM.
+WEBSITE ARCHITECTURE
+This now feels:
+complete,
+coherent,
+scalable,
+premium,
+category-defining.
+
+01 — LANDING PAGE
+/
+The Cinematic Entry Experience
+Purpose:
+emotional signal
+atmosphere
+immersion
+movement
+identity
+curiosity
+differentiation
+Minimal copy.
+ Maximum feeling.
+This is:
+“Enter FORM.”
+NOT:
+ operational explanation.
+
+02 — HOMEPAGE
+/home
+The Operational Overview
+Purpose:
+ Clearly explain:
+what FORM is
+what FORM does
+who FORM serves
+what outcomes FORM creates
+This page is:
+consumer clarity.
+NOT:
+ heavy philosophy.
+The language here should answer:
+“What happens if I hire FORM.?”
+This page explains:
+operational systems
+branding
+websites
+apps
+AI integration
+executive support
+ministry systems
+creative infrastructure
+production systems
+operational clarity
+This page should feel:
+experienced,
+premium,
+confident,
+trustworthy,
+operationally intelligent.
+
+03 — ABOUT
+/about
+The Philosophy Layer
+Sub-navigation:
+
+Vision
+/about/vision
+“The future needs form.”
+The worldview.
+ Formation.
+ Convergence.
+ Operational philosophy.
+
+Core Values
+/about/values
+“Who We Are”
+Behavioral standards.
+
+Core Principles
+/about/principles
+“How We Think”
+Operational philosophy & worldview.
+
+FAQ
+/about/faq
+Clear answers.
+ Operational clarity.
+ Expectation-setting.
+This helps:
+reduce friction
+reduce uncertainty
+increase trust
+clarify positioning
+VERY smart addition.
+
+04 — FOUNDER
+/founder
+The Architect Behind FORM.
+Standalone top-level navigation item.
+NOT buried inside About.
+This page explains:
+origin
+philosophy
+cognition
+operational thinking
+leadership
+music
+creativity
+systems thinking
+humanity
+family
+vision
+This page should feel:
+intimate,
+cinematic,
+human,
+intelligent,
+inevitable.
+
+05 — ECOSYSTEM
+/ecosystem
+The Operational Ecosystem
+This page explains:
+structure
+divisions
+departments
+capabilities
+relationships
+operational architecture
+This page should feel:
+infrastructural.
+Like:
+an ecosystem map
+operational topology
+intelligent architecture
+NOT:
+ a services page.
+
+ECOSYSTEM NAVIGATION
+FORM.
+The House
+The governing identity.
+ The philosophy.
+ The intelligence layer.
+Hover state reveals:
+
+Operational Departments
+FORM Strategy
+FORM Digital
+FORM Creative
+FORM Sound
+FORM Support
+FORM Experience
+FORM AI
+These are:
+operational departments.
+NOT:
+ generic services.
+That distinction matters.
+
+FORM Labs
+Internal Product Division
+Hover state reveals:
+RELAY
+FRAME
+ACCESS
+These are:
+internal FORM products.
+NOT:
+ client-facing products.
+VERY important distinction.
+
+06 — PRODUCTS
+/products
+Client-Facing Products
+These are:
+specialized operational products.
+NOT:
+ departments.
+
+Continuum
+Embedded operational partnership model.
+
+Messages
+Ministry communication & sermon systems.
+
+Formation
+Education, development, and training systems.
+
+IMPORTANT
+Continuum DOES NOT need:
+ a second external navigation page.
+Correct decision.
+It already exists:
+ inside Products.
+
+07 — CONTACT
+/contact
+Contact & Discovery
+Purpose:
+book a meeting
+schedule a call
+email
+inquiry intake
+partnerships
+collaboration
+This should feel:
+high-trust,
+intentional,
+premium,
+personal.
+NOT:
+ generic agency contact form.
+
+EMAIL STRUCTURE
+Yes:
+hello@formintel.co
+is absolutely the right move.
+It feels:
+premium
+warm
+modern
+intentional
+scalable
+You can later add:
+partnerships@
+support@
+labs@
+media@
+team@
+ etc.
+But:
+hello@
+is the right starting point.
+
+MAIN NAVIGATION
+This is now VERY clean.
+Home
+About
+Founder
+Ecosystem
+Products
+Contact
+That’s it.
+Clean.
+ Premium.
+ Intentional.
+ Memorable.
+
+FOOTER STRUCTURE
+
+About
+Vision
+Core Values
+Core Principles
+FAQ
+
+Founder
+Founder
+
+Ecosystem
+FORM Strategy
+FORM Digital
+FORM Creative
+FORM Sound
+FORM Support
+FORM Experience
+FORM AI
+FORM Labs
+
+Products
+Continuum
+Messages
+Formation
+
+Connect
+Contact
+Instagram
+LinkedIn
+hello@formintel.co
+
+Future
+Careers
+(Not active yet, but smart to include.)
+
+FINAL THOUGHT
+NOW:
+ the architecture reflects:
+the actual philosophy.
+That’s the breakthrough.
+The site now feels like:
+an operational ecosystem,
+not:
+a creative agency website.
+And that distinction is:
+everything.
+

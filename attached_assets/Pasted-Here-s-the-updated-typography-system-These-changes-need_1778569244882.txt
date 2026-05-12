@@ -1,0 +1,441 @@
+Here's the updated typography system. These changes need to reflect the entire site, site-wide.
+
+
+
+form. typography & hierarchy system
+
+This is the foundational typography and hierarchy doctrine for the form. website ecosystem.
+
+The purpose of this system is to ensure every page feels:
+
+* intentional
+* restrained
+* premium
+* operational
+* cinematic
+* structurally intelligent
+* human-readable
+* architecturally balanced
+
+Typography should never feel:
+
+* trendy
+* overly stylized
+* futuristic for the sake of futurism
+* aggressive
+* over-designed
+* decorative
+* chaotic
+
+The system should feel:
+
+confident through restraint.
+
+⸻
+
+core typography philosophy
+
+Typography inside form. is treated as:
+
+infrastructure.
+
+Not decoration.
+
+Every heading, line break, spacing decision, and hierarchy choice should communicate:
+
+* clarity
+* confidence
+* structure
+* intentionality
+* emotional control
+
+Typography creates rhythm.
+Rhythm creates trust.
+
+⸻
+
+casing rules
+
+primary rule
+
+All:
+
+* headers
+* subheaders
+* navigation labels
+* section titles
+* ecosystem labels
+* product names
+* footer categories
+
+should use:
+
+lowercase typography.
+
+This is intentional.
+
+Lowercase typography:
+
+* softens arrogance
+* increases humanity
+* modernizes the system
+* creates visual restraint
+* improves cinematic pacing
+* balances the operational nature of the brand
+
+⸻
+
+exceptions
+
+Uppercase may ONLY be used for:
+
+* metadata labels
+* micro-labels
+* system indicators
+* technical indexing
+* small UI annotations
+
+Examples:
+
+* [ 01 ]
+* operational departments.
+* ecosystem structure.
+* vision.
+* products.
+
+Uppercase should always:
+
+* remain minimal
+* use increased tracking
+* feel infrastructural
+* never dominate the page
+
+⸻
+
+primary type system
+
+primary typeface
+
+satoshi
+
+Used for:
+
+* body copy
+* headers
+* subheaders
+* navigation
+* UI systems
+* operational information
+* infrastructure language
+
+Tone:
+
+* modern
+* clean
+* intelligent
+* restrained
+* highly legible
+
+⸻
+
+editorial typeface
+
+canela
+
+Used sparingly.
+
+Canela is:
+
+punctuation.
+
+Not the foundation.
+
+Use ONLY for:
+
+* emotional emphasis
+* cinematic contrast
+* philosophical moments
+* selective highlighted words
+
+Examples:
+
+* “the future needs form.”
+* “move further.”
+* “what’s next.”
+
+Canela should NEVER:
+
+* dominate layouts
+* become paragraph typography
+* replace operational clarity
+* overwhelm the system
+
+Maximum usage:
+5–10% of visible typography on a page.
+
+⸻
+
+mono/system typeface
+
+ibm plex mono
+
+Used for:
+
+* metadata
+* system labels
+* infrastructure annotations
+* topology indexing
+* technical references
+* operational markers
+
+Examples:
+
+* [ 01 ]
+* operational systems
+* signal architecture
+* ecosystem map labels
+
+Should feel:
+
+* infrastructural
+* subtle
+* intelligent
+* restrained
+
+⸻
+
+header hierarchy system
+
+h1 — primary cinematic header
+
+Purpose:
+Major emotional or structural statement.
+
+Style:
+
+* lowercase
+* large scale
+* restrained weight
+* generous spacing
+* highly intentional line breaks
+
+Examples:
+
+the future needs form.
+
+built for what’s next.
+
+structure creates clarity.
+
+Characteristics:
+
+* cinematic
+* architectural
+* emotionally controlled
+* minimal
+
+Never:
+
+* overly long
+* cluttered
+* centered unnecessarily
+* visually noisy
+
+⸻
+
+h2 — structural section header
+
+Purpose:
+Introduce major sections.
+
+Examples:
+
+operational departments.
+
+ecosystem structure.
+
+what form. does.
+
+products.
+
+Style:
+
+* lowercase
+* smaller than h1
+* clean operational spacing
+* strong readability
+* restrained hierarchy
+
+⸻
+
+h3 — operational category title
+
+Purpose:
+Introduce systems, departments, products, or functions.
+
+Examples:
+
+form strategy
+
+form digital
+
+continuum
+
+messages
+
+formation
+
+Style:
+
+* lowercase
+* medium weight
+* clean hierarchy
+* operational tone
+
+⸻
+
+body copy rules
+
+Body copy should feel:
+
+* intelligent
+* calm
+* clear
+* highly readable
+* human
+
+Never:
+
+* over-written
+* excessively philosophical
+* unnecessarily clever
+* overly technical
+
+The language should:
+
+explain complex things simply.
+
+⸻
+
+line spacing & rhythm
+
+Typography should breathe.
+
+Use:
+
+* generous vertical spacing
+* intentional line breaks
+* cinematic pacing
+* balanced negative space
+
+Avoid:
+
+* cramped layouts
+* dense blocks
+* excessive width
+* visual exhaustion
+
+Reading should feel:
+
+effortless.
+
+⸻
+
+alignment rules
+
+default alignment
+
+Left aligned.
+
+Because:
+left alignment feels:
+
+* structured
+* architectural
+* operational
+* readable
+
+Centered alignment should ONLY be used:
+
+* intentionally
+* sparingly
+* for emotional emphasis
+* for hero moments
+
+⸻
+
+visual rhythm system
+
+Every page should alternate between:
+
+* density
+* openness
+* emotional pacing
+* operational structure
+
+This creates:
+
+cinematic rhythm.
+
+The site should feel:
+alive,
+but controlled.
+
+⸻
+
+color behavior for typography
+
+primary text
+
+Soft white.
+Never pure white.
+
+secondary text
+
+Muted gray.
+
+accent text
+
+Signal green ONLY.
+
+No random greens.
+No lime tones.
+No neon variations.
+
+Signal green is:
+
+identity infrastructure.
+
+Use it intentionally.
+
+⸻
+
+final philosophy
+
+The typography system inside form. should feel like:
+
+operational intelligence with human restraint.
+
+Not:
+
+* startup branding
+* luxury fashion
+* cyberpunk UI
+* agency aesthetics
+* trendy minimalism
+
+The system should communicate:
+
+clarity.
+
+confidence.
+
+intelligence.
+
+structure.
+
+humanity.
+
+Because form. is not trying to look futuristic.
+
+form. is building the infrastructure behind what comes next.

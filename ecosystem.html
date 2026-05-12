@@ -21,10 +21,10 @@ body{background:#0A0A0A;height:100vh;overflow:hidden;-webkit-font-smoothing:anti
    TIER-5: CRITICAL UI — Cursor system, immutable, no yield
    will-change: left, top | cursor ring lag halts under reduced-motion
    ══════════════════════════════════════════════════════════ */
-#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:5px;height:5px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 8px #39FF14,0 0 22px rgba(57,255,20,.45);}
-#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:24px;height:24px;border:1px solid rgba(57,255,20,.5);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .45s cubic-bezier(.16,1,.3,1),height .45s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;}
-body.hl  #cring{width:40px;height:40px;border-color:rgba(57,255,20,.88);}
-body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px rgba(57,255,20,.28);}
+#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(57,255,20,.7),0 0 14px rgba(57,255,20,.22);opacity:.85;}
+#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:22px;height:22px;border:1px solid rgba(57,255,20,.28);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .7s cubic-bezier(.16,1,.3,1),height .7s cubic-bezier(.16,1,.3,1),border-color .5s,box-shadow .5s;}
+body.hl  #cring{width:32px;height:32px;border-color:rgba(57,255,20,.55);}
+body.hcta #cring{width:44px;height:44px;border-color:rgba(57,255,20,.7);box-shadow:0 0 14px rgba(57,255,20,.16);}
 
 /* ══════════════════════════════════════════════════════════
    TIER-1: ATMOSPHERE — Film grain + scan line (z-index band: 3–9)
@@ -60,44 +60,10 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 
 /* ══════════════════════════════════════════════════════════
    TIER-3: NAVIGATION — Sidebar | immutable, renders after veil lift
-   ══════════════════════════════════════════════════════════ */
-#sidebar{
-  position:relative;z-index:var(--z-tier-navigation);
-  width:130px;flex-shrink:0;
-  display:flex;flex-direction:column;
-  background:rgba(10,10,10,.95);
-  border-right:1px solid rgba(57,255,20,.1);
-  opacity:0;animation:fadein .8s cubic-bezier(.16,1,.3,1) 1.4s forwards;
-}
-#sb-logo-wrap{padding:1.4rem 1.1rem 1.8rem;border-bottom:1px solid rgba(57,255,20,.07);}
-#sb-logo{height:24px;width:auto;display:block;cursor:none;}
-
-#sb-links{flex:1;display:flex;flex-direction:column;padding:1.8rem .8rem .6rem;}
-.sb-link{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.6rem;font-weight:400;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(242,242,240,.32);
-  text-decoration:none;cursor:none;
-  padding:.62rem .4rem;
-  transition:color .25s;display:block;white-space:nowrap;
-}
-.sb-link:hover{color:rgba(242,242,240,.75);}
-.sb-link.active{color:#39FF14;font-weight:500;}
-
-#sb-crosshair{display:flex;justify-content:center;padding:1.4rem 0;}
-.crosshair{width:22px;height:22px;position:relative;}
+   ══════════════════════════════════════════════════════════ */#sb-logo-wrap{padding:1.4rem 1.1rem 1.8rem;border-bottom:1px solid rgba(57,255,20,.07);}#sb-links{flex:1;display:flex;flex-direction:column;padding:1.8rem .8rem .6rem;}.crosshair{width:22px;height:22px;position:relative;}
 .crosshair::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(57,255,20,.22);transform:translateX(-50%);}
 .crosshair::after{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(57,255,20,.22);transform:translateY(-50%);}
 .crosshair-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 5px #39FF14;}
-
-#sb-status{
-  padding:.8rem 1rem 1.2rem;
-  border-top:1px solid rgba(57,255,20,.07);
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.55rem;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(242,242,240,.28);
-  line-height:1.9;
-}
 .g{color:#39FF14;}
 
 /* ── MAIN ── */
@@ -115,12 +81,12 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 }
 /* TIER-2: Ecosystem hero title — Hero Environment content */
 #eco-title{
-  position:absolute;bottom:1.2rem;left:1.4rem;z-index:var(--z-tier-hero-content);
+  position:absolute;bottom:2.4rem;left:2.6rem;z-index:var(--z-tier-hero-content);
   opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.6s forwards;
 }
 #eco-title h1{
-  font-family:'Satoshi',sans-serif;font-size:2.4rem;font-weight:500;
-  color:#F2F2F0;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;
+  font-family:'Satoshi',sans-serif;font-size:3.2rem;font-weight:400;
+  color:#F2F2F0;line-height:1.0;letter-spacing:.04em;text-transform:uppercase;
 }
 #eco-title h1 .g{color:#39FF14;}
 #eco-sub{
@@ -313,9 +279,7 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;}
-  #veil{opacity:0!important;}
-  #sidebar,#eco-title,#scroll-ind{opacity:1!important;}
-}
+  #veil{opacity:0!important;}}
 
 /* ── PERFORMANCE TIER GATES ── */
 [data-perf="reduced"] .scan{animation-duration:40s;}
@@ -334,6 +298,9 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 [data-tier-level="2"] .swheel{animation:none!important;}
 [data-tier-level="2"] #waveCanvas{display:none!important;}
 </style>
+<link rel="stylesheet" href="/nav-footer.css?v=10">
+<link rel="stylesheet" href="/mobile.css?v=6">
+
 </head>
 <body>
 <!-- TIER-5: CRITICAL UI — Veil entry gate | immutable -->
@@ -353,18 +320,6 @@ body.hcta #cring{width:56px;height:56px;border-color:#39FF14;box-shadow:0 0 22px
 <div class="brkt" id="bbr"><div class="i"></div></div>
 
 <!-- TIER-3: NAVIGATION — Sidebar | immutable | renders after veil lift -->
-<aside id="sidebar">
-  <div id="sb-logo-wrap"><a href="/"><img id="sb-logo" src="/logo-editorial-2.svg" alt="FORM."></a></div>
-  <nav id="sb-links">
-    <a href="#" class="sb-link">About Form</a>
-    <a href="#" class="sb-link">Resources</a>
-    <a href="#" class="sb-link">Pricing</a>
-    <a href="#" class="sb-link">Contact</a>
-  </nav>
-  <div id="sb-crosshair"><div class="crosshair"><div class="crosshair-dot"></div></div></div>
-  <div id="sb-status">System Status<br><span class="g">Active •</span></div>
-</aside>
-
 <!-- TIER-2: HERO ENVIRONMENT — Main scrollable content area | no yield -->
 <main id="main">
 
@@ -581,7 +536,7 @@ if(tier==='minimal'){
 } else {
   let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
-  (function cl(){var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal'||_pt==='reduced')return;rx+=(mx-rx)*.10;ry+=(my-ry)*.10;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);})();
+  (function cl(){var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal'||_pt==='reduced')return;rx+=(mx-rx)*.055;ry+=(my-ry)*.055;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);})();
   document.querySelectorAll('a,.card').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
@@ -629,11 +584,11 @@ if(tier==='minimal'){
         particles.push({
           x:px, y:py, ox:px, baseY:py,
           phase: Math.random() * Math.PI * 2,
-          speed: 0.004 + Math.random() * 0.009,
+          speed: 0.0022 + Math.random() * 0.005,
           amp:   12  + Math.random() * 28,
-          drift: (Math.random() - 0.5) * 0.12,
-          size:  0.7 + Math.random() * 2.2,
-          alpha: 0.3 + Math.random() * 0.65,
+          drift: (Math.random() - 0.5) * 0.07,
+          size:  0.22 + Math.random() * 0.7,
+          alpha: 0.22 + Math.random() * 0.42,
           rgb: sys.rgb, color: sys.color,
           si, isBeam: false,
         });
@@ -647,9 +602,9 @@ if(tier==='minimal'){
             ox: sys.cx * W,
             baseY: H * 0.75,
             phase:0, speed:0, amp:0, drift:(Math.random()-0.5)*0.15,
-            vy: -(0.6 + Math.random() * 1.8),
-            size: 0.5 + Math.random() * 2,
-            alpha: 0.15 + Math.random() * 0.75,
+            vy: -(0.32 + Math.random() * 0.95),
+            size: 0.18 + Math.random() * 0.7,
+            alpha: 0.12 + Math.random() * 0.5,
             rgb: sys.rgb, color: sys.color,
             si, isBeam: true,
           });
@@ -673,7 +628,7 @@ if(tier==='minimal'){
       const gy = H * 0.78;
       const r  = W * 0.17;
       const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,r);
-      g.addColorStop(0, `rgba(${sys.rgb},${sys.beam ? 0.14 : 0.09})`);
+      g.addColorStop(0, `rgba(${sys.rgb},${sys.beam ? 0.07 : 0.045})`);
       g.addColorStop(1, `rgba(${sys.rgb},0)`);
       ctx.fillStyle = g;
       ctx.fillRect(gx - r, gy - r, r*2, r*2);
@@ -683,9 +638,9 @@ if(tier==='minimal'){
     const bx = 0.5 * W;
     const bg2 = ctx.createLinearGradient(bx, 0, bx, H);
     bg2.addColorStop(0,   'rgba(124,255,0,0)');
-    bg2.addColorStop(0.25,'rgba(124,255,0,0.012)');
-    bg2.addColorStop(0.65,'rgba(124,255,0,0.04)');
-    bg2.addColorStop(1,   'rgba(124,255,0,0.07)');
+    bg2.addColorStop(0.25,'rgba(124,255,0,0.006)');
+    bg2.addColorStop(0.65,'rgba(124,255,0,0.022)');
+    bg2.addColorStop(1,   'rgba(124,255,0,0.038)');
     ctx.fillStyle = bg2;
     ctx.fillRect(bx - 55, 0, 110, H);
 
@@ -716,7 +671,7 @@ if(tier==='minimal'){
           const dx = a.x-b.x, dy = a.y-b.y;
           const d2 = dx*dx + dy*dy;
           if(d2 < 4900){ // 70px
-            const alpha = (1 - d2/4900) * 0.18;
+            const alpha = (1 - d2/4900) * 0.09;
             ctx.strokeStyle = `rgba(${sys.rgb},${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
@@ -731,7 +686,7 @@ if(tier==='minimal'){
     // Particles
     ctx.shadowBlur = 0;
     particles.forEach(p => {
-      ctx.shadowBlur  = p.isBeam ? 10 : 5;
+      ctx.shadowBlur  = p.isBeam ? 4 : 2;
       ctx.shadowColor = p.color;
       ctx.fillStyle   = `rgba(${p.rgb},${p.alpha})`;
       ctx.beginPath();
@@ -748,5 +703,6 @@ if(tier==='minimal'){
   if((window.FORM_TIER||'full')!=='minimal'){requestAnimationFrame(draw);}
 })();
 </script>
+<script src="/nav-footer.js?v=10" defer></script>
 </body>
 </html>

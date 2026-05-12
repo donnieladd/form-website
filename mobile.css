@@ -1,0 +1,77 @@
+/* ══════════════════════════════════════════════════════════
+   FORM. — Cross-page mobile responsiveness
+   Loaded on every production page. Targets common patterns
+   (hero grids, card grids, sidebar-era flex bodies, oversized
+   typography) without touching desktop layouts.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── TABLET (≤980) ── */
+@media (max-width:980px){
+  /* free body from sidebar-era 100vh flex lock so content can scroll */
+  body{display:block!important;height:auto!important;overflow-x:hidden!important;}
+  body.nf-mobile-open{overflow:hidden!important;}
+  #main{height:auto!important;overflow:visible!important;}
+
+  /* hero grids → single column */
+  #hero,#hero-grid,#hero-body,#eco-right,.hero-split,.split-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  /* common multi-column card grids → 2 columns */
+  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,.systems-grid{
+    grid-template-columns:repeat(2,1fr)!important;
+  }
+}
+
+/* ── PHONE (≤600) ── */
+@media (max-width:600px){
+  /* typography scale-down (the user's "everything is itty-bitty" complaint
+     is mostly desktop-relative oversizing — on phone we still need to
+     constrain massive hero type so it fits) */
+  html{font-size:15px;}
+
+  /* All multi-col card grids → single column */
+  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,.systems-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  /* Wave / canvas hero areas — give breathing room */
+  #wave-wrap{height:32vh!important;}
+
+  /* Hero typography — clamp the very large sizes */
+  #eco-title h1,#hero h1,.hero-title,.hero h1{
+    font-size:clamp(2rem,9vw,3.4rem)!important;
+    letter-spacing:.02em!important;
+  }
+  #eco-title{left:1.2rem!important;right:1.2rem!important;bottom:1.4rem!important;}
+  #eco-sub,.hero-sub,.eyebrow{font-size:.78rem!important;}
+
+  /* Reduce hero/page padding */
+  #hero,#hero-body,.hero,main,#main > section{
+    padding-left:1rem!important;padding-right:1rem!important;
+  }
+
+  /* Hide complex landing-only chrome that overflows on phone */
+  #cm-tl,#cm-tr,#tl-left,#domains,#scroll-ind,#coords{
+    transform:scale(.78);transform-origin:top left;
+  }
+
+  /* About / founder process splits → stack */
+  .process-step,.split-left,.split-right,#hero-left,#hero-right{
+    border-right:none!important;border-bottom:1px solid rgba(255,255,255,.05);
+    padding:1.4rem 1rem!important;
+  }
+
+  /* Disable cursor:none on phones — touch users need the system cursor/finger */
+  html,body,*{cursor:auto!important;}
+  #cdot,#cring{display:none!important;}
+
+  /* Tighten footer link tap targets */
+  #sitefooter .ft-col a{padding:.5rem 0!important;}
+}
+
+/* ── REDUCED MOTION on phones — kill heavy animations ── */
+@media (max-width:600px) and (prefers-reduced-motion:no-preference){
+  /* still respect motion but tone down on phone */
+  .scan,#bg-drift{animation-duration:60s!important;}
+}
