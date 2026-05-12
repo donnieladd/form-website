@@ -295,7 +295,7 @@
 }
 .rev-msg a:hover { border-bottom-color: #39ff14; }
 .rev-msg.editorial {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Canela', 'Georgia', serif;
   font-style: italic;
   font-size: 18px;
   font-weight: 400;
