@@ -22,7 +22,7 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 
 ### Typography (LOCKED)
 - **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.
-- **Editorial typeface — Cormorant Garamond italic** (Canela substitute): used very sparingly (5–10% max of visible typography) for emotional punctuation only. Examples: `form.`, `humanity`, `the future needs form.`, `what's next.`. Never paragraph copy.
+- **Editorial typeface — Canela (italic, light/regular)**: the third approved font. Used very sparingly (5–10% max of visible typography) for emotional punctuation only. Examples: `form.`, `humanity`, `the future needs form.`, `what's next.`, `conversation.`, `impact.`. Never paragraph copy. CSS family: `'Canela', Georgia, serif`. Cormorant Garamond is **not** approved and must not be loaded.
 - **Mono — IBM Plex Mono**: metadata, indices, system labels, infrastructure annotations, micro-labels.
 - **Casing**: lowercase typography for headers, navigation, section titles, product names, ecosystem labels, footer categories, operational labels. Uppercase ONLY for metadata, micro-labels, indexing systems (`[ 01 ]`, `OPERATIONAL SYSTEMS`). Uppercase must remain minimal with increased tracking and never dominate layouts.
 
