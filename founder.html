@@ -11,8 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
+<link rel="preload" as="image" href="/founder-bg.avif?v=3" fetchpriority="high">
+<script src="/performance-tier.js"></script>
+<script src="/performance-config.js"></script>
+<script src="/perf-observer.js"></script>
+
 <link rel="stylesheet" href="/nav-footer.css?v=13">
 <link rel="stylesheet" href="/rev.css?v=3">
+<link rel="stylesheet" href="/mobile.css?v=7">
 
 <style>
 :root{
@@ -722,10 +728,10 @@ body{
       <!-- RIGHT : full-bleed portrait inside cosmic neural field -->
       <div class="hero-right">
         <div class="hero-atm" aria-hidden="true">
-          <img src="/founder-bg.avif?v=3" alt="">
+          <img src="/founder-bg.avif?v=3" alt="" decoding="async" fetchpriority="high">
         </div>
         <div class="portrait-stage" data-reveal data-d="2">
-          <img class="portrait" src="/founder-5-cutout-v2.png" alt="dontae ladson, founder of form.">
+          <img class="portrait" src="/founder-5-cutout-v2.png" alt="dontae ladson, founder of form." decoding="async" fetchpriority="high">
         </div>
       </div>
 
@@ -751,7 +757,7 @@ body{
   <!-- ───────── STORY + PHILOSOPHY ───────── -->
   <section class="band-story">
     <div class="col-img" data-reveal>
-      <img src="/founder-3.avif" alt="dontae ladson — portrait, candid">
+      <img src="/founder-3.avif" alt="dontae ladson — portrait, candid" loading="lazy" decoding="async">
     </div>
     <div class="col-story">
       <span class="bracket-tag" data-reveal>story</span>
@@ -785,7 +791,7 @@ body{
 
   <!-- ───────── HORIZON REPRISE — quiet cosmic band (decorative) ───────── -->
   <div class="horizon" aria-hidden="true">
-    <img src="/founder-bg.avif?v=3" alt="">
+    <img src="/founder-bg.avif?v=3" alt="" loading="lazy" decoding="async">
     <div class="horizon-mark">
       [ <span class="ac">04</span> ] · the operating substrate
     </div>

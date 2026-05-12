@@ -1,9 +1,24 @@
 /* ══════════════════════════════════════════════════════════
-   FORM. — Cross-page mobile responsiveness
+   FORM. — Cross-page mobile responsiveness + perf tuning
    Loaded on every production page. Targets common patterns
-   (hero grids, card grids, sidebar-era flex bodies, oversized
-   typography) without touching desktop layouts.
+   (hero grids, card grids, oversized typography) without
+   touching desktop layouts. Also throttles expensive effects
+   on small screens for battery + performance.
    ══════════════════════════════════════════════════════════ */
+
+/* ── EDGE SOFTNESS — every hero bg image gets a feathered mask
+   sitewide except the homepage. pairs with the per-page ::after
+   gradient stack so atmospheric stills always dissolve into onyx
+   instead of meeting hard rectangular edges. ── */
+.ch-vision::before,
+.ch-hero .hero-band::before,
+#s-hero::before,
+.hero-intro::before,
+.col-bg::before,
+.hero-atm::after{
+  -webkit-mask-image:radial-gradient(ellipse 110% 105% at 50% 50%, #000 56%, rgba(0,0,0,.55) 78%, transparent 100%);
+          mask-image:radial-gradient(ellipse 110% 105% at 50% 50%, #000 56%, rgba(0,0,0,.55) 78%, transparent 100%);
+}
 
 /* ── TABLET (≤980) ── */
 @media (max-width:980px){
@@ -12,66 +27,158 @@
   body.nf-mobile-open{overflow:hidden!important;}
   #main{height:auto!important;overflow:visible!important;}
 
-  /* hero grids → single column */
-  #hero,#hero-grid,#hero-body,#eco-right,.hero-split,.split-grid{
+  /* legacy hero grids → single column */
+  #hero,#hero-grid,#hero-body,#eco-right,.hero-split,.split-grid,
+  /* current cinematic hero grids → single column */
+  .ch-vision,.ch-frag,.ch-form,.ch-philo,.ch-conv,.ch-signal,
+  .ch-std,.ch-hero .hero-band,
+  #s-hero,.hero,.hero-intro + .hero-right,
+  .hero-grid,.contact-hero{
     grid-template-columns:1fr!important;
+    gap:2.4rem!important;
   }
 
   /* common multi-column card grids → 2 columns */
-  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,.systems-grid{
+  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,
+  .systems-grid,.std-index,.eco-tier,.entities,.pillars,.cities{
     grid-template-columns:repeat(2,1fr)!important;
+  }
+
+  /* hero typography clamp on tablet */
+  .ch-title,.hero-title,.hero h1,.ch-vision .ch-title{
+    font-size:clamp(64px,11vw,120px)!important;
+    letter-spacing:-.04em!important;
+  }
+  .ch-vision .lede,.ch-frag .lede,.ch-form .lede{
+    font-size:clamp(32px,5.4vw,56px)!important;
+  }
+
+  /* contact: form panel sits beneath the headline on tablet */
+  .hero-intro::before,.hero-intro::after{
+    right:-1rem!important;
+    left:calc(-1 * clamp(1.2rem,4vw,3rem))!important;
   }
 }
 
 /* ── PHONE (≤600) ── */
 @media (max-width:600px){
-  /* typography scale-down (the user's "everything is itty-bitty" complaint
-     is mostly desktop-relative oversizing — on phone we still need to
-     constrain massive hero type so it fits) */
+  /* base typography slightly tightened so massive hero type fits */
   html{font-size:15px;}
 
   /* All multi-col card grids → single column */
-  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,.systems-grid{
+  #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,
+  .systems-grid,.std-index,.eco-tier,.entities,.pillars,.cities{
     grid-template-columns:1fr!important;
+    gap:1.6rem!important;
   }
 
   /* Wave / canvas hero areas — give breathing room */
   #wave-wrap{height:32vh!important;}
 
-  /* Hero typography — clamp the very large sizes */
-  #eco-title h1,#hero h1,.hero-title,.hero h1{
-    font-size:clamp(2rem,9vw,3.4rem)!important;
-    letter-spacing:.02em!important;
+  /* Hero typography — clamp very large sizes */
+  #eco-title h1,#hero h1,.hero-title,.hero h1,
+  .ch-title,.ch-vision .ch-title{
+    font-size:clamp(2.6rem,12vw,4.2rem)!important;
+    letter-spacing:-.03em!important;
+    line-height:.9!important;
+  }
+  .ch-vision .lede,.ch-frag .lede,.ch-form .lede{
+    font-size:clamp(28px,7vw,40px)!important;
+  }
+  .ch-vision .sub-lede,.lede,.hero-lead,.body{
+    font-size:clamp(.95rem,3.4vw,1.1rem)!important;
+    line-height:1.55!important;
   }
   #eco-title{left:1.2rem!important;right:1.2rem!important;bottom:1.4rem!important;}
-  #eco-sub,.hero-sub,.eyebrow{font-size:.78rem!important;}
+  #eco-sub,.hero-sub,.eyebrow,.idx,.idx-sub{font-size:.74rem!important;}
 
-  /* Reduce hero/page padding */
-  #hero,#hero-body,.hero,main,#main > section{
-    padding-left:1rem!important;padding-right:1rem!important;
+  /* Reduce hero/page padding so content gets the full viewport */
+  #hero,#hero-body,.hero,main,#main > section,
+  .ch-vision,.ch-frag,.ch-form,.ch-philo,.ch-conv,.ch-signal,
+  .ch-std,.ch-hero,.section{
+    padding-left:1.2rem!important;
+    padding-right:1.2rem!important;
+  }
+  .ch-vision,.ch-std,.ch-hero,#s-hero{
+    padding-top:6rem!important;
+    padding-bottom:5rem!important;
+    min-height:auto!important;
   }
 
   /* Hide complex landing-only chrome that overflows on phone */
-  #cm-tl,#cm-tr,#tl-left,#domains,#scroll-ind,#coords{
-    transform:scale(.78);transform-origin:top left;
+  #cm-tl,#cm-tr,#tl-left,#domains,#scroll-ind,#coords,
+  .ledger,.scroll-mark{
+    display:none!important;
   }
 
-  /* About / founder process splits → stack */
-  .process-step,.split-left,.split-right,#hero-left,#hero-right{
-    border-right:none!important;border-bottom:1px solid rgba(255,255,255,.05);
-    padding:1.4rem 1rem!important;
+  /* Stack about/founder process splits */
+  .process-step,.split-left,.split-right,#hero-left,#hero-right,
+  .col-text,.col-list,.col-env,.col-bg,.col-intro,.hero-intro,.hero-right{
+    border-right:none!important;
+    padding:1.4rem 0!important;
   }
 
-  /* Disable cursor:none on phones — touch users need the system cursor/finger */
+  /* Disable cursor:none on phones — touch users need the system cursor */
   html,body,*{cursor:auto!important;}
   #cdot,#cring{display:none!important;}
 
   /* Tighten footer link tap targets */
-  #sitefooter .ft-col a{padding:.5rem 0!important;}
+  #sitefooter .ft-col a{padding:.7rem 0!important;}
+
+  /* form inputs — 16px floor prevents iOS auto-zoom */
+  input,textarea,select,button{
+    font-size:16px!important;
+  }
+
+  /* contact: hero-intro pseudo-element bleed contained */
+  .hero-intro::before,.hero-intro::after{
+    left:-1rem!important;right:-1rem!important;
+  }
 }
 
-/* ── REDUCED MOTION on phones — kill heavy animations ── */
-@media (max-width:600px) and (prefers-reduced-motion:no-preference){
-  /* still respect motion but tone down on phone */
-  .scan,#bg-drift{animation-duration:60s!important;}
+/* ══════════════════════════════════════════════════════════
+   PHONE PERF — kill expensive effects on small viewports.
+   Hero drift animations + heavy backdrop-filter blur are the
+   main mobile battery + jank vectors. Throttle aggressively.
+   ══════════════════════════════════════════════════════════ */
+@media (max-width:768px){
+  /* halt all hero drift keyframes (founder, ecosystem, vision,
+     standards, contact) — atmosphere stays, motion stops */
+  .ch-vision::before,
+  .ch-hero .hero-band::before,
+  #s-hero::before,
+  .hero-intro::before,
+  .col-bg::before,
+  .hero-atm img{
+    animation:none!important;
+  }
+
+  /* drop backdrop-filter on the nav — expensive on mobile GPUs.
+     compensate with a slightly stronger background tint so the
+     nav still reads cleanly over atmosphere. */
+  #topnav{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    background:rgba(5,6,8,.78)!important;
+  }
+
+  /* drop backdrop-filter on dropdowns + form glass panels */
+  #topnav .tn-dropdown,
+  .form-card,.glass,.tn-mobile-panel{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+
+  /* env-field canvas particles — pause on mobile to save battery */
+  .env-field-canvas{display:none!important;}
+}
+
+/* honor user motion preference — applies at every breakpoint */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  .env-field-canvas{display:none!important;}
 }
