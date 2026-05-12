@@ -32,11 +32,12 @@
   /* current cinematic hero grids → single column */
   .ch-vision,.ch-frag,.ch-form,.ch-philo,.ch-conv,.ch-signal,
   .ch-std,.ch-hero .hero-band,
-  #s-hero,.hero,.hero-intro + .hero-right,
-  .hero-grid,.contact-hero{
+  .hero,.hero-grid{
     grid-template-columns:1fr!important;
     gap:2.4rem!important;
   }
+  /* ecosystem hero is flex, not grid — collapse via flex-direction */
+  #s-hero{flex-direction:column!important;gap:2.4rem!important;}
 
   /* common multi-column card grids → 2 columns */
   #cards-wrap,.cards-wrap,.cards,.card-grid,.process-grid,.eco-grid,
