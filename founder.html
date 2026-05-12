@@ -38,15 +38,6 @@ body{
   overflow:hidden;
 }
 
-/* full-bleed founder backdrop, fixed to viewport — content scrolls over it */
-.page-bg{
-  position:fixed;inset:0;
-  width:100%;height:100%;
-  background:#050608 url('/founder-bg.avif?v=2') center center / cover no-repeat;
-  z-index:0;
-  pointer-events:none;
-}
-
 /* grain */
 #grain{
   position:fixed;inset:0;width:100%;height:100%;
@@ -127,16 +118,63 @@ body{
 [data-reveal][data-d="6"]{transition-delay:.70s;}
 
 /* ─────────────────────────────────────────
-   HERO — left text / right portrait + green eclipse
+   HERO — cosmic atmosphere contained in hero section, dissolves into onyx.
+   left text / right portrait composed inside the field.
    ───────────────────────────────────────── */
 .hero{
+  position:relative;
   display:grid;
   grid-template-columns: minmax(0,1fr) minmax(0,1fr);
   gap:clamp(2rem,4vw,4rem);
   align-items:center;
-  min-height:92vh;
-  padding-top:6rem;
+  min-height:100vh;
+  padding-top:7rem;
+  padding-bottom:9rem;
+  overflow:hidden;
+  isolation:isolate;
 }
+
+/* cinematic atmosphere — the cosmic neural field, contained, masked,
+   breathing slowly. it ENDS at the hero so reading sections stay calm. */
+.hero-atm{
+  position:absolute;
+  inset:-6% -4% -2% -4%;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.hero-atm img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:62% 42%;
+  filter:saturate(1.05) contrast(1.02);
+  transform-origin:60% 45%;
+  animation:atm-drift 42s ease-in-out infinite alternate;
+}
+@keyframes atm-drift{
+  from{transform:scale(1.0) translate3d(0,0,0);}
+  to  {transform:scale(1.06) translate3d(-1.5%,-1%,0);}
+}
+/* dissolve hero atmosphere into onyx at bottom + edges so the page breathes */
+.hero-atm::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    /* bottom dissolve into onyx for clean handoff to next section */
+    linear-gradient(180deg,
+      rgba(5,6,8,.55) 0%,
+      rgba(5,6,8,.20) 18%,
+      rgba(5,6,8,.0)  42%,
+      rgba(5,6,8,.45) 78%,
+      rgba(5,6,8,.95) 96%,
+      #050608 100%),
+    /* left vignette to anchor the headline */
+    linear-gradient(90deg,
+      rgba(5,6,8,.78) 0%,
+      rgba(5,6,8,.30) 28%,
+      rgba(5,6,8,0)   55%);
+}
+
 .hero .col-text{position:relative;z-index:3;max-width:620px;}
 .hero .h1{
   margin-top:1.4rem;
@@ -170,25 +208,105 @@ body{
 }
 .hero .body .ac{color:var(--ac);}
 
-/* hero right — portrait + eclipse */
+/* hero right — portrait composed inside the cosmic field */
 .portrait-stage{
   position:relative;
-  aspect-ratio: 1 / 1;
+  z-index:2;
+  aspect-ratio: 1 / 1.08;
   width:100%;
-  max-width:680px;
+  max-width:640px;
   justify-self:end;
 }
-/* portrait sits naturally over the page-bg */
 .portrait-stage img.portrait{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:contain;
-  object-position:center center;
-  z-index:2;
+  object-position:center bottom;
   filter:
-    drop-shadow(0 30px 60px rgba(0,0,0,.6))
-    drop-shadow(0 0 40px rgba(var(--ac-rgb),.14));
+    drop-shadow(0 36px 70px rgba(0,0,0,.75))
+    drop-shadow(0 0 60px rgba(var(--ac-rgb),.10));
 }
+/* soft grounding pool beneath the silhouette so it sits in the field */
+.portrait-stage::after{
+  content:'';
+  position:absolute;left:50%;bottom:-2%;
+  width:88%;height:30%;
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 80%,
+    rgba(5,6,8,.7) 0%,
+    rgba(5,6,8,.28) 45%,
+    transparent 80%);
+  z-index:1;pointer-events:none;
+  filter:blur(6px);
+}
+
+/* scroll cue at bottom of hero — small architectural mark */
+.scroll-cue{
+  position:absolute;
+  left:50%;bottom:2.4rem;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  z-index:4;
+  opacity:0;animation:cue-in 1.4s cubic-bezier(.16,1,.3,1) 2.6s forwards;
+  pointer-events:none;
+}
+@keyframes cue-in{to{opacity:1;}}
+.scroll-cue .lbl{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.55rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--stone-3);
+}
+.scroll-cue .line{
+  width:1px;height:48px;
+  background:linear-gradient(180deg,var(--stone-4),transparent);
+  position:relative;overflow:hidden;
+}
+.scroll-cue .line::after{
+  content:'';position:absolute;left:0;top:-30%;
+  width:100%;height:30%;
+  background:linear-gradient(180deg,transparent,var(--ac));
+  animation:cue-run 2.6s cubic-bezier(.4,0,.2,1) infinite;
+}
+@keyframes cue-run{0%{top:-30%;}100%{top:130%;}}
+
+/* horizon reprise — quiet cosmic band between sections */
+.horizon{
+  position:relative;
+  height:240px;
+  overflow:hidden;
+  margin:0 auto;
+  max-width:1640px;
+}
+.horizon img{
+  position:absolute;inset:-20% 0;
+  width:100%;height:140%;
+  object-fit:cover;
+  object-position:center 38%;
+  filter:saturate(.95) brightness(.85);
+  transform-origin:50% 50%;
+  animation:atm-drift 60s ease-in-out infinite alternate;
+}
+.horizon::after{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,
+      #050608 0%,
+      rgba(5,6,8,.55) 18%,
+      rgba(5,6,8,.20) 50%,
+      rgba(5,6,8,.55) 82%,
+      #050608 100%);
+}
+.horizon .horizon-mark{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--stone-2);
+  z-index:2;
+  text-align:center;
+  line-height:1.9;
+}
+.horizon .horizon-mark .ac{color:var(--ac);}
 
 /* hero side meta */
 .hero .side-meta{
@@ -442,9 +560,6 @@ body{
 </head>
 <body>
 
-<!-- full-bleed founder backdrop, fixed to viewport — page content scrolls over it -->
-<div class="page-bg" aria-hidden="true"></div>
-
 <img src="/grain.svg" id="grain" alt="" aria-hidden="true">
 
 <!-- vertical spine -->
@@ -454,6 +569,12 @@ body{
 
   <!-- ───────── HERO ───────── -->
   <section class="section hero" id="hero">
+
+    <!-- cinematic cosmic atmosphere, contained to hero, dissolves into onyx -->
+    <div class="hero-atm" aria-hidden="true">
+      <img src="/founder-bg.avif?v=2" alt="">
+    </div>
+
     <div class="col-text">
       <span class="idx" data-reveal>[ 04 ]</span>
       <span class="idx-sub" data-reveal data-d="1">founder.</span>
@@ -488,6 +609,12 @@ body{
       <div class="cap" data-reveal data-d="4"><span class="num">04</span><span class="label">creativity</span></div>
       <div class="cap" data-reveal data-d="5"><span class="num">05</span><span class="label">leadership</span></div>
       <div class="cap" data-reveal data-d="6"><span class="num">06</span><span class="label">execution</span></div>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="scroll-cue" aria-hidden="true">
+      <span class="lbl">scroll</span>
+      <span class="line"></span>
     </div>
   </section>
 
@@ -524,6 +651,14 @@ body{
       </div>
     </div>
   </section>
+
+  <!-- ───────── HORIZON REPRISE — quiet cosmic band ───────── -->
+  <div class="horizon" aria-hidden="false">
+    <img src="/founder-bg.avif?v=2" alt="">
+    <div class="horizon-mark">
+      [ <span class="ac">04</span> ] · the operating substrate
+    </div>
+  </div>
 
   <!-- ───────── SYSTEMS THINKING ───────── -->
   <section class="section section-systems">
