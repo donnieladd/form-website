@@ -170,96 +170,67 @@ body{
   max-width:680px;
   justify-self:end;
 }
-/* eclipse halo — anchored at upper-center where the head sits */
-.eclipse{
-  position:absolute;inset:0;
-  pointer-events:none;
-}
-.eclipse .ring{
+/* warp backdrop — the green ring + horizontal cyan/green ribbons,
+   sized so the ring sits exactly behind the head */
+.warp-stage{
   position:absolute;
-  top:6%;left:50%;transform:translateX(-50%);
-  width:72%;aspect-ratio:1/1;
-  border-radius:50%;
-  border:1.5px solid rgba(var(--ac-rgb),.65);
-  box-shadow:
-    inset 0 0 80px rgba(var(--ac-rgb),.18),
-    0 0 100px rgba(var(--ac-rgb),.30),
-    0 0 220px rgba(var(--ac-rgb),.18);
-  animation:eclipse-spin 90s linear infinite;
-}
-.eclipse .ring::before{
-  /* bright spotlight at top of ring — the green sun */
-  content:'';
-  position:absolute;top:-14px;left:50%;
-  width:24px;height:24px;border-radius:50%;
-  background:rgba(var(--ac-rgb),1);
-  box-shadow:
-    0 0 30px rgba(var(--ac-rgb),1),
-    0 0 80px rgba(var(--ac-rgb),.85),
-    0 0 180px rgba(var(--ac-rgb),.55),
-    0 0 320px rgba(var(--ac-rgb),.30);
+  top:5%;left:50%;
   transform:translateX(-50%);
-}
-.eclipse .glow{
-  position:absolute;top:-4%;left:50%;
-  width:88%;aspect-ratio:1/1;
-  transform:translate(-50%,0);
-  background:radial-gradient(closest-side,
-    rgba(var(--ac-rgb),.55) 0%,
-    rgba(var(--ac-rgb),.28) 22%,
-    rgba(var(--ac-rgb),.10) 45%,
-    rgba(var(--ac-rgb),.02) 65%,
-    transparent 80%);
-  filter:blur(14px);
+  width:170%;
+  height:58%;
   pointer-events:none;
+  z-index:1;
+  /* feather rectangular edges so the screen-blend doesn't show a hard frame */
+  -webkit-mask-image:radial-gradient(ellipse 55% 70% at 50% 50%, #000 30%, rgba(0,0,0,.85) 50%, rgba(0,0,0,.4) 72%, transparent 92%);
+          mask-image:radial-gradient(ellipse 55% 70% at 50% 50%, #000 30%, rgba(0,0,0,.85) 50%, rgba(0,0,0,.4) 72%, transparent 92%);
 }
-.eclipse .ring-2{
-  position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:90%;aspect-ratio:1/1;
-  border-radius:50%;
-  border:1px solid rgba(var(--ac-rgb),.16);
-  animation:eclipse-spin-rev 160s linear infinite;
+.warp-stage img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  mix-blend-mode:screen;
+  opacity:1;
 }
-@keyframes eclipse-spin     { from{transform:translateX(-50%) rotate(0deg);} to{transform:translateX(-50%) rotate(360deg);} }
-@keyframes eclipse-spin-rev { from{transform:translateX(-50%) rotate(0deg);} to{transform:translateX(-50%) rotate(-360deg);} }
-.eclipse .ring-2::after{
-  content:'';position:absolute;top:50%;right:-3px;
-  width:6px;height:6px;border-radius:50%;background:rgba(var(--ac-rgb),.8);
-  box-shadow:0 0 14px rgba(var(--ac-rgb),.7);
-  transform:translateY(-50%);
-}
-@media (prefers-reduced-motion: reduce){
-  .eclipse .ring,.eclipse .ring-2{animation:none;}
+.warp-stage::after{
+  /* extra signal-green core glow aligned with the ring */
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,
+    rgba(var(--ac-rgb),.22) 0%,
+    rgba(var(--ac-rgb),.10) 14%,
+    transparent 32%);
+  filter:blur(24px);
+  pointer-events:none;
 }
 
-/* under-portrait darkening to ground silhouette and mask cutout edge artifacts */
+/* under-portrait darkening to ground silhouette in front of the warp */
 .portrait-stage::after{
   content:'';
   position:absolute;
   bottom:0;left:50%;
-  width:90%;height:60%;
+  width:90%;height:55%;
   transform:translateX(-50%);
-  background:radial-gradient(ellipse at 50% 70%,
-    rgba(5,6,8,.78) 0%,
-    rgba(5,6,8,.45) 35%,
-    rgba(5,6,8,.12) 60%,
-    transparent 80%);
-  z-index:1;
+  background:radial-gradient(ellipse at 50% 80%,
+    rgba(5,6,8,.85) 0%,
+    rgba(5,6,8,.55) 35%,
+    rgba(5,6,8,.18) 60%,
+    transparent 82%);
+  z-index:2;
   pointer-events:none;
 }
 
-/* portrait sits on top of eclipse */
+/* portrait sits on top of the warp + grounding shadow */
 .portrait-stage img.portrait{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:contain;
-  object-position:center bottom;
-  z-index:2;
+  object-position:center center;
+  z-index:3;
   filter:
-    drop-shadow(0 30px 60px rgba(0,0,0,.65))
-    drop-shadow(0 -8px 30px rgba(0,0,0,.5))
-    drop-shadow(0 0 50px rgba(var(--ac-rgb),.14));
+    drop-shadow(0 30px 60px rgba(0,0,0,.7))
+    drop-shadow(0 -4px 18px rgba(0,0,0,.4))
+    drop-shadow(0 0 50px rgba(var(--ac-rgb),.20));
 }
 
 /* hero side meta */
@@ -549,12 +520,10 @@ body{
     </div>
 
     <div class="portrait-stage" data-reveal data-d="2" aria-hidden="false">
-      <div class="eclipse" aria-hidden="true">
-        <div class="ring-2"></div>
-        <div class="ring"></div>
-        <div class="glow"></div>
+      <div class="warp-stage" aria-hidden="true">
+        <img src="/founder-warp.avif" alt="">
       </div>
-      <img class="portrait" src="/founder-1-cutout.png" alt="dontae ladson, founder of form.">
+      <img class="portrait" src="/founder-5-cutout.png" alt="dontae ladson, founder of form.">
     </div>
 
     <div class="side-meta" aria-hidden="true">
