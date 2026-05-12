@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/field.css?v=3">
 <link rel="stylesheet" href="/nav-footer.css?v=13">
 <link rel="stylesheet" href="/rev.css?v=3">
 
@@ -37,6 +36,15 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow:hidden;
+}
+
+/* full-bleed reference image fixed to viewport — content scrolls over it */
+.page-bg{
+  position:fixed;inset:0;
+  width:100%;height:100%;
+  background:#050608 url('/founder-bg.avif') center center / cover no-repeat;
+  z-index:0;
+  pointer-events:none;
 }
 
 /* grain */
@@ -170,67 +178,16 @@ body{
   max-width:680px;
   justify-self:end;
 }
-/* warp backdrop — the green ring + horizontal cyan/green ribbons,
-   sized so the ring sits exactly behind the head */
-.warp-stage{
-  position:absolute;
-  top:5%;left:50%;
-  transform:translateX(-50%);
-  width:170%;
-  height:58%;
-  pointer-events:none;
-  z-index:1;
-  /* feather rectangular edges so the screen-blend doesn't show a hard frame */
-  -webkit-mask-image:radial-gradient(ellipse 55% 70% at 50% 50%, #000 30%, rgba(0,0,0,.85) 50%, rgba(0,0,0,.4) 72%, transparent 92%);
-          mask-image:radial-gradient(ellipse 55% 70% at 50% 50%, #000 30%, rgba(0,0,0,.85) 50%, rgba(0,0,0,.4) 72%, transparent 92%);
-}
-.warp-stage img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;
-  object-position:center;
-  mix-blend-mode:screen;
-  opacity:1;
-}
-.warp-stage::after{
-  /* extra signal-green core glow aligned with the ring */
-  content:'';
-  position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 50%,
-    rgba(var(--ac-rgb),.22) 0%,
-    rgba(var(--ac-rgb),.10) 14%,
-    transparent 32%);
-  filter:blur(24px);
-  pointer-events:none;
-}
-
-/* under-portrait darkening to ground silhouette in front of the warp */
-.portrait-stage::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:50%;
-  width:90%;height:55%;
-  transform:translateX(-50%);
-  background:radial-gradient(ellipse at 50% 80%,
-    rgba(5,6,8,.85) 0%,
-    rgba(5,6,8,.55) 35%,
-    rgba(5,6,8,.18) 60%,
-    transparent 82%);
-  z-index:2;
-  pointer-events:none;
-}
-
-/* portrait sits on top of the warp + grounding shadow */
+/* portrait sits naturally over the page-bg */
 .portrait-stage img.portrait{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:contain;
   object-position:center center;
-  z-index:3;
+  z-index:2;
   filter:
-    drop-shadow(0 30px 60px rgba(0,0,0,.7))
-    drop-shadow(0 -4px 18px rgba(0,0,0,.4))
-    drop-shadow(0 0 50px rgba(var(--ac-rgb),.20));
+    drop-shadow(0 30px 60px rgba(0,0,0,.6))
+    drop-shadow(0 0 40px rgba(var(--ac-rgb),.14));
 }
 
 /* hero side meta */
@@ -483,14 +440,10 @@ body{
 }
 </style>
 </head>
-<body data-field-density="intimate">
+<body>
 
-<!-- field engine -->
-<div class="env-field" aria-hidden="true">
-  <div class="env-field-bg"></div>
-  <canvas class="env-field-canvas"></canvas>
-  <div class="env-field-veil"></div>
-</div>
+<!-- full-bleed reference backdrop, fixed to viewport — page content scrolls over it -->
+<div class="page-bg" aria-hidden="true"></div>
 
 <img src="/grain.svg" id="grain" alt="" aria-hidden="true">
 
@@ -520,9 +473,6 @@ body{
     </div>
 
     <div class="portrait-stage" data-reveal data-d="2" aria-hidden="false">
-      <div class="warp-stage" aria-hidden="true">
-        <img src="/founder-warp.avif" alt="">
-      </div>
       <img class="portrait" src="/founder-5-cutout.png" alt="dontae ladson, founder of form.">
     </div>
 
@@ -657,7 +607,6 @@ body{
 
 <div id="rev-root"></div>
 
-<script src="/field.js?v=3" defer></script>
 <script src="/rev.js?v=3" defer></script>
 <script src="/nav-footer.js?v=18" defer></script>
 
