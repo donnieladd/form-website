@@ -1,745 +1,871 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM. — Vision</title>
-<meta name="description" content="The future needs form. FORM. exists to create systems that preserve humanity inside intelligence — operational philosophy and ecosystem doctrine.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
-<script src="/performance-tier.js"></script>
-<script src="/performance-config.js"></script>
-<script src="/perf-observer.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vision — form.</title>
+<meta name="description" content="form. vision — operational philosophy and ecosystem doctrine. the future needs form.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/tokens/colors.css">
-<link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
+
+<link rel="stylesheet" href="/field.css?v=3">
+<link rel="stylesheet" href="/nav-footer.css?v=11">
+<link rel="stylesheet" href="/rev.css?v=3">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-html.cursor-ready{cursor:none;}
-html.cursor-ready a,html.cursor-ready button,html.cursor-ready .eco-cell{cursor:none;}
-body{background:#050608;color:var(--stone);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-family:'Satoshi',sans-serif;font-weight:300;}
-
+/* ── per-page environment tuning ──
+   vision uses its own atmospheric still, slightly deeper than home */
 :root{
-  --ac:#39FF14;--ac-rgb:57,255,20;
-  --ib:#2962FF;--ib-rgb:41,98,255;
-  --cv:#8B5CF6;--cv-rgb:139,92,246;
-  --rose:#9B4DFF;--rose-rgb:155,77,255;
-  --amber:#FF8A00;--amber-rgb:255,138,0;
-  --stone:#F2F2F0;--stone-rgb:242,242,240;
-  --onyx:#050608;
-  --nav-h:58px;
-  --bezier:cubic-bezier(.16,1,.3,1);
+  --field-bg: url('/vision-bg.avif');
+  --stone: #f2f2f0;
+  --stone-2: rgba(242,242,240,.72);
+  --stone-3: rgba(242,242,240,.5);
+  --stone-4: rgba(242,242,240,.32);
+  --rule:   rgba(242,242,240,.12);
+  --rule-2: rgba(242,242,240,.06);
+  --ac:     #39ff14;
+  --onyx:   #050608;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:'Satoshi','Inter',system-ui,sans-serif;
+  font-weight:400;
+  background:var(--onyx);
+  color:var(--stone);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
 }
 
-/* ══════════════════════════════════
-   SYSTEM LAYERS
-══════════════════════════════════ */
-#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 2.4s var(--bezier) forwards;}
-@keyframes veil-open{0%,28%{opacity:1}100%{opacity:0}}
-
-#cdot{position:fixed;z-index:9000;width:4px;height:4px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(var(--ac-rgb),.6),0 0 14px rgba(var(--ac-rgb),.18);opacity:.8;}
-#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.22);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .85s var(--bezier),height .85s var(--bezier),border-color .55s,box-shadow .35s;}
-body.hl  #cring{width:30px;height:30px;border-color:rgba(var(--ac-rgb),.42);}
-body.hcta #cring{width:42px;height:42px;border-color:rgba(var(--ac-rgb),.6);box-shadow:0 0 14px rgba(var(--ac-rgb),.14);}
-
-#grain{position:fixed;inset:0;z-index:3;opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
-
-/* atmospheric field — three-layer diffusion */
-#atm{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 60% 45% at 22% 28%,rgba(var(--ib-rgb),.06) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 60% at 82% 72%,rgba(var(--cv-rgb),.045) 0%,transparent 60%),
-    radial-gradient(ellipse 80% 50% at 50% 50%,rgba(var(--ac-rgb),.012) 0%,transparent 70%),
-    #050608;
-  animation:atm-breathe 28s ease-in-out infinite;
+/* ── grain ── */
+#grain{
+  position:fixed;inset:0;width:100%;height:100%;
+  opacity:.07;mix-blend-mode:overlay;pointer-events:none;
+  z-index:5;
 }
-@keyframes atm-breathe{0%,100%{opacity:1;filter:saturate(1)}50%{opacity:.92;filter:saturate(1.1)}}
 
-/* drifting signal particles — minimal, slow, almost imperceptible */
-.drift{position:fixed;width:2px;height:2px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px rgba(var(--ac-rgb),.55);pointer-events:none;z-index:2;opacity:0;}
-.drift.d1{top:18%;left:14%;animation:drift1 42s linear infinite,fadein 4s ease forwards 3s;}
-.drift.d2{top:62%;left:78%;background:rgba(var(--ib-rgb),.9);box-shadow:0 0 6px rgba(var(--ib-rgb),.5);animation:drift2 56s linear infinite,fadein 4s ease forwards 4s;}
-.drift.d3{top:34%;left:88%;background:rgba(var(--cv-rgb),.9);box-shadow:0 0 6px rgba(var(--cv-rgb),.5);animation:drift3 64s linear infinite,fadein 4s ease forwards 5s;}
-.drift.d4{top:78%;left:24%;animation:drift4 50s linear infinite,fadein 4s ease forwards 6s;}
-@keyframes drift1{0%{transform:translate(0,0)}50%{transform:translate(160px,-110px)}100%{transform:translate(0,0)}}
-@keyframes drift2{0%{transform:translate(0,0)}50%{transform:translate(-180px,90px)}100%{transform:translate(0,0)}}
-@keyframes drift3{0%{transform:translate(0,0)}50%{transform:translate(-90px,140px)}100%{transform:translate(0,0)}}
-@keyframes drift4{0%{transform:translate(0,0)}50%{transform:translate(120px,-80px)}100%{transform:translate(0,0)}}
-@keyframes fadein{from{opacity:0}to{opacity:.55}}
-
-/* slow scan — system layer, very subtle */
-.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.018),transparent);animation:scan-run 64s linear infinite 6s;}
-@keyframes scan-run{from{top:-1px}to{top:100vh}}
-
-/* ══════════════════════════════════
-   TYPOGRAPHY SYSTEM
-══════════════════════════════════ */
-.canela{font-family:'Cormorant Garamond','Georgia',serif;font-style:italic;font-weight:300;letter-spacing:.005em;}
-
-/* metadata labels — uppercase mono */
-.meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);font-weight:400;}
-.meta .idx{color:rgba(var(--ac-rgb),.6);margin-right:.4em;}
-.meta-sub{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--stone-rgb),.22);font-weight:400;margin-top:.7rem;}
-
-/* main display — Satoshi Light, lowercase */
-.display{font-family:'Satoshi',sans-serif;font-weight:300;color:var(--stone);letter-spacing:-.018em;line-height:1.04;}
-
-/* body — restrained, generous */
-.bdy{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.02rem;line-height:1.85;color:rgba(var(--stone-rgb),.62);letter-spacing:.005em;}
-.bdy + .bdy{margin-top:1.6rem;}
-.bdy.muted{color:rgba(var(--stone-rgb),.45);}
-
-/* subtle inline link */
-.t-link{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--stone-rgb),.78);text-decoration:none;display:inline-flex;align-items:center;gap:.85rem;transition:color .5s,letter-spacing .5s;}
-.t-link::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.5);}
-.t-link:hover{color:var(--ac);letter-spacing:.28em;}
-
-/* fade systems */
-@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes fadein-slow{from{opacity:0}to{opacity:1}}
-.r{opacity:0;}
-.r.in{animation:fadeup 1.4s var(--bezier) forwards;}
-
-/* ══════════════════════════════════
-   MAIN
-══════════════════════════════════ */
-#main{position:relative;z-index:10;margin-top:var(--nav-h);}
-
-/* generic section frame */
-.sec{position:relative;padding:14rem 8vw;max-width:none;}
-.sec-narrow{max-width:1320px;margin:0 auto;}
-
-/* scroll-margin so anchor jumps land at meta label, not in empty padding */
-#s-vision,#s-frag,#s-phil,#s-conv,#s-eco,#s-form,#s-signal{scroll-margin-top:0;}
-#s-frag,#s-phil,#s-conv,#s-form,#s-signal{scroll-margin-top:8rem;}
-
-/* ══════════════════════════════════
-   01 — VISION (HERO)
-══════════════════════════════════ */
-#s-vision{min-height:130vh;display:flex;align-items:center;padding:12rem 8vw 10rem 8vw;position:relative;}
-#s-vision::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(var(--stone-rgb),.05) 50%,transparent 90%);}
-
-.v-stack{max-width:1320px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:0;}
-
-.v-meta{margin-bottom:5.5rem;}
-
-.v-headline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(3.6rem,8.5vw,9.2rem);line-height:.96;letter-spacing:-.025em;color:var(--stone);margin-bottom:4rem;max-width:1100px;}
-.v-headline .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);font-size:1.06em;letter-spacing:-.02em;}
-
-.v-copy{max-width:580px;}
-.v-copy .bdy{font-size:1.08rem;line-height:1.8;color:rgba(var(--stone-rgb),.72);}
-
-.v-enter{margin-top:6rem;}
-
-/* faint orbital topology behind hero typography */
-.topology{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1;opacity:.5;}
-.orb{position:absolute;border:1px solid rgba(var(--stone-rgb),.04);border-radius:50%;}
-.orb.o1{top:-20%;left:55%;width:880px;height:880px;animation:orbit-rot 180s linear infinite;}
-.orb.o2{top:18%;left:62%;width:520px;height:520px;border-color:rgba(var(--ib-rgb),.06);animation:orbit-rot 240s linear infinite reverse;}
-.orb.o3{top:-5%;left:48%;width:1240px;height:1240px;border-color:rgba(var(--cv-rgb),.04);animation:orbit-rot 320s linear infinite;}
-@keyframes orbit-rot{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-.topo-node{position:absolute;width:4px;height:4px;background:rgba(var(--ac-rgb),.55);border-radius:50%;box-shadow:0 0 6px rgba(var(--ac-rgb),.4);}
-.topo-node.tn1{top:24%;right:18%;}
-.topo-node.tn2{top:62%;right:8%;}
-.topo-node.tn3{top:14%;right:32%;background:rgba(var(--ib-rgb),.6);box-shadow:0 0 6px rgba(var(--ib-rgb),.4);}
-.topo-node.tn4{top:48%;right:42%;background:rgba(var(--cv-rgb),.6);box-shadow:0 0 6px rgba(var(--cv-rgb),.4);}
-
-/* ══════════════════════════════════
-   02 — FRAGMENTATION
-══════════════════════════════════ */
-#s-frag{padding:14rem 8vw;position:relative;}
-#s-frag::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(var(--stone-rgb),.04) 50%,transparent 90%);}
-
-.frag-grid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:60% 40%;gap:6rem;align-items:start;}
-
-.frag-left .meta{margin-bottom:4.5rem;}
-.frag-statement{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.4rem,5.2vw,5.4rem);line-height:1.04;letter-spacing:-.02em;color:rgba(var(--stone-rgb),.94);max-width:720px;}
-.frag-statement em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(var(--stone-rgb),.96);font-size:1.04em;}
-.frag-statement .pause{display:block;margin-top:1.4em;color:rgba(var(--stone-rgb),.6);}
-
-.frag-right{padding-top:3rem;}
-.frag-right .meta-sub{margin-top:0;margin-bottom:2.5rem;color:rgba(var(--stone-rgb),.32);}
-.frag-line{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.96rem;line-height:1.8;color:rgba(var(--stone-rgb),.55);padding:1.4rem 0;border-top:1px solid rgba(var(--stone-rgb),.05);}
-.frag-line:last-child{border-bottom:1px solid rgba(var(--stone-rgb),.05);}
-.frag-line .pre{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--ac-rgb),.45);margin-right:1.1rem;}
-
-/* broken topology in bg */
-.frag-topo{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1;opacity:.4;}
-.frag-line-bg{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--stone-rgb),.06),transparent);}
-.frag-line-bg.fb1{top:32%;left:10%;width:18%;}
-.frag-line-bg.fb2{top:58%;left:52%;width:22%;transform:rotate(-2deg);}
-.frag-line-bg.fb3{top:78%;left:18%;width:14%;}
-
-/* ══════════════════════════════════
-   03 — PHILOSOPHY
-══════════════════════════════════ */
-#s-phil{padding:18rem 8vw;position:relative;background:radial-gradient(ellipse 70% 90% at 50% 50%,rgba(var(--ac-rgb),.022) 0%,transparent 60%),transparent;}
-#s-phil::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(var(--stone-rgb),.04) 50%,transparent 90%);}
-
-.phil-stack{max-width:1320px;margin:0 auto;}
-.phil-meta{margin-bottom:6rem;}
-
-.phil-statement{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.6rem,5.6vw,5.8rem);line-height:1.04;letter-spacing:-.02em;color:var(--stone);max-width:1080px;margin-bottom:8rem;}
-.phil-statement .canela{font-weight:400;color:var(--ac);font-size:1.06em;}
-
-.phil-beliefs{display:flex;flex-direction:column;gap:2.4rem;max-width:780px;}
-.belief{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.08rem;line-height:1.75;color:rgba(var(--stone-rgb),.7);letter-spacing:.005em;display:flex;align-items:baseline;gap:1.6rem;padding-bottom:2.4rem;border-bottom:1px solid rgba(var(--stone-rgb),.045);}
-.belief:last-child{border-bottom:none;}
-.belief .bn{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.24em;color:rgba(var(--ac-rgb),.55);flex-shrink:0;width:2.2rem;}
-
-/* faint human silhouette atmosphere */
-.silhouette{position:absolute;top:50%;right:8%;transform:translateY(-50%);width:340px;height:520px;pointer-events:none;opacity:.06;background:radial-gradient(ellipse 50% 60% at 50% 30%,rgba(var(--stone-rgb),.6) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 50% 70%,rgba(var(--stone-rgb),.4) 0%,transparent 70%);filter:blur(20px);}
-
-/* ══════════════════════════════════
-   04 — CONVERGENCE
-══════════════════════════════════ */
-#s-conv{padding:14rem 8vw;position:relative;}
-#s-conv::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(var(--stone-rgb),.04) 50%,transparent 90%);}
-
-.conv-stack{max-width:1320px;margin:0 auto;}
-.conv-meta{margin-bottom:5rem;}
-.conv-title{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.6rem,5.6vw,5.6rem);line-height:1.04;letter-spacing:-.02em;color:var(--stone);margin-bottom:3.5rem;}
-.conv-title .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);font-size:1.05em;}
-
-.conv-grid-intro{display:grid;grid-template-columns:38% 62%;gap:4rem;margin-bottom:7rem;align-items:start;}
-.conv-list{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1rem;line-height:1.85;color:rgba(var(--stone-rgb),.5);}
-.conv-list .ckw{color:rgba(var(--stone-rgb),.78);}
-
-/* ecosystem grid — 10 blocks */
-.eco-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(var(--stone-rgb),.04);border:1px solid rgba(var(--stone-rgb),.04);position:relative;}
-.eco-cell{background:#070809;padding:3rem 1.8rem;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;transition:background .8s ease,transform .8s ease;position:relative;overflow:hidden;}
-.eco-cell::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(var(--ac-rgb),.07) 0%,transparent 70%);opacity:0;transition:opacity .7s ease;}
-.eco-cell:hover{background:#0a0c0f;}
-.eco-cell:hover::before{opacity:1;}
-.eco-num{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.24em;color:rgba(var(--ac-rgb),.4);position:absolute;top:1.4rem;left:1.8rem;}
-.eco-name{font-family:'Satoshi',sans-serif;font-weight:400;font-size:1.18rem;letter-spacing:-.005em;color:var(--stone);position:relative;z-index:2;}
-.eco-cell .eco-dot{position:absolute;top:1.5rem;right:1.6rem;width:5px;height:5px;border-radius:50%;background:rgba(var(--stone-rgb),.15);transition:background .6s,box-shadow .6s;}
-.eco-cell:hover .eco-dot{background:var(--ac);box-shadow:0 0 8px var(--ac),0 0 18px rgba(var(--ac-rgb),.5);}
-
-/* ══════════════════════════════════
-   05 — ECOSYSTEM PANELS
-══════════════════════════════════ */
-#s-eco{position:relative;}
-
-.eco-intro{padding:12rem 8vw 8rem 8vw;max-width:1320px;margin:0 auto;}
-.eco-intro .meta{margin-bottom:4rem;}
-.eco-intro h2{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.2rem,4.4vw,4.4rem);line-height:1.05;letter-spacing:-.02em;color:var(--stone);max-width:1000px;}
-
-/* immersive panels */
-.panel{position:relative;min-height:82vh;display:flex;align-items:center;padding:8rem 8vw;overflow:hidden;border-top:1px solid rgba(var(--stone-rgb),.05);}
-.panel-inner{max-width:1320px;width:100%;margin:0 auto;display:grid;grid-template-columns:42% 58%;gap:6rem;align-items:center;position:relative;z-index:2;}
-
-.panel-meta{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--stone-rgb),.45);margin-bottom:2.6rem;}
-.panel-meta .pidx{margin-right:.6em;}
-
-.panel-title{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.6rem,5.4vw,5.4rem);line-height:1;letter-spacing:-.02em;color:var(--stone);margin-bottom:0;}
-.panel-body{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.06rem;line-height:1.8;color:rgba(var(--stone-rgb),.6);max-width:540px;}
-
-/* atmosphere per panel */
-.panel-atm{position:absolute;inset:0;pointer-events:none;z-index:1;}
-.panel.business .panel-atm{background:radial-gradient(ellipse 65% 80% at 78% 50%,rgba(var(--ib-rgb),.13) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 18% 70%,rgba(var(--ib-rgb),.04) 0%,transparent 60%);}
-.panel.business .panel-meta .pidx{color:rgba(var(--ib-rgb),.85);}
-.panel.business .panel-glyph{color:rgba(var(--ib-rgb),.75);}
-
-.panel.intelligence .panel-atm{background:radial-gradient(ellipse 65% 80% at 22% 50%,rgba(var(--cv-rgb),.13) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 80% 70%,rgba(var(--cv-rgb),.04) 0%,transparent 60%);}
-.panel.intelligence .panel-meta .pidx{color:rgba(var(--cv-rgb),.85);}
-.panel.intelligence .panel-glyph{color:rgba(var(--cv-rgb),.75);}
-
-.panel.creative .panel-atm{background:radial-gradient(ellipse 65% 80% at 78% 50%,rgba(var(--rose-rgb),.11) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 28% 30%,rgba(var(--amber-rgb),.05) 0%,transparent 60%);}
-.panel.creative .panel-meta .pidx{color:rgba(var(--rose-rgb),.85);}
-.panel.creative .panel-glyph{color:rgba(var(--rose-rgb),.75);}
-
-.panel.ministry .panel-atm{background:radial-gradient(ellipse 65% 80% at 22% 50%,rgba(var(--stone-rgb),.06) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 78% 30%,rgba(var(--ac-rgb),.05) 0%,transparent 60%);}
-.panel.ministry .panel-meta .pidx{color:rgba(var(--ac-rgb),.85);}
-.panel.ministry .panel-glyph{color:rgba(var(--ac-rgb),.75);}
-
-/* ── nine-entity architectural grid (replaces 4 atmospheric panels) ── */
-.eco-nine-wrap{padding:4rem 8vw 12rem;max-width:1480px;margin:0 auto;}
-.eco-nine{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid rgba(var(--stone-rgb),.08);
-  border-left:1px solid rgba(var(--stone-rgb),.08);
+/* ── scrollable main; field stays pinned ── */
+#main{
+  position:relative;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  z-index:10;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(242,242,240,.14) transparent;
 }
-.eco9{
-  position:relative;display:flex;flex-direction:column;
-  padding:3.6rem 2.6rem 3.4rem;min-height:280px;
-  border-right:1px solid rgba(var(--stone-rgb),.08);
-  border-bottom:1px solid rgba(var(--stone-rgb),.08);
-  text-decoration:none;color:inherit;
-  transition:background .7s ease;
+#main::-webkit-scrollbar{width:6px;}
+#main::-webkit-scrollbar-track{background:transparent;}
+#main::-webkit-scrollbar-thumb{background:rgba(242,242,240,.10);border-radius:3px;}
+#main::-webkit-scrollbar-thumb:hover{background:rgba(242,242,240,.22);}
+
+/* ── shared chapter scaffold ── */
+.chapter{
+  position:relative;
+  padding:14rem clamp(2rem, 6vw, 7rem) 14rem;
+  max-width:1640px;
+  margin:0 auto;
 }
-.eco9::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(var(--ac-rgb),.05) 0%,transparent 70%);
-  opacity:0;transition:opacity .7s ease;pointer-events:none;
-}
-.eco9:hover{background:rgba(var(--stone-rgb),.012);}
-.eco9:hover::before{opacity:1;}
-.eco9-num{
+.chapter:first-of-type{padding-top:8rem;}
+.chapter + .chapter{padding-top:10rem;}
+
+/* mono micro-index — chapter mark */
+.idx{
+  display:inline-block;
   font-family:'IBM Plex Mono',monospace;
-  font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;
-  color:rgba(var(--ac-rgb),.55);margin-bottom:2.2rem;
+  font-weight:400;
+  font-size:.7rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--ac);
 }
-.eco9-name{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:1.7rem;line-height:1.05;letter-spacing:-.012em;
-  color:var(--stone);margin-bottom:1.4rem;
-}
-.eco9-name .canela{font-weight:400;font-size:1.04em;color:rgba(var(--stone-rgb),.96);}
-.eco9-fn{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:.92rem;line-height:1.7;color:rgba(var(--stone-rgb),.55);
-  margin-top:auto;max-width:32ch;
-}
-.eco9-mark{
-  position:absolute;top:1.6rem;right:1.6rem;
-  width:5px;height:5px;border-radius:50%;
-  background:rgba(var(--stone-rgb),.18);
-  transition:background .5s,box-shadow .5s;
-}
-.eco9:hover .eco9-mark{background:var(--ac);box-shadow:0 0 8px var(--ac),0 0 18px rgba(var(--ac-rgb),.45);}
-
-@media (max-width:980px){
-  .eco-nine{grid-template-columns:repeat(2,1fr);}
-  .eco9{padding:2.6rem 1.8rem 2.4rem;min-height:220px;}
-  .eco9-name{font-size:1.5rem;}
-}
-@media (max-width:600px){
-  .eco-nine{grid-template-columns:1fr;}
-  .eco-nine-wrap{padding:3rem 6vw 8rem;}
+.idx-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.62rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--stone-3);
 }
 
-/* legacy panel system retained for any other page that may still use it */
-.panel-right{position:relative;}
-.panel-glyph{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:280px;height:280px;border-radius:50%;border:1px solid currentColor;opacity:.18;pointer-events:none;}
-.panel-glyph::before{content:'';position:absolute;inset:18%;border:1px solid currentColor;border-radius:50%;opacity:.5;}
-.panel-glyph::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 14px currentColor;}
-
-.panel-body-wrap{position:relative;z-index:3;background:transparent;padding:0 0 0 0;}
-
-/* ══════════════════════════════════
-   06 — FORMATION
-══════════════════════════════════ */
-#s-form{padding:16rem 8vw;position:relative;background:radial-gradient(ellipse 70% 90% at 50% 60%,rgba(var(--amber-rgb),.025) 0%,transparent 65%),transparent;border-top:1px solid rgba(var(--stone-rgb),.05);}
-#s-form::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent 10%,rgba(var(--stone-rgb),.04) 50%,transparent 90%);}
-
-.form-stack{max-width:1320px;margin:0 auto;}
-.form-meta{margin-bottom:5rem;}
-
-.form-title{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.6rem,5.4vw,5.4rem);line-height:1.06;letter-spacing:-.02em;color:var(--stone);max-width:1000px;margin-bottom:5.5rem;}
-.form-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(var(--stone-rgb),.96);font-size:1.04em;}
-
-.form-copy-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1080px;}
-.form-copy-grid .bdy{font-size:1.04rem;line-height:1.85;color:rgba(var(--stone-rgb),.62);}
-
-.form-list{margin-top:2rem;}
-.form-list-item{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.04rem;line-height:1.8;color:rgba(var(--stone-rgb),.7);padding:1.1rem 0;border-bottom:1px solid rgba(var(--stone-rgb),.05);}
-.form-list-item:first-child{border-top:1px solid rgba(var(--stone-rgb),.05);}
-
-.form-close{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.4vw,2.2rem);line-height:1.4;color:rgba(var(--stone-rgb),.86);margin-top:5rem;max-width:780px;}
-
-/* ══════════════════════════════════
-   07 — SIGNAL (CLOSING)
-══════════════════════════════════ */
-#s-signal{min-height:120vh;display:flex;align-items:center;padding:14rem 8vw;position:relative;background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(var(--ac-rgb),.025) 0%,transparent 60%),transparent;overflow:hidden;}
-
-.signal-stack{max-width:1320px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:0;}
-
-.signal-meta{margin-bottom:7rem;}
-
-.signal-headline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(3rem,7vw,7.6rem);line-height:1;letter-spacing:-.025em;color:var(--stone);max-width:1100px;margin-bottom:5rem;}
-.signal-headline .ln{display:block;}
-.signal-headline .ln + .ln{margin-top:.18em;}
-.signal-headline .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);font-size:1.06em;}
-
-.signal-sub{margin-top:5rem;margin-bottom:6rem;}
-
-.signal-enter{}
-
-/* signal panel atmospheric particles */
-.sig-particle{position:absolute;width:1px;height:1px;background:rgba(var(--stone-rgb),.4);border-radius:50%;}
-.sp1{top:18%;left:14%;}
-.sp2{top:32%;left:78%;}
-.sp3{top:62%;left:88%;}
-.sp4{top:78%;left:22%;}
-.sp5{top:48%;left:48%;background:rgba(var(--ac-rgb),.6);box-shadow:0 0 4px rgba(var(--ac-rgb),.5);}
-
-/* ══════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════ */
-@media (max-width:1024px){
-  .sec,#s-vision,#s-frag,#s-phil,#s-conv,.eco-intro,.panel,#s-form,#s-signal{padding-left:6vw;padding-right:6vw;}
-  .frag-grid{grid-template-columns:1fr;gap:4rem;}
-  .frag-right{padding-top:0;}
-  .conv-grid-intro{grid-template-columns:1fr;gap:2.5rem;}
-  .eco-grid{grid-template-columns:repeat(2,1fr);}
-  .panel-inner{grid-template-columns:1fr;gap:3.5rem;}
-  .panel-glyph{width:200px;height:200px;}
-  .form-copy-grid{grid-template-columns:1fr;gap:2.5rem;}
+/* chapter title — lowercase satoshi w/ green dot */
+.ch-title{
+  display:inline-flex;
+  align-items:baseline;
+  gap:clamp(4px,.55vw,9px);
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(44px, 5.4vw, 84px);
+  letter-spacing:-.035em;
+  line-height:.95;
+  color:var(--stone);
+  margin-top:1.4rem;
 }
-@media (max-width:640px){
-  #s-vision,#s-frag,#s-phil,#s-conv,#s-form,#s-signal{padding-top:9rem;padding-bottom:9rem;}
-  .v-meta,.frag-left .meta,.phil-meta,.conv-meta,.form-meta,.signal-meta{margin-bottom:3rem;}
-  .v-headline,.signal-headline{font-size:clamp(2.4rem,11vw,3.6rem);}
-  .frag-statement,.phil-statement,.conv-title,.panel-title,.form-title{font-size:clamp(2rem,8vw,2.8rem);}
-  .eco-grid{grid-template-columns:1fr;}
-  .silhouette{display:none;}
+.ch-title .dot{
+  display:inline-block;
+  width:.13em;height:.13em;
+  background:var(--ac);
+  box-shadow:0 0 14px rgba(57,255,20,.55), 0 0 32px rgba(57,255,20,.22);
 }
 
-/* perf tier gates */
-[data-perf="minimal"] .drift,[data-perf="minimal"] .topology,[data-perf="minimal"] .silhouette{display:none;}
-[data-perf="minimal"] #atm{animation:none;}
-[data-perf="reduced"] .topology{opacity:.25;}
-[data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto!important;}
-[data-perf="minimal"] html.cursor-ready{cursor:auto!important;}
-[data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none;}
-@media (prefers-reduced-motion:reduce){
-  .r,.r.in{animation:none!important;opacity:1!important;transform:none!important;}
-  .drift,#atm,.scan,.orb{animation:none!important;}
+/* hairline rule — small green segment */
+.rule-mini{
+  width:64px;height:1px;background:var(--ac);
+  margin:2.6rem 0;opacity:.85;
+}
+
+/* body copy — restrained editorial */
+.body{
+  font-size:1.02rem;
+  line-height:1.78;
+  color:var(--stone-2);
+  font-weight:400;
+  max-width:42ch;
+}
+.body + .body{margin-top:1.4rem;}
+.body .ac{color:var(--ac);}
+
+/* italic editorial accent — used very sparingly */
+.it{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;}
+
+/* chapter wayfinding — quiet lowercase mono, NOT a CTA
+   doctrine reserves "● start the conversation" for true CTAs and
+   "ENTER FORM →" exclusively for the homepage hero. these are
+   in-page jumps and stay restrained. */
+.way{
+  display:inline-flex;align-items:center;gap:.85em;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;letter-spacing:.22em;text-transform:lowercase;
+  color:var(--stone-2);
+  text-decoration:none;
+  padding:.65rem 0;
+  border-bottom:1px solid rgba(242,242,240,.14);
+  transition:color .5s ease, border-color .5s ease, gap .5s ease;
+}
+.way::before{
+  content:"";display:inline-block;width:6px;height:6px;background:var(--ac);
+  box-shadow:0 0 10px rgba(57,255,20,.65);
+  flex:0 0 auto;
+}
+.way:hover{
+  color:var(--stone);
+  border-color:rgba(57,255,20,.55);
+  gap:1.05em;
+}
+.way .arrow{font-family:'IBM Plex Mono',monospace;color:var(--stone-3);}
+
+/* ── reveal system — slow, deliberate ── */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity 1.4s cubic-bezier(.16,1,.3,1), transform 1.4s cubic-bezier(.16,1,.3,1);
+}
+[data-reveal].in{opacity:1;transform:translateY(0);}
+[data-reveal][data-d="1"]{transition-delay:.12s;}
+[data-reveal][data-d="2"]{transition-delay:.24s;}
+[data-reveal][data-d="3"]{transition-delay:.36s;}
+[data-reveal][data-d="4"]{transition-delay:.48s;}
+[data-reveal][data-d="5"]{transition-delay:.60s;}
+[data-reveal][data-d="6"]{transition-delay:.72s;}
+
+/* ─────────────────────────────────────────
+   CHAPTER 01 — VISION  (hero / immersion)
+   left text column, environment dominates right
+   ───────────────────────────────────────── */
+.ch-vision{
+  min-height:calc(100vh - 64px);
+  padding-top:9rem;
+  padding-bottom:6rem;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:clamp(2rem,5vw,6rem);
+  align-items:center;
+}
+.ch-vision .col-text{max-width:560px;}
+.ch-vision .label-pair{display:flex;flex-direction:column;gap:.55rem;}
+.ch-vision .ch-title{margin-top:.4rem;font-size:clamp(48px,6vw,96px);}
+.ch-vision .lede{
+  margin-top:3.2rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(34px,3.6vw,58px);
+  letter-spacing:-.025em;
+  line-height:1.06;
+  color:var(--stone);
+}
+.ch-vision .lede .ln{display:block;}
+.ch-vision .sub-lede{
+  margin-top:1.6rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(18px,1.45vw,22px);
+  letter-spacing:-.012em;
+  line-height:1.4;
+  color:var(--stone-2);
+  max-width:38ch;
+}
+.ch-vision .body{margin-top:2rem;max-width:44ch;}
+.ch-vision .cta-mono{margin-top:3.2rem;}
+
+/* scroll mark — bottom-left of hero */
+.scroll-mark{
+  position:absolute;
+  left:clamp(2rem,4vw,4rem);
+  bottom:2.4rem;
+  display:flex;flex-direction:column;align-items:center;gap:.9rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--stone-3);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+}
+.scroll-mark .dot{
+  width:5px;height:5px;background:var(--ac);
+  box-shadow:0 0 10px rgba(57,255,20,.6);
+  writing-mode:horizontal-tb;transform:rotate(-180deg);
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 02 — FRAGMENTATION
+   small intro left, observation list right
+   ───────────────────────────────────────── */
+.ch-frag{
+  display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(3rem,7vw,8rem);
+  align-items:start;
+}
+.ch-frag .col-intro{position:sticky;top:8rem;}
+.ch-frag .lede-2{
+  margin-top:2.8rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,3vw,46px);
+  letter-spacing:-.022em;
+  line-height:1.18;
+  color:var(--stone);
+  max-width:18ch;
+}
+.ch-frag .lede-2 .ln{display:block;}
+.ch-frag .obs-head{
+  margin-bottom:2.4rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--stone-3);
+  display:flex;align-items:center;gap:1.1rem;
+}
+.ch-frag .obs-head::before{
+  content:"";flex:0 0 auto;width:18px;height:1px;background:var(--ac);
+}
+.ch-frag .obs-list{list-style:none;}
+.ch-frag .obs-row{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:1.6rem;
+  padding:1.4rem 0;
+  border-bottom:1px solid var(--rule-2);
+  align-items:baseline;
+}
+.ch-frag .obs-row:last-child{border-bottom:none;}
+.ch-frag .obs-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;letter-spacing:.28em;
+  color:var(--ac);
+  padding-top:.25rem;
+}
+.ch-frag .obs-text{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:clamp(18px,1.4vw,21px);
+  line-height:1.5;
+  color:var(--stone);
+  letter-spacing:-.005em;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 03 — PHILOSOPHY
+   single column, six tenets w/ italic numerals
+   ───────────────────────────────────────── */
+.ch-philo{max-width:1180px;}
+.ch-philo .head{max-width:760px;}
+.ch-philo .lede-3{
+  margin-top:2.8rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,2.6vw,40px);
+  letter-spacing:-.018em;
+  line-height:1.25;
+  color:var(--stone);
+  max-width:32ch;
+}
+.ch-philo .lede-3 .ac{color:var(--ac);}
+.ch-philo .tenets{
+  margin-top:6rem;
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:clamp(3rem,5vw,5.5rem) clamp(3rem,6vw,7rem);
+}
+.ch-philo .tenet{
+  display:grid;
+  grid-template-columns:64px 1fr;
+  gap:1.4rem;
+  align-items:start;
+}
+.ch-philo .tenet .num{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:2.4rem;
+  color:var(--ac);
+  line-height:1;
+  padding-top:.4rem;
+}
+.ch-philo .tenet .txt{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:clamp(17px,1.25vw,20px);
+  line-height:1.55;
+  color:var(--stone);
+  letter-spacing:-.003em;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 04 — CONVERGENCE
+   intro centered then 5x2 / 2x5 domain grid
+   ───────────────────────────────────────── */
+.ch-conv .head{max-width:760px;}
+.ch-conv .lede-4{
+  margin-top:2.4rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(36px,4vw,68px);
+  letter-spacing:-.028em;
+  line-height:1.05;
+  color:var(--stone);
+}
+.ch-conv .body-4{
+  margin-top:2.6rem;
+  font-size:1.02rem;
+  line-height:1.78;
+  color:var(--stone-2);
+  max-width:54ch;
+}
+.ch-conv .body-4 + .body-4{margin-top:1.2rem;}
+.ch-conv .domain-grid{
+  margin-top:6.5rem;
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0,1fr));
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+.ch-conv .domain{
+  padding:2.2rem 1.6rem;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:1rem;
+  position:relative;
+  transition:background .8s ease;
+}
+.ch-conv .domain:hover{background:rgba(57,255,20,.025);}
+.ch-conv .domain .n{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.32em;
+  color:var(--ac);
+}
+.ch-conv .domain .name{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(20px,1.7vw,28px);
+  letter-spacing:-.018em;
+  color:var(--stone);
+  text-transform:lowercase;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 05 — ECOSYSTEM STRUCTURE
+   editorial table — index | name | description
+   ───────────────────────────────────────── */
+.ch-eco .head{max-width:780px;}
+.ch-eco .lede-5{
+  margin-top:2.4rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(32px,3.4vw,54px);
+  letter-spacing:-.024em;
+  line-height:1.1;
+  color:var(--stone);
+  max-width:24ch;
+}
+.ch-eco .body-5{
+  margin-top:2rem;
+  font-size:1.02rem;
+  line-height:1.78;
+  color:var(--stone-2);
+  max-width:52ch;
+}
+.ch-eco .entity-list{
+  margin-top:6rem;
+  border-top:1px solid var(--rule);
+}
+.ch-eco .entity{
+  display:grid;
+  grid-template-columns:120px minmax(0,260px) minmax(0,1fr);
+  gap:clamp(1.5rem,4vw,4rem);
+  padding:2.2rem 0;
+  border-bottom:1px solid var(--rule);
+  align-items:baseline;
+  transition:background .8s ease, padding .6s ease;
+}
+.ch-eco .entity:hover{background:rgba(57,255,20,.018);}
+.ch-eco .entity .e-idx{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.30em;text-transform:uppercase;
+  color:var(--ac);
+  padding-top:.25rem;
+}
+.ch-eco .entity .e-name{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(22px,1.9vw,30px);
+  letter-spacing:-.018em;
+  color:var(--stone);
+  text-transform:lowercase;
+}
+.ch-eco .entity .e-desc{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:1rem;
+  line-height:1.65;
+  color:var(--stone-2);
+  letter-spacing:-.003em;
+  max-width:54ch;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 06 — FORMATION
+   left intro / right outcomes
+   ───────────────────────────────────────── */
+.ch-form{
+  display:grid;
+  grid-template-columns:minmax(0,6fr) minmax(0,6fr);
+  gap:clamp(3rem,7vw,8rem);
+  align-items:start;
+}
+.ch-form .col-text .lede-6{
+  margin-top:2.6rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(28px,2.8vw,42px);
+  letter-spacing:-.02em;
+  line-height:1.18;
+  color:var(--stone);
+  max-width:22ch;
+}
+.ch-form .col-text .body{margin-top:2rem;max-width:46ch;}
+.ch-form .col-list{padding-top:5.6rem;}
+.ch-form .out-head{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--stone-3);
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:2.2rem;
+}
+.ch-form .out-head::before{
+  content:"";flex:0 0 auto;width:18px;height:1px;background:var(--ac);
+}
+.ch-form .out-list{list-style:none;}
+.ch-form .out-row{
+  display:flex;align-items:baseline;gap:1.4rem;
+  padding:1.4rem 0;
+  border-bottom:1px solid var(--rule-2);
+}
+.ch-form .out-row:last-child{border-bottom:none;}
+.ch-form .out-row .dot{
+  flex:0 0 auto;width:6px;height:6px;background:var(--ac);
+  transform:translateY(-.4em);
+  box-shadow:0 0 8px rgba(57,255,20,.5);
+}
+.ch-form .out-row .txt{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(20px,1.55vw,26px);
+  letter-spacing:-.015em;
+  color:var(--stone);
+}
+.ch-form .closing{
+  margin-top:5rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:1.02rem;
+  line-height:1.78;
+  color:var(--stone-2);
+  max-width:46ch;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER 07 — SIGNAL  (closing call)
+   centered, restrained, cinematic
+   ───────────────────────────────────────── */
+.ch-signal{
+  text-align:center;
+  padding-top:14rem;
+  padding-bottom:18rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.ch-signal .idx{margin-bottom:1.2rem;}
+.ch-signal .ch-title{justify-content:center;}
+.ch-signal .lines{
+  margin-top:5rem;
+  display:flex;flex-direction:column;gap:1.1rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(36px,4.2vw,72px);
+  letter-spacing:-.028em;
+  line-height:1.04;
+  color:var(--stone);
+}
+.ch-signal .lines .ac{color:var(--ac);}
+.ch-signal .tag{
+  margin-top:5rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--stone-3);
+}
+.ch-signal .cta-mono{margin-top:3.4rem;}
+
+/* ─────────────────────────────────────────
+   responsive — keep the doctrine intact
+   ───────────────────────────────────────── */
+@media (max-width: 980px){
+  .ch-vision,.ch-frag,.ch-form{grid-template-columns:1fr;gap:3rem;}
+  .ch-vision{min-height:auto;padding-top:7rem;padding-bottom:7rem;}
+  .ch-frag .col-intro{position:static;}
+  .ch-philo .tenets{grid-template-columns:1fr;}
+  .ch-conv .domain-grid{grid-template-columns:repeat(2,1fr);}
+  .ch-eco .entity{grid-template-columns:60px 1fr;gap:.6rem 1.2rem;}
+  .ch-eco .entity .e-desc{grid-column:1 / -1;margin-top:.5rem;}
+  .scroll-mark{display:none;}
+  .chapter{padding:8rem clamp(1.2rem,5vw,3rem) 8rem;}
+}
+@media (max-width: 640px){
+  .ch-conv .domain-grid{grid-template-columns:1fr;}
 }
 </style>
-<link rel="stylesheet" href="/nav-footer.css?v=11">
-<link rel="stylesheet" href="/mobile.css?v=6">
 </head>
-<body>
+<body data-field-density="concentrated">
 
-<div id="veil"></div>
-<div id="cdot"></div>
-<div id="cring"></div>
-<div id="atm"></div>
-<div class="drift d1"></div>
-<div class="drift d2"></div>
-<div class="drift d3"></div>
-<div class="drift d4"></div>
-<div class="scan"></div>
-<img id="grain" src="/grain.svg" alt="">
+<!-- ── environmental field — same engine, concentrated density ── -->
+<div class="env-field" aria-hidden="true">
+  <div class="env-field-bg"></div>
+  <canvas class="env-field-canvas"></canvas>
+  <div class="env-field-veil"></div>
+</div>
 
+<!-- ── film grain ── -->
+<img src="/grain.svg" id="grain" alt="" aria-hidden="true">
+
+<!-- ── scroll surface ── -->
 <main id="main">
 
-<!-- ══════════ 01 VISION ══════════ -->
-<section id="s-vision">
-  <div class="topology">
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-    <div class="topo-node tn1"></div>
-    <div class="topo-node tn2"></div>
-    <div class="topo-node tn3"></div>
-    <div class="topo-node tn4"></div>
-  </div>
-
-  <div class="v-stack">
-    <div class="v-meta r">
-      <div class="meta"><span class="idx">[ 01 ]</span> vision.</div>
-      <div class="meta-sub">operational philosophy / ecosystem doctrine</div>
+  <!-- ───────── CHAPTER 01 ───────── -->
+  <section class="chapter ch-vision" id="ch-01">
+    <div class="col-text">
+      <div class="label-pair">
+        <span class="idx" data-reveal>[ 01 ]</span>
+        <span class="idx-sub" data-reveal data-d="1">operational philosophy / ecosystem doctrine</span>
+      </div>
+      <h1 class="ch-title" data-reveal data-d="2">
+        <span>vision</span><span class="dot"></span>
+      </h1>
+      <div class="lede" data-reveal data-d="3">
+        <span class="ln">the future needs form.</span>
+      </div>
+      <div class="sub-lede" data-reveal data-d="4">
+        intelligence without structure creates noise.<br>
+        vision without systems collapses under its own weight.
+      </div>
+      <p class="body" data-reveal data-d="5">
+        the future belongs to organizations capable of aligning clarity, humanity, intelligence,
+        and execution into a living operational ecosystem.
+      </p>
+      <a href="#ch-02" class="way" data-reveal data-d="6">
+        <span>enter the vision</span><span class="arrow">↓</span>
+      </a>
     </div>
+    <div class="col-env" aria-hidden="true"></div>
 
-    <h1 class="v-headline r">the future needs <span class="canela">form.</span></h1>
-
-    <div class="v-copy r">
-      <p class="bdy">intelligence without structure creates noise.</p>
-      <p class="bdy">vision without systems collapses under its own weight.</p>
-      <p class="bdy">the future belongs to organizations capable of aligning clarity, humanity, intelligence, and execution into a living operational ecosystem.</p>
+    <div class="scroll-mark" aria-hidden="true">
+      <span>scroll</span>
+      <span class="dot"></span>
     </div>
+  </section>
 
-    <div class="v-enter r">
-      <a href="#s-frag" class="t-link">enter the vision</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ 02 FRAGMENTATION ══════════ -->
-<section id="s-frag">
-  <div class="frag-topo">
-    <div class="frag-line-bg fb1"></div>
-    <div class="frag-line-bg fb2"></div>
-    <div class="frag-line-bg fb3"></div>
-  </div>
-
-  <div class="frag-grid">
-    <div class="frag-left">
-      <div class="meta r"><span class="idx">[ 02 ]</span> fragmentation.</div>
-      <h2 class="frag-statement r">the modern world has more tools than ever before. <span class="pause">yet less alignment.</span></h2>
-    </div>
-
-    <div class="frag-right r">
-      <div class="meta-sub">operational observations</div>
-
-      <div class="frag-line"><span class="pre">01</span>organizations are drowning in disconnected systems.</div>
-      <div class="frag-line"><span class="pre">02</span>communication moves faster, but clarity continues to decline.</div>
-      <div class="frag-line"><span class="pre">03</span>technology increases access, while fragmentation increases complexity.</div>
-      <div class="frag-line"><span class="pre">04</span>creativity operates separately from operations.</div>
-      <div class="frag-line"><span class="pre">05</span>leadership operates separately from infrastructure.</div>
-      <div class="frag-line"><span class="pre">06</span>intelligence operates separately from humanity.</div>
-      <div class="frag-line"><span class="pre">07</span>the result is operational exhaustion disguised as innovation.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ 03 PHILOSOPHY ══════════ -->
-<section id="s-phil">
-  <div class="silhouette" aria-hidden="true"></div>
-
-  <div class="phil-stack">
-    <div class="phil-meta r">
-      <div class="meta"><span class="idx">[ 03 ]</span> philosophy.</div>
-    </div>
-
-    <h2 class="phil-statement r">FORM. exists to create systems that preserve <span class="canela">humanity</span> inside intelligence.</h2>
-
-    <div class="phil-beliefs r">
-      <div class="belief"><span class="bn">i.</span><span>we believe structure creates freedom.</span></div>
-      <div class="belief"><span class="bn">ii.</span><span>we believe clarity reduces friction.</span></div>
-      <div class="belief"><span class="bn">iii.</span><span>we believe systems shape culture.</span></div>
-      <div class="belief"><span class="bn">iv.</span><span>we believe technology should increase human capacity rather than replace human presence.</span></div>
-      <div class="belief"><span class="bn">v.</span><span>we believe operational intelligence and emotional intelligence should never be separated.</span></div>
-      <div class="belief"><span class="bn">vi.</span><span>we believe the future belongs to organizations capable of building ecosystems instead of disconnected solutions.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ 04 CONVERGENCE ══════════ -->
-<section id="s-conv">
-  <div class="conv-stack">
-    <div class="conv-meta r">
-      <div class="meta"><span class="idx">[ 04 ]</span> convergence.</div>
-    </div>
-
-    <h2 class="conv-title r">everything is <span class="canela">connected.</span></h2>
-
-    <div class="conv-grid-intro r">
-      <p class="bdy">most organizations separate strategy, operations, creativity, technology, leadership, communication, systems, and culture.</p>
-      <div>
-        <p class="bdy">FORM. believes they were never meant to operate independently.</p>
-        <p class="bdy muted">the strongest ecosystems are built when intelligence moves through every layer simultaneously.</p>
+  <!-- ───────── CHAPTER 02 — FRAGMENTATION ───────── -->
+  <section class="chapter ch-frag" id="ch-02">
+    <div class="col-intro">
+      <span class="idx" data-reveal>[ 02 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>fragmentation</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede-2" data-reveal data-d="2">
+        <span class="ln">the modern world has more</span>
+        <span class="ln">tools than ever before.</span>
+        <span class="ln" style="color:var(--stone-3);margin-top:.6rem;">yet less alignment.</span>
       </div>
     </div>
-
-    <div class="eco-grid r" id="eco-grid">
-      <div class="eco-cell"><span class="eco-num">01</span><span class="eco-dot"></span><span class="eco-name">strategy</span></div>
-      <div class="eco-cell"><span class="eco-num">02</span><span class="eco-dot"></span><span class="eco-name">systems</span></div>
-      <div class="eco-cell"><span class="eco-num">03</span><span class="eco-dot"></span><span class="eco-name">leadership</span></div>
-      <div class="eco-cell"><span class="eco-num">04</span><span class="eco-dot"></span><span class="eco-name">intelligence</span></div>
-      <div class="eco-cell"><span class="eco-num">05</span><span class="eco-dot"></span><span class="eco-name">creativity</span></div>
-      <div class="eco-cell"><span class="eco-num">06</span><span class="eco-dot"></span><span class="eco-name">operations</span></div>
-      <div class="eco-cell"><span class="eco-num">07</span><span class="eco-dot"></span><span class="eco-name">formation</span></div>
-      <div class="eco-cell"><span class="eco-num">08</span><span class="eco-dot"></span><span class="eco-name">culture</span></div>
-      <div class="eco-cell"><span class="eco-num">09</span><span class="eco-dot"></span><span class="eco-name">technology</span></div>
-      <div class="eco-cell"><span class="eco-num">10</span><span class="eco-dot"></span><span class="eco-name">experience</span></div>
+    <div class="col-list">
+      <div class="obs-head" data-reveal>operational observations</div>
+      <ul class="obs-list">
+        <li class="obs-row" data-reveal data-d="1"><span class="obs-num">01</span><span class="obs-text">organizations are drowning in disconnected systems.</span></li>
+        <li class="obs-row" data-reveal data-d="2"><span class="obs-num">02</span><span class="obs-text">communication moves faster, but clarity continues to decline.</span></li>
+        <li class="obs-row" data-reveal data-d="3"><span class="obs-num">03</span><span class="obs-text">technology increases access, while fragmentation increases complexity.</span></li>
+        <li class="obs-row" data-reveal data-d="4"><span class="obs-num">04</span><span class="obs-text">creativity operates separately from operations.</span></li>
+        <li class="obs-row" data-reveal data-d="5"><span class="obs-num">05</span><span class="obs-text">leadership operates separately from infrastructure.</span></li>
+        <li class="obs-row" data-reveal data-d="6"><span class="obs-num">06</span><span class="obs-text">intelligence operates separately from humanity.</span></li>
+        <li class="obs-row" data-reveal data-d="6"><span class="obs-num">07</span><span class="obs-text">the result is operational exhaustion disguised as innovation.</span></li>
+      </ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ 05 ECOSYSTEM STRUCTURE ══════════ -->
-<section id="s-eco">
-  <div class="eco-intro">
-    <div class="meta r"><span class="idx">[ 05 ]</span> ecosystem structure.</div>
-    <h2 class="r">FORM. is structured as a connected operational ecosystem designed to help organizations move from fragmented complexity into <span class="canela" style="font-weight:400;">aligned execution.</span></h2>
-    <p class="bdy r" style="max-width:680px;margin-top:2.4rem;">each layer is designed to reinforce the others. nothing operates in isolation.</p>
-  </div>
-
-  <!-- nine-entity architectural grid — less atmospheric, more structural -->
-  <div class="eco-nine-wrap">
-    <div class="eco-nine" id="panel-ministry">
-      <a href="/ecosystem.html#strategy" class="eco9 r">
-        <div class="eco9-num">[ 05 / 01 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> strategy</div>
-        <div class="eco9-fn">operational clarity for organizations navigating scale, alignment, and long-term infrastructure.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#creative" class="eco9 r">
-        <div class="eco9-num">[ 05 / 02 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> creative</div>
-        <div class="eco9-fn">narrative, design, and visual systems that preserve emotional resonance inside modern infrastructure.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#digital" class="eco9 r">
-        <div class="eco9-num">[ 05 / 03 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> digital</div>
-        <div class="eco9-fn">web, product, and interface systems engineered for clarity, performance, and connected execution.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#ai" class="eco9 r">
-        <div class="eco9-num">[ 05 / 04 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> ai</div>
-        <div class="eco9-fn">adaptive intelligence increasing awareness, decision velocity, and operational responsiveness.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#sound" class="eco9 r">
-        <div class="eco9-num">[ 05 / 05 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> sound</div>
-        <div class="eco9-fn">audio, score, and sonic identity systems for environments built to be heard as much as seen.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#support" class="eco9 r">
-        <div class="eco9-num">[ 05 / 06 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> support</div>
-        <div class="eco9-fn">operational continuity, advisory, and ongoing care for the systems we build alongside you.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#experience" class="eco9 r">
-        <div class="eco9-num">[ 05 / 07 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> experience</div>
-        <div class="eco9-fn">end-to-end environments where leadership, communication, and culture are felt as one signal.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#labs" class="eco9 r">
-        <div class="eco9-num">[ 05 / 08 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> labs</div>
-        <div class="eco9-fn">internal product development — the operational tools and platforms born from our own practice.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-      <a href="/ecosystem.html#continuum" class="eco9 r">
-        <div class="eco9-num">[ 05 / 09 ]</div>
-        <div class="eco9-name"><span class="canela">form.</span> continuum</div>
-        <div class="eco9-fn">long-form intelligence partnership — sustained operational presence over years, not engagements.</div>
-        <div class="eco9-mark" aria-hidden="true"></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ 06 FORMATION ══════════ -->
-<section id="s-form">
-  <div class="form-stack">
-    <div class="form-meta r">
-      <div class="meta"><span class="idx">[ 06 ]</span> formation.</div>
-    </div>
-
-    <h2 class="form-title r">technology changes quickly. <em>human formation does not.</em></h2>
-
-    <div class="form-copy-grid r">
-      <div>
-        <p class="bdy">FORM. is not only interested in building better systems.</p>
-        <p class="bdy">FORM. is interested in building healthier leaders, clearer communication, stronger culture, sustainable execution, and organizations capable of growing without losing their identity.</p>
-      </div>
-      <div class="form-list">
-        <div class="form-list-item">healthier leaders.</div>
-        <div class="form-list-item">clearer communication.</div>
-        <div class="form-list-item">stronger culture.</div>
-        <div class="form-list-item">sustainable execution.</div>
-        <div class="form-list-item">organizations that grow without losing identity.</div>
+  <!-- ───────── CHAPTER 03 — PHILOSOPHY ───────── -->
+  <section class="chapter ch-philo" id="ch-03">
+    <div class="head">
+      <span class="idx" data-reveal>[ 03 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>philosophy</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede-3" data-reveal data-d="2">
+        <span class="ac">form.</span> exists to create systems that preserve
+        <span class="it">humanity</span> inside intelligence.
       </div>
     </div>
-
-    <p class="form-close r">because growth magnifies what already exists. formation matters.</p>
-  </div>
-</section>
-
-<!-- ══════════ 07 SIGNAL ══════════ -->
-<section id="s-signal">
-  <div class="sig-particle sp1"></div>
-  <div class="sig-particle sp2"></div>
-  <div class="sig-particle sp3"></div>
-  <div class="sig-particle sp4"></div>
-  <div class="sig-particle sp5"></div>
-
-  <div class="signal-stack">
-    <div class="signal-meta r">
-      <div class="meta"><span class="idx">[ 07 ]</span> signal.</div>
+    <div class="tenets">
+      <div class="tenet" data-reveal data-d="1"><span class="num">i.</span><span class="txt">we believe structure creates freedom.</span></div>
+      <div class="tenet" data-reveal data-d="2"><span class="num">ii.</span><span class="txt">we believe clarity reduces friction.</span></div>
+      <div class="tenet" data-reveal data-d="3"><span class="num">iii.</span><span class="txt">we believe systems shape culture.</span></div>
+      <div class="tenet" data-reveal data-d="4"><span class="num">iv.</span><span class="txt">we believe technology should increase human capacity rather than replace human presence.</span></div>
+      <div class="tenet" data-reveal data-d="5"><span class="num">v.</span><span class="txt">we believe operational intelligence and emotional intelligence should never be separated.</span></div>
+      <div class="tenet" data-reveal data-d="6"><span class="num">vi.</span><span class="txt">we believe the future belongs to organizations capable of building ecosystems instead of disconnected solutions.</span></div>
     </div>
+  </section>
 
-    <h2 class="signal-headline r" id="signal-headline">
-      <span class="ln">the future is intelligent.</span>
-      <span class="ln">the future is human.</span>
-      <span class="ln">the future needs <span class="canela">form.</span></span>
+  <!-- ───────── CHAPTER 04 — CONVERGENCE ───────── -->
+  <section class="chapter ch-conv" id="ch-04">
+    <div class="head">
+      <span class="idx" data-reveal>[ 04 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>convergence</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede-4" data-reveal data-d="2">everything is connected.</div>
+      <p class="body-4" data-reveal data-d="3">
+        most organizations separate strategy, operations, creativity, technology, leadership,
+        communication, systems, and culture.
+      </p>
+      <p class="body-4" data-reveal data-d="4">
+        <span style="color:var(--ac);">form.</span> believes they were never meant to operate independently.
+        the strongest ecosystems are built when intelligence moves through every layer simultaneously.
+      </p>
+    </div>
+    <div class="domain-grid" data-reveal data-d="2">
+      <div class="domain"><span class="n">01</span><span class="name">strategy</span></div>
+      <div class="domain"><span class="n">02</span><span class="name">systems</span></div>
+      <div class="domain"><span class="n">03</span><span class="name">leadership</span></div>
+      <div class="domain"><span class="n">04</span><span class="name">intelligence</span></div>
+      <div class="domain"><span class="n">05</span><span class="name">creativity</span></div>
+      <div class="domain"><span class="n">06</span><span class="name">operations</span></div>
+      <div class="domain"><span class="n">07</span><span class="name">formation</span></div>
+      <div class="domain"><span class="n">08</span><span class="name">culture</span></div>
+      <div class="domain"><span class="n">09</span><span class="name">technology</span></div>
+      <div class="domain"><span class="n">10</span><span class="name">experience</span></div>
+    </div>
+  </section>
+
+  <!-- ───────── CHAPTER 05 — ECOSYSTEM STRUCTURE ───────── -->
+  <section class="chapter ch-eco" id="ch-05">
+    <div class="head">
+      <span class="idx" data-reveal>[ 05 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>ecosystem structure</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede-5" data-reveal data-d="2">
+        a connected operational ecosystem — built to move organizations from
+        fragmented complexity into aligned execution.
+      </div>
+      <p class="body-5" data-reveal data-d="3">
+        each layer is designed to reinforce the others. nothing operates in isolation.
+      </p>
+    </div>
+    <div class="entity-list">
+      <div class="entity" data-reveal data-d="1">
+        <div class="e-idx">[ 05 / 01 ]</div>
+        <div class="e-name">form. strategy</div>
+        <div class="e-desc">operational clarity for organizations navigating scale, alignment, and long-term infrastructure.</div>
+      </div>
+      <div class="entity" data-reveal data-d="2">
+        <div class="e-idx">[ 05 / 02 ]</div>
+        <div class="e-name">form. creative</div>
+        <div class="e-desc">narrative, design, and visual systems that preserve emotional resonance inside modern infrastructure.</div>
+      </div>
+      <div class="entity" data-reveal data-d="3">
+        <div class="e-idx">[ 05 / 03 ]</div>
+        <div class="e-name">form. digital</div>
+        <div class="e-desc">web, product, and interface systems engineered for clarity, performance, and connected execution.</div>
+      </div>
+      <div class="entity" data-reveal data-d="4">
+        <div class="e-idx">[ 05 / 04 ]</div>
+        <div class="e-name">form. ai</div>
+        <div class="e-desc">adaptive intelligence increasing awareness, decision velocity, and operational responsiveness.</div>
+      </div>
+      <div class="entity" data-reveal data-d="5">
+        <div class="e-idx">[ 05 / 05 ]</div>
+        <div class="e-name">form. sound</div>
+        <div class="e-desc">audio, score, and sonic identity systems for environments built to be heard as much as seen.</div>
+      </div>
+      <div class="entity" data-reveal data-d="6">
+        <div class="e-idx">[ 05 / 06 ]</div>
+        <div class="e-name">form. support</div>
+        <div class="e-desc">operational continuity, advisory, and ongoing care for the systems we build alongside you.</div>
+      </div>
+      <div class="entity" data-reveal data-d="6">
+        <div class="e-idx">[ 05 / 07 ]</div>
+        <div class="e-name">form. experience</div>
+        <div class="e-desc">end-to-end environments where leadership, communication, and culture are felt as one signal.</div>
+      </div>
+      <div class="entity" data-reveal data-d="6">
+        <div class="e-idx">[ 05 / 08 ]</div>
+        <div class="e-name">form. labs</div>
+        <div class="e-desc">internal product development — the operational tools and platforms born from our own practice.</div>
+      </div>
+      <div class="entity" data-reveal data-d="6">
+        <div class="e-idx">[ 05 / 09 ]</div>
+        <div class="e-name">form. continuum</div>
+        <div class="e-desc">long-form intelligence partnership — sustained operational presence over years, not engagements.</div>
+      </div>
+      <div class="entity" data-reveal data-d="6">
+        <div class="e-idx">[ 05 / 10 ]</div>
+        <div class="e-name">form. messages</div>
+        <div class="e-desc">connective communication infrastructure — the signal layer where leadership, culture, and operations stay aligned.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────── CHAPTER 06 — FORMATION ───────── -->
+  <section class="chapter ch-form" id="ch-06">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 06 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>formation</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede-6" data-reveal data-d="2">
+        technology changes quickly. <span class="it">human formation does not.</span>
+      </div>
+      <p class="body" data-reveal data-d="3">
+        <span style="color:var(--ac);">form.</span> is not only interested in building better systems.
+        we are interested in building healthier leaders, clearer communication, stronger culture,
+        sustainable execution, and organizations capable of growing without losing their identity.
+      </p>
+      <p class="closing" data-reveal data-d="4">
+        because growth magnifies what already exists. <span class="it">formation matters.</span>
+      </p>
+    </div>
+    <div class="col-list">
+      <div class="out-head" data-reveal>what formation produces</div>
+      <ul class="out-list">
+        <li class="out-row" data-reveal data-d="1"><span class="dot"></span><span class="txt">healthier leaders.</span></li>
+        <li class="out-row" data-reveal data-d="2"><span class="dot"></span><span class="txt">clearer communication.</span></li>
+        <li class="out-row" data-reveal data-d="3"><span class="dot"></span><span class="txt">stronger culture.</span></li>
+        <li class="out-row" data-reveal data-d="4"><span class="dot"></span><span class="txt">sustainable execution.</span></li>
+        <li class="out-row" data-reveal data-d="5"><span class="dot"></span><span class="txt">organizations that grow without losing identity.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───────── CHAPTER 07 — SIGNAL ───────── -->
+  <section class="chapter ch-signal" id="ch-07">
+    <span class="idx" data-reveal>[ 07 ]</span>
+    <h2 class="ch-title" data-reveal data-d="1">
+      <span>signal</span><span class="dot"></span>
     </h2>
-
-    <div class="signal-sub r">
-      <div class="meta-sub">connected operational ecosystems for what comes next.</div>
+    <div class="lines">
+      <div data-reveal data-d="2">the future is intelligent.</div>
+      <div data-reveal data-d="3">the future is human.</div>
+      <div data-reveal data-d="4">the future needs <span class="ac">form.</span></div>
     </div>
-
-    <div class="signal-enter r">
-      <a href="/ecosystem.html" class="t-link">enter the ecosystem</a>
-    </div>
-  </div>
-</section>
+    <div class="tag" data-reveal data-d="5">connected operational ecosystems for what comes next.</div>
+    <a href="/ecosystem.html" class="way" data-reveal data-d="6">
+      <span>enter the ecosystem</span><span class="arrow">→</span>
+    </a>
+    <div style="height:3.6rem;"></div>
+    <a href="/contact.html" class="way" data-reveal data-d="6" style="border-color:rgba(57,255,20,.45);">
+      <span>start the conversation</span><span class="arrow">→</span>
+    </a>
+  </section>
 
 </main>
 
-<!-- ══════════ INTERACTIONS ══════════ -->
-<script>
-(function(){
-'use strict';
-const tier=window.FORM_TIER||'full';
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ── rev. capsule (intelligence layer) ── -->
+<div id="rev-root"></div>
 
-/* GRAIN */
-const grain=document.getElementById('grain');
-if(grain){
-  if(tier==='minimal'){grain.parentNode&&grain.parentNode.removeChild(grain);}
-  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
-}
-
-/* CURSOR — only hide native pointer once custom cursor JS is wired in (graceful fallback if JS fails) */
-const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-const _isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
-if(dot && ring && tier!=='minimal' && !_isTouch && !reducedMotion){
-  document.documentElement.classList.add('cursor-ready');
-}
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
-function _startCursorRing(){
-  if(reducedMotion)return;
-  (function cl(){
-    var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal')return;
-    rx+=(mx-rx)*.045;ry+=(my-ry)*.045;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
-  })();
-}
-if(tier!=='minimal')_startCursorRing();
-
-document.querySelectorAll('a,button,.eco-cell').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
-});
-['#strat','.t-link'].forEach(s=>{
-  document.querySelectorAll(s).forEach(el=>{
-    el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
-  });
-});
-
-if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,prevTier){
-  if(prevTier==='minimal'&&newTier!=='minimal')_startCursorRing();
-});
-
-/* REVEAL — IntersectionObserver — restrained, slow, single-fire */
-const reveal=document.querySelectorAll('.r');
-if('IntersectionObserver' in window && !reducedMotion){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        en.target.classList.add('in');
-        io.unobserve(en.target);
-      }
-    });
-  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-  reveal.forEach(el=>io.observe(el));
-} else {
-  reveal.forEach(el=>el.classList.add('in'));
-}
-
-/* HERO REVEAL — kicks in after veil opens */
-setTimeout(()=>{
-  document.querySelectorAll('#s-vision .r').forEach((el,i)=>{
-    setTimeout(()=>el.classList.add('in'),i*220);
-  });
-},1700);
-
-/* peek bypass for debugging */
-if(location.search.includes('peek')){
-  const v=document.getElementById('veil');
-  if(v){v.style.animation='none';v.style.opacity='0';v.style.display='none';}
-  document.querySelectorAll('.r').forEach(el=>el.classList.add('in'));
-}
-
-/* PAGE EXIT — handled centrally by nav-footer.js (single transition system) */
-})();
-</script>
-<link rel="stylesheet" href="/rev.css?v=3">
+<!-- ── shared engines ── -->
+<script src="/field.js?v=3" defer></script>
 <script src="/rev.js?v=3" defer></script>
 <script src="/nav-footer.js?v=17" defer></script>
+
+<!-- ── reveal observer ── -->
+<script>
+(function(){
+  function revealAll(){
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      el.classList.add('in');
+    });
+  }
+  function init(){
+    // fallback: no IO support, or user prefers reduced motion → show everything
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(typeof IntersectionObserver === 'undefined' || reduced){
+      revealAll();
+      return;
+    }
+    var scroller = document.getElementById('main') || null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {root: scroller, rootMargin: '0px 0px -10% 0px', threshold: 0.12});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+    // ensure first chapter reveals immediately on load
+    requestAnimationFrame(function(){
+      document.querySelectorAll('#ch-01 [data-reveal]').forEach(function(el){
+        el.classList.add('in');
+      });
+    });
+
+    // safety net — if for any reason an item is still hidden after 6s, reveal it
+    setTimeout(function(){
+      document.querySelectorAll('[data-reveal]:not(.in)').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * 1.5) el.classList.add('in');
+      });
+    }, 6000);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+
 </body>
 </html>

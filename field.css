@@ -18,7 +18,7 @@
   inset: -3%;
   width: 106%;
   height: 106%;
-  background-image: url('/home-bg.avif');
+  background-image: var(--field-bg, url('/home-bg.avif'));
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
