@@ -246,8 +246,9 @@ body{
   animation:atm-drift 42s ease-in-out infinite alternate;
 }
 @keyframes atm-drift{
-  from{transform:scale(1.0) translate3d(0,0,0);}
-  to  {transform:scale(1.06) translate3d(-1.5%,-1%,0);}
+  0%   {transform:scale(1.000) translate3d(0,0,0);}
+  50%  {transform:scale(1.055) translate3d(-1.6%,-1.0%,0);}
+  100% {transform:scale(1.025) translate3d(1.2%,.6%,0);}
 }
 .hero-atm::after{
   content:'';position:absolute;inset:0;pointer-events:none;

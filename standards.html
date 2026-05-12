@@ -142,6 +142,9 @@ body{
   position:relative;
   display:block;
 }
+/* hero-bound architectural still — replaces the previous full-page env-field
+   image so chapters 02–06 sit on solid onyx for full legibility (founder/eco
+   treatment). image is feathered into onyx on every edge and drifts slowly. */
 .ch-hero .hero-band{
   position:relative;
   display:grid;
@@ -150,7 +153,54 @@ body{
   min-height:92vh;
   align-items:center;
   padding-bottom:9rem;
+  isolation:isolate;
+  overflow:hidden;
 }
+.ch-hero .hero-band::before{
+  content:'';
+  position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:url('/standards-bg.avif') center 42%/cover no-repeat;
+  filter:saturate(.78) brightness(.85) contrast(1.05);
+  animation:std-hero-drift 64s ease-in-out infinite alternate;
+}
+.ch-hero .hero-band::after{
+  content:'';
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    /* legibility wash over the headline column (left ~62%) */
+    linear-gradient(90deg,
+      rgba(5,6,8,.82) 0%,
+      rgba(5,6,8,.58) 24%,
+      rgba(5,6,8,.30) 48%,
+      rgba(5,6,8,.10) 68%,
+      rgba(5,6,8,0)   86%),
+    /* radial vignette — dissolves all four edges into onyx */
+    radial-gradient(ellipse 96% 92% at 52% 48%,
+      rgba(5,6,8,0)    0%,
+      rgba(5,6,8,0)   46%,
+      rgba(5,6,8,.32) 74%,
+      rgba(5,6,8,.86) 96%,
+      #050608        100%),
+    /* top fade under nav + bottom fade into next chapter */
+    linear-gradient(180deg,
+      rgba(5,6,8,.84) 0%,
+      rgba(5,6,8,.30) 12%,
+      rgba(5,6,8,0)   26%,
+      rgba(5,6,8,0)   62%,
+      rgba(5,6,8,.66) 90%,
+      #050608        100%);
+}
+@keyframes std-hero-drift{
+  0%   {transform:scale(1.000) translate3d(0,0,0);}
+  50%  {transform:scale(1.038) translate3d(-1.4%,.6%,0);}
+  100% {transform:scale(1.018) translate3d(1.0%,-.8%,0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .ch-hero .hero-band::before{animation:none;}
+}
+/* hide the global field-bg image on standards — image now lives only in hero.
+   keep env-field-canvas (particles) + veil for subtle architectural ambience. */
+.env-field-bg{display:none;}
 .ch-hero .col-text{max-width:none;}
 .ch-hero .h1{
   display:inline-flex;align-items:baseline;

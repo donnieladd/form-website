@@ -228,8 +228,20 @@ html,body{overflow-x:hidden;}
   z-index:0;
   -webkit-mask-image:radial-gradient(ellipse 80% 70% at 65% 35%, #000 30%, rgba(0,0,0,.7) 55%, transparent 90%);
           mask-image:radial-gradient(ellipse 80% 70% at 65% 35%, #000 30%, rgba(0,0,0,.7) 55%, transparent 90%);
+  /* slow cinematic drift — matches founder/ecosystem hero motion */
+  animation:contact-burst-drift 72s ease-in-out infinite alternate;
+  transform-origin:65% 35%;
+  will-change:transform;
 }
 .burst svg{width:100%;height:100%;display:block;}
+@keyframes contact-burst-drift{
+  0%   {transform:scale(1.000) translate3d(0,0,0);}
+  50%  {transform:scale(1.045) translate3d(-1.2%,.5%,0);}
+  100% {transform:scale(1.020) translate3d(.8%,-.8%,0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .burst{animation:none;}
+}
 .burst::after{
   content:'';
   position:absolute;inset:0;
