@@ -120,6 +120,49 @@
     });
   }
 
+  /* ── DEBUG OVERLAY (dev builds only — gated on PERF_CONFIG.DEBUG_PERF) ──
+     Injects a fixed-position panel showing the live tier name and numeric
+     level. The panel refreshes whenever FORM_TIER_ONCHANGE fires so it
+     stays in sync with post-benchmark tier updates.                        */
+  var _debugPanel = null;
+
+  function _updateDebugPanel() {
+    if (!_debugPanel) return;
+    var html = document.documentElement;
+    var name  = html.dataset.perf      || 'full';
+    var level = html.dataset.tierLevel || '0';
+    _debugPanel.textContent = 'PERF \u00b7 ' + name + ' (tier ' + level + ')';
+  }
+
+  function _initDebugPanel() {
+    if (!C || !C.DEBUG_PERF) return;
+    var el = document.createElement('div');
+    el.id = 'form-perf-debug';
+    el.style.cssText = [
+      'position:fixed',
+      'bottom:12px',
+      'right:14px',
+      'z-index:99999',
+      'font:11px/1 monospace',
+      'color:#fff',
+      'background:rgba(0,0,0,0.55)',
+      'padding:5px 8px',
+      'border-radius:4px',
+      'pointer-events:none',
+      'letter-spacing:0.04em',
+    ].join(';');
+    document.body.appendChild(el);
+    _debugPanel = el;
+    _updateDebugPanel();
+
+    /* React to post-benchmark tier changes */
+    if (window.FORM_TIER_ONCHANGE) {
+      window.FORM_TIER_ONCHANGE.push(function() {
+        requestAnimationFrame(_updateDebugPanel);
+      });
+    }
+  }
+
   /* ── MAIN INIT ──────────────────────────────────────────────
      Runs at DOMContentLoaded so CSS tokens are readable and
      DOM elements (#grain, #bg, #hero-bg, #cring) exist.         */
@@ -132,6 +175,7 @@
     if (rm) {
       _installRingSnap();
       _suspendBgBreath();
+      _initDebugPanel();
       return; /* grain remains visible per doctrine; no opacity change needed */
     }
 
@@ -143,6 +187,8 @@
     if (window.FORM_TIER_ONCHANGE) {
       window.FORM_TIER_ONCHANGE.push(_onTierChange);
     }
+
+    _initDebugPanel();
   }
 
   if (document.readyState === 'loading') {
