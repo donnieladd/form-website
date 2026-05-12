@@ -11,12 +11,14 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 
 ### Naming System (LOCKED)
 - All public-facing ecosystem entities use the `form. {name}` lowercase prefix with trailing period.
-- The ten canonical ecosystem entities are organized into three operational tiers:
-  - **Disciplines** (column 1): `form. strategy`, `form. digital`, `form. creative`, `form. sound`, `form. experience`, `form. ai`
-  - **Labs + sub-products** (column 2): `form. labs` (parent) → `RELAY`, `FRAME`, `AXIS` (uppercase, no `form.` prefix)
-  - **Connective layers** (column 3): `form. continuum`, `form. messages`, `form. support`
-- `RELAY`, `FRAME`, and `AXIS` always render uppercase, no descriptions, mono tracking. They are sub-products of `form. labs`, not standalone entities.
-- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`. Treat these as internal-only legacy language.
+- The ecosystem is organized into three structural tiers — **disciplines**, **products**, and the **labs division** — and these tiers must remain visually and semantically distinct everywhere they appear (nav dropdown, ecosystem page, footer, founder page strip, etc.).
+  - **Disciplines** (the five operational practices — column 1): `form. strategy`, `form. creative`, `form. digital`, `form. ai`, `form. experience`
+  - **Products** (the three operational platforms — column 2): `form. continuum`, `form. messages`, `form. support`
+    - `form. continuum` is itself a product that can extend across any discipline (strategy, creative, digital, ai, or experience).
+  - **Division** (separate from disciplines and products — column 3): `form. labs` → `RELAY`, `FRAME`, `AXIS` (uppercase sub-products, no `form.` prefix, mono tracking, no descriptions). `form. labs` is a division, **not** a discipline and **not** a product.
+- `form. sound` is **deprecated** and must not appear in any public-facing copy, nav, footer, or strip.
+- Total public-facing entities: **5 disciplines + 3 products + 1 division (labs) = 9** named layers, with `RELAY`, `FRAME`, `AXIS` nested under labs.
+- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`, `form. sound`. Treat these as internal-only legacy language.
 
 ### Typography (LOCKED)
 - **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.
