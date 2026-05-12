@@ -62,28 +62,51 @@
   /* Used by subsystems that need to reactivate on minimal→reduced upgrade */
   window.FORM_TIER_ONCHANGE = [];
 
-  /* ── RAF BENCHMARK (~300ms) — benchmark-informed classification ── */
-  /* Always run unless prefers-reduced-motion is set.
-     Runs for ALL provisional tiers so benchmark is the true final arbiter:
-     - Poor perf  → minimal (confirmed or forced down)
-     - Mid perf   → reduced (allows minimal→reduced upgrade)
-     - Good perf  → keep current, but allow minimal→reduced step-up       */
-  if(!rm) {
-    var samples = [];
-    var last = performance.now();
-    var rafId;
+  /* ── SESSION STORAGE — skip benchmark if tier already known ── */
+  var STORAGE_KEY = 'FORM_perf_tier';
+  var VALID_TIERS = { 'full': 1, 'reduced': 1, 'minimal': 1 };
 
-    function sample(now) {
-      samples.push(now - last);
-      last = now;
-      if(samples.length < 18) { // ~300ms at 60fps
-        rafId = requestAnimationFrame(sample);
-      } else {
-        cancelAnimationFrame(rafId);
-        refineTier(samples);
-      }
+  var savedTier = null;
+  try { savedTier = sessionStorage.getItem(STORAGE_KEY); } catch(e) {}
+
+  if(savedTier && VALID_TIERS[savedTier]) {
+    /* Cap cached tier for accessibility: prefers-reduced-motion must never
+       result in a 'full' tier, even when 'full' was cached previously. */
+    if(rm && savedTier === 'full') savedTier = 'reduced';
+    /* Apply saved tier immediately — no rAF sampling needed */
+    if(savedTier !== tier) {
+      html.dataset.perf = savedTier;
+      html.dataset.tierLevel = _tierToLevel(savedTier);
+      window.FORM_TIER = savedTier;
+      applyJSTierEffects(savedTier, tier);
     }
-    requestAnimationFrame(sample);
+  } else {
+    /* ── RAF BENCHMARK (~300ms) — benchmark-informed classification ── */
+    /* Always run unless prefers-reduced-motion is set.
+       Runs for ALL provisional tiers so benchmark is the true final arbiter:
+       - Poor perf  → minimal (confirmed or forced down)
+       - Mid perf   → reduced (allows minimal→reduced upgrade)
+       - Good perf  → keep current, but allow minimal→reduced step-up       */
+    if(!rm) {
+      var samples = [];
+      var last = performance.now();
+      var rafId;
+
+      function sample(now) {
+        samples.push(now - last);
+        last = now;
+        if(samples.length < 18) { // ~300ms at 60fps
+          rafId = requestAnimationFrame(sample);
+        } else {
+          cancelAnimationFrame(rafId);
+          refineTier(samples);
+        }
+      }
+      requestAnimationFrame(sample);
+    } else {
+      /* prefers-reduced-motion: save the provisional tier (no benchmark) */
+      try { sessionStorage.setItem(STORAGE_KEY, tier); } catch(e) {}
+    }
   }
 
   function refineTier(samples) {
@@ -106,6 +129,9 @@
          Never upgrade reduced → full (benchmark variance alone insufficient). */
       next = (current === 'minimal') ? 'reduced' : current;
     }
+
+    /* Persist final tier for the remainder of this browser session */
+    try { sessionStorage.setItem(STORAGE_KEY, next); } catch(e) {}
 
     if(next !== current) {
       html.dataset.perf = next;
