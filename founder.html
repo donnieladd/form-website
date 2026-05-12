@@ -258,17 +258,29 @@ body{
 .hero-atm::after{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:
-    /* feather right column's left edge into onyx for clean handoff to text */
+    /* radial vignette — dissolves all four corners of the cosmic image into onyx */
+    radial-gradient(ellipse 92% 88% at 52% 48%,
+      rgba(5,6,8,0)    0%,
+      rgba(5,6,8,0)   42%,
+      rgba(5,6,8,.35) 72%,
+      rgba(5,6,8,.85) 96%,
+      #050608        100%),
+    /* feather left edge into onyx for clean handoff to text column */
     linear-gradient(90deg,
-      rgba(5,6,8,.92) 0%,
-      rgba(5,6,8,.38) 14%,
-      rgba(5,6,8,0)   34%,
-      rgba(5,6,8,0)   72%,
-      rgba(5,6,8,.30) 100%),
-    /* bottom dissolve so the section ends cleanly */
+      rgba(5,6,8,.96) 0%,
+      rgba(5,6,8,.55) 10%,
+      rgba(5,6,8,.18) 22%,
+      rgba(5,6,8,0)   38%,
+      rgba(5,6,8,0)   62%,
+      rgba(5,6,8,.30) 88%,
+      rgba(5,6,8,.78) 100%),
+    /* top dissolve under nav + bottom dissolve into next section */
     linear-gradient(180deg,
-      rgba(5,6,8,0)   60%,
-      rgba(5,6,8,.55) 86%,
+      rgba(5,6,8,.85) 0%,
+      rgba(5,6,8,.30) 10%,
+      rgba(5,6,8,0)   24%,
+      rgba(5,6,8,0)   62%,
+      rgba(5,6,8,.55) 88%,
       #050608        100%);
 }
 
@@ -312,41 +324,46 @@ body{
   object-fit:contain;
   object-position:center bottom;
   image-rendering:auto;
-  /* very restrained shadow — let the edges dissolve naturally */
+  /* tight onyx halo erodes any leftover white pixels around the cutout
+     silhouette before the soft drop-shadow grounds the figure */
   filter:
+    drop-shadow(0  0  1px rgba(5,6,8,1))
+    drop-shadow(0  0  2px rgba(5,6,8,.95))
+    drop-shadow(0  0  4px rgba(5,6,8,.7))
     drop-shadow(0 24px 44px rgba(0,0,0,.55))
     drop-shadow(0  4px 12px rgba(5,6,8,.5));
   /* radial feather on ALL sides — emerges from the universe rather than
      sitting on top of it. Core (face/chest) stays fully opaque, silhouette
-     edges (head crown, shoulders, sides, base) fade into the cosmic field. */
+     edges (head crown, shoulders, sides, base) fade into the cosmic field
+     more aggressively to dissolve any residual white fringing. */
   -webkit-mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 42%,
+    radial-gradient(ellipse 72% 76% at 50% 44%,
       rgba(0,0,0,1)   0%,
-      rgba(0,0,0,1)  46%,
-      rgba(0,0,0,.85) 64%,
-      rgba(0,0,0,.55) 80%,
-      rgba(0,0,0,.22) 92%,
-      rgba(0,0,0,0) 100%),
+      rgba(0,0,0,1)  40%,
+      rgba(0,0,0,.78) 58%,
+      rgba(0,0,0,.42) 74%,
+      rgba(0,0,0,.14) 88%,
+      rgba(0,0,0,0)  98%),
     linear-gradient(180deg,
-      rgba(0,0,0,.55) 0%,
-      rgba(0,0,0,1)  18%,
-      rgba(0,0,0,1)  82%,
-      rgba(0,0,0,.4) 96%,
+      rgba(0,0,0,.30) 0%,
+      rgba(0,0,0,1)  16%,
+      rgba(0,0,0,1)  80%,
+      rgba(0,0,0,.32) 95%,
       rgba(0,0,0,0) 100%);
   -webkit-mask-composite:source-in;
           mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 42%,
+    radial-gradient(ellipse 72% 76% at 50% 44%,
       rgba(0,0,0,1)   0%,
-      rgba(0,0,0,1)  46%,
-      rgba(0,0,0,.85) 64%,
-      rgba(0,0,0,.55) 80%,
-      rgba(0,0,0,.22) 92%,
-      rgba(0,0,0,0) 100%),
+      rgba(0,0,0,1)  40%,
+      rgba(0,0,0,.78) 58%,
+      rgba(0,0,0,.42) 74%,
+      rgba(0,0,0,.14) 88%,
+      rgba(0,0,0,0)  98%),
     linear-gradient(180deg,
-      rgba(0,0,0,.55) 0%,
-      rgba(0,0,0,1)  18%,
-      rgba(0,0,0,1)  82%,
-      rgba(0,0,0,.4) 96%,
+      rgba(0,0,0,.30) 0%,
+      rgba(0,0,0,1)  16%,
+      rgba(0,0,0,1)  80%,
+      rgba(0,0,0,.32) 95%,
       rgba(0,0,0,0) 100%);
   mask-composite:intersect;
 }
