@@ -14,6 +14,11 @@
      '2' — minimal (effects stripped)
 
    Also exposes window.FORM_TIER (same string) for JS access.
+
+   Exposes window.FORM_TIER_SOURCE as either:
+     'cached'     — tier was restored instantly from sessionStorage
+     'benchmarked'— tier was determined fresh (rAF benchmark or
+                    synchronous detection for prefers-reduced-motion)
    ============================================================ */
 
 (function(){
@@ -73,6 +78,8 @@
     /* Cap cached tier for accessibility: prefers-reduced-motion must never
        result in a 'full' tier, even when 'full' was cached previously. */
     if(rm && savedTier === 'full') savedTier = 'reduced';
+    /* Tier was restored from session cache — no benchmark needed */
+    window.FORM_TIER_SOURCE = 'cached';
     /* Apply saved tier immediately — no rAF sampling needed */
     if(savedTier !== tier) {
       html.dataset.perf = savedTier;
@@ -88,6 +95,8 @@
        - Mid perf   → reduced (allows minimal→reduced upgrade)
        - Good perf  → keep current, but allow minimal→reduced step-up       */
     if(!rm) {
+      /* Pre-initialize so external readers never see undefined during benchmark */
+      window.FORM_TIER_SOURCE = 'benchmarked';
       var samples = [];
       var last = performance.now();
       var rafId;
@@ -105,6 +114,7 @@
       requestAnimationFrame(sample);
     } else {
       /* prefers-reduced-motion: save the provisional tier (no benchmark) */
+      window.FORM_TIER_SOURCE = 'benchmarked';
       try { sessionStorage.setItem(STORAGE_KEY, tier); } catch(e) {}
     }
   }
@@ -130,6 +140,8 @@
       next = (current === 'minimal') ? 'reduced' : current;
     }
 
+    /* Tier was determined by the rAF benchmark on this page load */
+    window.FORM_TIER_SOURCE = 'benchmarked';
     /* Persist final tier for the remainder of this browser session */
     try { sessionStorage.setItem(STORAGE_KEY, next); } catch(e) {}
 

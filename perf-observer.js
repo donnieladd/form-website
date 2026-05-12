@@ -128,10 +128,11 @@
 
   function _updateDebugPanel() {
     if (!_debugPanel) return;
-    var html = document.documentElement;
-    var name  = html.dataset.perf      || 'full';
-    var level = html.dataset.tierLevel || '0';
-    _debugPanel.textContent = 'PERF \u00b7 ' + name + ' (tier ' + level + ')';
+    var html   = document.documentElement;
+    var name   = html.dataset.perf      || 'full';
+    var level  = html.dataset.tierLevel || '0';
+    var source = window.FORM_TIER_SOURCE || 'benchmarked';
+    _debugPanel.textContent = 'PERF \u00b7 ' + name + ' (tier ' + level + ') \u00b7 ' + source;
   }
 
   function _initDebugPanel() {
