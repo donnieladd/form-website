@@ -343,33 +343,25 @@ body{
    ══════════════════════════════════════════════════════════════ */
 @media (max-width:768px){
 
-  /* halt hero drift keyframes — atmosphere stays still, no jank */
-  .ch-vision::before,
-  .ch-hero .hero-band::before,
-  .ch-std::before,
-  #s-hero::before,
-  .hero-intro::before,
-  .col-bg::before,
-  .hero-atm img,
-  .horizon img,
-  #atm,#bg-drift{
-    animation:none!important;
-  }
+  /* MOTION STAYS. The cinematic drift on hero atmospheres, the
+     horizon parallax, the env-field particle layer — all of it is
+     part of the brand's DNA and must read on phones too. Earlier
+     versions killed animation here for perf; that made the site
+     feel dead in portrait orientation. We keep motion alive and
+     drop only the truly expensive composited effects. */
 
-  /* drop backdrop-filter on heavy local elements only — never touch
-     #topnav. The nav is locked single-source-of-truth (nav-footer.css
-     v13) and must look identical sitewide; perf forks live elsewhere. */
+  /* drop backdrop-filter on heavy local glass elements only —
+     never touch #topnav (locked single-source-of-truth in
+     nav-footer.css v13). */
   #contact-subnav,
   .form-card,.glass,.cap-strip{
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
   }
 
-  /* env-field canvas particles — pause on mobile to save battery */
-  .env-field-canvas{display:none!important;}
-
   /* contain paint — every section becomes its own paint layer
-     so scroll is smooth even on mid-range devices */
+     so scroll stays smooth even on mid-range devices while
+     animations continue to run inside each layer */
   section,.section,.chapter,.hero,.ent,.band-story,.horizon{
     contain:paint;
   }
