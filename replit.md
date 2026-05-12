@@ -47,6 +47,7 @@ home   vision   standards   founder   ecosystem   contact   ● start the conver
 ```
 - All navigation labels are lowercase **without** trailing periods. Trailing periods are reserved for editorial copy and the `form.` brand mark itself.
 - `ecosystem` is the only nav item with a dropdown — a three-column glass panel (disciplines / labs+products / connective layers) per the Naming System.
+- **The navigation system is identical on every page of the site, no matter the visual treatment of that page.** Same structure, same labels, same order, same brand mark, same `● start the conversation` CTA, same dropdown behavior, same typography, same glass treatment, same z-index and fixed positioning. The shared engine (`nav-footer.js` + `nav-footer.css`) is the single source of truth — pages must load these files and must not override, restyle, reorder, rename, hide, duplicate, or fork the nav. Per-page atmospheric/visual differentiation happens **beneath** the nav, never to the nav itself. The homepage is not an exception (its hero CTA `ENTER FORM →` lives inside the hero composition, not in the nav bar — the nav bar still carries `● start the conversation`).
 
 ### CTA (LOCKED)
 - **Site-wide CTA**: All CTAs use the exact phrase **`start the conversation`** prefixed with a small Signal Green dot (`●`). Typography: Satoshi Medium, lowercase, minimal styling, architectural restraint.
