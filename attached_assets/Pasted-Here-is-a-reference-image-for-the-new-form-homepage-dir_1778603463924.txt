@@ -1,0 +1,201 @@
+Here is a reference image for the new form. homepage direction and overall environmental design system.
+
+Do not build or generate the page yet.
+
+First, acknowledge that you fully understand the visual direction, environmental language, UI system, spacing philosophy, atmospheric behavior, and interaction style shown in these references.
+
+I will provide additional references, structural instructions, section layouts, and implementation guidance before development begins.
+
+Important:
+This is not a generic redesign.
+This is a tightly controlled visual system with continuity requirements across every page.
+
+You must preserve the exact environmental DNA shown in the reference images while allowing subtle page-specific environmental evolution.
+
+Core Direction:
+
+* cinematic immersive homepage
+* living motion environmental system
+* restrained luxury aesthetic
+* premium Apple-level immersion
+* atmospheric operational intelligence
+* human-centered futuristic design
+* dark environmental space with subtle volumetric lighting
+* soft signal-green accents only
+* emotionally intelligent atmosphere
+* architectural spacing
+* restrained motion
+* no cyberpunk aesthetics
+* no dashboard-heavy UI
+* no excessive overlays
+* no overly “AI startup” visual language
+
+Environmental System:
+The flowing environmental intelligence field is critical.
+
+It should feel:
+
+* fluid
+* oceanic
+* atmospheric
+* connected
+* dimensional
+* alive
+* cinematic
+
+The motion system should behave like:
+
+* flowing neural currents
+* atmospheric signal ribbons
+* connected intelligence pathways
+* slow-moving energy streams
+* spatial environmental particles
+
+NOT:
+
+* fast particle systems
+* chaotic animations
+* aggressive sci-fi FX
+* fake holograms
+* gaming aesthetics
+
+Navigation System:
+Use the navigation opacity and glass behavior shown in the navigation reference image.
+
+Preserve:
+
+* translucent dark glass
+* soft blur
+* restrained borders
+* subtle environmental reflections
+* minimal hover states
+* calm spacing rhythm
+* premium cinematic opacity
+
+Navigation Requirements:
+
+* Home
+* Vision
+* Standards
+* Founder
+* Ecosystem
+* Contact
+
+Only “Ecosystem” contains a dropdown.
+
+Dropdown Structure:
+LEFT COLUMN:
+form.
+form. strategy
+form. digital
+form. creative
+form. sound
+form. support
+form. experience
+form. ai
+
+RIGHT COLUMN:
+form. labs
+RELAY
+FRAME
+AXIS
+
+Important:
+
+* RELAY, FRAME, and AXIS must remain uppercase
+* No descriptions inside dropdown
+* No additional explanatory copy
+* Minimal operational presentation only
+
+Typography System:
+Do not redesign typography.
+
+Preserve:
+
+* Satoshi as primary typeface
+* lowercase system language
+* restrained typography hierarchy
+* large cinematic hero typography
+* clean architectural spacing
+* IBM Plex Mono for metadata only
+* minimal editorial serif usage
+* no typography experimentation
+
+Visual Philosophy:
+Every page should feel connected to the homepage.
+
+The environmental system should subtly evolve between pages:
+
+* atmospheric shifts
+* slight color adjustments
+* altered signal behavior
+* different environmental density
+* subtle compositional evolution
+
+BUT:
+The ecosystem must still feel continuous.
+
+The user should always feel like they remain inside the same immersive operational world.
+
+Critical Rule:
+Do not drastically reinvent each page visually.
+
+The page transitions should feel cinematic and environmental —
+similar to Apple product storytelling experiences.
+
+The world evolves.
+It does not reset.
+
+Precision Refinement Directive:
+Apply a precision refinement pass across all visual execution.
+
+Do not redesign the artwork.
+Do not reinterpret the identity.
+
+Preserve:
+
+* exact atmosphere
+* exact emotional tone
+* exact rendering style
+* exact geometry language
+* exact cinematic restraint
+* exact visual continuity
+
+Refine:
+
+* spacing precision
+* environmental blending
+* geometry alignment
+* opacity consistency
+* typography rhythm
+* edge fidelity
+* atmospheric realism
+* visual polish
+* cinematic balance
+* motion restraint
+
+Correct:
+
+* inconsistent spacing
+* awkward opacity behavior
+* uneven environmental transitions
+* warped geometry
+* visual clutter
+* overly bright effects
+* artificial-looking rendering
+* aggressive AI aesthetics
+* dashboard-like interfaces
+
+Final Goal:
+The final experience should feel:
+
+* cinematic
+* premium
+* immersive
+* emotionally intelligent
+* architecturally refined
+* production-ready
+* human-centered
+* operationally clear
+* visually restrained
+* unmistakably form.
