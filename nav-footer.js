@@ -8,6 +8,7 @@
     if(p === '/standards.html' && path.indexOf('/standards') === 0) return true;
     if(p === '/founder.html' && path.indexOf('/founder') === 0) return true;
     if(p === '/ecosystem.html' && (path.indexOf('/ecosystem') === 0 || /-systems\.html$/.test(path))) return true;
+    if(p === '/contact.html' && path.indexOf('/contact') === 0) return true;
     return false;
   }
   function cls(p){ return isActive(p) ? ' active' : ''; }
@@ -54,6 +55,9 @@
             '<div class="dd-desc">a connected operational ecosystem. nine entities. one intelligence layer.</div>' +
           '</div>' +
         '</div>' +
+        '<div class="tn-item">' +
+          '<a href="/contact.html" class="tn-link' + cls('/contact.html') + '">contact.</a>' +
+        '</div>' +
       '</nav>' +
       '<a href="/contact.html" class="tn-cta">' + dot + 'start the conversation</a>' +
       '<button class="tn-burger" type="button" aria-label="Open menu">' + burger + '</button>' +
@@ -91,6 +95,7 @@
           '<a href="/standards.html">standards.</a>' +
           '<a href="/founder.html">founder.</a>' +
           '<a href="/ecosystem.html">ecosystem.</a>' +
+          '<a href="/contact.html">contact.</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>connect</h4>' +
@@ -121,6 +126,7 @@
         '<a href="/standards.html" class="tn-mobile-link">standards.</a>' +
         '<a href="/founder.html" class="tn-mobile-link">founder.</a>' +
         '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem.</a>' +
+        '<a href="/contact.html" class="tn-mobile-link">contact.</a>' +
         '<a href="/contact.html" class="tn-mobile-cta">' + dot + 'start the conversation</a>' +
       '</div>' +
     '</div>';
