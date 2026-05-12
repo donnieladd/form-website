@@ -18,7 +18,13 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 
-body{background:#050608;color:var(--stone);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-family:'Satoshi',sans-serif;font-weight:300;}
+body{
+  background:
+    linear-gradient(180deg,rgba(5,6,8,.55) 0%,rgba(5,6,8,.42) 40%,rgba(5,6,8,.68) 100%),
+    url('/ecosystem-bg.avif') center/cover no-repeat fixed,
+    #050608;
+  color:var(--stone);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-family:'Satoshi',sans-serif;font-weight:300;
+}
 
 :root{
   --ac:#39FF14;--ac-rgb:57,255,20;
@@ -45,10 +51,9 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 /* drifting ecosystem atmosphere — soft, alive */
 #atm{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 50% at 18% 20%,rgba(var(--ib-rgb),.06) 0%,transparent 55%),
-    radial-gradient(ellipse 60% 50% at 82% 30%,rgba(var(--cv-rgb),.05) 0%,transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 90%,rgba(var(--ac-rgb),.025) 0%,transparent 60%),
-    #050608;
+    radial-gradient(ellipse 70% 50% at 18% 20%,rgba(var(--ib-rgb),.05) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 50% at 82% 30%,rgba(var(--cv-rgb),.045) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 90%,rgba(var(--ac-rgb),.022) 0%,transparent 60%);
   animation:atm-breathe 32s ease-in-out infinite alternate;
 }
 @keyframes atm-breathe{from{filter:hue-rotate(0deg) brightness(1);}to{filter:hue-rotate(8deg) brightness(1.06);}}
