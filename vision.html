@@ -180,6 +180,7 @@ body{
    left text column, environment dominates right
    ───────────────────────────────────────── */
 .ch-vision{
+  position:relative;
   min-height:calc(100vh - 64px);
   padding-top:9rem;
   padding-bottom:9rem;
@@ -187,7 +188,57 @@ body{
   grid-template-columns:minmax(0,7fr) minmax(0,5fr);
   gap:clamp(2rem,5vw,6rem);
   align-items:center;
+  isolation:isolate;
+  overflow:hidden;
 }
+/* hero-bound cinematic still — image lives only inside chapter 01 so the
+   doctrine chapters that follow read on solid onyx (founder/ecosystem treatment).
+   feathered into onyx on every edge with slow drift. */
+.ch-vision::before{
+  content:'';
+  position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:url('/vision-bg.avif') center 40%/cover no-repeat;
+  filter:saturate(1.0) brightness(.92) contrast(1.04);
+  animation:vision-hero-drift 70s ease-in-out infinite alternate;
+}
+.ch-vision::after{
+  content:'';
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    /* legibility wash over the headline column (left ~58%) */
+    linear-gradient(90deg,
+      rgba(5,6,8,.80) 0%,
+      rgba(5,6,8,.55) 24%,
+      rgba(5,6,8,.28) 48%,
+      rgba(5,6,8,.08) 70%,
+      rgba(5,6,8,0)   88%),
+    /* radial vignette — dissolves all four edges into onyx */
+    radial-gradient(ellipse 96% 92% at 54% 50%,
+      rgba(5,6,8,0)    0%,
+      rgba(5,6,8,0)   46%,
+      rgba(5,6,8,.30) 74%,
+      rgba(5,6,8,.86) 96%,
+      #050608        100%),
+    /* top fade under nav + bottom fade into chapter 02 */
+    linear-gradient(180deg,
+      rgba(5,6,8,.82) 0%,
+      rgba(5,6,8,.30) 12%,
+      rgba(5,6,8,0)   26%,
+      rgba(5,6,8,0)   62%,
+      rgba(5,6,8,.66) 90%,
+      #050608        100%);
+}
+@keyframes vision-hero-drift{
+  0%   {transform:scale(1.000) translate3d(0,0,0);}
+  50%  {transform:scale(1.045) translate3d(-1.4%,.6%,0);}
+  100% {transform:scale(1.020) translate3d(1.0%,-.8%,0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .ch-vision::before{animation:none;}
+}
+/* hide the global field-bg image on vision — image now lives only in hero.
+   keep env-field-canvas (particles) + veil for subtle ambience. */
+.env-field-bg{display:none;}
 .ch-vision .col-text{max-width:none;}
 .ch-vision .label-pair{display:flex;flex-direction:column;gap:.55rem;}
 .ch-vision .ch-title{
