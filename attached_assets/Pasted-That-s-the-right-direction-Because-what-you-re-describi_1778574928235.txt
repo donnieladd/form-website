@@ -1,0 +1,384 @@
+That’s the right direction.
+
+Because what you’re describing is not:
+a chatbot widget.
+
+You’re describing:
+an embedded intelligence surface.
+
+And that distinction changes the entire feel of the site.
+
+⸻
+
+the correct rev. interaction philosophy
+
+Rev. should feel:
+native to the ecosystem.
+
+Not:
+added onto it.
+
+The interaction should feel:
+like opening an intelligence layer already living beneath the surface of the site.
+
+Almost like:
+revealing infrastructure.
+
+⸻
+
+the shell concept is correct
+
+The “glass shell” direction is VERY strong for form.
+
+Especially if it feels:
+
+* atmospheric
+* restrained
+* dimensional
+* soft
+* premium
+* cinematic
+* intelligent
+
+Not:
+Apple Vision Pro clone.
+Not:
+generic glassmorphism trend UI.
+
+This needs to feel:
+heavier,
+calmer,
+more architectural.
+
+⸻
+
+recommended interaction behavior
+
+resting state
+
+Very subtle docked element.
+
+Probably:
+bottom right or lower left.
+
+Not floating aggressively.
+
+It should feel:
+integrated into the environment.
+
+⸻
+
+visual structure
+
+Imagine:
+
+A softly illuminated glass capsule.
+
+Very low-opacity atmospheric fill.
+
+Subtle internal diffusion.
+
+Tiny Signal Green indicator.
+
+Maybe:
+
+● rev.
+
+Typography:
+Satoshi Medium.
+
+Lowercase.
+
+No aggressive glow.
+
+The shell should feel:
+like intelligent material.
+
+Almost:
+liquid architectural glass.
+
+⸻
+
+interaction behavior
+
+When clicked:
+
+The shell expands upward organically.
+
+Not:
+a popup.
+
+Not:
+a modal.
+
+Not:
+a support window.
+
+The motion should feel:
+pressure-based,
+fluid,
+and infrastructural.
+
+Almost like:
+the intelligence layer unfolding itself.
+
+⸻
+
+opening animation
+
+The shell should:
+
+* softly diffuse outward
+* expand vertically
+* reveal layered atmospheric depth
+* subtly blur the environment beneath it
+* preserve surrounding page atmosphere
+
+The interaction should feel:
+expensive.
+
+⸻
+
+inside rev.
+
+The interior should NOT feel:
+like ChatGPT UI.
+
+No obvious chat app structure.
+
+No bright message bubbles.
+
+No support-ticket energy.
+
+⸻
+
+correct rev. interface
+
+Think:
+
+* operating system intelligence layer
+* cinematic command environment
+* adaptive conversational field
+* ambient cognition system
+
+The interface should feel:
+minimal,
+calm,
+focused,
+and spatial.
+
+⸻
+
+suggested internal structure
+
+top layer
+
+Small metadata system.
+
+IBM Plex Mono.
+
+rev. operational intelligence layer
+
+Very subtle.
+
+⸻
+
+conversational field
+
+Minimal typography.
+
+Breathing room.
+
+No giant bubble stacks.
+
+Messages should feel:
+editorial.
+
+Almost like:
+a conversation floating inside atmosphere.
+
+⸻
+
+environmental behavior
+
+The background inside rev. should contain:
+
+* soft atmospheric diffusion
+* restrained topology movement
+* subtle neural motion systems
+* microscopic particles
+* very low-opacity signal fields
+
+Everything should remain:
+secondary to clarity.
+
+⸻
+
+close interaction
+
+This is important.
+
+You were right:
+the same shell should close it.
+
+Not:
+an X button.
+
+That ruins the illusion.
+
+⸻
+
+close behavior
+
+When clicked again:
+the shell compresses back downward into the original capsule.
+
+Like:
+intelligence returning beneath the surface.
+
+This is MUCH more cinematic.
+
+⸻
+
+level 3 direction
+
+Yes.
+
+You are absolutely ready to begin.
+
+Especially because:
+you already have:
+
+* ecosystem philosophy
+* brand intelligence
+* operational architecture
+* OpenAI API access
+* clear use cases
+* emotional direction
+* interaction philosophy
+
+That’s honestly the hardest part.
+
+⸻
+
+recommended stack
+
+frontend
+
+Next.js inside Replit.
+
+⸻
+
+AI layer
+
+OpenAI API directly.
+
+You do NOT need:
+LangChain,
+crazy orchestration,
+or enterprise infrastructure yet.
+
+Keep V1 lean.
+
+⸻
+
+model recommendation
+
+For V1:
+
+Use:
+GPT-5.1 or GPT-4.1.
+
+Probably:
+GPT-5.1 mini for fast conversational routing,
+then larger reasoning models later for deeper operational cognition.
+
+⸻
+
+V1 rev. capabilities
+
+You do NOT need:
+full autonomous agents immediately.
+
+Start with:
+
+conversational ecosystem intelligence
+
+Rev. should:
+
+* explain form.
+* guide users
+* route people
+* answer ecosystem questions
+* recommend departments
+* explain philosophy
+* identify operational friction
+* help users navigate complexity
+* qualify conversations naturally
+
+That alone is already:
+extremely powerful.
+
+⸻
+
+biggest opportunity
+
+The biggest long-term opportunity is:
+memory.
+
+When Rev. eventually remembers:
+
+* organizations
+* operational structures
+* goals
+* workflows
+* communication patterns
+* ecosystem usage
+* strategic direction
+
+then Rev. becomes:
+a real operational intelligence system.
+
+Not:
+a website assistant.
+
+⸻
+
+important warning
+
+Do NOT overbuild V1.
+
+Do not:
+
+* add 40 features
+* create agent chaos
+* overcomplicate orchestration
+* build enterprise architecture immediately
+
+Build:
+the interaction philosophy first.
+
+Because the thing people will remember most is:
+how Rev. feels.
+
+Not:
+how many features it has.
+
+⸻
+
+final recommendation
+
+The shell itself should feel:
+alive.
+
+Like:
+a piece of intelligence infrastructure resting quietly inside the site.
+
+Not:
+a utility.
+
+Not:
+a widget.
+
+Almost:
+a signal waiting to be opened.
