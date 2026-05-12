@@ -146,18 +146,20 @@ body{
   /* TYPE SCALE — base size tuned for iPhone reading distance */
   html{font-size:15.5px;}
 
-  /* HERO TYPE — bold, intentional, fits a 390px viewport */
+  /* HERO TYPE — restrained on phone. Apple-style: confident but
+     never shouting. clamp tuned so a 320px iPhone SE reads ~32px
+     and a 430px iPhone Pro Max caps around 44px. */
   #eco-title h1,#hero h1,.hero-title,.hero h1,.h1,
   .ch-title,.ch-vision .ch-title,.ch-std .ch-title,.std-title{
-    font-size:clamp(2.6rem,11.5vw,4.2rem)!important;
-    letter-spacing:-.035em!important;
-    line-height:.92!important;
+    font-size:clamp(2rem,8.5vw,2.9rem)!important;
+    letter-spacing:-.03em!important;
+    line-height:.96!important;
   }
   /* canela editorial pull — quiet, never crowded */
   .ch-vision .lede,.ch-frag .lede,.ch-form .lede,.lede,
   .reach-editorial,.close-headline{
-    font-size:clamp(1.65rem,7vw,2.4rem)!important;
-    line-height:1.05!important;
+    font-size:clamp(1.35rem,5.4vw,1.85rem)!important;
+    line-height:1.1!important;
     letter-spacing:-.012em!important;
   }
   .ch-vision .sub-lede,.hero-lead,.hero-pull,
