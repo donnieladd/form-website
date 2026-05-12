@@ -269,6 +269,15 @@ body{
 }
 @keyframes cue-run{0%{top:-30%;}100%{top:130%;}}
 
+/* respect reduced-motion: still cinematic, just stop continuous loops */
+@media (prefers-reduced-motion: reduce){
+  .hero-atm img,
+  .horizon img{animation:none;transform:none;}
+  .scroll-cue{animation:none;opacity:1;}
+  .scroll-cue .line::after{animation:none;display:none;}
+  [data-reveal]{transition:none;opacity:1;transform:none;}
+}
+
 /* horizon reprise — quiet cosmic band between sections */
 .horizon{
   position:relative;
@@ -652,8 +661,8 @@ body{
     </div>
   </section>
 
-  <!-- ───────── HORIZON REPRISE — quiet cosmic band ───────── -->
-  <div class="horizon" aria-hidden="false">
+  <!-- ───────── HORIZON REPRISE — quiet cosmic band (decorative) ───────── -->
+  <div class="horizon" aria-hidden="true">
     <img src="/founder-bg.avif?v=2" alt="">
     <div class="horizon-mark">
       [ <span class="ac">04</span> ] · the operating substrate
