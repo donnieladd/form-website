@@ -26,6 +26,9 @@
       '</a>' +
       '<nav class="tn-links" role="navigation">' +
         '<div class="tn-item">' +
+          '<a href="/" class="tn-link' + cls('/') + '">home.</a>' +
+        '</div>' +
+        '<div class="tn-item">' +
           '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision.</a>' +
         '</div>' +
         '<div class="tn-item">' +
@@ -91,6 +94,7 @@
         '</div>' +
         '<div class="ft-col">' +
           '<h4>explore</h4>' +
+          '<a href="/">home.</a>' +
           '<a href="/vision.html">vision.</a>' +
           '<a href="/standards.html">standards.</a>' +
           '<a href="/founder.html">founder.</a>' +
@@ -122,6 +126,7 @@
     '<div id="tn-mobile" aria-hidden="true">' +
       '<button class="tn-mobile-close" type="button" aria-label="Close menu">' + xmark + '</button>' +
       '<div class="tn-mobile-inner">' +
+        '<a href="/" class="tn-mobile-link">home.</a>' +
         '<a href="/vision.html" class="tn-mobile-link">vision.</a>' +
         '<a href="/standards.html" class="tn-mobile-link">standards.</a>' +
         '<a href="/founder.html" class="tn-mobile-link">founder.</a>' +
