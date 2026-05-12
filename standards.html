@@ -1,428 +1,802 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>form. — standards.</title>
-<meta name="description" content="standards are not preferences. how form. behaves. how form. thinks. operational doctrine for an AI-augmented intelligence ecosystem.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
-<script src="/performance-tier.js"></script>
-<script src="/performance-config.js"></script>
-<script src="/perf-observer.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>standards — form.</title>
+<meta name="description" content="form. standards — operational doctrine for an ai-augmented intelligence ecosystem. standards are not preferences. they are the architecture of trust.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/tokens/colors.css">
-<link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
+
+<link rel="stylesheet" href="/field.css?v=3">
+<link rel="stylesheet" href="/nav-footer.css?v=13">
+<link rel="stylesheet" href="/rev.css?v=3">
+
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
-body{background:#050608;color:var(--stone);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-family:'Satoshi',sans-serif;font-weight:300;}
-
+/* ── per-page environment tuning ── standards uses its own architectural still */
 :root{
-  --ac:#39FF14;--ac-rgb:57,255,20;
-  --ib:#2962FF;--ib-rgb:41,98,255;
-  --cv:#8B5CF6;--cv-rgb:139,92,246;
-  --stone:#F2F2F0;--stone-rgb:242,242,240;
-  --onyx:#050608;
-  --nav-h:64px;
-  --bezier:cubic-bezier(.16,1,.3,1);
-  --rule:rgba(242,242,240,.08);
-  --rule-strong:rgba(242,242,240,.14);
+  --field-bg: url('/standards-bg.avif');
+  --stone:   #f2f2f0;
+  --stone-2: rgba(242,242,240,.72);
+  --stone-3: rgba(242,242,240,.5);
+  --stone-4: rgba(242,242,240,.32);
+  --rule:    rgba(242,242,240,.12);
+  --rule-2:  rgba(242,242,240,.06);
+  --ac:      #39ff14;
+  --onyx:    #050608;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:'Satoshi','Inter',system-ui,sans-serif;
+  font-weight:400;
+  background:var(--onyx);
+  color:var(--stone);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
 }
 
-/* SYSTEM LAYERS — minimal, structural */
-#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 2s var(--bezier) forwards;}
-@keyframes veil-open{0%,28%{opacity:1}100%{opacity:0}}
-
-#cdot{position:fixed;z-index:9000;width:4px;height:4px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(var(--ac-rgb),.6),0 0 14px rgba(var(--ac-rgb),.18);opacity:.8;}
-#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.22);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .85s var(--bezier),height .85s var(--bezier),border-color .55s,box-shadow .35s;}
-body.hl  #cring{width:30px;height:30px;border-color:rgba(var(--ac-rgb),.42);}
-
-#grain{position:fixed;inset:0;z-index:3;opacity:.018;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
-
-/* atmosphere — flatter, more architectural; subtle horizontal sweep instead of radial pulse */
-#atm{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(var(--ib-rgb),.025) 0%,transparent 30%,transparent 70%,rgba(var(--cv-rgb),.018) 100%),
-    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(var(--ac-rgb),.012) 0%,transparent 60%),
-    #050608;
+/* ── grain ── */
+#grain{
+  position:fixed;inset:0;width:100%;height:100%;
+  opacity:.07;mix-blend-mode:overlay;pointer-events:none;
+  z-index:5;
 }
 
-/* TYPOGRAPHY */
-.canela{font-family:'Cormorant Garamond','Georgia',serif;font-style:italic;font-weight:300;letter-spacing:.005em;}
-.meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);font-weight:400;}
-.meta .idx{color:rgba(var(--ac-rgb),.6);margin-right:.4em;}
-.meta-sub{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--stone-rgb),.22);font-weight:400;}
-.bdy{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1rem;line-height:1.8;color:rgba(var(--stone-rgb),.62);letter-spacing:.005em;}
-.bdy + .bdy{margin-top:1.4rem;}
-
-@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.r{opacity:0;}
-.r.in{animation:fadeup 1.1s var(--bezier) forwards;}
-
-#main{position:relative;z-index:10;margin-top:var(--nav-h);}
-
-/* ══════════════════════════════════
-   GLOBAL STRUCTURAL RULES
-══════════════════════════════════ */
-.std-rule{height:1px;background:var(--rule);width:100%;}
-.std-rule-strong{height:1px;background:var(--rule-strong);width:100%;}
-
-/* ══════════════════════════════════
-   01 — HERO (less atmosphere, more structure)
-══════════════════════════════════ */
-#s-hero{padding:9rem 8vw 5rem;position:relative;border-bottom:1px solid var(--rule);}
-.hero-meta-row{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
-  border-top:1px solid var(--rule);padding-top:1.4rem;margin-bottom:6rem;
+/* ── scrollable main; field stays pinned ── */
+#main{
+  position:relative;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  z-index:10;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(242,242,240,.14) transparent;
 }
-.hero-meta-row > div{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);}
-.hero-meta-row > div:first-child{color:rgba(var(--ac-rgb),.6);}
+#main::-webkit-scrollbar{width:6px;}
+#main::-webkit-scrollbar-track{background:transparent;}
+#main::-webkit-scrollbar-thumb{background:rgba(242,242,240,.10);border-radius:3px;}
+#main::-webkit-scrollbar-thumb:hover{background:rgba(242,242,240,.22);}
 
-.hero-stack{max-width:1480px;margin:0 auto;}
-.hero-headline{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(3rem,7.5vw,8rem);line-height:.98;letter-spacing:-.022em;
-  color:var(--stone);margin-bottom:3rem;max-width:1100px;
+/* ── shared chapter scaffold ── */
+.chapter{
+  position:relative;
+  padding:13rem clamp(2rem, 6vw, 7rem) 13rem;
+  max-width:1640px;
+  margin:0 auto;
 }
-.hero-headline .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);}
-.hero-tag{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:1.15rem;line-height:1.7;color:rgba(var(--stone-rgb),.62);
-  max-width:560px;
-}
-.hero-tag .pause{display:block;color:rgba(var(--stone-rgb),.4);margin-top:.4rem;}
+.chapter:first-of-type{padding-top:8rem;}
+.chapter + .chapter{padding-top:9rem;}
 
-/* hero structural diagram — minimal blueprint marks */
-.hero-blueprint{
-  position:absolute;top:50%;right:6vw;transform:translateY(-50%);
-  width:280px;height:280px;opacity:.5;pointer-events:none;
+/* mono micro-index */
+.idx{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.7rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--ac);
 }
-.hb-grid{position:absolute;inset:0;
-  background-image:linear-gradient(0deg,transparent 49%,rgba(var(--stone-rgb),.05) 49%,rgba(var(--stone-rgb),.05) 51%,transparent 51%),
-                   linear-gradient(90deg,transparent 49%,rgba(var(--stone-rgb),.05) 49%,rgba(var(--stone-rgb),.05) 51%,transparent 51%);
-  background-size:14% 14%;
-}
-.hb-cross{position:absolute;width:80px;height:80px;border:1px solid rgba(var(--ac-rgb),.4);top:50%;left:50%;transform:translate(-50%,-50%);}
-.hb-cross::before,.hb-cross::after{content:'';position:absolute;background:rgba(var(--ac-rgb),.5);}
-.hb-cross::before{left:50%;top:-10px;bottom:-10px;width:1px;transform:translateX(-50%);}
-.hb-cross::after{top:50%;left:-10px;right:-10px;height:1px;transform:translateY(-50%);}
-
-@media (max-width:980px){.hero-blueprint{display:none;} .hero-meta-row{grid-template-columns:repeat(2,1fr);}}
-
-/* ══════════════════════════════════
-   ALTERNATING DOCTRINE SECTIONS
-══════════════════════════════════ */
-.doctrine-sec{padding:8rem 8vw;border-bottom:1px solid var(--rule);position:relative;}
-.doctrine-inner{max-width:1480px;margin:0 auto;display:grid;grid-template-columns:24% 76%;gap:5rem;align-items:start;}
-
-.dsec-meta{position:sticky;top:calc(var(--nav-h) + 4rem);}
-.dsec-meta .meta{margin-bottom:2.4rem;}
-.dsec-meta-title{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(2rem,3.4vw,2.8rem);line-height:1.05;letter-spacing:-.018em;
-  color:var(--stone);margin-bottom:1.6rem;
-}
-.dsec-meta-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(var(--stone-rgb),.96);}
-.dsec-meta-sub{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.92rem;line-height:1.7;color:rgba(var(--stone-rgb),.5);max-width:240px;}
-
-/* doctrine row — one principle/value per row, rule-divided */
-.drow{
-  display:grid;grid-template-columns:60px 1fr 2fr;gap:2.4rem;align-items:baseline;
-  padding:2rem 0;border-top:1px solid var(--rule);
-  transition:padding-left .5s var(--bezier),background .5s;
-}
-.drow:last-child{border-bottom:1px solid var(--rule);}
-.drow:hover{padding-left:1.2rem;background:linear-gradient(90deg,rgba(var(--ac-rgb),.012) 0%,transparent 50%);}
-.drow-num{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;color:rgba(var(--ac-rgb),.5);text-transform:uppercase;}
-.drow-label{
-  font-family:'Satoshi',sans-serif;font-weight:400;
-  font-size:1.18rem;letter-spacing:-.005em;color:var(--stone);line-height:1.3;
-}
-.drow-label em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.08em;color:rgba(var(--stone-rgb),.96);}
-.drow-desc{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:.96rem;line-height:1.75;color:rgba(var(--stone-rgb),.55);
-  letter-spacing:.005em;
+.idx-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.62rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--stone-3);
 }
 
-@media (max-width:980px){
-  .doctrine-inner{grid-template-columns:1fr;gap:3rem;}
-  .dsec-meta{position:static;}
-  .drow{grid-template-columns:50px 1fr;gap:1.4rem;}
-  .drow-desc{grid-column:1 / -1;padding-left:0;margin-top:.5rem;}
+/* chapter title — lowercase satoshi w/ green dot */
+.ch-title{
+  display:inline-flex;
+  align-items:baseline;
+  gap:clamp(4px,.55vw,9px);
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(44px, 5.4vw, 84px);
+  letter-spacing:-.035em;
+  line-height:.95;
+  color:var(--stone);
+  margin-top:1.4rem;
+}
+.ch-title .dot{
+  display:inline-block;
+  width:.18em;height:.18em;
+  background:var(--ac);
+  align-self:flex-end;
+  margin-bottom:.10em;
+  box-shadow:0 0 12px rgba(57,255,20,.35);
+}
+.it{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;letter-spacing:.005em;color:var(--stone);}
+.rule-mini{
+  width:48px;height:1px;background:var(--ac);
+  opacity:.55;margin:1.6rem 0 1.4rem;
 }
 
-/* ══════════════════════════════════
-   PHILOSOPHY INTERLUDE — alternating rhythm break
-══════════════════════════════════ */
-.interlude{padding:10rem 8vw;border-bottom:1px solid var(--rule);background:linear-gradient(180deg,transparent 0%,rgba(var(--ac-rgb),.012) 50%,transparent 100%);}
-.interlude-inner{max-width:1100px;margin:0 auto;}
-.interlude-meta{margin-bottom:3rem;}
-.interlude-statement{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.3;letter-spacing:-.012em;
-  color:rgba(var(--stone-rgb),.92);max-width:980px;
+/* reveal system */
+[data-reveal]{
+  opacity:0;transform:translateY(14px);
+  transition:opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform;
 }
-.interlude-statement em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--stone);font-size:1.04em;}
-.interlude-attr{
-  font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(var(--stone-rgb),.32);margin-top:3rem;
-}
+[data-reveal].in{opacity:1;transform:translateY(0);}
+[data-reveal][data-d="1"]{transition-delay:.12s;}
+[data-reveal][data-d="2"]{transition-delay:.24s;}
+[data-reveal][data-d="3"]{transition-delay:.36s;}
+[data-reveal][data-d="4"]{transition-delay:.48s;}
+[data-reveal][data-d="5"]{transition-delay:.60s;}
+[data-reveal][data-d="6"]{transition-delay:.72s;}
 
-/* ══════════════════════════════════
-   CADENCE — operational rhythm grid
-══════════════════════════════════ */
-#s-cadence{padding:9rem 8vw;border-bottom:1px solid var(--rule);}
-.cad-stack{max-width:1480px;margin:0 auto;}
-.cad-meta{margin-bottom:3rem;}
-.cad-title{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(2.4rem,5vw,4.8rem);line-height:1.04;letter-spacing:-.02em;
-  color:var(--stone);margin-bottom:5rem;max-width:1100px;
+/* ─────────────────────────────────────────
+   CHAPTER 01 — HERO
+   asymmetric: text left (~58%), atmosphere shows through right
+   ───────────────────────────────────────── */
+.ch-hero{
+  display:grid;
+  grid-template-columns: minmax(0, 58%) minmax(0, 1fr);
+  gap:clamp(2rem,5vw,5rem);
+  min-height:92vh;
+  align-items:center;
 }
-.cad-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;}
+.ch-hero .col-text{max-width:780px;}
+.ch-hero .h1{
+  display:inline-flex;align-items:baseline;
+  gap:clamp(6px,.7vw,12px);
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(72px, 10vw, 168px);
+  letter-spacing:-.05em;
+  line-height:.92;
+  color:var(--stone);
+  margin-top:2.2rem;
+}
+.ch-hero .h1 .dot{
+  display:inline-block;
+  width:.16em;height:.16em;
+  background:var(--ac);
+  align-self:flex-end;
+  margin-bottom:.10em;
+  box-shadow:0 0 18px rgba(57,255,20,.45);
+}
+.ch-hero .lede{
+  margin-top:2.6rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(26px, 2.6vw, 40px);
+  letter-spacing:-.018em;
+  line-height:1.18;
+  color:var(--stone);
+  max-width:30ch;
+}
+.ch-hero .sub-mono{
+  margin-top:3.4rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.78rem;
+  letter-spacing:.06em;
+  line-height:1.85;
+  color:var(--stone-2);
+  max-width:46ch;
+  text-transform:lowercase;
+}
+.ch-hero .sub-mono .ac{color:var(--ac);}
 
-.cad-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--rule-strong);
-  border-left:1px solid var(--rule);
+/* ─────────────────────────────────────────
+   STANDARDS INDEX — 4 rows preview after hero
+   editorial table — index | name | desc | arrow
+   ───────────────────────────────────────── */
+.std-index{
+  margin-top:6rem;
+  border-top:1px solid var(--rule);
+  grid-column:1 / -1;
 }
-.cad-cell{
-  padding:2.6rem 1.8rem 2.4rem;
-  border-right:1px solid var(--rule);
+.std-row{
+  display:grid;
+  grid-template-columns: 100px minmax(0,260px) minmax(0,1fr) 60px;
+  gap:clamp(1.2rem,3vw,3rem);
+  align-items:center;
+  padding:1.9rem 0;
   border-bottom:1px solid var(--rule);
-  position:relative;min-height:200px;
-  display:flex;flex-direction:column;
+  text-decoration:none;color:inherit;
+  transition:background .8s ease, padding .6s ease;
+  cursor:pointer;
 }
-.cad-num{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.3em;color:rgba(var(--ac-rgb),.5);text-transform:uppercase;margin-bottom:1.6rem;}
-.cad-name{font-family:'Satoshi',sans-serif;font-weight:400;font-size:1.05rem;color:var(--stone);margin-bottom:.8rem;line-height:1.3;}
-.cad-fn{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.88rem;line-height:1.7;color:rgba(var(--stone-rgb),.5);margin-top:auto;}
-
-@media (max-width:980px){.cad-grid{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:560px){.cad-grid{grid-template-columns:1fr;}}
-
-/* ══════════════════════════════════
-   CLOSING SIGNAL
-══════════════════════════════════ */
-#s-close{padding:14rem 8vw 12rem;position:relative;}
-.close-stack{max-width:1480px;margin:0 auto;}
-.close-meta{margin-bottom:5rem;}
-.close-headline{
-  font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(2.4rem,5.4vw,5.4rem);line-height:1.04;letter-spacing:-.02em;
-  color:var(--stone);max-width:1080px;margin-bottom:4rem;
+.std-row:hover{background:rgba(57,255,20,.020);}
+.std-row .r-idx{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.30em;text-transform:uppercase;
+  color:var(--ac);
 }
-.close-headline em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(var(--stone-rgb),.96);}
-.close-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);}
+.std-row .r-name{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(20px,1.7vw,26px);
+  letter-spacing:-.018em;
+  color:var(--stone);
+  text-transform:lowercase;
+  line-height:1.15;
+}
+.std-row .r-desc{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:.98rem;
+  line-height:1.65;
+  color:var(--stone-2);
+  letter-spacing:-.003em;
+  max-width:54ch;
+}
+.std-row .r-arrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:1.2rem;
+  color:var(--ac);
+  text-align:right;
+  transition:transform .55s cubic-bezier(.16,1,.3,1);
+}
+.std-row:hover .r-arrow{transform:translateX(8px);}
 
-.t-link{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--stone-rgb),.78);text-decoration:none;display:inline-flex;align-items:center;gap:.85rem;transition:color .5s,letter-spacing .5s;margin-top:5rem;}
-.t-link::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.5);}
-.t-link:hover{color:var(--ac);letter-spacing:.28em;}
+.hero-pull{
+  grid-column:1 / -1;
+  margin-top:5rem;
+  display:flex;justify-content:flex-end;
+}
+.hero-pull .pull{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.78rem;
+  letter-spacing:.05em;
+  line-height:1.75;
+  color:var(--stone-2);
+  max-width:34ch;
+  text-align:left;
+  text-transform:lowercase;
+}
+.hero-pull .pull .ac{color:var(--ac);}
 
-@media (max-width:640px){
-  #s-hero,#s-cadence,#s-close,.doctrine-sec,.interlude{padding-left:6vw;padding-right:6vw;padding-top:6rem;padding-bottom:6rem;}
-  .hero-headline{font-size:clamp(2.2rem,10vw,3.4rem);}
-  .hero-meta-row{grid-template-columns:1fr 1fr;}
+/* ─────────────────────────────────────────
+   STANDARD CHAPTER — shared layout for [02]–[05]
+   left: index + title + lede   right: numbered principle list
+   ───────────────────────────────────────── */
+.ch-std{
+  display:grid;
+  grid-template-columns: minmax(0,5fr) minmax(0,7fr);
+  gap:clamp(2rem,5vw,6rem);
+  align-items:start;
+}
+.ch-std .col-text{position:sticky;top:18vh;align-self:start;}
+.ch-std .lede{
+  margin-top:2rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(22px,2vw,32px);
+  letter-spacing:-.018em;
+  line-height:1.3;
+  color:var(--stone);
+  max-width:30ch;
+}
+.ch-std .body{
+  margin-top:1.8rem;
+  font-size:1rem;line-height:1.72;color:var(--stone-2);
+  max-width:42ch;
+}
+.ch-std .col-list{padding-top:1rem;}
+.ch-std .ph-head{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--stone-3);
+  padding-bottom:1.4rem;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:.4rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.ch-std .ph-head .ac{color:var(--ac);}
+.ph-list{list-style:none;}
+.ph-row{
+  display:grid;
+  grid-template-columns: 60px minmax(0,1fr);
+  gap:clamp(1rem,2.4vw,2.4rem);
+  padding:2rem 0;
+  border-bottom:1px solid var(--rule);
+  align-items:baseline;
+}
+.ph-row:last-child{border-bottom:none;}
+.ph-row .ph-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;letter-spacing:.30em;text-transform:uppercase;
+  color:var(--ac);
+  padding-top:.45rem;
+}
+.ph-row .ph-body .ph-title{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(20px,1.7vw,28px);
+  letter-spacing:-.018em;
+  color:var(--stone);
+  text-transform:lowercase;
+  line-height:1.15;
+}
+.ph-row .ph-body .ph-desc{
+  margin-top:.7rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:.98rem;
+  line-height:1.7;
+  color:var(--stone-2);
+  letter-spacing:-.003em;
+  max-width:58ch;
 }
 
-[data-perf="minimal"] html.cursor-ready{cursor:auto!important;}
-[data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none;}
-@media (prefers-reduced-motion:reduce){
-  .r,.r.in{animation:none!important;opacity:1!important;transform:none!important;}
+/* ─────────────────────────────────────────
+   CHAPTER 06 — SIGNAL CLOSE
+   centered, restrained
+   ───────────────────────────────────────── */
+.ch-signal{text-align:center;padding-top:14rem;padding-bottom:18rem;}
+.ch-signal .idx{margin-bottom:1.2rem;}
+.ch-signal .ch-title{justify-content:center;}
+.ch-signal .lines{
+  margin-top:3.2rem;
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(36px,4.4vw,72px);
+  letter-spacing:-.03em;
+  line-height:1.12;
+  color:var(--stone);
+}
+.ch-signal .lines .it{color:var(--stone);}
+.ch-signal .lines .ac{color:var(--ac);}
+.ch-signal .tag{
+  margin-top:3rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--stone-3);
+}
+.ch-signal .cta-mono{margin-top:3.6rem;display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Satoshi',sans-serif;font-weight:500;font-size:.95rem;
+  color:var(--stone);text-decoration:none;letter-spacing:-.005em;
+  padding:.9rem 1.4rem;border:1px solid var(--rule);border-radius:999px;
+  transition:border-color .5s, background .5s, transform .5s cubic-bezier(.16,1,.3,1);
+}
+.ch-signal .cta-mono::before{
+  content:'';width:8px;height:8px;border-radius:50%;background:var(--ac);
+  box-shadow:0 0 10px rgba(57,255,20,.6);
+}
+.ch-signal .cta-mono:hover{
+  border-color:rgba(57,255,20,.55);
+  background:rgba(57,255,20,.04);
+  transform:translateY(-2px);
+}
+
+/* ─────────────────────────────────────────
+   responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1100px){
+  .ch-hero{grid-template-columns:1fr;min-height:auto;padding-top:6rem;}
+  .ch-std{grid-template-columns:1fr;gap:3rem;}
+  .ch-std .col-text{position:static;}
+}
+@media (max-width: 720px){
+  .chapter{padding:8rem clamp(1.2rem,5vw,3rem) 8rem;}
+  .std-row{grid-template-columns:60px 1fr 28px;gap:.6rem 1.2rem;}
+  .std-row .r-desc{grid-column:1 / -1;margin-top:.4rem;}
+  .ph-row{grid-template-columns:42px 1fr;gap:.4rem 1rem;}
+  .hero-pull{justify-content:flex-start;}
 }
 </style>
-<link rel="stylesheet" href="/nav-footer.css?v=13">
-<link rel="stylesheet" href="/mobile.css?v=6">
 </head>
-<body>
+<body data-field-density="open">
 
-<div id="veil"></div>
-<div id="cdot"></div>
-<div id="cring"></div>
-<div id="atm"></div>
-<img id="grain" src="/grain.svg" alt="">
+<!-- ── environmental field — same engine, standards atmosphere ── -->
+<div class="env-field" aria-hidden="true">
+  <div class="env-field-bg"></div>
+  <canvas class="env-field-canvas"></canvas>
+  <div class="env-field-veil"></div>
+</div>
 
+<!-- ── grain ── -->
+<img src="/grain.svg" id="grain" alt="" aria-hidden="true">
+
+<!-- ── scroll container ── -->
 <main id="main">
 
-<!-- ══════════ 01 HERO ══════════ -->
-<section id="s-hero">
-  <div class="hero-stack">
-    <div class="hero-meta-row r">
-      <div>[ standards ]</div>
-      <div>operational doctrine</div>
-      <div>how we behave</div>
-      <div>how we think</div>
+  <!-- ───────── CHAPTER 01 — HERO ───────── -->
+  <section class="chapter ch-hero" id="ch-01">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 01 ]</span>
+      <h1 class="h1" data-reveal data-d="2">
+        <span>standards</span><span class="dot"></span>
+      </h1>
+      <div class="lede" data-reveal data-d="3">
+        standards are not preferences.<br>
+        <span class="it">they are the architecture of trust.</span>
+      </div>
+      <p class="sub-mono" data-reveal data-d="4">
+        how <span class="ac">form.</span> behaves. how <span class="ac">form.</span> thinks.<br>
+        operational doctrine for an<br>
+        ai-augmented intelligence ecosystem.
+      </p>
     </div>
 
-    <h1 class="hero-headline r">standards are not preferences. they are <span class="canela">infrastructure.</span></h1>
+    <!-- right column intentionally empty — cinematic atmosphere shows through -->
+    <div class="col-atm" aria-hidden="true"></div>
 
-    <p class="hero-tag r">
-      this is how form. behaves and how form. thinks.
-      <span class="pause">written down so it can be operated, not improvised.</span>
-    </p>
-  </div>
+    <!-- standards index — 4 anchor rows -->
+    <nav class="std-index" aria-label="standards index">
+      <a class="std-row" href="#ch-02" data-reveal data-d="1">
+        <div class="r-idx">[ 02 ]</div>
+        <div class="r-name">operational principles</div>
+        <div class="r-desc">the non-negotiable principles that govern how we operate, decide, build, and evolve.</div>
+        <div class="r-arrow">→</div>
+      </a>
+      <a class="std-row" href="#ch-03" data-reveal data-d="2">
+        <div class="r-idx">[ 03 ]</div>
+        <div class="r-name">behavioral standards</div>
+        <div class="r-desc">how we show up, communicate, collaborate, and lead with clarity, respect, and ownership.</div>
+        <div class="r-arrow">→</div>
+      </a>
+      <a class="std-row" href="#ch-04" data-reveal data-d="3">
+        <div class="r-idx">[ 04 ]</div>
+        <div class="r-name">quality standards</div>
+        <div class="r-desc">our commitment to precision, excellence, and continuous improvement in everything we build.</div>
+        <div class="r-arrow">→</div>
+      </a>
+      <a class="std-row" href="#ch-05" data-reveal data-d="4">
+        <div class="r-idx">[ 05 ]</div>
+        <div class="r-name">intelligence standards</div>
+        <div class="r-desc">how we integrate, apply, and elevate intelligence — human, augmented, and artificial — responsibly.</div>
+        <div class="r-arrow">→</div>
+      </a>
+    </nav>
 
-  <div class="hero-blueprint" aria-hidden="true">
-    <div class="hb-grid"></div>
-    <div class="hb-cross"></div>
-  </div>
-</section>
-
-<!-- ══════════ 02 BEHAVIORAL STANDARDS ══════════ -->
-<section class="doctrine-sec" id="s-behave">
-  <div class="doctrine-inner">
-    <div class="dsec-meta r">
-      <div class="meta"><span class="idx">[ 02 ]</span> how we behave.</div>
-      <h2 class="dsec-meta-title">behavioral <em>standards.</em></h2>
-      <p class="dsec-meta-sub">the operational behaviors form. holds itself and its work to. observable. testable. non-negotiable.</p>
+    <div class="hero-pull">
+      <p class="pull" data-reveal data-d="5">
+        standards don't limit creativity — they <span class="ac it">amplify</span> it.
+      </p>
     </div>
-    <div class="dsec-rows">
-      <div class="drow r"><div class="drow-num">b/01</div><div class="drow-label">clarity over performance</div><div class="drow-desc">we will not perform competence. we will demonstrate it through structure, language, and outcomes.</div></div>
-      <div class="drow r"><div class="drow-num">b/02</div><div class="drow-label">structure over speed</div><div class="drow-desc">speed without structure compounds fragility. we move at the pace structure can sustain.</div></div>
-      <div class="drow r"><div class="drow-num">b/03</div><div class="drow-label">presence over volume</div><div class="drow-desc">attention is a finite resource. we choose presence in fewer rooms over noise in many.</div></div>
-      <div class="drow r"><div class="drow-num">b/04</div><div class="drow-label">precision over approximation</div><div class="drow-desc">vague language produces vague systems. we name the thing accurately or we don't name it yet.</div></div>
-      <div class="drow r"><div class="drow-num">b/05</div><div class="drow-label">discipline over urgency</div><div class="drow-desc">urgency is not a strategy. discipline is. we respect timelines without surrendering to them.</div></div>
-      <div class="drow r"><div class="drow-num">b/06</div><div class="drow-label">depth over breadth</div><div class="drow-desc">we would rather build one thing intelligently than seven things adequately.</div></div>
-      <div class="drow r"><div class="drow-num">b/07</div><div class="drow-label">restraint over expression</div><div class="drow-desc">restraint is the highest form of confidence. we trust the work to speak before we speak for it.</div></div>
-      <div class="drow r"><div class="drow-num">b/08</div><div class="drow-label">signal over hype</div><div class="drow-desc">trends decay. signal compounds. we orient to what will still be true in ten years.</div></div>
+  </section>
+
+  <!-- ───────── CHAPTER 02 — OPERATIONAL PRINCIPLES ───────── -->
+  <section class="chapter ch-std" id="ch-02">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 02 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>operational principles</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede" data-reveal data-d="2">
+        the non-negotiable principles that govern how we operate, decide, build, and evolve.
+      </div>
+      <p class="body" data-reveal data-d="3">
+        these are not aspirations. they are the operating substrate beneath every decision —
+        the fixed points that keep the ecosystem coherent as it scales.
+      </p>
     </div>
-  </div>
-</section>
-
-<!-- ══════════ 03 PHILOSOPHY INTERLUDE ══════════ -->
-<section class="interlude" id="s-interlude-1">
-  <div class="interlude-inner">
-    <div class="interlude-meta r"><div class="meta"><span class="idx">[ 03 ]</span> interlude.</div></div>
-    <p class="interlude-statement r">behavior is the surface of philosophy. <em>what an organization does repeatedly is what it actually believes.</em></p>
-    <div class="interlude-attr r">— form. operational doctrine</div>
-  </div>
-</section>
-
-<!-- ══════════ 04 OPERATIONAL PRINCIPLES ══════════ -->
-<section class="doctrine-sec" id="s-think">
-  <div class="doctrine-inner">
-    <div class="dsec-meta r">
-      <div class="meta"><span class="idx">[ 04 ]</span> how we think.</div>
-      <h2 class="dsec-meta-title">operational <em>principles.</em></h2>
-      <p class="dsec-meta-sub">the underlying convictions that shape every system, decision, and recommendation form. produces.</p>
+    <div class="col-list">
+      <div class="ph-head" data-reveal>
+        <span>principles</span><span class="ac">06</span>
+      </div>
+      <ul class="ph-list">
+        <li class="ph-row" data-reveal data-d="1">
+          <div class="ph-num">01</div>
+          <div class="ph-body">
+            <div class="ph-title">structure creates freedom.</div>
+            <div class="ph-desc">clarity is not constraint. systems give people room to do their best work without re-deciding the basics every day.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="2">
+          <div class="ph-num">02</div>
+          <div class="ph-body">
+            <div class="ph-title">restraint over noise.</div>
+            <div class="ph-desc">we add what is necessary and remove what is not. nothing ships because it is fashionable. nothing stays because it is familiar.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="3">
+          <div class="ph-num">03</div>
+          <div class="ph-body">
+            <div class="ph-title">signal over speed.</div>
+            <div class="ph-desc">moving fast is not a strategy. moving with clarity is. velocity without signal is the most expensive form of waste.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="4">
+          <div class="ph-num">04</div>
+          <div class="ph-body">
+            <div class="ph-title">depth over volume.</div>
+            <div class="ph-desc">we build fewer things, more carefully. one well-formed system outperforms ten partial ones in every meaningful dimension.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="5">
+          <div class="ph-num">05</div>
+          <div class="ph-body">
+            <div class="ph-title">ownership over assignment.</div>
+            <div class="ph-desc">work is owned end-to-end, not handed off. accountability is a posture, not a process.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="6">
+          <div class="ph-num">06</div>
+          <div class="ph-body">
+            <div class="ph-title">humanity inside intelligence.</div>
+            <div class="ph-desc">no system we build erases the people inside it. intelligence amplifies human capacity. it does not replace human presence.</div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="dsec-rows">
-      <div class="drow r"><div class="drow-num">p/01</div><div class="drow-label">systems shape behavior</div><div class="drow-desc">people do not rise to intentions. they fall to the level of their systems. design accordingly.</div></div>
-      <div class="drow r"><div class="drow-num">p/02</div><div class="drow-label">structure creates freedom</div><div class="drow-desc">creativity and clarity are not opposites of structure. they are downstream of it.</div></div>
-      <div class="drow r"><div class="drow-num">p/03</div><div class="drow-label">intelligence requires restraint</div><div class="drow-desc">the more intelligent the system, the more disciplined its constraints must be.</div></div>
-      <div class="drow r"><div class="drow-num">p/04</div><div class="drow-label">complexity requires architecture</div><div class="drow-desc">complexity is not solved by simplification. it is solved by architecture that makes complexity legible.</div></div>
-      <div class="drow r"><div class="drow-num">p/05</div><div class="drow-label">growth magnifies foundation</div><div class="drow-desc">scale exposes whatever is underneath. growth is not a fix. it is an amplifier.</div></div>
-      <div class="drow r"><div class="drow-num">p/06</div><div class="drow-label">clarity is a form of respect</div><div class="drow-desc">vague communication is not gentleness. it is friction. clarity is how we honor the people we work with.</div></div>
-      <div class="drow r"><div class="drow-num">p/07</div><div class="drow-label">technology is downstream of philosophy</div><div class="drow-desc">tools follow worldview. we choose, design, and deploy technology as an expression of values, not against them.</div></div>
-      <div class="drow r"><div class="drow-num">p/08</div><div class="drow-label">the future requires form</div><div class="drow-desc">intelligence without form collapses into noise. our job is to give the future a shape it can sustain.</div></div>
+  </section>
+
+  <!-- ───────── CHAPTER 03 — BEHAVIORAL STANDARDS ───────── -->
+  <section class="chapter ch-std" id="ch-03">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 03 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>behavioral standards</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede" data-reveal data-d="2">
+        how we show up, communicate, collaborate, and lead with clarity, respect, and ownership.
+      </div>
+      <p class="body" data-reveal data-d="3">
+        culture is not a deck. it is the sum of how people behave when no one is watching.
+        these standards describe the posture we hold — internally and with every partner.
+      </p>
     </div>
-  </div>
-</section>
-
-<!-- ══════════ 05 PHILOSOPHY INTERLUDE ══════════ -->
-<section class="interlude" id="s-interlude-2">
-  <div class="interlude-inner">
-    <div class="interlude-meta r"><div class="meta"><span class="idx">[ 05 ]</span> interlude.</div></div>
-    <p class="interlude-statement r">an organization's standards are not its slogans. <em>they are the smallest decisions made when no one is watching.</em></p>
-    <div class="interlude-attr r">— form. operational doctrine</div>
-  </div>
-</section>
-
-<!-- ══════════ 06 CADENCE ══════════ -->
-<section id="s-cadence">
-  <div class="cad-stack">
-    <div class="cad-meta r"><div class="meta"><span class="idx">[ 06 ]</span> cadence.</div></div>
-    <h2 class="cad-title r">how we operate. <em>weekly, quarterly, and across the long arc.</em></h2>
-    <div class="cad-grid r">
-      <div class="cad-cell"><div class="cad-num">c/01 · daily</div><div class="cad-name">disciplined attention</div><div class="cad-fn">a small number of intentional moves. depth over surface area. quiet, repeated focus.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/02 · weekly</div><div class="cad-name">structural review</div><div class="cad-fn">we audit the systems we operate inside as carefully as the work we produce.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/03 · monthly</div><div class="cad-name">signal calibration</div><div class="cad-fn">we re-orient against what is true, not what is loud. monthly check against the long arc.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/04 · quarterly</div><div class="cad-name">architectural rebuild</div><div class="cad-fn">we challenge the structure of the structure. nothing stays sacred for more than 90 days.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/05 · yearly</div><div class="cad-name">doctrine refinement</div><div class="cad-fn">these standards are revisited annually. additions are rare. removals are rarer.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/06 · multi-year</div><div class="cad-name">continuum partnership</div><div class="cad-fn">we measure the work in years, not engagements. operations are a long compound.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/07 · always</div><div class="cad-name">human formation</div><div class="cad-fn">technology evolves quickly. people and culture do not. we build for both timescales.</div></div>
-      <div class="cad-cell"><div class="cad-num">c/08 · always</div><div class="cad-name">operational presence</div><div class="cad-fn">we are present where the work is happening. proximity is a form of accountability.</div></div>
+    <div class="col-list">
+      <div class="ph-head" data-reveal>
+        <span>behaviors</span><span class="ac">06</span>
+      </div>
+      <ul class="ph-list">
+        <li class="ph-row" data-reveal data-d="1">
+          <div class="ph-num">01</div>
+          <div class="ph-body">
+            <div class="ph-title">presence over performance.</div>
+            <div class="ph-desc">we arrive fully. attention is the most valuable resource we hold and the most honest signal we send.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="2">
+          <div class="ph-num">02</div>
+          <div class="ph-body">
+            <div class="ph-title">clarity is kindness.</div>
+            <div class="ph-desc">vague language is a tax on everyone downstream. we say what we mean — early, plainly, and with care.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="3">
+          <div class="ph-num">03</div>
+          <div class="ph-body">
+            <div class="ph-title">candor with care.</div>
+            <div class="ph-desc">disagreement is welcomed. the standard is honesty without contempt and direction without diminishment.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="4">
+          <div class="ph-num">04</div>
+          <div class="ph-body">
+            <div class="ph-title">respond, don't react.</div>
+            <div class="ph-desc">we move at the speed of thought, not the speed of urgency. response time is high. reactivity is low.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="5">
+          <div class="ph-num">05</div>
+          <div class="ph-body">
+            <div class="ph-title">credit outward, weight inward.</div>
+            <div class="ph-desc">we hold the work seriously and ourselves lightly. recognition flows to the team. responsibility stays with us.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="6">
+          <div class="ph-num">06</div>
+          <div class="ph-body">
+            <div class="ph-title">long-form trust.</div>
+            <div class="ph-desc">every relationship is treated as a multi-year arc. we behave today the way we want to be remembered later.</div>
+          </div>
+        </li>
+      </ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════ 07 CLOSING SIGNAL ══════════ -->
-<section id="s-close">
-  <div class="close-stack">
-    <div class="close-meta r"><div class="meta"><span class="idx">[ 07 ]</span> signal.</div></div>
-    <h2 class="close-headline r">standards are not preferences. they are <em>infrastructure.</em></h2>
-    <div class="close-sub r">a connected operational ecosystem. nine entities. one intelligence layer.</div>
-    <a href="/contact.html" class="t-link r">start the conversation</a>
-  </div>
-</section>
+  <!-- ───────── CHAPTER 04 — QUALITY STANDARDS ───────── -->
+  <section class="chapter ch-std" id="ch-04">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 04 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>quality standards</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede" data-reveal data-d="2">
+        our commitment to precision, excellence, and continuous improvement in everything we build.
+      </div>
+      <p class="body" data-reveal data-d="3">
+        quality is the work itself, not a stage at the end of it. every artifact that leaves our hands
+        carries the same standard whether it is seen by ten people or ten thousand.
+      </p>
+    </div>
+    <div class="col-list">
+      <div class="ph-head" data-reveal>
+        <span>quality bar</span><span class="ac">06</span>
+      </div>
+      <ul class="ph-list">
+        <li class="ph-row" data-reveal data-d="1">
+          <div class="ph-num">01</div>
+          <div class="ph-body">
+            <div class="ph-title">precision is non-negotiable.</div>
+            <div class="ph-desc">every detail is intentional. spacing, rhythm, language, motion, decision. nothing is incidental.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="2">
+          <div class="ph-num">02</div>
+          <div class="ph-body">
+            <div class="ph-title">refinement is the work.</div>
+            <div class="ph-desc">first drafts are not deliverables. iteration is not optional — it is the medium through which clarity arrives.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="3">
+          <div class="ph-num">03</div>
+          <div class="ph-body">
+            <div class="ph-title">durable over decorative.</div>
+            <div class="ph-desc">we build things that hold up under pressure, time, and scale — not things that perform well in screenshots.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="4">
+          <div class="ph-num">04</div>
+          <div class="ph-body">
+            <div class="ph-title">tested before it ships.</div>
+            <div class="ph-desc">if it has not been pressure-tested, it is not finished. real conditions, real stakes, real edge cases.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="5">
+          <div class="ph-num">05</div>
+          <div class="ph-body">
+            <div class="ph-title">documented as built.</div>
+            <div class="ph-desc">a system that cannot be inherited is not a system. clarity for the next person is part of the deliverable.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="6">
+          <div class="ph-num">06</div>
+          <div class="ph-body">
+            <div class="ph-title">continuous, not episodic.</div>
+            <div class="ph-desc">improvement is a posture, not a phase. we leave every system slightly better than we found it.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───────── CHAPTER 05 — INTELLIGENCE STANDARDS ───────── -->
+  <section class="chapter ch-std" id="ch-05">
+    <div class="col-text">
+      <span class="idx" data-reveal>[ 05 ]</span>
+      <h2 class="ch-title" data-reveal data-d="1">
+        <span>intelligence standards</span><span class="dot"></span>
+      </h2>
+      <div class="rule-mini" data-reveal data-d="2"></div>
+      <div class="lede" data-reveal data-d="2">
+        how we integrate, apply, and elevate intelligence — human, augmented, and artificial — responsibly.
+      </div>
+      <p class="body" data-reveal data-d="3">
+        intelligence is infrastructure. how it is built, where it is applied, and what it preserves
+        determines whether it serves humanity or quietly erodes it.
+      </p>
+    </div>
+    <div class="col-list">
+      <div class="ph-head" data-reveal>
+        <span>intelligence doctrine</span><span class="ac">06</span>
+      </div>
+      <ul class="ph-list">
+        <li class="ph-row" data-reveal data-d="1">
+          <div class="ph-num">01</div>
+          <div class="ph-body">
+            <div class="ph-title">human-led, machine-assisted.</div>
+            <div class="ph-desc">the human is the operator. the system is the instrument. that order is intentional and never reversed.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="2">
+          <div class="ph-num">02</div>
+          <div class="ph-body">
+            <div class="ph-title">augmentation, not replacement.</div>
+            <div class="ph-desc">we use intelligence to expand human capacity — judgment, attention, creativity. we do not use it to remove people from the loop.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="3">
+          <div class="ph-num">03</div>
+          <div class="ph-body">
+            <div class="ph-title">transparent by default.</div>
+            <div class="ph-desc">if a system makes a decision, the path that led to it must be visible. opacity is a design failure, not a feature.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="4">
+          <div class="ph-num">04</div>
+          <div class="ph-body">
+            <div class="ph-title">auditable end-to-end.</div>
+            <div class="ph-desc">every model, prompt, and pipeline is traceable. trust without verifiability is not trust — it is convenience.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="5">
+          <div class="ph-num">05</div>
+          <div class="ph-body">
+            <div class="ph-title">considered, never careless.</div>
+            <div class="ph-desc">we deploy intelligence where it earns its place. novelty is not a justification. impact is.</div>
+          </div>
+        </li>
+        <li class="ph-row" data-reveal data-d="6">
+          <div class="ph-num">06</div>
+          <div class="ph-body">
+            <div class="ph-title">sovereign by design.</div>
+            <div class="ph-desc">the systems we build belong to the organizations that run them. data, decisions, and direction stay with the operator.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───────── CHAPTER 06 — SIGNAL CLOSE ───────── -->
+  <section class="chapter ch-signal" id="ch-06">
+    <span class="idx" data-reveal>[ 06 ]</span>
+    <h2 class="ch-title" data-reveal data-d="1">
+      <span>signal</span><span class="dot"></span>
+    </h2>
+    <div class="lines" data-reveal data-d="2">
+      structure creates <span class="it">freedom.</span><br>
+      clarity creates <span class="it">trust.</span><br>
+      <span class="ac it">form.</span> creates both.
+    </div>
+    <div class="tag" data-reveal data-d="3">operational doctrine — the standard beneath the standard.</div>
+    <a class="cta-mono" href="/contact.html" data-reveal data-d="4">start the conversation</a>
+  </section>
 
 </main>
 
-<script>
-(function(){
-'use strict';
-const tier=window.FORM_TIER||'full';
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ── rev. capsule (intelligence layer) ── -->
+<div id="rev-root"></div>
 
-const grain=document.getElementById('grain');
-if(grain){
-  if(tier==='minimal'){grain.parentNode&&grain.parentNode.removeChild(grain);}
-  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
-}
-
-const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-const _isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
-if(dot && ring && tier!=='minimal' && !_isTouch && !reducedMotion){
-  document.documentElement.classList.add('cursor-ready');
-}
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
-function _startCursorRing(){
-  if(reducedMotion)return;
-  (function cl(){
-    var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal')return;
-    rx+=(mx-rx)*.045;ry+=(my-ry)*.045;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
-  })();
-}
-if(tier!=='minimal')_startCursorRing();
-
-document.querySelectorAll('a,button,.drow').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
-});
-
-const reveal=document.querySelectorAll('.r');
-if('IntersectionObserver' in window && !reducedMotion){
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        en.target.classList.add('in');
-        io.unobserve(en.target);
-      }
-    });
-  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-  reveal.forEach(el=>io.observe(el));
-} else {
-  reveal.forEach(el=>el.classList.add('in'));
-}
-
-setTimeout(()=>{
-  document.querySelectorAll('#s-hero .r').forEach((el,i)=>{
-    setTimeout(()=>el.classList.add('in'),i*180);
-  });
-},1500);
-
-if(location.search.includes('peek')){
-  const v=document.getElementById('veil');
-  if(v){v.style.animation='none';v.style.opacity='0';v.style.display='none';}
-  document.querySelectorAll('.r').forEach(el=>el.classList.add('in'));
-}
-})();
-</script>
-<link rel="stylesheet" href="/rev.css?v=3">
+<!-- ── shared engines ── -->
+<script src="/field.js?v=3" defer></script>
 <script src="/rev.js?v=3" defer></script>
 <script src="/nav-footer.js?v=17" defer></script>
+
+<!-- ── reveal observer ── -->
+<script>
+(function(){
+  function revealAll(){
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      el.classList.add('in');
+    });
+  }
+  function init(){
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(typeof IntersectionObserver === 'undefined' || reduced){
+      revealAll();
+      return;
+    }
+    var scroller = document.getElementById('main') || null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {root: scroller, rootMargin: '0px 0px -10% 0px', threshold: 0.12});
+    document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+    // first chapter reveals immediately on load
+    requestAnimationFrame(function(){
+      document.querySelectorAll('#ch-01 [data-reveal]').forEach(function(el){
+        el.classList.add('in');
+      });
+    });
+
+    // safety net — anything still hidden after 6s within viewport range is force-revealed
+    setTimeout(function(){
+      document.querySelectorAll('[data-reveal]:not(.in)').forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * 1.5) el.classList.add('in');
+      });
+    }, 6000);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+</script>
+
 </body>
 </html>
