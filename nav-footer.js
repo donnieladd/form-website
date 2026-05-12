@@ -44,24 +44,24 @@
           '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem</a>' +
           '<div class="tn-dropdown dd-eco">' +
             '<div class="dd-list">' +
-              '<a href="/ecosystem.html" class="dd-parent">form.</a>' +
+              '<a href="/ecosystem.html" class="dd-parent">disciplines</a>' +
               '<a href="/ecosystem.html#strategy">form. strategy</a>' +
-              '<a href="/ecosystem.html#digital">form. digital</a>' +
               '<a href="/ecosystem.html#creative">form. creative</a>' +
-              '<a href="/ecosystem.html#sound">form. sound</a>' +
-              '<a href="/ecosystem.html#experience">form. experience</a>' +
+              '<a href="/ecosystem.html#digital">form. digital</a>' +
               '<a href="/ecosystem.html#ai">form. ai</a>' +
+              '<a href="/ecosystem.html#experience">form. experience</a>' +
+            '</div>' +
+            '<div class="dd-list">' +
+              '<a href="/ecosystem.html#products" class="dd-parent">products</a>' +
+              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+              '<a href="/ecosystem.html#messages">form. messages</a>' +
+              '<a href="/ecosystem.html#support">form. support</a>' +
             '</div>' +
             '<div class="dd-list">' +
               '<a href="/ecosystem.html#labs" class="dd-parent">form. labs</a>' +
               '<a href="/ecosystem.html#relay" class="dd-up">RELAY</a>' +
               '<a href="/ecosystem.html#frame" class="dd-up">FRAME</a>' +
               '<a href="/ecosystem.html#axis" class="dd-up">AXIS</a>' +
-            '</div>' +
-            '<div class="dd-list">' +
-              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-              '<a href="/ecosystem.html#messages">form. messages</a>' +
-              '<a href="/ecosystem.html#support">form. support</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -84,27 +84,26 @@
           '</div>' +
           '<div class="ft-tag">the future needs form.<br>vision needs structure.</div>' +
           '<hr class="ft-rule">' +
-          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creativity, digital, intelligence, sound, experience, labs, continuum, messages, and support, working as one.</p>' +
+          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creative, digital, ai, and experience, supported by continuum, messages, and support, with form. labs as the product division behind it.</p>' +
           '<a href="mailto:hello@formintel.co" class="ft-email">hello@formintel.co</a>' +
         '</div>' +
         '<div class="ft-col">' +
-          '<h4>ecosystem</h4>' +
+          '<h4>disciplines</h4>' +
           '<a href="/ecosystem.html#strategy">form. strategy</a>' +
-          '<a href="/ecosystem.html#digital">form. digital</a>' +
           '<a href="/ecosystem.html#creative">form. creative</a>' +
-          '<a href="/ecosystem.html#sound">form. sound</a>' +
-          '<a href="/ecosystem.html#experience">form. experience</a>' +
+          '<a href="/ecosystem.html#digital">form. digital</a>' +
           '<a href="/ecosystem.html#ai">form. ai</a>' +
+          '<a href="/ecosystem.html#experience">form. experience</a>' +
         '</div>' +
         '<div class="ft-col">' +
-          '<h4>labs &amp; layers</h4>' +
+          '<h4>products &amp; division</h4>' +
+          '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+          '<a href="/ecosystem.html#messages">form. messages</a>' +
+          '<a href="/ecosystem.html#support">form. support</a>' +
           '<a href="/ecosystem.html#labs">form. labs</a>' +
           '<a href="/ecosystem.html#relay">RELAY</a>' +
           '<a href="/ecosystem.html#frame">FRAME</a>' +
           '<a href="/ecosystem.html#axis">AXIS</a>' +
-          '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-          '<a href="/ecosystem.html#messages">form. messages</a>' +
-          '<a href="/ecosystem.html#support">form. support</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>explore</h4>' +
