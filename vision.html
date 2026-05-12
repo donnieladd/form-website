@@ -386,67 +386,7 @@ body{
 }
 
 /* ─────────────────────────────────────────
-   CHAPTER 05 — ECOSYSTEM STRUCTURE
-   editorial table — index | name | description
-   ───────────────────────────────────────── */
-.ch-eco .head{max-width:780px;}
-.ch-eco .lede-5{
-  margin-top:2.4rem;
-  font-family:'Satoshi',sans-serif;
-  font-weight:300;
-  font-size:clamp(32px,3.4vw,54px);
-  letter-spacing:-.024em;
-  line-height:1.1;
-  color:var(--stone);
-  max-width:24ch;
-}
-.ch-eco .body-5{
-  margin-top:2rem;
-  font-size:1.02rem;
-  line-height:1.78;
-  color:var(--stone-2);
-  max-width:52ch;
-}
-.ch-eco .entity-list{
-  margin-top:6rem;
-  border-top:1px solid var(--rule);
-}
-.ch-eco .entity{
-  display:grid;
-  grid-template-columns:120px minmax(0,260px) minmax(0,1fr);
-  gap:clamp(1.5rem,4vw,4rem);
-  padding:2.2rem 0;
-  border-bottom:1px solid var(--rule);
-  align-items:baseline;
-  transition:background .8s ease, padding .6s ease;
-}
-.ch-eco .entity:hover{background:rgba(57,255,20,.018);}
-.ch-eco .entity .e-idx{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.66rem;letter-spacing:.30em;text-transform:uppercase;
-  color:var(--ac);
-  padding-top:.25rem;
-}
-.ch-eco .entity .e-name{
-  font-family:'Satoshi',sans-serif;
-  font-weight:300;
-  font-size:clamp(22px,1.9vw,30px);
-  letter-spacing:-.018em;
-  color:var(--stone);
-  text-transform:lowercase;
-}
-.ch-eco .entity .e-desc{
-  font-family:'Satoshi',sans-serif;
-  font-weight:400;
-  font-size:1rem;
-  line-height:1.65;
-  color:var(--stone-2);
-  letter-spacing:-.003em;
-  max-width:54ch;
-}
-
-/* ─────────────────────────────────────────
-   CHAPTER 06 — FORMATION
+   CHAPTER 05 — FORMATION
    left intro / right outcomes
    ───────────────────────────────────────── */
 .ch-form{
@@ -507,7 +447,7 @@ body{
 }
 
 /* ─────────────────────────────────────────
-   CHAPTER 07 — SIGNAL  (closing call)
+   CHAPTER 06 — SIGNAL  (closing call)
    centered, restrained, cinematic
    ───────────────────────────────────────── */
 .ch-signal{
@@ -546,8 +486,6 @@ body{
   .ch-frag .col-intro{position:static;}
   .ch-philo .tenets{grid-template-columns:1fr;}
   .ch-conv .domain-grid{grid-template-columns:repeat(2,1fr);}
-  .ch-eco .entity{grid-template-columns:60px 1fr;gap:.6rem 1.2rem;}
-  .ch-eco .entity .e-desc{grid-column:1 / -1;margin-top:.5rem;}
   .scroll-mark{display:none;}
   .chapter{padding:8rem clamp(1.2rem,5vw,3rem) 8rem;}
 }
@@ -687,80 +625,10 @@ body{
     </div>
   </section>
 
-  <!-- ───────── CHAPTER 05 — ECOSYSTEM STRUCTURE ───────── -->
-  <section class="chapter ch-eco" id="ch-05">
-    <div class="head">
-      <span class="idx" data-reveal>[ 05 ]</span>
-      <h2 class="ch-title" data-reveal data-d="1">
-        <span>ecosystem structure</span><span class="dot"></span>
-      </h2>
-      <div class="rule-mini" data-reveal data-d="2"></div>
-      <div class="lede-5" data-reveal data-d="2">
-        a connected operational ecosystem — built to move organizations from
-        fragmented complexity into aligned execution.
-      </div>
-      <p class="body-5" data-reveal data-d="3">
-        each layer is designed to reinforce the others. nothing operates in isolation.
-      </p>
-    </div>
-    <div class="entity-list">
-      <div class="entity" data-reveal data-d="1">
-        <div class="e-idx">[ 05 / 01 ]</div>
-        <div class="e-name">form. strategy</div>
-        <div class="e-desc">operational clarity for organizations navigating scale, alignment, and long-term infrastructure.</div>
-      </div>
-      <div class="entity" data-reveal data-d="2">
-        <div class="e-idx">[ 05 / 02 ]</div>
-        <div class="e-name">form. creative</div>
-        <div class="e-desc">narrative, design, and visual systems that preserve emotional resonance inside modern infrastructure.</div>
-      </div>
-      <div class="entity" data-reveal data-d="3">
-        <div class="e-idx">[ 05 / 03 ]</div>
-        <div class="e-name">form. digital</div>
-        <div class="e-desc">web, product, and interface systems engineered for clarity, performance, and connected execution.</div>
-      </div>
-      <div class="entity" data-reveal data-d="4">
-        <div class="e-idx">[ 05 / 04 ]</div>
-        <div class="e-name">form. ai</div>
-        <div class="e-desc">adaptive intelligence increasing awareness, decision velocity, and operational responsiveness.</div>
-      </div>
-      <div class="entity" data-reveal data-d="5">
-        <div class="e-idx">[ 05 / 05 ]</div>
-        <div class="e-name">form. sound</div>
-        <div class="e-desc">audio, score, and sonic identity systems for environments built to be heard as much as seen.</div>
-      </div>
-      <div class="entity" data-reveal data-d="6">
-        <div class="e-idx">[ 05 / 06 ]</div>
-        <div class="e-name">form. support</div>
-        <div class="e-desc">operational continuity, advisory, and ongoing care for the systems we build alongside you.</div>
-      </div>
-      <div class="entity" data-reveal data-d="6">
-        <div class="e-idx">[ 05 / 07 ]</div>
-        <div class="e-name">form. experience</div>
-        <div class="e-desc">end-to-end environments where leadership, communication, and culture are felt as one signal.</div>
-      </div>
-      <div class="entity" data-reveal data-d="6">
-        <div class="e-idx">[ 05 / 08 ]</div>
-        <div class="e-name">form. labs</div>
-        <div class="e-desc">internal product development — the operational tools and platforms born from our own practice.</div>
-      </div>
-      <div class="entity" data-reveal data-d="6">
-        <div class="e-idx">[ 05 / 09 ]</div>
-        <div class="e-name">form. continuum</div>
-        <div class="e-desc">long-form intelligence partnership — sustained operational presence over years, not engagements.</div>
-      </div>
-      <div class="entity" data-reveal data-d="6">
-        <div class="e-idx">[ 05 / 10 ]</div>
-        <div class="e-name">form. messages</div>
-        <div class="e-desc">connective communication infrastructure — the signal layer where leadership, culture, and operations stay aligned.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────── CHAPTER 06 — FORMATION ───────── -->
-  <section class="chapter ch-form" id="ch-06">
+  <!-- ───────── CHAPTER 05 — FORMATION ───────── -->
+  <section class="chapter ch-form" id="ch-05">
     <div class="col-text">
-      <span class="idx" data-reveal>[ 06 ]</span>
+      <span class="idx" data-reveal>[ 05 ]</span>
       <h2 class="ch-title" data-reveal data-d="1">
         <span>formation</span><span class="dot"></span>
       </h2>
@@ -789,9 +657,9 @@ body{
     </div>
   </section>
 
-  <!-- ───────── CHAPTER 07 — SIGNAL ───────── -->
-  <section class="chapter ch-signal" id="ch-07">
-    <span class="idx" data-reveal>[ 07 ]</span>
+  <!-- ───────── CHAPTER 06 — SIGNAL ───────── -->
+  <section class="chapter ch-signal" id="ch-06">
+    <span class="idx" data-reveal>[ 06 ]</span>
     <h2 class="ch-title" data-reveal data-d="1">
       <span>signal</span><span class="dot"></span>
     </h2>
