@@ -18,7 +18,10 @@
   var dot    = '<span class="tn-cta-dot" aria-hidden="true"></span>';
 
   // ─── TOP NAV ───────────────────────────────────────────────────
-  // Locked doctrine nav: vision. / standards. / founder. / ecosystem. / ● start the conversation
+  // Updated doctrine: lowercase nav labels WITHOUT trailing periods.
+  // CTA stays "● start the conversation" everywhere (homepage hero
+  // uses its own "ENTER FORM →" CTA inline, not in the nav bar).
+  // Ecosystem dropdown is now three columns.
   var navHTML =
     '<header id="topnav" role="banner">' +
       '<a href="/" class="tn-brand" aria-label="form. home">' +
@@ -26,40 +29,44 @@
       '</a>' +
       '<nav class="tn-links" role="navigation">' +
         '<div class="tn-item">' +
-          '<a href="/" class="tn-link' + cls('/') + '">home.</a>' +
+          '<a href="/" class="tn-link' + cls('/') + '">home</a>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision.</a>' +
+          '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision</a>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/standards.html" class="tn-link' + cls('/standards.html') + '">standards.</a>' +
+          '<a href="/standards.html" class="tn-link' + cls('/standards.html') + '">standards</a>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/founder.html" class="tn-link' + cls('/founder.html') + '">founder.</a>' +
+          '<a href="/founder.html" class="tn-link' + cls('/founder.html') + '">founder</a>' +
         '</div>' +
         '<div class="tn-item has-menu" data-menu="ecosystem">' +
-          '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem.</a>' +
+          '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem</a>' +
           '<div class="tn-dropdown dd-eco">' +
             '<div class="dd-list">' +
-              '<div class="dd-heading">form. ecosystem</div>' +
+              '<a href="/ecosystem.html" class="dd-parent">form.</a>' +
               '<a href="/ecosystem.html#strategy">form. strategy</a>' +
-              '<a href="/ecosystem.html#creative">form. creative</a>' +
               '<a href="/ecosystem.html#digital">form. digital</a>' +
-              '<a href="/ecosystem.html#ai">form. ai</a>' +
+              '<a href="/ecosystem.html#creative">form. creative</a>' +
               '<a href="/ecosystem.html#sound">form. sound</a>' +
+              '<a href="/ecosystem.html#experience">form. experience</a>' +
+              '<a href="/ecosystem.html#ai">form. ai</a>' +
             '</div>' +
             '<div class="dd-list">' +
-              '<div class="dd-heading">platforms</div>' +
-              '<a href="/ecosystem.html#support">form. support</a>' +
-              '<a href="/ecosystem.html#experience">form. experience</a>' +
-              '<a href="/ecosystem.html#labs">form. labs</a>' +
-              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+              '<a href="/ecosystem.html#labs" class="dd-parent">form. labs</a>' +
+              '<a href="/ecosystem.html#relay" class="dd-up">RELAY</a>' +
+              '<a href="/ecosystem.html#frame" class="dd-up">FRAME</a>' +
+              '<a href="/ecosystem.html#axis" class="dd-up">AXIS</a>' +
             '</div>' +
-            '<div class="dd-desc">a connected operational ecosystem. nine entities. one intelligence layer.</div>' +
+            '<div class="dd-list">' +
+              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+              '<a href="/ecosystem.html#messages">form. messages</a>' +
+              '<a href="/ecosystem.html#support">form. support</a>' +
+            '</div>' +
           '</div>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/contact.html" class="tn-link' + cls('/contact.html') + '">contact.</a>' +
+          '<a href="/contact.html" class="tn-link' + cls('/contact.html') + '">contact</a>' +
         '</div>' +
       '</nav>' +
       '<a href="/contact.html" class="tn-cta">' + dot + 'start the conversation</a>' +
@@ -77,36 +84,41 @@
           '</div>' +
           '<div class="ft-tag">the future needs form.<br>vision needs structure.</div>' +
           '<hr class="ft-rule">' +
-          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creativity, digital, intelligence, sound, support, experience, labs, and continuum, working as one.</p>' +
+          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creativity, digital, intelligence, sound, experience, labs, continuum, messages, and support, working as one.</p>' +
           '<a href="mailto:hello@formintel.co" class="ft-email">hello@formintel.co</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>ecosystem</h4>' +
           '<a href="/ecosystem.html#strategy">form. strategy</a>' +
-          '<a href="/ecosystem.html#creative">form. creative</a>' +
           '<a href="/ecosystem.html#digital">form. digital</a>' +
-          '<a href="/ecosystem.html#ai">form. ai</a>' +
+          '<a href="/ecosystem.html#creative">form. creative</a>' +
           '<a href="/ecosystem.html#sound">form. sound</a>' +
-          '<a href="/ecosystem.html#support">form. support</a>' +
           '<a href="/ecosystem.html#experience">form. experience</a>' +
+          '<a href="/ecosystem.html#ai">form. ai</a>' +
+        '</div>' +
+        '<div class="ft-col">' +
+          '<h4>labs &amp; layers</h4>' +
           '<a href="/ecosystem.html#labs">form. labs</a>' +
+          '<a href="/ecosystem.html#relay">RELAY</a>' +
+          '<a href="/ecosystem.html#frame">FRAME</a>' +
+          '<a href="/ecosystem.html#axis">AXIS</a>' +
           '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+          '<a href="/ecosystem.html#messages">form. messages</a>' +
+          '<a href="/ecosystem.html#support">form. support</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>explore</h4>' +
-          '<a href="/">home.</a>' +
-          '<a href="/vision.html">vision.</a>' +
-          '<a href="/standards.html">standards.</a>' +
-          '<a href="/founder.html">founder.</a>' +
-          '<a href="/ecosystem.html">ecosystem.</a>' +
-          '<a href="/contact.html">contact.</a>' +
+          '<a href="/">home</a>' +
+          '<a href="/vision.html">vision</a>' +
+          '<a href="/standards.html">standards</a>' +
+          '<a href="/founder.html">founder</a>' +
+          '<a href="/ecosystem.html">ecosystem</a>' +
+          '<a href="/contact.html">contact</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>connect</h4>' +
           '<a href="/contact.html">start the conversation</a>' +
           '<a href="mailto:hello@formintel.co">hello@formintel.co</a>' +
-          '<a href="https://instagram.com/" target="_blank" rel="noopener">instagram</a>' +
-          '<a href="https://linkedin.com/" target="_blank" rel="noopener">linkedin</a>' +
           '<div class="ft-icons">' +
             '<a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></svg></a>' +
             '<a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="7.5" r=".8" fill="currentColor"/><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"/><line x1="12" y1="11" x2="12" y2="17"/></svg></a>' +
@@ -126,12 +138,12 @@
     '<div id="tn-mobile" aria-hidden="true">' +
       '<button class="tn-mobile-close" type="button" aria-label="Close menu">' + xmark + '</button>' +
       '<div class="tn-mobile-inner">' +
-        '<a href="/" class="tn-mobile-link">home.</a>' +
-        '<a href="/vision.html" class="tn-mobile-link">vision.</a>' +
-        '<a href="/standards.html" class="tn-mobile-link">standards.</a>' +
-        '<a href="/founder.html" class="tn-mobile-link">founder.</a>' +
-        '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem.</a>' +
-        '<a href="/contact.html" class="tn-mobile-link">contact.</a>' +
+        '<a href="/" class="tn-mobile-link">home</a>' +
+        '<a href="/vision.html" class="tn-mobile-link">vision</a>' +
+        '<a href="/standards.html" class="tn-mobile-link">standards</a>' +
+        '<a href="/founder.html" class="tn-mobile-link">founder</a>' +
+        '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem</a>' +
+        '<a href="/contact.html" class="tn-mobile-link">contact</a>' +
         '<a href="/contact.html" class="tn-mobile-cta">' + dot + 'start the conversation</a>' +
       '</div>' +
     '</div>';

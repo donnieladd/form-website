@@ -118,15 +118,24 @@ body.nf-enter{animation:nf-fadein .8s cubic-bezier(.16,1,.3,1) both;}
   transition:opacity .35s,transform .45s cubic-bezier(.16,1,.3,1),visibility 0s;
 }
 #topnav .tn-dropdown.dd-about{grid-template-columns:1fr 1.2fr;min-width:480px;}
-#topnav .tn-dropdown.dd-eco  {grid-template-columns:1fr 1fr 1.2fr;min-width:620px;}
+#topnav .tn-dropdown.dd-eco  {grid-template-columns:1.2fr 1fr 1fr;min-width:640px;padding:1.8rem 2rem;}
 #topnav .tn-dropdown.dd-prod {grid-template-columns:1fr 1.4fr;min-width:480px;}
 #topnav .dd-list{display:flex;flex-direction:column;gap:.55rem;}
 #topnav .dd-list a{
   font-family:'Satoshi','Inter',sans-serif;font-size:.92rem;font-weight:400;letter-spacing:.005em;
-  color:rgba(242,242,240,.78);text-decoration:none;cursor:none;
+  color:rgba(242,242,240,.72);text-decoration:none;cursor:none;
   transition:color .3s;text-transform:none;
 }
 #topnav .dd-list a:hover{color:#39FF14;}
+#topnav .dd-list a.dd-parent{
+  color:rgba(242,242,240,.96);font-weight:500;margin-bottom:.5rem;
+}
+#topnav .dd-list a.dd-up{
+  font-family:'IBM Plex Mono','SF Mono',monospace;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(242,242,240,.7);
+}
+#topnav .dd-list a.dd-up:hover{color:#39FF14;}
 #topnav .dd-heading{
   font-family:'IBM Plex Mono','SF Mono',monospace;
   font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;

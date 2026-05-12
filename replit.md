@@ -11,16 +11,11 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 
 ### Naming System (LOCKED)
 - All public-facing ecosystem entities use the `form. {name}` lowercase prefix with trailing period.
-- The nine canonical ecosystem entities are:
-  - `form. strategy`
-  - `form. creative`
-  - `form. digital`
-  - `form. ai`
-  - `form. sound`
-  - `form. support`
-  - `form. experience`
-  - `form. labs`
-  - `form. continuum`
+- The ten canonical ecosystem entities are organized into three operational tiers:
+  - **Disciplines** (column 1): `form. strategy`, `form. digital`, `form. creative`, `form. sound`, `form. experience`, `form. ai`
+  - **Labs + sub-products** (column 2): `form. labs` (parent) → `RELAY`, `FRAME`, `AXIS` (uppercase, no `form.` prefix)
+  - **Connective layers** (column 3): `form. continuum`, `form. messages`, `form. support`
+- `RELAY`, `FRAME`, and `AXIS` always render uppercase, no descriptions, mono tracking. They are sub-products of `form. labs`, not standalone entities.
 - Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`. Treat these as internal-only legacy language.
 
 ### Typography (LOCKED)
@@ -48,15 +43,15 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 ### Navigation (LOCKED)
 Final top-nav structure across every page:
 ```
-vision.   standards.   founder.   ecosystem.   ● start the conversation
+home   vision   standards   founder   ecosystem   contact   ● start the conversation
 ```
-- All navigation labels lowercase with trailing period for primary sections.
-- `home`, `about`, `products`, `contact` are removed from the top nav. Their content is folded into `vision.` / `standards.` / `founder.` / `ecosystem.` or accessed via the CTA.
+- All navigation labels are lowercase **without** trailing periods. Trailing periods are reserved for editorial copy and the `form.` brand mark itself.
+- `ecosystem` is the only nav item with a dropdown — a three-column glass panel (disciplines / labs+products / connective layers) per the Naming System.
 
 ### CTA (LOCKED)
-- All CTAs use the exact phrase **`start the conversation`** prefixed with a small Signal Green dot (`●`).
+- **Site-wide CTA**: All CTAs use the exact phrase **`start the conversation`** prefixed with a small Signal Green dot (`●`). Typography: Satoshi Medium, lowercase, minimal styling, architectural restraint.
+- **Homepage hero exception**: The cinematic homepage hero uses **`ENTER FORM →`** as its single CTA — IBM Plex Mono uppercase, signal-green outline rectangle. This is the only page that uses this CTA. The top-nav CTA on the homepage stays `● start the conversation`.
 - Never use: `strategy call`, `consultation`, `book a call`, `schedule a consultation`.
-- Typography: Satoshi Medium, lowercase, minimal styling, no oversized buttons, no SaaS aesthetics. Architectural, premium, restrained.
 
 ### Per-Page Emotional Architecture
 - `vision.` — philosophical, immersive, future-facing, vast, cinematic. Large atmospheric environments, deep negative space, slow topology movement.
@@ -68,18 +63,24 @@ vision.   standards.   founder.   ecosystem.   ● start the conversation
 Planned integrated AI layer named `rev.` — operational intelligence, not a chatbot. Calm, clear, infrastructural. Avoid floating chat bubbles, customer-support aesthetics, neon AI gimmicks. Possible patterns: intelligence dock, signal interface, command palette, adaptive sidebar, ambient prompt layer.
 
 ## Production Pages
-- `index.html` — Hero landing page with ecosystem canvas
+- `index.html` — Cinematic single-viewport hero (no scroll content). `form` wordmark + signal-green square dot, two-line tagline, `ENTER FORM →` CTA leading to `vision.html`.
 - `vision.html` — Cinematic 7-section operational doctrine (philosophical entry point)
 - `standards.html` — Combined values + principles operational standards page
 - `founder.html` — Human reflective founder narrative
-- `ecosystem.html` — Nine-entity connected ecosystem map
+- `ecosystem.html` — Connected ecosystem map (10 entities + 3 labs sub-products)
 - `contact.html` — `start the conversation` intake page
+
+## Environmental Continuity System
+- `field.css` + `field.js` — shared environmental engine (oceanic ribbons + sparse drifting particle layer + slow breathing background). One continuous cinematic world inherited by every page.
+- Density tuning per page via `body[data-field-density="..."]`: `open` (home), `concentrated` (vision), `structured` (standards), `intimate` (founder), `expanded` (ecosystem), `calm` (contact). Same DNA, different emotional state.
+- Site uses **page-to-page navigation** (not single-scroll). Each page is its own load with cinematic transition overlay handled by `nav-footer.js`.
 
 ### Deprecated / Pending Removal
 The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion once `ecosystem.html` is rebuilt around the nine `form.` entities. Do not link to them from any new public-facing nav, footer, or copy.
 
 ## Key Assets
-- `bg.avif` — Primary atmospheric background (73KB, 2528×1696, re-encoded at CRF 35)
+- `home-bg.avif` — Cinematic environmental field for the homepage (oceanic neural ribbons over deep dark space). Static base layer beneath `field.js` particle drift.
+- `bg.avif` — Legacy atmospheric background still used by interior pages (vision, standards, founder, ecosystem, contact) until each is migrated to the shared `env-field` system.
 - `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
 - `logo-editorial-2.svg` — Primary nav/sidebar logo
 - `logo-core-final-2.svg` — Hero ecosystem identity mark
