@@ -140,6 +140,10 @@ body{
    ───────────────────────────────────────── */
 .ch-hero{
   position:relative;
+  display:block;
+}
+.ch-hero .hero-band{
+  position:relative;
   display:grid;
   grid-template-columns: minmax(0, 64%) minmax(0, 1fr);
   gap:clamp(2rem,5vw,5rem);
@@ -223,6 +227,7 @@ body{
 .ledger .cell .v{color:var(--stone-2);font-size:.66rem;letter-spacing:.28em;}
 .ledger .cell .v.ac{color:var(--ac);}
 @media (max-width: 1100px){
+  .ch-hero .hero-band{min-height:auto;padding-bottom:4rem;}
   .ledger{position:static;margin-top:4rem;grid-template-columns:repeat(2,1fr);left:auto;right:auto;}
 }
 
@@ -444,6 +449,7 @@ body{
 
   <!-- ───────── CHAPTER 01 — HERO ───────── -->
   <section class="chapter ch-hero" id="ch-01">
+    <div class="hero-band">
     <div class="col-text">
       <span class="idx" data-reveal>[ 01 ]</span>
       <h1 class="h1" data-reveal data-d="2">
@@ -470,6 +476,7 @@ body{
       <div class="cell"><span class="k">doctrine</span><span class="v">architecture of trust</span></div>
       <div class="cell"><span class="k">signal</span><span class="v">structure / restraint / signal</span></div>
     </div>
+    </div><!-- /.hero-band -->
 
     <!-- standards index — 4 anchor rows -->
     <nav class="std-index" aria-label="standards index">
