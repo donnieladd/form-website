@@ -4,92 +4,62 @@
 
   function isActive(p){
     if(p === '/' && IS_LANDING) return true;
-    if(p === '/about.html' && path.indexOf('/about') === 0) return true;
     if(p === '/vision.html' && path.indexOf('/vision') === 0) return true;
-    if(p === '/ecosystem.html' && (path.indexOf('/ecosystem') === 0 || /-systems\.html$/.test(path))) return true;
+    if(p === '/standards.html' && path.indexOf('/standards') === 0) return true;
     if(p === '/founder.html' && path.indexOf('/founder') === 0) return true;
-    if(p === '/products.html' && path.indexOf('/products') === 0) return true;
-    if(p === '/contact.html' && path.indexOf('/contact') === 0) return true;
+    if(p === '/ecosystem.html' && (path.indexOf('/ecosystem') === 0 || /-systems\.html$/.test(path))) return true;
     return false;
   }
   function cls(p){ return isActive(p) ? ' active' : ''; }
 
-  var arrow = '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="9" x2="9" y2="3"/><polyline points="4,3 9,3 9,8"/></svg>';
   var burger = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>';
-  var xmark = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+  var xmark  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>';
+  var dot    = '<span class="tn-cta-dot" aria-hidden="true"></span>';
 
   // ─── TOP NAV ───────────────────────────────────────────────────
+  // Locked doctrine nav: vision. / standards. / founder. / ecosystem. / ● start the conversation
   var navHTML =
     '<header id="topnav" role="banner">' +
-      '<a href="/" class="tn-brand" aria-label="FORM home">' +
-        '<img src="/logo-editorial-2.svg" alt="FORM.">' +
+      '<a href="/" class="tn-brand" aria-label="form. home">' +
+        '<img src="/logo-editorial-2.svg" alt="form.">' +
       '</a>' +
       '<nav class="tn-links" role="navigation">' +
         '<div class="tn-item">' +
-          '<a href="/" class="tn-link' + cls('/') + '">Home</a>' +
-        '</div>' +
-        '<div class="tn-item has-menu" data-menu="about">' +
-          '<a href="/about.html" class="tn-link' + cls('/about.html') + '">about</a>' +
-          '<div class="tn-dropdown dd-about">' +
-            '<div class="dd-list">' +
-              '<div class="dd-heading">about</div>' +
-              '<a href="/about.html#vision">vision</a>' +
-              '<a href="/about.html#values">core values</a>' +
-              '<a href="/about.html#principles">core principles</a>' +
-              '<a href="/about.html#faq">faq</a>' +
-            '</div>' +
-            '<div class="dd-desc">FORM. is built on operational clarity, intentional systems, human-centered intelligence, and disciplined execution.</div>' +
-          '</div>' +
+          '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision.</a>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/vision.html" class="tn-link' + cls('/vision.html') + '">vision</a>' +
+          '<a href="/standards.html" class="tn-link' + cls('/standards.html') + '">standards.</a>' +
         '</div>' +
         '<div class="tn-item">' +
-          '<a href="/founder.html" class="tn-link' + cls('/founder.html') + '">Founder</a>' +
+          '<a href="/founder.html" class="tn-link' + cls('/founder.html') + '">founder.</a>' +
         '</div>' +
         '<div class="tn-item has-menu" data-menu="ecosystem">' +
-          '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem</a>' +
+          '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem.</a>' +
           '<div class="tn-dropdown dd-eco">' +
             '<div class="dd-list">' +
-              '<div class="dd-heading">FORM — Operational Departments</div>' +
-              '<a href="/business-systems.html">form strategy</a>' +
-              '<a href="/business-systems.html">form digital</a>' +
-              '<a href="/creative-systems.html">form creative</a>' +
-              '<a href="/creative-systems.html">form sound</a>' +
-              '<a href="/executive-systems.html">form support</a>' +
-              '<a href="/executive-systems.html">form experience</a>' +
-              '<a href="/intelligence-systems.html">form ai</a>' +
+              '<div class="dd-heading">form. ecosystem</div>' +
+              '<a href="/ecosystem.html#strategy">form. strategy</a>' +
+              '<a href="/ecosystem.html#creative">form. creative</a>' +
+              '<a href="/ecosystem.html#digital">form. digital</a>' +
+              '<a href="/ecosystem.html#ai">form. ai</a>' +
+              '<a href="/ecosystem.html#sound">form. sound</a>' +
             '</div>' +
             '<div class="dd-list">' +
-              '<div class="dd-heading">FORM Labs — Internal Products</div>' +
-              '<a href="#relay">RELAY</a>' +
-              '<a href="#frame">FRAME</a>' +
-              '<a href="#access">ACCESS</a>' +
+              '<div class="dd-heading">platforms</div>' +
+              '<a href="/ecosystem.html#support">form. support</a>' +
+              '<a href="/ecosystem.html#experience">form. experience</a>' +
+              '<a href="/ecosystem.html#labs">form. labs</a>' +
+              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
             '</div>' +
-            '<div class="dd-desc">A connected ecosystem of operational departments and internal products working in alignment to build, scale, and future-proof organizations.</div>' +
+            '<div class="dd-desc">a connected operational ecosystem. nine entities. one intelligence layer.</div>' +
           '</div>' +
-        '</div>' +
-        '<div class="tn-item has-menu" data-menu="products">' +
-          '<a href="/products.html" class="tn-link' + cls('/products.html') + '">products</a>' +
-          '<div class="tn-dropdown dd-prod">' +
-            '<div class="dd-list">' +
-              '<div class="dd-heading">Client-Facing Products</div>' +
-              '<a href="/products.html#continuum">continuum</a>' +
-              '<a href="/products.html#messages">messages</a>' +
-              '<a href="/products.html#formation">formation</a>' +
-            '</div>' +
-            '<div class="dd-desc">Specialized operational products designed to support leadership, communication, execution, and long-term organizational growth.</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="tn-item">' +
-          '<a href="/contact.html" class="tn-link' + cls('/contact.html') + '">contact</a>' +
         '</div>' +
       '</nav>' +
-      '<a href="/contact.html#strategy-call" class="tn-cta">Strategy Call ' + arrow + '</a>' +
+      '<a href="/contact.html" class="tn-cta">' + dot + 'start the conversation</a>' +
       '<button class="tn-burger" type="button" aria-label="Open menu">' + burger + '</button>' +
     '</header>';
 
-  // ─── FOOTER (4-column per FOOTER_FINAL reference) ─────────────
+  // ─── FOOTER ────────────────────────────────────────────────────
   var footerHTML =
     '<footer id="sitefooter" role="contentinfo">' +
       '<div class="ft-grid">' +
@@ -100,36 +70,32 @@
           '</div>' +
           '<div class="ft-tag">the future needs form.<br>vision needs structure.</div>' +
           '<hr class="ft-rule">' +
-          '<p class="ft-desc">FORM. is the convergence of intelligence, systems, creativity, leadership, technology, execution, and human experience into one operational ecosystem.</p>' +
+          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creativity, digital, intelligence, sound, support, experience, labs, and continuum, working as one.</p>' +
           '<a href="mailto:hello@formintel.co" class="ft-email">hello@formintel.co</a>' +
         '</div>' +
         '<div class="ft-col">' +
-          '<h4>about</h4>' +
-          '<a href="/about.html#vision">vision</a>' +
-          '<a href="/about.html#values">core values</a>' +
-          '<a href="/about.html#principles">core principles</a>' +
-          '<a href="/about.html#faq">faq</a>' +
-        '</div>' +
-        '<div class="ft-col">' +
           '<h4>ecosystem</h4>' +
-          '<a href="/business-systems.html">form strategy</a>' +
-          '<a href="/business-systems.html">form digital</a>' +
-          '<a href="/creative-systems.html">form creative</a>' +
-          '<a href="/creative-systems.html">form sound</a>' +
-          '<a href="/executive-systems.html">form support</a>' +
-          '<a href="/executive-systems.html">form experience</a>' +
-          '<a href="/intelligence-systems.html">form ai</a>' +
-          '<a href="/ecosystem.html#labs">form labs</a>' +
+          '<a href="/ecosystem.html#strategy">form. strategy</a>' +
+          '<a href="/ecosystem.html#creative">form. creative</a>' +
+          '<a href="/ecosystem.html#digital">form. digital</a>' +
+          '<a href="/ecosystem.html#ai">form. ai</a>' +
+          '<a href="/ecosystem.html#sound">form. sound</a>' +
+          '<a href="/ecosystem.html#support">form. support</a>' +
+          '<a href="/ecosystem.html#experience">form. experience</a>' +
+          '<a href="/ecosystem.html#labs">form. labs</a>' +
+          '<a href="/ecosystem.html#continuum">form. continuum</a>' +
         '</div>' +
         '<div class="ft-col">' +
-          '<h4>products</h4>' +
-          '<a href="/products.html#continuum">continuum</a>' +
-          '<a href="/products.html#messages">messages</a>' +
-          '<a href="/products.html#formation">formation</a>' +
+          '<h4>explore</h4>' +
+          '<a href="/vision.html">vision.</a>' +
+          '<a href="/standards.html">standards.</a>' +
+          '<a href="/founder.html">founder.</a>' +
+          '<a href="/ecosystem.html">ecosystem.</a>' +
         '</div>' +
         '<div class="ft-col">' +
           '<h4>connect</h4>' +
-          '<a href="/contact.html">contact</a>' +
+          '<a href="/contact.html">start the conversation</a>' +
+          '<a href="mailto:hello@formintel.co">hello@formintel.co</a>' +
           '<a href="https://instagram.com/" target="_blank" rel="noopener">instagram</a>' +
           '<a href="https://linkedin.com/" target="_blank" rel="noopener">linkedin</a>' +
           '<div class="ft-icons">' +
@@ -140,25 +106,22 @@
         '</div>' +
       '</div>' +
       '<div class="ft-bottom">' +
-        '<span>© 2026 FORM. All rights reserved.</span>' +
-        '<span>Built for the future.</span>' +
+        '<span>© 2026 form. all rights reserved.</span>' +
+        '<span>built for what comes next.</span>' +
         '<span></span>' +
       '</div>' +
     '</footer>';
 
-  // ─── MOBILE MENU PANEL ──
+  // ─── MOBILE MENU PANEL ─────────────────────────────────────────
   var mobileHTML =
     '<div id="tn-mobile" aria-hidden="true">' +
       '<button class="tn-mobile-close" type="button" aria-label="Close menu">' + xmark + '</button>' +
       '<div class="tn-mobile-inner">' +
-        '<a href="/" class="tn-mobile-link">Home</a>' +
-        '<a href="/about.html" class="tn-mobile-link">about</a>' +
-        '<a href="/vision.html" class="tn-mobile-link">vision</a>' +
-        '<a href="/founder.html" class="tn-mobile-link">Founder</a>' +
-        '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem</a>' +
-        '<a href="/products.html" class="tn-mobile-link">products</a>' +
-        '<a href="/contact.html" class="tn-mobile-link">contact</a>' +
-        '<a href="/contact.html#strategy-call" class="tn-mobile-cta">Strategy Call ' + arrow + '</a>' +
+        '<a href="/vision.html" class="tn-mobile-link">vision.</a>' +
+        '<a href="/standards.html" class="tn-mobile-link">standards.</a>' +
+        '<a href="/founder.html" class="tn-mobile-link">founder.</a>' +
+        '<a href="/ecosystem.html" class="tn-mobile-link">ecosystem.</a>' +
+        '<a href="/contact.html" class="tn-mobile-cta">' + dot + 'start the conversation</a>' +
       '</div>' +
     '</div>';
 
@@ -169,8 +132,6 @@
       document.body.insertBefore(navWrap.firstChild, document.body.firstChild);
     }
 
-    // ALWAYS remove any existing footer on landing — defensive against
-    // cached JS or accidental injection elsewhere.
     if(IS_LANDING){
       var existing = document.getElementById('sitefooter');
       if(existing && existing.parentNode) existing.parentNode.removeChild(existing);

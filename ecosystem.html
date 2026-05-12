@@ -3,706 +3,631 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM. — Ecosystem</title>
-<meta name="description" content="Intelligent systems for business, executive, creative, ministry, and everything in between. One ecosystem. Infinite impact.">
+<title>form. — ecosystem.</title>
+<meta name="description" content="a connected operational ecosystem. nine entities. one intelligence layer. form. strategy, creative, digital, ai, sound, support, experience, labs, continuum.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
 <script src="/performance-tier.js"></script>
 <script src="/performance-config.js"></script>
 <script src="/perf-observer.js"></script>
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tokens/colors.css">
 <link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{cursor:none;}
-body{background:#0A0A0A;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;display:flex;}
+html{scroll-behavior:smooth;}
+html.cursor-ready,html.cursor-ready a,html.cursor-ready button{cursor:none;}
+body{background:#050608;color:var(--stone);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-family:'Satoshi',sans-serif;font-weight:300;}
 
-/* ══════════════════════════════════════════════════════════
-   TIER-5: CRITICAL UI — Cursor system, immutable, no yield
-   will-change: left, top | cursor ring lag halts under reduced-motion
-   ══════════════════════════════════════════════════════════ */
-#cdot{position:fixed;z-index:var(--z-tier-cursor-dot);width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(57,255,20,.7),0 0 14px rgba(57,255,20,.22);opacity:.85;}
-#cring{position:fixed;z-index:var(--z-tier-cursor-ring);width:22px;height:22px;border:1px solid rgba(57,255,20,.28);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .7s cubic-bezier(.16,1,.3,1),height .7s cubic-bezier(.16,1,.3,1),border-color .5s,box-shadow .5s;}
-body.hl  #cring{width:32px;height:32px;border-color:rgba(57,255,20,.55);}
-body.hcta #cring{width:44px;height:44px;border-color:rgba(57,255,20,.7);box-shadow:0 0 14px rgba(57,255,20,.16);}
-
-/* ══════════════════════════════════════════════════════════
-   TIER-1: ATMOSPHERE — Film grain + scan line (z-index band: 3–9)
-   Grain: mix-blend-mode:overlay | static SVG, no animation
-   Scan: first to throttle under load | display:none under reduced-motion
-   ══════════════════════════════════════════════════════════ */
-/* TIER-1: Grain — Atmosphere, static SVG | mix-blend-mode:overlay | static, no animation */
-#grain{position:fixed;inset:0;z-index:var(--z-tier-atmosphere);opacity:.022;mix-blend-mode:overlay;pointer-events:none;}
-/* TIER-1: Scan line — atmospheric luminance sweep */
-.scan{position:fixed;left:0;right:0;height:1px;z-index:var(--z-tier-atmosphere-scan);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(57,255,20,.03),transparent);animation:scan-run 20s linear infinite 4s;}
-@keyframes scan-run{from{top:-1px}to{top:100vh}}
-/* ══════════════════════════════════════════════════════════
-   TIER-5: CRITICAL UI — Veil entry gate, immutable
-   prefers-reduced-motion: opacity:0 forced (bypassed, not removed)
-   ══════════════════════════════════════════════════════════ */
-#veil{position:fixed;inset:0;background:#0A0A0A;z-index:var(--z-tier-critical-veil);pointer-events:none;animation:veil-open 2.4s cubic-bezier(.16,1,.3,1) forwards;}
-@keyframes veil-open{0%,30%{opacity:1}100%{opacity:0}}
-@keyframes fadein{from{opacity:0}to{opacity:1}}
-@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── BRACKET CORNERS ── */
-/* TIER-2: Bracket corner marks — Hero Environment, fixed frame anchors */
-.brkt{position:fixed;width:28px;height:28px;z-index:var(--z-tier-hero-corners);pointer-events:none;}
-.brkt::before,.brkt::after,.brkt .i::before,.brkt .i::after{content:'';position:absolute;width:10px;height:10px;border-color:rgba(57,255,20,.22);border-style:solid;}
-.brkt::before{top:0;left:0;border-width:1px 0 0 1px;}
-.brkt::after{top:0;right:0;border-width:1px 1px 0 0;}
-.brkt .i::before{bottom:0;left:0;border-width:0 0 1px 1px;}
-.brkt .i::after{bottom:0;right:0;border-width:0 1px 1px 0;}
-#btl{top:8px;left:138px;}
-#btr{top:8px;right:8px;}
-#bbl{bottom:8px;left:138px;}
-#bbr{bottom:8px;right:8px;}
-
-/* ══════════════════════════════════════════════════════════
-   TIER-3: NAVIGATION — Sidebar | immutable, renders after veil lift
-   ══════════════════════════════════════════════════════════ */#sb-logo-wrap{padding:1.4rem 1.1rem 1.8rem;border-bottom:1px solid rgba(57,255,20,.07);}#sb-links{flex:1;display:flex;flex-direction:column;padding:1.8rem .8rem .6rem;}.crosshair{width:22px;height:22px;position:relative;}
-.crosshair::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(57,255,20,.22);transform:translateX(-50%);}
-.crosshair::after{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(57,255,20,.22);transform:translateY(-50%);}
-.crosshair-dot{position:absolute;top:50%;left:50%;width:4px;height:4px;background:#39FF14;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 5px #39FF14;}
-.g{color:#39FF14;}
-
-/* ── MAIN ── */
-#main{flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column;}
-
-/* ── WAVE CANVAS ── */
-#wave-wrap{position:relative;flex-shrink:0;height:42vh;overflow:hidden;}
-#waveCanvas{display:block;width:100%;height:100%;}
-/* TIER-2: Canvas coordinate readout — Hero Environment content */
-#coords{
-  position:absolute;top:1rem;right:1.4rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
-  letter-spacing:.1em;color:rgba(242,242,240,.35);line-height:1.8;
-  text-align:right;z-index:var(--z-tier-hero-content);
-}
-/* TIER-2: Ecosystem hero title — Hero Environment content */
-#eco-title{
-  position:absolute;bottom:2.4rem;left:2.6rem;z-index:var(--z-tier-hero-content);
-  opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.6s forwards;
-}
-#eco-title h1{
-  font-family:'Satoshi',sans-serif;font-size:3.2rem;font-weight:400;
-  color:#F2F2F0;line-height:1.0;letter-spacing:.04em;text-transform:uppercase;
-}
-#eco-title h1 .g{color:#39FF14;}
-#eco-sub{
-  font-family:'Satoshi',sans-serif;font-size:.8rem;color:rgba(242,242,240,.45);
-  margin-top:.4rem;max-width:380px;line-height:1.7;
+:root{
+  --ac:#39FF14;--ac-rgb:57,255,20;
+  --ib:#2962FF;--ib-rgb:41,98,255;
+  --cv:#8B5CF6;--cv-rgb:139,92,246;
+  --rose:#9B4DFF;--rose-rgb:155,77,255;
+  --amber:#FF8A00;--amber-rgb:255,138,0;
+  --stone:#F2F2F0;--stone-rgb:242,242,240;
+  --onyx:#050608;
+  --nav-h:64px;
+  --bezier:cubic-bezier(.16,1,.3,1);
+  --rule:rgba(242,242,240,.08);
 }
 
-/* ── CARDS ── */
-#cards-wrap{
-  display:grid;grid-template-columns:repeat(5,1fr);
-  flex:1;gap:0;
-  border-top:1px solid rgba(255,255,255,.05);
+#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 2s var(--bezier) forwards;}
+@keyframes veil-open{0%,28%{opacity:1}100%{opacity:0}}
+
+#cdot{position:fixed;z-index:9000;width:4px;height:4px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(var(--ac-rgb),.6),0 0 14px rgba(var(--ac-rgb),.18);opacity:.8;}
+#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.22);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .85s var(--bezier),height .85s var(--bezier),border-color .55s;}
+body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
+
+#grain{position:fixed;inset:0;z-index:3;opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
+
+/* drifting ecosystem atmosphere — soft, alive */
+#atm{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 18% 20%,rgba(var(--ib-rgb),.06) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 50% at 82% 30%,rgba(var(--cv-rgb),.05) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 90%,rgba(var(--ac-rgb),.025) 0%,transparent 60%),
+    #050608;
+  animation:atm-breathe 32s ease-in-out infinite alternate;
+}
+@keyframes atm-breathe{from{filter:hue-rotate(0deg) brightness(1);}to{filter:hue-rotate(8deg) brightness(1.06);}}
+
+/* TYPOGRAPHY */
+.canela{font-family:'Cormorant Garamond','Georgia',serif;font-style:italic;font-weight:300;letter-spacing:.005em;}
+.meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);font-weight:400;}
+.meta .idx{color:rgba(var(--ac-rgb),.6);margin-right:.4em;}
+.bdy{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1rem;line-height:1.8;color:rgba(var(--stone-rgb),.62);letter-spacing:.005em;}
+
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.r{opacity:0;}
+.r.in{animation:fadeup 1.2s var(--bezier) forwards;}
+
+#main{position:relative;z-index:10;margin-top:var(--nav-h);}
+
+/* ══════════════════════════════════
+   01 — HERO  (immersive, philosophical entry)
+══════════════════════════════════ */
+#s-hero{min-height:92vh;padding:7rem 8vw 6rem;display:flex;flex-direction:column;justify-content:center;position:relative;}
+.hero-stack{max-width:1480px;margin:0 auto;width:100%;}
+.hero-meta{margin-bottom:3.5rem;}
+.hero-headline{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:clamp(3rem,8vw,9rem);line-height:.96;letter-spacing:-.024em;
+  color:var(--stone);max-width:1280px;margin-bottom:3rem;
+}
+.hero-headline .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);}
+.hero-tag{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:1.18rem;line-height:1.7;color:rgba(var(--stone-rgb),.6);
+  max-width:580px;
+}
+.hero-coords{
+  position:absolute;bottom:3rem;right:8vw;
+  font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(var(--stone-rgb),.32);
+  display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;
 }
 
-.card{
-  position:relative;display:flex;flex-direction:column;
-  border-right:1px solid rgba(255,255,255,.05);
-  background:#0A0A0A;cursor:none;
+/* ══════════════════════════════════
+   02 — CONNECTED MAP
+══════════════════════════════════ */
+#s-map{padding:6rem 8vw 9rem;border-top:1px solid var(--rule);position:relative;}
+.map-stack{max-width:1480px;margin:0 auto;}
+.map-meta{margin-bottom:2.4rem;}
+.map-title{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.2;letter-spacing:-.014em;
+  color:var(--stone);margin-bottom:5rem;max-width:920px;
+}
+.map-title em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;}
+
+.eco-map{
+  position:relative;width:100%;aspect-ratio:16/9;max-height:560px;
+  border:1px solid var(--rule);
+  background:linear-gradient(180deg,rgba(var(--ib-rgb),.012) 0%,transparent 50%,rgba(var(--cv-rgb),.012) 100%);
   overflow:hidden;
-  transition:border-color .35s;
 }
-.card:last-child{border-right:none;}
-.card:hover{border-color:rgba(var(--cc-rgb),.3);}
-/* local stacking context — card lift within grid */
-.card.active{border:1.5px solid rgba(var(--cc-rgb),.55);z-index:2;box-shadow:0 0 28px rgba(var(--cc-rgb),.08),inset 0 0 20px rgba(var(--cc-rgb),.03);}
+.eco-map svg{position:absolute;inset:0;width:100%;height:100%;}
+.eco-map .em-node{cursor:none;transition:filter .5s;}
+.eco-map .em-node:hover{filter:drop-shadow(0 0 8px var(--ac));}
+.eco-map .em-label{
+  font-family:'Satoshi',sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.005em;
+  fill:rgba(var(--stone-rgb),.7);text-transform:none;
+}
+.eco-map .em-label .canela-svg{font-family:'Cormorant Garamond',serif;font-style:italic;}
+.eco-map .em-line{stroke:rgba(var(--stone-rgb),.07);stroke-width:.6;fill:none;}
+.eco-map .em-pulse{animation:em-pulse 4.5s ease-in-out infinite;}
+@keyframes em-pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
 
-/* Per-card CSS variables */
-.c01{--cc:#39FF14;--cc-rgb:57,255,20;}
-.c02{--cc:#2962FF;--cc-rgb:41,98,255;}
-.c03{--cc:#7CFF00;--cc-rgb:124,255,0;}
-.c04{--cc:#FF8A00;--cc-rgb:255,138,0;}
-.c05{--cc:#9B4DFF;--cc-rgb:155,77,255;}
+@media (max-width:760px){.eco-map{aspect-ratio:1/1;max-height:540px;}}
 
-/* Card visual (environmental image) */
-.card-vis{position:relative;height:42%;overflow:hidden;flex-shrink:0;}
-.card-vis-bg{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;object-position:center;
+.map-continuum{
+  display:inline-flex;align-items:baseline;gap:1rem;flex-wrap:wrap;
+  margin-top:2.4rem;padding:1.2rem 0 0;
+  border-top:1px solid var(--rule);width:100%;
+  text-decoration:none;color:inherit;
+  transition:padding-left .5s var(--bezier);
 }
-.c01 .card-vis-bg{filter:hue-rotate(0deg) saturate(1.3) brightness(.5);}
-.c02 .card-vis-bg{filter:hue-rotate(200deg) saturate(1.2) brightness(.4);}
-.c03 .card-vis-bg{filter:hue-rotate(20deg) saturate(1.5) brightness(.55);}
-.c04 .card-vis-bg{filter:hue-rotate(115deg) saturate(2) brightness(.48);}
-.c05 .card-vis-bg{filter:hue-rotate(268deg) saturate(1.3) brightness(.42);}
+.map-continuum:hover{padding-left:.6rem;}
+.map-continuum .mc-mark{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.5);align-self:center;}
+.map-continuum .mc-num{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--ac-rgb),.6);}
+.map-continuum .mc-name{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.1rem;color:var(--stone);letter-spacing:-.005em;}
+.map-continuum .mc-name .canela{font-weight:400;}
+.map-continuum .mc-tag{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.92rem;color:rgba(var(--stone-rgb),.5);}
 
-.card-vis-ov{
-  position:absolute;inset:0;
-  pointer-events:none;
+/* ══════════════════════════════════
+   03 — ENTITY SECTIONS  (9 distinct atmospheres)
+══════════════════════════════════ */
+.ent{
+  position:relative;padding:9rem 8vw;border-top:1px solid var(--rule);
+  scroll-margin-top:calc(var(--nav-h) + 1.4rem);
 }
-.c01 .card-vis-ov{background:radial-gradient(ellipse at 50% 90%, rgba(57,255,20,.18) 0%, transparent 65%);}
-.c02 .card-vis-ov{background:radial-gradient(ellipse at 35% 80%, rgba(41,98,255,.2) 0%, transparent 65%);}
-.c03 .card-vis-ov{background:radial-gradient(ellipse at 50% 60%, rgba(124,255,0,.22) 0%, transparent 60%);}
-.c04 .card-vis-ov{background:radial-gradient(ellipse at 60% 75%, rgba(255,138,0,.22) 0%, transparent 65%);}
-.c05 .card-vis-ov{background:radial-gradient(ellipse at 50% 85%, rgba(155,77,255,.22) 0%, transparent 65%);}
+.ent-inner{
+  max-width:1480px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+.ent-left{position:sticky;top:calc(var(--nav-h) + 4rem);}
+.ent-meta{margin-bottom:3rem;display:flex;align-items:center;gap:1.4rem;}
+.ent-num{
+  font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;
+  color:rgba(var(--ac-rgb),.55);
+}
+.ent-meta-rule{flex:1;height:1px;background:var(--rule);}
+.ent-name{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:clamp(2.6rem,5vw,5rem);line-height:.98;letter-spacing:-.02em;
+  color:var(--stone);margin-bottom:2.2rem;
+}
+.ent-name .canela{font-weight:400;font-size:1.04em;}
+.ent-tag{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:1.05rem;line-height:1.7;color:rgba(var(--stone-rgb),.62);
+  max-width:420px;
+}
 
-/* local stacking context — card visual gradient overlays within card-vis */
-.card-vis-top{
-  position:absolute;top:0;left:0;right:0;
-  height:45%;
-  background:linear-gradient(to bottom,rgba(10,10,10,.6),transparent);
-  z-index:2;pointer-events:none;
-}
-.card-vis-bot{
-  position:absolute;bottom:0;left:0;right:0;
-  height:55%;
-  background:linear-gradient(to top,rgba(10,10,10,.95),transparent);
-  z-index:2;pointer-events:none;
+.ent-atm{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  opacity:.65;
 }
 
-/* Card num + icon area — local stacking context within card-vis */
-.card-num{
-  position:absolute;top:.55rem;left:.65rem;z-index:5;
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:400;
-  letter-spacing:.08em;color:rgba(242,242,240,.55);
+.ent-right{padding-top:1rem;}
+.ent-body{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:1.04rem;line-height:1.85;color:rgba(var(--stone-rgb),.7);
+  margin-bottom:3rem;max-width:560px;
 }
-/* local stacking context — icon above card-vis gradients */
-.card-icon-wrap{
-  position:absolute;bottom:.6rem;left:50%;transform:translateX(-50%);
-  z-index:5;
-}
-.card-icon{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(10,10,10,.82);backdrop-filter:blur(6px);
-  border:1px solid rgba(var(--cc-rgb),.35);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--cc);
-}
-.card-icon svg{width:16px;height:16px;}
+.ent-body em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:rgba(var(--stone-rgb),.92);font-size:1.06em;}
 
-/* Card body */
-.card-body{
-  flex:1;display:flex;flex-direction:column;
-  padding:.7rem .75rem .55rem;
-  border-top:1px solid rgba(255,255,255,.05);
+.ent-cap-label{
+  font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(var(--stone-rgb),.4);margin-bottom:1.6rem;
 }
-.card-title{
-  font-family:'Satoshi',sans-serif;font-size:.72rem;font-weight:500;
-  letter-spacing:.05em;text-transform:uppercase;
-  color:var(--cc);line-height:1.22;margin-bottom:.35rem;
-  min-height:1.7rem;
+.ent-caps{
+  display:grid;grid-template-columns:1fr 1fr;gap:.4rem 2rem;
+  border-top:1px solid var(--rule);padding-top:1.4rem;
 }
-.card-desc{
-  font-family:'Satoshi',sans-serif;font-size:.58rem;font-weight:400;
-  color:rgba(242,242,240,.38);line-height:1.55;margin-bottom:.5rem;
+.ent-cap{
+  font-family:'Satoshi',sans-serif;font-weight:300;font-size:.94rem;line-height:1.5;
+  color:rgba(var(--stone-rgb),.78);padding:.7rem 0;
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;gap:.7rem;
 }
-.card-divider{height:1px;background:rgba(255,255,255,.05);margin-bottom:.45rem;}
-.card-items{list-style:none;display:flex;flex-direction:column;gap:3px;flex:1;}
-.card-items li{
-  display:flex;align-items:center;gap:.35rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.5rem;font-weight:400;
-  letter-spacing:.08em;text-transform:uppercase;color:rgba(242,242,240,.38);line-height:1.4;
-}
-.card-items li::before{
-  content:'';width:3px;height:3px;border-radius:50%;
-  background:rgba(var(--cc-rgb),.45);flex-shrink:0;
-}
-.card-cta-wrap{
-  border-top:1px solid rgba(255,255,255,.06);
-  margin-top:.45rem;padding-top:.45rem;
-  display:flex;justify-content:flex-end;
-}
-.card-cta{
-  display:flex;align-items:center;gap:.5rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(var(--cc-rgb),.65);text-decoration:none;cursor:none;
-  border:1px solid rgba(var(--cc-rgb),.22);
-  padding:.3rem .55rem;
-  transition:background .25s,color .25s,border-color .25s;
-}
-.card-cta:hover{background:rgba(var(--cc-rgb),.08);color:var(--cc);border-color:rgba(var(--cc-rgb),.5);}
+.ent-cap::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:rgba(var(--stone-rgb),.32);flex:0 0 auto;}
 
-/* ── BOTTOM BAR ── */
-#bottom-bar{
-  flex-shrink:0;
-  display:flex;align-items:center;gap:1.5rem;
-  padding:.65rem 1.4rem;
-  background:rgba(10,10,10,.95);
-  border-top:1px solid rgba(57,255,20,.07);
+@media (max-width:980px){
+  .ent-inner{grid-template-columns:1fr;gap:3rem;}
+  .ent-left{position:static;}
+  .ent-caps{grid-template-columns:1fr;}
 }
-.form-cube{color:rgba(57,255,20,.65);flex-shrink:0;}
-.form-cube svg{width:36px;height:36px;}
-.bottom-tagline{
-  font-family:'Satoshi',sans-serif;font-size:.85rem;font-weight:500;
-  color:#F2F2F0;white-space:nowrap;letter-spacing:.02em;
-}
-.bottom-tagline .g{color:#39FF14;}
-.bottom-desc{
-  flex:1;
-  font-family:'Satoshi',sans-serif;font-size:.65rem;
-  color:rgba(242,242,240,.38);line-height:1.65;
-  border-left:1px solid rgba(255,255,255,.06);
-  padding-left:1.4rem;
-}
-.how-btn{
-  display:flex;align-items:center;justify-content:center;gap:.6rem;
-  font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
-  border:1px solid rgba(57,255,20,.35);
-  color:rgba(57,255,20,.75);
-  text-decoration:none;cursor:none;
-  padding:.6rem 1.5rem;white-space:nowrap;
-  transition:background .3s,color .3s,border-color .3s;
-}
-.how-btn:hover{background:rgba(57,255,20,.07);color:#39FF14;border-color:#39FF14;}
 
-/* ── CORNER LABELS ── */
-/* TIER-2: Corner coordinate labels — Hero Environment, fixed frame anchors */
-#corner-bl{position:fixed;bottom:3rem;left:138px;z-index:var(--z-tier-hero-corners);padding:.5rem .8rem;pointer-events:none;}
-#corner-br{position:fixed;bottom:3rem;right:.8rem;z-index:var(--z-tier-hero-corners);padding:.5rem .8rem;pointer-events:none;text-align:right;}
-.corner-lbl{
-  font-family:'IBM Plex Mono',monospace;font-size:.52rem;
-  letter-spacing:.14em;text-transform:uppercase;color:rgba(242,242,240,.22);
+/* per-entity accent + atmosphere */
+.ent.e-strategy .ent-num,.ent.e-strategy .ent-name .canela{color:rgba(var(--ib-rgb),.92);}
+.ent.e-strategy .ent-atm{background:radial-gradient(ellipse 60% 50% at 18% 30%,rgba(var(--ib-rgb),.08) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 90% 70%,rgba(var(--ib-rgb),.04) 0%,transparent 60%);}
+
+.ent.e-creative .ent-num,.ent.e-creative .ent-name .canela{color:rgba(var(--rose-rgb),.92);}
+.ent.e-creative .ent-atm{background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(var(--rose-rgb),.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 80%,rgba(var(--amber-rgb),.04) 0%,transparent 60%);}
+
+.ent.e-digital .ent-num,.ent.e-digital .ent-name .canela{color:rgba(var(--cv-rgb),.92);}
+.ent.e-digital .ent-atm{background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(var(--cv-rgb),.06) 0%,transparent 60%);}
+
+.ent.e-ai .ent-num,.ent.e-ai .ent-name .canela{color:var(--ac);}
+.ent.e-ai .ent-atm{background:radial-gradient(ellipse 60% 50% at 25% 60%,rgba(var(--ac-rgb),.045) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 80% 20%,rgba(var(--ib-rgb),.04) 0%,transparent 60%);}
+
+.ent.e-sound .ent-num,.ent.e-sound .ent-name .canela{color:rgba(var(--amber-rgb),.95);}
+.ent.e-sound .ent-atm{background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(var(--amber-rgb),.06) 0%,transparent 60%);}
+
+.ent.e-support .ent-num,.ent.e-support .ent-name .canela{color:rgba(var(--stone-rgb),.85);}
+.ent.e-support .ent-atm{background:linear-gradient(180deg,transparent 0%,rgba(var(--stone-rgb),.018) 100%);}
+
+.ent.e-experience .ent-num,.ent.e-experience .ent-name .canela{color:rgba(var(--rose-rgb),.92);}
+.ent.e-experience .ent-atm{background:radial-gradient(ellipse 50% 40% at 30% 30%,rgba(var(--rose-rgb),.05) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(var(--amber-rgb),.04) 0%,transparent 60%);}
+
+.ent.e-labs .ent-num,.ent.e-labs .ent-name .canela{color:rgba(var(--cv-rgb),.95);}
+.ent.e-labs .ent-atm{background:radial-gradient(ellipse 55% 45% at 70% 30%,rgba(var(--cv-rgb),.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(var(--ac-rgb),.025) 0%,transparent 60%);}
+
+.ent.e-continuum .ent-num,.ent.e-continuum .ent-name .canela{color:var(--ac);}
+.ent.e-continuum .ent-atm{background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(var(--ac-rgb),.04) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 30% 90%,rgba(var(--ib-rgb),.05) 0%,transparent 60%);}
+
+/* ══════════════════════════════════
+   CLOSING SIGNAL
+══════════════════════════════════ */
+#s-close{padding:14rem 8vw 13rem;border-top:1px solid var(--rule);position:relative;text-align:left;}
+.close-stack{max-width:1280px;margin:0 auto;}
+.close-meta{margin-bottom:5rem;}
+.close-headline{
+  font-family:'Satoshi',sans-serif;font-weight:300;
+  font-size:clamp(2.4rem,5.4vw,5.4rem);line-height:1.04;letter-spacing:-.02em;
+  color:var(--stone);max-width:1080px;margin-bottom:4rem;
 }
-.corner-lbl .g{color:#39FF14;}
+.close-headline em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;}
+.close-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--stone-rgb),.32);max-width:540px;line-height:1.8;}
 
-/* ── SCROLL INDICATOR ── */
-/* TIER-2: Scroll indicator — Hero Environment, upper band (--z-tier-hero-scroll=15) */
-#scroll-ind{
-  position:fixed;bottom:.8rem;left:50%;transform:translateX(-50%);
-  z-index:var(--z-tier-hero-scroll);display:flex;flex-direction:column;align-items:center;gap:.4rem;
-  opacity:0;animation:fadein .8s ease 2.5s forwards;
-  pointer-events:none;
+.t-link{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(var(--stone-rgb),.78);text-decoration:none;display:inline-flex;align-items:center;gap:.85rem;transition:color .5s,letter-spacing .5s;margin-top:5rem;}
+.t-link::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 6px var(--ac),0 0 14px rgba(var(--ac-rgb),.5);}
+.t-link:hover{color:var(--ac);letter-spacing:.28em;}
+
+@media (max-width:640px){
+  #s-hero,#s-map,.ent,#s-close{padding-left:6vw;padding-right:6vw;}
+  .ent{padding-top:5rem;padding-bottom:5rem;}
+  #s-close{padding-top:8rem;padding-bottom:8rem;}
+  .hero-coords{position:static;margin-top:3rem;align-items:flex-start;}
 }
-.smouse{width:16px;height:24px;border:1px solid rgba(57,255,20,.28);border-radius:8px;display:flex;justify-content:center;padding-top:4px;}
-.swheel{width:2px;height:5px;background:rgba(57,255,20,.55);border-radius:1px;animation:wheel-scroll 2s ease-in-out infinite;}
-@keyframes wheel-scroll{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(4px);opacity:1}}
-.slbl{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.28);}
 
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;}
-  #veil{opacity:0!important;}}
-
-/* ── PERFORMANCE TIER GATES ── */
-[data-perf="reduced"] .scan{animation-duration:40s;}
-[data-perf="reduced"] #grain{opacity:.012;}
-[data-perf="reduced"] .swheel{animation-duration:4s;}
-[data-perf="minimal"] .scan{animation:none!important;display:none!important;}
-[data-perf="minimal"] .swheel{animation:none!important;}
-[data-perf="minimal"] #grain{display:none!important;}
-[data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none!important;}
-[data-perf="minimal"] html,[data-perf="minimal"] body{cursor:auto!important;}
-[data-perf="minimal"] #waveCanvas{display:none!important;}
-
-/* ── TIER LEVEL GATES — page-specific overrides only (shared rules in rendering-hierarchy.css) ── */
-[data-tier-level="1"] .scan{animation-duration:40s;}
-[data-tier-level="1"] .swheel{animation-duration:4s;}
-[data-tier-level="2"] .swheel{animation:none!important;}
-[data-tier-level="2"] #waveCanvas{display:none!important;}
+[data-perf="minimal"] html.cursor-ready{cursor:auto!important;}
+[data-perf="minimal"] #cdot,[data-perf="minimal"] #cring{display:none;}
+[data-perf="minimal"] #atm{animation:none;}
+@media (prefers-reduced-motion:reduce){
+  .r,.r.in{animation:none!important;opacity:1!important;transform:none!important;}
+  #atm{animation:none;}
+}
 </style>
 <link rel="stylesheet" href="/nav-footer.css?v=10">
 <link rel="stylesheet" href="/mobile.css?v=6">
-
 </head>
 <body>
-<!-- TIER-5: CRITICAL UI — Veil entry gate | immutable -->
+
 <div id="veil"></div>
-<!-- TIER-5: CRITICAL UI — Cursor dot + ring | ring lag halts under reduced-motion -->
 <div id="cdot"></div>
 <div id="cring"></div>
-<!-- TIER-1: ATMOSPHERE — Horizontal scan line | first to throttle -->
-<div class="scan"></div>
-<!-- TIER-1: ATMOSPHERE — Film grain | var(--z-tier-atmosphere)=3 | mix-blend-mode:overlay | static SVG -->
-<img id="grain" src="/grain.svg" alt="" style="position:fixed;inset:0;z-index:var(--z-tier-atmosphere);opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;">
+<div id="atm"></div>
+<img id="grain" src="/grain.svg" alt="">
 
-<!-- TIER-2: HERO ENVIRONMENT — Bracket corner marks | no yield -->
-<div class="brkt" id="btl"><div class="i"></div></div>
-<div class="brkt" id="btr"><div class="i"></div></div>
-<div class="brkt" id="bbl"><div class="i"></div></div>
-<div class="brkt" id="bbr"><div class="i"></div></div>
-
-<!-- TIER-3: NAVIGATION — Sidebar | immutable | renders after veil lift -->
-<!-- TIER-2: HERO ENVIRONMENT — Main scrollable content area | no yield -->
 <main id="main">
 
-  <!-- ── WAVE VISUALIZATION ── -->
-  <div id="wave-wrap">
-    <canvas id="waveCanvas"></canvas>
-    <div id="coords">33.7498° N<br>84.3088° W</div>
-    <div id="eco-title">
-      <h1>The Future<br>Needs <span class="g">Form.</span></h1>
-      <p id="eco-sub">One ecosystem. Intelligent systems.<br>Built for <span class="g">infinite impact.</span></p>
-    </div>
+<!-- ══════════ 01 HERO ══════════ -->
+<section id="s-hero">
+  <div class="hero-stack">
+    <div class="hero-meta r"><div class="meta"><span class="idx">[ ecosystem ]</span> connected operational architecture.</div></div>
+    <h1 class="hero-headline r">a connected operational ecosystem. <span class="canela">nine entities. one signal.</span></h1>
+    <p class="hero-tag r">form. is not a service menu. it is an operational architecture — nine intentional layers designed to reinforce each other and to compound over time.</p>
   </div>
-
-  <!-- ── 5 SYSTEM CARDS ── -->
-  <div id="cards-wrap">
-
-    <!-- 01 Business Systems -->
-    <div class="card c01">
-      <div class="card-vis">
-        <img src="/bg.avif" class="card-vis-bg" alt="">
-        <div class="card-vis-ov"></div>
-        <div class="card-vis-top"></div>
-        <div class="card-vis-bot"></div>
-        <div class="card-num">01</div>
-        <div class="card-icon-wrap"><div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-          </svg>
-        </div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Business<br>Systems</div>
-        <div class="card-desc">Operational intelligence for future-forward organizations.</div>
-        <div class="card-divider"></div>
-        <ul class="card-items">
-          <li>Strategy &amp; Growth</li>
-          <li>Operations &amp; Workflows</li>
-          <li>Customer Experience</li>
-          <li>Data &amp; Intelligence</li>
-          <li>AI Integration</li>
-        </ul>
-        <div class="card-cta-wrap"><a href="/business-systems.html" class="card-cta">→</a></div>
-      </div>
-    </div>
-
-    <!-- 02 Executive & Operations -->
-    <div class="card c02">
-      <div class="card-vis">
-        <img src="/bg.avif" class="card-vis-bg" alt="">
-        <div class="card-vis-ov"></div>
-        <div class="card-vis-top"></div>
-        <div class="card-vis-bot"></div>
-        <div class="card-num">02</div>
-        <div class="card-icon-wrap"><div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Executive &amp;<br>Operations</div>
-        <div class="card-desc">Leadership infrastructure for clarity, alignment, and execution.</div>
-        <div class="card-divider"></div>
-        <ul class="card-items">
-          <li>Executive Advisory</li>
-          <li>Leadership Systems</li>
-          <li>Operational Architecture</li>
-          <li>Performance Intelligence</li>
-          <li>Risk &amp; Compliance</li>
-        </ul>
-        <div class="card-cta-wrap"><a href="/executive-systems.html" class="card-cta">→</a></div>
-      </div>
-    </div>
-
-    <!-- 03 Intelligence Systems (active) -->
-    <div class="card c03 active">
-      <div class="card-vis">
-        <img src="/bg.avif" class="card-vis-bg" alt="">
-        <div class="card-vis-ov"></div>
-        <div class="card-vis-top"></div>
-        <div class="card-vis-bot"></div>
-        <div class="card-num">03</div>
-        <div class="card-icon-wrap"><div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-          </svg>
-        </div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Intelligence<br>Systems</div>
-        <div class="card-desc">AI systems and workflows that amplify intelligence and automate what matters.</div>
-        <div class="card-divider"></div>
-        <ul class="card-items">
-          <li>AI Workflows &amp; Automations</li>
-          <li>Intelligent Agents</li>
-          <li>System Integrations</li>
-          <li>Data Orchestration</li>
-          <li>Relay Platform</li>
-          <li>MinistryOS</li>
-          <li>Augmented Intelligence</li>
-        </ul>
-        <div class="card-cta-wrap"><a href="/intelligence-systems.html" class="card-cta">→</a></div>
-      </div>
-    </div>
-
-    <!-- 04 Creative Systems -->
-    <div class="card c04">
-      <div class="card-vis">
-        <img src="/bg.avif" class="card-vis-bg" alt="">
-        <div class="card-vis-ov"></div>
-        <div class="card-vis-top"></div>
-        <div class="card-vis-bot"></div>
-        <div class="card-num">04</div>
-        <div class="card-icon-wrap"><div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-        </div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Creative<br>Systems</div>
-        <div class="card-desc">Cinematic intelligence for brands, media, and creative vision.</div>
-        <div class="card-divider"></div>
-        <ul class="card-items">
-          <li>Brand &amp; Identity Systems</li>
-          <li>Content &amp; Media Production</li>
-          <li>Creative Direction</li>
-          <li>Campaign &amp; Launch Systems</li>
-          <li>AI-Enhanced Workflows</li>
-          <li>FRAME &amp; Brand Studio</li>
-        </ul>
-        <div class="card-cta-wrap"><a href="/creative-systems.html" class="card-cta">→</a></div>
-      </div>
-    </div>
-
-    <!-- 05 Ministry Systems -->
-    <div class="card c05">
-      <div class="card-vis">
-        <img src="/bg.avif" class="card-vis-bg" alt="">
-        <div class="card-vis-ov"></div>
-        <div class="card-vis-top"></div>
-        <div class="card-vis-bot"></div>
-        <div class="card-num">05</div>
-        <div class="card-icon-wrap"><div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="8" x2="19" y2="8"/>
-          </svg>
-        </div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Ministry<br>Systems</div>
-        <div class="card-desc">Operational infrastructure for churches, movements, and people.</div>
-        <div class="card-divider"></div>
-        <ul class="card-items">
-          <li>People &amp; Discipleship</li>
-          <li>Worship &amp; Communications</li>
-          <li>Care &amp; Engagement</li>
-          <li>Ministry Operations</li>
-          <li>Community &amp; Impact</li>
-        </ul>
-        <div class="card-cta-wrap"><a href="/ministry-systems.html" class="card-cta">→</a></div>
-      </div>
-    </div>
-
+  <div class="hero-coords r">
+    <span>9 entities</span>
+    <span>1 intelligence layer</span>
+    <span>built to operate as one</span>
   </div>
+</section>
 
-  <!-- ── BOTTOM BAR ── -->
-  <div id="bottom-bar">
-    <div class="form-cube">
-      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1">
-        <path d="M20,4 L34,12 L34,28 L20,36 L6,28 L6,12 Z" stroke-opacity=".7"/>
-        <path d="M20,4 L20,20 M34,12 L20,20 M6,12 L20,20 M20,20 L20,36 M20,20 L34,28 M20,20 L6,28" stroke-opacity=".35"/>
+<!-- ══════════ 02 CONNECTED MAP ══════════ -->
+<section id="s-map">
+  <div class="map-stack">
+    <div class="map-meta r"><div class="meta"><span class="idx">[ 02 ]</span> ecosystem map.</div></div>
+    <h2 class="map-title r">each layer is designed to reinforce the others. <em>nothing operates in isolation.</em></h2>
+
+    <div class="eco-map r">
+      <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+        <!-- connecting lines (radial from center) -->
+        <g class="em-lines">
+          <line class="em-line" x1="500" y1="250" x2="170" y2="120"/>
+          <line class="em-line" x1="500" y1="250" x2="500" y2="80"/>
+          <line class="em-line" x1="500" y1="250" x2="830" y2="120"/>
+          <line class="em-line" x1="500" y1="250" x2="170" y2="380"/>
+          <line class="em-line" x1="500" y1="250" x2="500" y2="430"/>
+          <line class="em-line" x1="500" y1="250" x2="830" y2="380"/>
+          <line class="em-line" x1="500" y1="250" x2="80" y2="250"/>
+          <line class="em-line" x1="500" y1="250" x2="920" y2="250"/>
+          <!-- outer ring connections -->
+          <line class="em-line" x1="170" y1="120" x2="500" y2="80"/>
+          <line class="em-line" x1="500" y1="80" x2="830" y2="120"/>
+          <line class="em-line" x1="830" y1="120" x2="920" y2="250"/>
+          <line class="em-line" x1="920" y1="250" x2="830" y2="380"/>
+          <line class="em-line" x1="830" y1="380" x2="500" y2="430"/>
+          <line class="em-line" x1="500" y1="430" x2="170" y2="380"/>
+          <line class="em-line" x1="170" y1="380" x2="80" y2="250"/>
+          <line class="em-line" x1="80" y1="250" x2="170" y2="120"/>
+        </g>
+
+        <!-- center node: form. -->
+        <g class="em-node em-pulse" transform="translate(500,250)">
+          <circle r="8" fill="#39FF14" opacity=".9"/>
+          <circle r="18" fill="none" stroke="#39FF14" stroke-width=".6" opacity=".4"/>
+          <text y="44" text-anchor="middle" class="em-label" style="font-size:.78rem;fill:#F2F2F0;"><tspan class="canela-svg">form.</tspan></text>
+        </g>
+
+        <!-- 8 perimeter nodes -->
+        <a href="#strategy"><g class="em-node" transform="translate(170,120)"><circle r="5" fill="#2962FF" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> strategy</text></g></a>
+        <a href="#creative"><g class="em-node" transform="translate(500,80)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> creative</text></g></a>
+        <a href="#digital"><g class="em-node" transform="translate(830,120)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> digital</text></g></a>
+        <a href="#ai"><g class="em-node" transform="translate(920,250)"><circle r="5" fill="#39FF14" opacity=".85"/><text x="14" y="4" text-anchor="start" class="em-label"><tspan class="canela-svg">form.</tspan> ai</text></g></a>
+        <a href="#sound"><g class="em-node" transform="translate(830,380)"><circle r="5" fill="#FF8A00" opacity=".85"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> sound</text></g></a>
+        <a href="#support"><g class="em-node" transform="translate(500,430)"><circle r="5" fill="#F2F2F0" opacity=".75"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> support</text></g></a>
+        <a href="#experience"><g class="em-node" transform="translate(170,380)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> experience</text></g></a>
+        <a href="#labs"><g class="em-node" transform="translate(80,250)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text x="-14" y="4" text-anchor="end" class="em-label"><tspan class="canela-svg">form.</tspan> labs</text></g></a>
+        <!-- continuum is the binding signal at center — labeled below for clickable reach -->
       </svg>
     </div>
-    <div class="bottom-tagline">One Ecosystem. Built For <span class="g">Impact.</span></div>
-    <p class="bottom-desc">We design connected systems that remove friction, unlock human potential,<br>and create lasting impact across every area of your world.</p>
-    <a href="#" class="how-btn">How We Build →</a>
-  </div>
 
-  <!-- Corner labels -->
-  <div id="corner-bl"><div class="corner-lbl">Vision Needs <span class="g">Structure.</span></div></div>
-  <div id="corner-br"><div class="corner-lbl">The Future Needs <span class="g">Form.</span></div></div>
-
-  <!-- Scroll indicator -->
-  <div id="scroll-ind">
-    <div class="smouse"><div class="swheel"></div></div>
-    <div class="slbl">Scroll to Explore</div>
+    <a href="#continuum" class="map-continuum r" aria-label="form. continuum — the binding signal">
+      <span class="mc-mark" aria-hidden="true"></span>
+      <span class="mc-num">[ 09 / 09 ]</span>
+      <span class="mc-name"><span class="canela">form.</span> continuum</span>
+      <span class="mc-tag">— the binding signal at the center. the long arc.</span>
+    </a>
   </div>
+</section>
+
+<!-- ══════════ ENTITY SECTIONS ══════════ -->
+
+<section class="ent e-strategy" id="strategy">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 01 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> strategy</h2>
+      <p class="ent-tag r">operational clarity for organizations navigating scale, alignment, and long-term infrastructure.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. strategy is the operating layer underneath everything else — the structural thinking that shapes how an organization makes decisions, allocates attention, and grows without losing its identity. <em>strategy here is not a deck. it is an operational architecture you can run.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">organizational architecture</div>
+        <div class="ent-cap">long-arc planning</div>
+        <div class="ent-cap">operating system design</div>
+        <div class="ent-cap">leadership clarity systems</div>
+        <div class="ent-cap">decision frameworks</div>
+        <div class="ent-cap">positioning architecture</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-creative" id="creative">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 02 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> creative</h2>
+      <p class="ent-tag r">narrative, design, and visual systems that preserve emotional resonance inside modern infrastructure.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. creative is where signal becomes language. brand, narrative, design, and visual identity treated as operational assets — built to last, built to scale, and <em>built to feel like the organization actually behind them.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">brand identity systems</div>
+        <div class="ent-cap">narrative architecture</div>
+        <div class="ent-cap">art direction</div>
+        <div class="ent-cap">editorial systems</div>
+        <div class="ent-cap">design language</div>
+        <div class="ent-cap">visual continuity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-digital" id="digital">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 03 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> digital</h2>
+      <p class="ent-tag r">web, product, and interface systems engineered for clarity, performance, and connected execution.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. digital builds the surfaces an organization meets the world through — websites, products, interfaces, internal tools — engineered as <em>operational instruments,</em> not marketing artifacts.</p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">website architecture</div>
+        <div class="ent-cap">product engineering</div>
+        <div class="ent-cap">interface systems</div>
+        <div class="ent-cap">internal tooling</div>
+        <div class="ent-cap">design engineering</div>
+        <div class="ent-cap">infrastructure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-ai" id="ai">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 04 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> ai</h2>
+      <p class="ent-tag r">adaptive intelligence increasing awareness, decision velocity, and operational responsiveness.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. ai is intelligence treated as infrastructure — calm, integrated, and intentional. not a chatbot. not a feature. an operational layer that <em>extends an organization's awareness without replacing its judgment.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">intelligence architecture</div>
+        <div class="ent-cap">workflow automation</div>
+        <div class="ent-cap">decision support systems</div>
+        <div class="ent-cap">internal copilots</div>
+        <div class="ent-cap">data orchestration</div>
+        <div class="ent-cap">rev. integration layer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-sound" id="sound">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 05 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> sound</h2>
+      <p class="ent-tag r">audio, score, and sonic identity systems for environments built to be heard as much as seen.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. sound is the audible signature of an operational identity — score, sonic branding, environmental audio, and the subtle rhythms that <em>make presence felt before it's seen.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">sonic identity</div>
+        <div class="ent-cap">original score</div>
+        <div class="ent-cap">environmental audio</div>
+        <div class="ent-cap">production sound</div>
+        <div class="ent-cap">audio branding systems</div>
+        <div class="ent-cap">spatial composition</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-support" id="support">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 06 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> support</h2>
+      <p class="ent-tag r">operational continuity, advisory, and ongoing care for the systems we build alongside you.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. support is the long after the launch — operational continuity, advisory, optimization, and the quiet ongoing care that keeps complex systems running. <em>nothing we build is meant to be abandoned at delivery.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">operational continuity</div>
+        <div class="ent-cap">advisory partnership</div>
+        <div class="ent-cap">system maintenance</div>
+        <div class="ent-cap">performance optimization</div>
+        <div class="ent-cap">team enablement</div>
+        <div class="ent-cap">embedded operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-experience" id="experience">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 07 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> experience</h2>
+      <p class="ent-tag r">end-to-end environments where leadership, communication, and culture are felt as one signal.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. experience is the integration layer — gatherings, environments, internal culture, and the staged moments that <em>make an organization's philosophy something people can stand inside of.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">live experience design</div>
+        <div class="ent-cap">cultural architecture</div>
+        <div class="ent-cap">internal communication</div>
+        <div class="ent-cap">environment & space</div>
+        <div class="ent-cap">leadership systems</div>
+        <div class="ent-cap">narrative direction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-labs" id="labs">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 08 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> labs</h2>
+      <p class="ent-tag r">internal product development — the operational tools and platforms born from our own practice.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. labs is where the rest of the ecosystem becomes product. internal tools, operational platforms, and the experiments that <em>turn lived practice into reusable infrastructure.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">internal products</div>
+        <div class="ent-cap">platform engineering</div>
+        <div class="ent-cap">research & prototyping</div>
+        <div class="ent-cap">tooling systems</div>
+        <div class="ent-cap">rev. development</div>
+        <div class="ent-cap">applied intelligence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-continuum" id="continuum">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 09 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> continuum</h2>
+      <p class="ent-tag r">long-form intelligence partnership — sustained operational presence over years, not engagements.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. continuum is the longest arc of the ecosystem — a sustained, multi-year operational partnership for organizations that want intelligence, structure, and presence to compound. <em>the work is measured in years, not deliverables.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">long-arc partnership</div>
+        <div class="ent-cap">embedded intelligence</div>
+        <div class="ent-cap">structural review cadence</div>
+        <div class="ent-cap">multi-entity coordination</div>
+        <div class="ent-cap">operational compounding</div>
+        <div class="ent-cap">presence as infrastructure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CLOSING ══════════ -->
+<section id="s-close">
+  <div class="close-stack">
+    <div class="close-meta r"><div class="meta"><span class="idx">[ signal ]</span> closing.</div></div>
+    <h2 class="close-headline r">nine entities. one intelligence layer. <em>built to operate as one.</em></h2>
+    <div class="close-sub r">form. is not a service menu. it is a connected operational ecosystem designed to compound across years.</div>
+    <a href="/contact.html" class="t-link r">start the conversation</a>
+  </div>
+</section>
 
 </main>
 
 <script>
-/* ── VIEWPORT SCALE ── */
-(function(){
-  const DW=1440,DH=900;
-  function s(){document.documentElement.style.zoom=Math.min(innerWidth/DW,innerHeight/DH,1);}
-  s();window.addEventListener('resize',s);
-})();
-
-/* ── GRAIN + CURSOR ── */
 (function(){
 'use strict';
 const tier=window.FORM_TIER||'full';
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const grain=document.getElementById('grain');
 if(grain){
   if(tier==='minimal'){grain.parentNode&&grain.parentNode.removeChild(grain);}
-  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
+  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.014);}
 }
+
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-if(tier==='minimal'){
-  if(dot)dot.style.display='none';
-  if(ring)ring.style.display='none';
-  document.body.style.cursor='auto';
-} else {
-  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
-  (function cl(){var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal'||_pt==='reduced')return;rx+=(mx-rx)*.055;ry+=(my-ry)*.055;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);})();
-  document.querySelectorAll('a,.card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
-  });
-  document.querySelectorAll('.card-cta,.how-btn').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
-  });
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+const _isTouch=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
+if(dot && ring && tier!=='minimal' && !_isTouch && !reducedMotion){
+  document.documentElement.classList.add('cursor-ready');
 }
-})();
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
+function _startCursorRing(){
+  if(reducedMotion)return;
+  (function cl(){
+    var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal')return;
+    rx+=(mx-rx)*.045;ry+=(my-ry)*.045;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
+  })();
+}
+if(tier!=='minimal')_startCursorRing();
 
-/* ── WAVE CANVAS ── */
-(function(){
-  const canvas = document.getElementById('waveCanvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [];
-  const _wvSkip=(window.FORM_TIER||'full')==='reduced'?2:1;let _wvFrame=0;
+document.querySelectorAll('a,button,.ent-cap,.em-node').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
+});
 
-  const SYS = [
-    { color:'#39FF14', rgb:[57,255,20],   cx:0.10, beam:false },
-    { color:'#2962FF', rgb:[41,98,255],   cx:0.30, beam:false },
-    { color:'#7CFF00', rgb:[124,255,0],   cx:0.50, beam:true  },
-    { color:'#FF8A00', rgb:[255,138,0],   cx:0.70, beam:false },
-    { color:'#9B4DFF', rgb:[155,77,255],  cx:0.90, beam:false },
-  ];
-
-  function resize(){
-    const wrap = canvas.parentElement;
-    W = canvas.width  = wrap.clientWidth;
-    H = canvas.height = wrap.clientHeight;
-    initParticles();
-  }
-
-  function initParticles(){
-    particles = [];
-    SYS.forEach((sys, si) => {
-      const zone  = 0.17 * W;
-      const baseY = H * 0.72;
-      const peak  = sys.beam ? 0.55 : 0.15; // beam zone goes higher
-      const count = sys.beam ? 65 : 45;
-
-      for(let i = 0; i < count; i++){
-        const px = sys.cx * W + (Math.random() - 0.5) * zone * 1.2;
-        const py = baseY - Math.random() * (peak * H);
-        particles.push({
-          x:px, y:py, ox:px, baseY:py,
-          phase: Math.random() * Math.PI * 2,
-          speed: 0.0022 + Math.random() * 0.005,
-          amp:   12  + Math.random() * 28,
-          drift: (Math.random() - 0.5) * 0.07,
-          size:  0.22 + Math.random() * 0.7,
-          alpha: 0.22 + Math.random() * 0.42,
-          rgb: sys.rgb, color: sys.color,
-          si, isBeam: false,
-        });
-      }
-
-      if(sys.beam){
-        for(let i = 0; i < 42; i++){
-          particles.push({
-            x: sys.cx * W + (Math.random() - 0.5) * 22,
-            y: H * Math.random(),
-            ox: sys.cx * W,
-            baseY: H * 0.75,
-            phase:0, speed:0, amp:0, drift:(Math.random()-0.5)*0.15,
-            vy: -(0.32 + Math.random() * 0.95),
-            size: 0.18 + Math.random() * 0.7,
-            alpha: 0.12 + Math.random() * 0.5,
-            rgb: sys.rgb, color: sys.color,
-            si, isBeam: true,
-          });
-        }
+const reveal=document.querySelectorAll('.r');
+if('IntersectionObserver' in window && !reducedMotion){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
       }
     });
-  }
+  },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+  reveal.forEach(el=>io.observe(el));
+} else {
+  reveal.forEach(el=>el.classList.add('in'));
+}
 
-  function draw(){
-    _wvFrame++;
-    if(_wvFrame%_wvSkip!==0){requestAnimationFrame(draw);return;}
-    ctx.clearRect(0,0,W,H);
+setTimeout(()=>{
+  document.querySelectorAll('#s-hero .r').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('in'),i*180);
+  });
+},1500);
 
-    // Background
-    ctx.fillStyle = '#0A0A0A';
-    ctx.fillRect(0,0,W,H);
-
-    // Per-system glow orbs
-    SYS.forEach(sys => {
-      const gx = sys.cx * W;
-      const gy = H * 0.78;
-      const r  = W * 0.17;
-      const g  = ctx.createRadialGradient(gx,gy,0,gx,gy,r);
-      g.addColorStop(0, `rgba(${sys.rgb},${sys.beam ? 0.07 : 0.045})`);
-      g.addColorStop(1, `rgba(${sys.rgb},0)`);
-      ctx.fillStyle = g;
-      ctx.fillRect(gx - r, gy - r, r*2, r*2);
-    });
-
-    // Beam column glow
-    const bx = 0.5 * W;
-    const bg2 = ctx.createLinearGradient(bx, 0, bx, H);
-    bg2.addColorStop(0,   'rgba(124,255,0,0)');
-    bg2.addColorStop(0.25,'rgba(124,255,0,0.006)');
-    bg2.addColorStop(0.65,'rgba(124,255,0,0.022)');
-    bg2.addColorStop(1,   'rgba(124,255,0,0.038)');
-    ctx.fillStyle = bg2;
-    ctx.fillRect(bx - 55, 0, 110, H);
-
-    // Update particles
-    particles.forEach(p => {
-      if(p.isBeam){
-        p.y += p.vy;
-        p.x += p.drift;
-        if(p.y < -5 || Math.abs(p.x - p.ox) > 28){
-          p.y = p.baseY + Math.random() * H * 0.12;
-          p.x = p.ox + (Math.random()-0.5) * 18;
-        }
-      } else {
-        p.phase += p.speed;
-        p.y      = p.baseY + Math.sin(p.phase) * p.amp;
-        p.x     += p.drift;
-        if(Math.abs(p.x - p.ox) > 0.10 * W) p.drift *= -1;
-      }
-    });
-
-    // Connections (batched per system)
-    SYS.forEach((sys, si) => {
-      const sp = particles.filter(p => p.si === si);
-      ctx.beginPath();
-      for(let i = 0; i < sp.length; i++){
-        for(let j = i+1; j < sp.length; j++){
-          const a = sp[i], b = sp[j];
-          const dx = a.x-b.x, dy = a.y-b.y;
-          const d2 = dx*dx + dy*dy;
-          if(d2 < 4900){ // 70px
-            const alpha = (1 - d2/4900) * 0.09;
-            ctx.strokeStyle = `rgba(${sys.rgb},${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-    });
-
-    // Particles
-    ctx.shadowBlur = 0;
-    particles.forEach(p => {
-      ctx.shadowBlur  = p.isBeam ? 4 : 2;
-      ctx.shadowColor = p.color;
-      ctx.fillStyle   = `rgba(${p.rgb},${p.alpha})`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-      ctx.fill();
-    });
-    ctx.shadowBlur = 0;
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  if((window.FORM_TIER||'full')!=='minimal'){requestAnimationFrame(draw);}
+if(location.search.includes('peek')){
+  const v=document.getElementById('veil');
+  if(v){v.style.animation='none';v.style.opacity='0';v.style.display='none';}
+  document.querySelectorAll('.r').forEach(el=>el.classList.add('in'));
+}
 })();
 </script>
-<script src="/nav-footer.js?v=10" defer></script>
+<script src="/nav-footer.js?v=14" defer></script>
 </body>
 </html>

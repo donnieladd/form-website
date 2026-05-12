@@ -1,21 +1,86 @@
 # FORM. — Operational Intelligence
 
 ## Project Overview
-A multi-page cinematic website for FORM., an AI-augmented operational intelligence company. Built with vanilla HTML/CSS/JS using atmospheric AVIF backgrounds, SVG logos, canvas-based neural network animations, and a film-grain overlay system.
+A multi-page cinematic website for FORM., an AI-augmented operational intelligence company. Built with vanilla HTML/CSS/JS using atmospheric backgrounds, SVG logos, restrained motion systems, and a film-grain overlay system.
+
+The site is not a traditional marketing website. It is a cinematic operational ecosystem. The experience must feel intentional, restrained, architectural, human, intelligent, emotionally mature, and structurally precise. The core emotional objective is **confidence through restraint**.
+
+Every page must feel emotionally distinct but share the same ecosystem DNA. Avoid identical hero layouts, atmospheric systems, section structures, pacing, panel systems, compositions, grid behavior, or motion patterns across pages.
+
+## Locked Doctrine (DO NOT VIOLATE)
+
+### Naming System (LOCKED)
+- All public-facing ecosystem entities use the `form. {name}` lowercase prefix with trailing period.
+- The nine canonical ecosystem entities are:
+  - `form. strategy`
+  - `form. creative`
+  - `form. digital`
+  - `form. ai`
+  - `form. sound`
+  - `form. support`
+  - `form. experience`
+  - `form. labs`
+  - `form. continuum`
+- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`. Treat these as internal-only legacy language.
+
+### Typography (LOCKED)
+- **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.
+- **Editorial typeface — Cormorant Garamond italic** (Canela substitute): used very sparingly (5–10% max of visible typography) for emotional punctuation only. Examples: `form.`, `humanity`, `the future needs form.`, `what's next.`. Never paragraph copy.
+- **Mono — IBM Plex Mono**: metadata, indices, system labels, infrastructure annotations, micro-labels.
+- **Casing**: lowercase typography for headers, navigation, section titles, product names, ecosystem labels, footer categories, operational labels. Uppercase ONLY for metadata, micro-labels, indexing systems (`[ 01 ]`, `OPERATIONAL SYSTEMS`). Uppercase must remain minimal with increased tracking and never dominate layouts.
+
+### Layout & Spacing (LOCKED)
+- Default alignment: **left aligned**. Centered alignment only for intentional emotional hero moments.
+- Generous vertical rhythm, intentional whitespace, cinematic pacing, controlled density. Never cramped, never startup-style UI clutter.
+
+### Color (LOCKED)
+- Background: deep atmospheric near-black, never flat black. Subtle Infrastructure Blue diffusion, Cognitive Violet atmosphere, soft signal gradients.
+- Primary text: soft white (`#F2F2F0`), never pure white. Secondary text: muted gray.
+- Accent: **Signal Green `#39FF14` only**. No random greens, no neon lime, no trendy gradients. Signal Green is identity infrastructure — use intentionally.
+- Color tokens defined in `tokens/colors.css`: `--ac` (Signal Green), `--ib` (Infrastructure Blue `#2962FF`), `--cv` (Cognitive Violet `#8B5CF6`), `--rose` (`#9B4DFF`), `--amber` (`#FF8A00`), `--stone` (`#F2F2F0`), `--onyx` (`#050608`).
+
+### Motion (LOCKED)
+- Slow, calm, intentional, cinematic, premium. No aggressive transitions, no excessive parallax, no flashy animations, no startup-style interaction patterns.
+
+### Atmosphere (LOCKED)
+- Subtle topology systems, atmospheric gradients, signal particles, orbital structures, cinematic grain, volumetric diffusion. Always secondary to typography and clarity. Never overwhelm readability.
+
+### Navigation (LOCKED)
+Final top-nav structure across every page:
+```
+vision.   standards.   founder.   ecosystem.   ● start the conversation
+```
+- All navigation labels lowercase with trailing period for primary sections.
+- `home`, `about`, `products`, `contact` are removed from the top nav. Their content is folded into `vision.` / `standards.` / `founder.` / `ecosystem.` or accessed via the CTA.
+
+### CTA (LOCKED)
+- All CTAs use the exact phrase **`start the conversation`** prefixed with a small Signal Green dot (`●`).
+- Never use: `strategy call`, `consultation`, `book a call`, `schedule a consultation`.
+- Typography: Satoshi Medium, lowercase, minimal styling, no oversized buttons, no SaaS aesthetics. Architectural, premium, restrained.
+
+### Per-Page Emotional Architecture
+- `vision.` — philosophical, immersive, future-facing, vast, cinematic. Large atmospheric environments, deep negative space, slow topology movement.
+- `standards.` — structured, disciplined, architectural, operational, human. Less atmosphere, more grid systems, more line systems, more operational rhythm. Combines former core values + core principles.
+- `founder.` — human, reflective, warm, cinematic, intimate. Less infrastructure-heavy, more texture and emotional pacing. Not a résumé.
+- `ecosystem.` — connected, modular, adaptive, alive, systemic. Each of the nine `form. {entity}` layers should feel visually distinct with its own atmosphere, motion behavior, and pacing.
+
+### Future: Rev. Intelligence Layer
+Planned integrated AI layer named `rev.` — operational intelligence, not a chatbot. Calm, clear, infrastructural. Avoid floating chat bubbles, customer-support aesthetics, neon AI gimmicks. Possible patterns: intelligence dock, signal interface, command palette, adaptive sidebar, ambient prompt layer.
 
 ## Production Pages
 - `index.html` — Hero landing page with ecosystem canvas
-- `about.html` — About FORM.
-- `ecosystem.html` — Five-system ecosystem overview
-- `business-systems.html` — Business Systems product page
-- `executive-systems.html` — Executive & Operations Systems
-- `intelligence-systems.html` — Intelligence Systems
-- `creative-systems.html` — Creative Systems
-- `ministry-systems.html` — Ministry Systems
+- `vision.html` — Cinematic 7-section operational doctrine (philosophical entry point)
+- `standards.html` — Combined values + principles operational standards page
+- `founder.html` — Human reflective founder narrative
+- `ecosystem.html` — Nine-entity connected ecosystem map
+- `contact.html` — `start the conversation` intake page
+
+### Deprecated / Pending Removal
+The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion once `ecosystem.html` is rebuilt around the nine `form.` entities. Do not link to them from any new public-facing nav, footer, or copy.
 
 ## Key Assets
 - `bg.avif` — Primary atmospheric background (73KB, 2528×1696, re-encoded at CRF 35)
-- `grain.svg` — Shared film-grain overlay loaded by all 8 production pages via `<img src="/grain.svg">`
+- `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
 - `logo-editorial-2.svg` — Primary nav/sidebar logo
 - `logo-core-final-2.svg` — Hero ecosystem identity mark
 - `logo-lockup-black.svg`, `tagline-black.svg` — Brand lockup assets
@@ -28,3 +93,4 @@ All files inside `attached_assets/` are **source/reference assets only** — upl
 - No emojis in code or UI
 - Inline CSS preferred for per-page style isolation
 - All canvas, grain, glow, and orbital systems are JS/CSS-only (no external file weight)
+- All locked doctrine sections above must be obeyed in every new page, edit, and component

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FORM. — Contact</title>
-<meta name="description" content="Start the conversation. FORM. helps organizations build the systems behind execution. Book a strategy call or send us your project.">
+<meta name="description" content="start the conversation. form. helps organizations build the operational architecture behind execution. share what you're building — we respond within two business days.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
 <script src="/performance-tier.js"></script>
 <script src="/performance-config.js"></script>
@@ -106,7 +106,7 @@ body.hcta #cring{width:44px;height:44px;border-color:rgba(var(--ac-rgb),.7);box-
 .compass-rule{width:42px;height:1px;background:rgba(var(--ac-rgb),.4);margin:.95rem auto 0 auto;}
 
 /* ══════════════════════════════════
-   SECTION 02 — STRATEGY CALL FORM
+   SECTION 02 — THE CONVERSATION (INTAKE)
 ══════════════════════════════════ */
 #strategy-call{padding:6rem 4.5rem 6.5rem 4.5rem;background:rgba(4,6,4,.97);border-bottom:1px solid rgba(255,255,255,.04);position:relative;}
 #strategy-call::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 30%,rgba(var(--ac-rgb),.025) 0%,transparent 65%);pointer-events:none;}
@@ -230,8 +230,8 @@ form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;g
     <p class="hero-body">FORM. partners with operators, founders, executives, ministry leaders, and creative teams who are ready to move from intention to infrastructure.</p>
 
     <div class="hero-cta-group">
-      <a href="#strategy-call" class="hero-cta-primary">Book a Strategy Call <span>&rarr;</span></a>
-      <a href="mailto:hello@formintel.co" class="hero-cta-secondary">Send a Message</a>
+      <a href="#strategy-call" class="hero-cta-primary">start the conversation <span>&rarr;</span></a>
+      <a href="mailto:hello@formintel.co" class="hero-cta-secondary">send a message</a>
     </div>
 
     <div class="hero-promise">
@@ -241,7 +241,7 @@ form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;g
       </div>
       <div class="promise-card">
         <div class="promise-num">30m</div>
-        <div class="promise-name">Strategy Call</div>
+        <div class="promise-name">the conversation</div>
       </div>
       <div class="promise-card">
         <div class="promise-num">1:1</div>
@@ -275,10 +275,10 @@ form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;g
   </div>
 </section>
 
-<!-- ══════ SECTION 02 — STRATEGY CALL FORM ══════ -->
+<!-- ══════ SECTION 02 — THE CONVERSATION (INTAKE) ══════ -->
 <section id="strategy-call">
   <div class="sc-header">
-    <div class="sc-label">Strategy Call / Intake</div>
+    <div class="sc-label">the conversation / intake</div>
     <h2>Tell us what<br>you're <span class="canela">building.</span></h2>
     <p class="sc-sub">A few details so we arrive prepared. Everything below stays between us.</p>
   </div>
@@ -303,15 +303,19 @@ form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;g
     </div>
 
     <div class="field">
-      <label for="f-system">System of Interest <span class="req">*</span></label>
+      <label for="f-system">ecosystem entity of interest <span class="req">*</span></label>
       <select id="f-system" name="system" required>
-        <option value="">Select a focus area</option>
-        <option>Business Systems</option>
-        <option>Executive &amp; Operations Systems</option>
-        <option>Intelligence Systems</option>
-        <option>Creative Systems</option>
-        <option>Ministry Systems</option>
-        <option>Multiple / Not sure yet</option>
+        <option value="">select a focus area</option>
+        <option>form. strategy</option>
+        <option>form. creative</option>
+        <option>form. digital</option>
+        <option>form. ai</option>
+        <option>form. sound</option>
+        <option>form. support</option>
+        <option>form. experience</option>
+        <option>form. labs</option>
+        <option>form. continuum</option>
+        <option>multiple / not sure yet</option>
       </select>
     </div>
     <div class="field">
@@ -372,10 +376,10 @@ form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;g
 
     <a href="#strategy-call" class="ch-card">
       <div class="ch-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      <div class="ch-card-label">Strategy Call</div>
-      <div class="ch-card-line">Book a 30-min session</div>
-      <div class="ch-card-desc">Skip the form. Tell us a little, and we'll send a calendar with windows that fit your timezone.</div>
-      <div class="ch-card-arrow">Open intake <span>&rarr;</span></div>
+      <div class="ch-card-label">the conversation</div>
+      <div class="ch-card-line">a 30-minute session</div>
+      <div class="ch-card-desc">skip the form. tell us a little, and we'll send a calendar with windows that fit your timezone.</div>
+      <div class="ch-card-arrow">open intake <span>&rarr;</span></div>
     </a>
   </div>
 </section>
@@ -454,7 +458,7 @@ if(form){
       '— Message —',
       (fd.get('message')||'')
     ].join('\n');
-    const subject='FORM. Strategy Call — '+(fd.get('name')||'New inquiry');
+    const subject='form. — start the conversation — '+(fd.get('name')||'new inquiry');
     const mailto='mailto:hello@formintel.co?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines);
     /* open the user's mail client in a new context to avoid breaking the page */
     window.location.href=mailto;
@@ -497,6 +501,6 @@ document.querySelectorAll('a[href]').forEach(a=>{
 });
 })();
 </script>
-<script src="/nav-footer.js?v=12" defer></script>
+<script src="/nav-footer.js?v=14" defer></script>
 </body>
 </html>
