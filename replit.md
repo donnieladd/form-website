@@ -74,7 +74,7 @@ Planned integrated AI layer named `rev.` — operational intelligence, not a cha
 
 ## Environmental Continuity System
 - `field.css` + `field.js` — shared environmental engine (oceanic ribbons + sparse drifting particle layer + slow breathing background). One continuous cinematic world inherited by every page.
-- Density tuning per page via `body[data-field-density="..."]`: `open` (home), `concentrated` (vision), `structured` (standards), `intimate` (founder), `expanded` (ecosystem), `calm` (contact). Same DNA, different emotional state.
+- Density tuning per page via `body[data-field-density="..."]`: `open` (home, vision), `structured` (standards), `intimate` (founder), `expanded` (ecosystem), `calm` (contact). Same DNA, different emotional state. Vision intentionally inherits the homepage's motion (open) so the philosophical entry point feels as alive as the homepage rather than slowing down.
 - Site uses **page-to-page navigation** (not single-scroll). Each page is its own load with cinematic transition overlay handled by `nav-footer.js`.
 
 ### Deprecated / Pending Removal
