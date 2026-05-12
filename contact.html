@@ -3,506 +3,788 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM. — Contact</title>
+<title>contact — form.</title>
 <meta name="description" content="start the conversation. form. helps organizations build the operational architecture behind execution. share what you're building — we respond within two business days.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
-<script src="/performance-tier.js"></script>
-<script src="/performance-config.js"></script>
-<script src="/perf-observer.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/tokens/rendering-hierarchy.css">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:#000;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-:root{
-  --ac:#39FF14;--ac-rgb:57,255,20;
-  --stone:#F2F2F0;--onyx:#000;
-  --nav-h:58px;
-}
+<link rel="stylesheet" href="/fonts/canela.css">
 
-/* ── SYSTEM LAYERS ── */
-#veil{position:fixed;inset:0;background:#000;z-index:950;pointer-events:none;animation:veil-open 2.2s cubic-bezier(.16,1,.3,1) forwards;}
-@keyframes veil-open{0%,25%{opacity:1}100%{opacity:0}}
-#cdot{position:fixed;z-index:9000;width:4px;height:4px;background:var(--ac);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 5px rgba(var(--ac-rgb),.7),0 0 14px rgba(var(--ac-rgb),.22);opacity:.85;}
-#cring{position:fixed;z-index:8999;width:24px;height:24px;border:1px solid rgba(var(--ac-rgb),.28);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;transition:width .7s cubic-bezier(.16,1,.3,1),height .7s cubic-bezier(.16,1,.3,1),border-color .5s,box-shadow .3s;}
-body.hl  #cring{width:32px;height:32px;border-color:rgba(var(--ac-rgb),.55);}
-body.hcta #cring{width:44px;height:44px;border-color:rgba(var(--ac-rgb),.7);box-shadow:0 0 14px rgba(var(--ac-rgb),.16);}
-#grain{position:fixed;inset:0;z-index:3;opacity:.022;mix-blend-mode:overlay;pointer-events:none;width:100%;height:100%;display:block;}
-.scan{position:fixed;left:0;right:0;height:1px;z-index:5;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.025),transparent);animation:scan-run 38s linear infinite 3s;}
-@keyframes scan-run{from{top:-1px}to{top:100vh}}
-
-@keyframes fadein{from{opacity:0}to{opacity:1}}
-@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-/* ── CANELA ITALIC SYSTEM ── */
-.canela{font-family:'Cormorant Garamond','Georgia',serif;font-style:italic;font-weight:300;color:var(--ac);letter-spacing:.01em;}
-
-/* ── MAIN ── */
-#main{margin-top:var(--nav-h);}
-
-/* ══════════════════════════════════
-   SECTION 01 — HERO
-══════════════════════════════════ */
-#hero{display:grid;grid-template-columns:55% 45%;min-height:calc(100vh - var(--nav-h));background:#000;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.04);}
-
-#hero-atm{position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse 70% 100% at 72% 45%,rgba(var(--ac-rgb),.045) 0%,transparent 65%),
-             radial-gradient(ellipse 90% 70% at 30% 80%,rgba(0,0,0,.5) 0%,transparent 70%);}
-
-/* hero left — message */
-#hero-left{position:relative;z-index:2;padding:6.5rem 4.5rem 6rem 4.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.025);}
-.hero-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--ac-rgb),.55);margin-bottom:1.8rem;opacity:0;animation:fadeup .7s cubic-bezier(.16,1,.3,1) 1.3s forwards;}
-#hero-left h1{font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(2.6rem,4.4vw,4.8rem);line-height:1.02;letter-spacing:-.012em;color:var(--stone);margin-bottom:1.6rem;opacity:0;animation:fadeup .9s cubic-bezier(.16,1,.3,1) 1.5s forwards;}
-#hero-left h1 .canela{font-size:1.12em;letter-spacing:-.01em;}
-.hero-lead{font-family:'Satoshi',sans-serif;font-size:1.02rem;font-weight:500;line-height:1.6;color:rgba(242,242,240,.9);margin-bottom:1.3rem;opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.7s forwards;}
-.hero-body{font-family:'Satoshi',sans-serif;font-size:.88rem;font-weight:400;line-height:1.85;color:rgba(242,242,240,.55);max-width:460px;opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 1.85s forwards;}
-.hero-body + .hero-body{margin-top:.85rem;}
-
-/* hero CTA group */
-.hero-cta-group{display:flex;gap:1rem;margin-top:2rem;opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 2.0s forwards;}
-.hero-cta-primary{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--onyx);background:var(--ac);text-decoration:none;cursor:pointer;padding:.85rem 1.6rem;display:inline-flex;align-items:center;gap:.6rem;transition:background .3s,box-shadow .3s,letter-spacing .3s;}
-.hero-cta-primary:hover{background:#4dff2a;box-shadow:0 0 28px rgba(var(--ac-rgb),.35);letter-spacing:.24em;}
-.hero-cta-secondary{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.9);text-decoration:none;cursor:pointer;padding:.85rem 1.6rem;border:1px solid rgba(242,242,240,.2);transition:border-color .3s,color .3s,letter-spacing .3s;display:inline-flex;align-items:center;gap:.6rem;}
-.hero-cta-secondary:hover{border-color:var(--ac);color:var(--ac);letter-spacing:.24em;}
-
-/* hero pillars (small response promise row) */
-.hero-promise{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);max-width:520px;opacity:0;animation:fadeup .8s cubic-bezier(.16,1,.3,1) 2.2s forwards;}
-.promise-num{font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:300;color:var(--ac);letter-spacing:-.02em;margin-bottom:.45rem;line-height:1;}
-.promise-name{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,242,240,.55);}
-
-/* hero right — atmospheric panel with floating channels */
-#hero-right{position:relative;z-index:2;overflow:hidden;background:#000;}
-#hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(var(--ac-rgb),.07) 0%,rgba(var(--ac-rgb),.02) 40%,transparent 70%);}
-#hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,transparent 25%,transparent 75%,rgba(0,0,0,.85) 100%);}
-
-/* a soft node grid for the contact panel */
-.node-mesh{position:absolute;inset:12% 10%;pointer-events:none;}
-.node{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac),0 0 22px rgba(var(--ac-rgb),.45);opacity:0;animation:fadein .7s ease forwards;}
-.node-link{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(var(--ac-rgb),.4),transparent);transform-origin:0 50%;opacity:0;animation:fadein .9s ease forwards;}
-.node-label{position:absolute;font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.55);opacity:0;animation:fadein .7s ease forwards;}
-.node-label .accent{color:var(--ac);}
-
-#nm-1{top:8%;left:50%;animation-delay:1.9s;}
-#nm-2{top:42%;left:18%;animation-delay:2.05s;}
-#nm-3{top:62%;left:78%;animation-delay:2.2s;}
-#nm-4{top:88%;left:38%;animation-delay:2.35s;}
-
-#lk-1{top:calc(8% + 3px);left:50%;width:38%;transform:rotate(46deg);animation-delay:2.0s;}
-#lk-2{top:calc(42% + 3px);left:18%;width:64%;transform:rotate(14deg);animation-delay:2.15s;}
-#lk-3{top:calc(62% + 3px);left:38%;width:42%;transform:rotate(36deg);animation-delay:2.3s;}
-
-#nm-l1{top:6%;left:54%;animation-delay:2.4s;}
-#nm-l2{top:40%;left:22%;animation-delay:2.55s;}
-#nm-l3{top:60%;left:62%;animation-delay:2.7s;}
-#nm-l4{top:90%;left:42%;animation-delay:2.85s;}
-
-/* center compass mark */
-.compass-mark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:auto;text-align:center;opacity:0;animation:fadein 1s ease 2.1s forwards;}
-.compass-bracket{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--ac-rgb),.5);margin-bottom:.7rem;}
-.compass-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:1.4rem;color:var(--stone);line-height:1.15;letter-spacing:.005em;}
-.compass-text .accent{color:var(--ac);}
-.compass-rule{width:42px;height:1px;background:rgba(var(--ac-rgb),.4);margin:.95rem auto 0 auto;}
-
-/* ══════════════════════════════════
-   SECTION 02 — THE CONVERSATION (INTAKE)
-══════════════════════════════════ */
-#strategy-call{padding:6rem 4.5rem 6.5rem 4.5rem;background:rgba(4,6,4,.97);border-bottom:1px solid rgba(255,255,255,.04);position:relative;}
-#strategy-call::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 30%,rgba(var(--ac-rgb),.025) 0%,transparent 65%);pointer-events:none;}
-.sc-header{max-width:680px;margin:0 auto 4rem auto;text-align:center;position:relative;}
-.sc-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--ac-rgb),.55);margin-bottom:1.4rem;}
-.sc-header h2{font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(1.9rem,3.4vw,3.2rem);line-height:1.05;letter-spacing:-.012em;color:var(--stone);margin-bottom:1.4rem;}
-.sc-header h2 .canela{font-size:1.12em;}
-.sc-sub{font-family:'Satoshi',sans-serif;font-size:.95rem;line-height:1.75;color:rgba(242,242,240,.55);max-width:520px;margin:0 auto;}
-
-/* form */
-form#contact-form{max-width:780px;margin:0 auto;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 1.4rem;}
-.field{display:flex;flex-direction:column;gap:.55rem;}
-.field.full{grid-column:1 / -1;}
-.field label{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.5);}
-.field label .req{color:var(--ac);margin-left:.25em;}
-.field input,
-.field select,
-.field textarea{
-  font-family:'Satoshi',sans-serif;font-size:.92rem;color:var(--stone);
-  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
-  padding:.95rem 1rem;outline:none;cursor:text;
-  transition:border-color .3s,background .3s,box-shadow .3s;
-  -webkit-appearance:none;appearance:none;border-radius:0;
-}
-.field textarea{resize:vertical;min-height:140px;line-height:1.55;}
-.field select{
-  background-image:linear-gradient(45deg,transparent 50%,rgba(var(--ac-rgb),.6) 50%),linear-gradient(135deg,rgba(var(--ac-rgb),.6) 50%,transparent 50%);
-  background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%;
-  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:2.4rem;
-}
-.field select option{background:#0a0a0a;color:var(--stone);}
-.field input::placeholder,.field textarea::placeholder{color:rgba(242,242,240,.28);}
-.field input:focus,
-.field select:focus,
-.field textarea:focus{border-color:rgba(var(--ac-rgb),.55);background:rgba(var(--ac-rgb),.025);box-shadow:0 0 22px rgba(var(--ac-rgb),.08);}
-
-.form-foot{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:1.4rem;margin-top:.6rem;}
-.form-note{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,242,240,.32);max-width:340px;line-height:1.7;}
-.form-submit{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--onyx);background:var(--ac);border:none;cursor:pointer;padding:1rem 2.2rem;display:inline-flex;align-items:center;gap:.7rem;transition:background .3s,box-shadow .3s,letter-spacing .3s;}
-.form-submit:hover{background:#4dff2a;box-shadow:0 0 28px rgba(var(--ac-rgb),.35);letter-spacing:.26em;}
-
-/* form success */
-.form-success{display:none;text-align:center;padding:3rem 0;}
-.form-success.on{display:block;}
-.form-success-mark{width:48px;height:48px;border:1.5px solid var(--ac);border-radius:50%;margin:0 auto 1.5rem auto;display:flex;align-items:center;justify-content:center;color:var(--ac);box-shadow:0 0 30px rgba(var(--ac-rgb),.25);}
-.form-success-mark svg{width:24px;height:24px;}
-.form-success h3{font-family:'Satoshi',sans-serif;font-weight:500;font-size:1.6rem;color:var(--stone);margin-bottom:.7rem;letter-spacing:-.01em;}
-.form-success p{font-family:'Satoshi',sans-serif;font-size:.95rem;line-height:1.7;color:rgba(242,242,240,.55);max-width:440px;margin:0 auto;}
-
-/* ══════════════════════════════════
-   SECTION 03 — DIRECT CHANNELS
-══════════════════════════════════ */
-#channels{padding:6rem 4.5rem;background:#000;border-bottom:1px solid rgba(255,255,255,.04);}
-.ch-header{max-width:880px;margin:0 auto 3.5rem auto;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;}
-.ch-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(var(--ac-rgb),.55);margin-bottom:1rem;}
-.ch-header h2{font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(1.6rem,2.7vw,2.4rem);line-height:1.1;letter-spacing:-.01em;color:var(--stone);max-width:480px;}
-.ch-header h2 .canela{font-size:1.1em;}
-.ch-side{font-family:'Satoshi',sans-serif;font-size:.85rem;line-height:1.7;color:rgba(242,242,240,.5);max-width:300px;}
-
-.ch-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
-.ch-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);padding:2rem 1.7rem;display:flex;flex-direction:column;gap:1rem;text-decoration:none;transition:background .35s,border-color .35s,transform .35s;cursor:pointer;}
-.ch-card:hover{background:rgba(var(--ac-rgb),.03);border-color:rgba(var(--ac-rgb),.35);transform:translateY(-3px);}
-.ch-card-icon{width:30px;height:30px;color:rgba(var(--ac-rgb),.7);}
-.ch-card-icon svg{width:100%;height:100%;}
-.ch-card-label{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,242,240,.5);}
-.ch-card-line{font-family:'Satoshi',sans-serif;font-size:1.05rem;font-weight:500;color:var(--stone);letter-spacing:-.005em;}
-.ch-card-desc{font-family:'Satoshi',sans-serif;font-size:.82rem;line-height:1.7;color:rgba(242,242,240,.45);}
-.ch-card-arrow{margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(var(--ac-rgb),.7);display:flex;align-items:center;gap:.5rem;}
-.ch-card:hover .ch-card-arrow{color:var(--ac);}
-
-/* ══════════════════════════════════
-   SECTION 04 — CLOSING
-══════════════════════════════════ */
-#closing{padding:7rem 4.5rem 8rem 4.5rem;background:#000;text-align:center;position:relative;overflow:hidden;}
-#closing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 60%,rgba(var(--ac-rgb),.05) 0%,transparent 60%);pointer-events:none;}
-.cl-mark{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(var(--ac-rgb),.55);margin-bottom:2rem;position:relative;}
-#closing h2{font-family:'Satoshi',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1.05;letter-spacing:-.012em;color:var(--stone);max-width:780px;margin:0 auto 1.6rem auto;position:relative;}
-#closing h2 .canela{font-size:1.14em;}
-.cl-sub{font-family:'Satoshi',sans-serif;font-size:1rem;line-height:1.75;color:rgba(242,242,240,.55);max-width:520px;margin:0 auto;position:relative;}
-
-/* ── RESPONSIVE ── */
-@media (max-width:960px){
-  #hero{grid-template-columns:1fr;}
-  #hero-left{padding:5rem 2rem 4rem 2rem;border-right:none;border-bottom:1px solid rgba(255,255,255,.04);}
-  #hero-right{min-height:340px;}
-  #strategy-call,#channels,#closing{padding-left:2rem;padding-right:2rem;}
-  form#contact-form{grid-template-columns:1fr;}
-  .form-foot{flex-direction:column;align-items:flex-start;}
-  .ch-header{flex-direction:column;align-items:flex-start;}
-  .ch-grid{grid-template-columns:1fr;}
-  .hero-promise{grid-template-columns:repeat(3,1fr);}
-}
-
-/* ── PERF TIER GATES (page-specific) ── */
-[data-perf="reduced"] #hero-right::before{background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(var(--ac-rgb),.04) 0%,transparent 60%);}
-[data-perf="minimal"] .node-link,[data-perf="minimal"] .node{display:none;}
-[data-tier-level="2"] .node-link,[data-tier-level="2"] .node{display:none!important;}
-</style>
 <link rel="stylesheet" href="/nav-footer.css?v=13">
-<link rel="stylesheet" href="/mobile.css?v=6">
+<link rel="stylesheet" href="/rev.css?v=3">
+
+<style>
+:root{
+  --stone:#f2f2f0; --stone-rgb:242,242,240;
+  --stone-2:rgba(242,242,240,.72);
+  --stone-3:rgba(242,242,240,.45);
+  --stone-4:rgba(242,242,240,.22);
+  --hair:rgba(242,242,240,.10);
+  --hair-2:rgba(242,242,240,.06);
+  --ac:#39FF14; --ac-rgb:57,255,20;
+  --ib:#2962FF;
+  --cv:#8B5CF6;
+  --onyx:#050608;
+  --nav-h:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  font-family:'Satoshi','Inter',system-ui,sans-serif;
+  font-weight:400;
+  background:var(--onyx);
+  color:var(--stone);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
+}
+
+/* grain */
+#grain{
+  position:fixed;inset:0;width:100%;height:100%;
+  opacity:.06;mix-blend-mode:overlay;pointer-events:none;
+  z-index:5;
+}
+
+/* scrollable main */
+#main{
+  position:relative;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  z-index:10;
+  padding-top:var(--nav-h);
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(242,242,240,.14) transparent;
+}
+#main::-webkit-scrollbar{width:6px;}
+#main::-webkit-scrollbar-track{background:transparent;}
+#main::-webkit-scrollbar-thumb{background:rgba(242,242,240,.10);border-radius:3px;}
+#main::-webkit-scrollbar-thumb:hover{background:rgba(242,242,240,.22);}
+
+/* shared scaffold */
+.section{
+  position:relative;
+  padding:7rem clamp(1.6rem,5vw,5rem);
+  max-width:1640px;
+  margin:0 auto;
+}
+
+/* meta micro-labels (locked: uppercase mono only here) */
+.meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.66rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--stone-3);
+}
+.meta .ac{color:var(--ac);}
+.idx{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.7rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--ac);
+}
+
+/* canela italic — editorial punctuation only */
+.it{
+  font-family:'Canela','Georgia',serif;
+  font-style:italic;
+  font-weight:300;
+  letter-spacing:-.005em;
+}
+.it.ac{color:var(--ac);}
+
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(14px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1);}
+[data-reveal].in{opacity:1;transform:none;}
+[data-reveal][data-d="1"]{transition-delay:.10s;}
+[data-reveal][data-d="2"]{transition-delay:.22s;}
+[data-reveal][data-d="3"]{transition-delay:.36s;}
+[data-reveal][data-d="4"]{transition-delay:.50s;}
+[data-reveal][data-d="5"]{transition-delay:.64s;}
+
+/* ════════════════════════════════════════════════════════
+   HERO — left intro + right form panel with cosmic burst
+   ════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(3rem,6vw,7rem);
+  align-items:start;
+  padding-top:5rem;
+}
+
+/* hero — left column */
+.hero-intro .idx{display:inline-block;margin-bottom:2.4rem;}
+.hero-intro h1{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:clamp(2.6rem,5.2vw,4.6rem);
+  line-height:1.02;
+  letter-spacing:-.018em;
+  color:var(--stone);
+  margin-bottom:2.4rem;
+}
+.hero-intro h1 .it{
+  display:block;
+  font-size:1.06em;
+  line-height:1.0;
+  margin-top:.05em;
+}
+.hero-lead{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:1.02rem;
+  line-height:1.7;
+  color:var(--stone-2);
+  max-width:32ch;
+  margin-bottom:3.4rem;
+}
+
+/* pillars (3 small icon rows) */
+.pillars{
+  display:flex;
+  flex-direction:column;
+  gap:1.8rem;
+  max-width:480px;
+}
+.pillar{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:1.2rem;
+  align-items:start;
+}
+.pillar svg{display:block;width:42px;height:42px;}
+.pillar h3{
+  font-family:'Satoshi',sans-serif;
+  font-weight:500;
+  font-size:1.02rem;
+  line-height:1.2;
+  color:var(--stone);
+  margin-bottom:.45rem;
+  letter-spacing:-.005em;
+}
+.pillar p{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:.86rem;
+  line-height:1.55;
+  color:var(--stone-3);
+}
+
+/* hero — right column: form panel sits over a cosmic burst */
+.hero-right{
+  position:relative;
+  min-height:560px;
+}
+.burst{
+  position:absolute;
+  inset:-4rem -2rem -2rem -2rem;
+  pointer-events:none;
+  z-index:0;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 65% 35%, #000 30%, rgba(0,0,0,.7) 55%, transparent 90%);
+          mask-image:radial-gradient(ellipse 80% 70% at 65% 35%, #000 30%, rgba(0,0,0,.7) 55%, transparent 90%);
+}
+.burst svg{width:100%;height:100%;display:block;}
+.burst::after{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(var(--ac-rgb),.06) 0%, transparent 22%),
+    radial-gradient(circle at 75% 35%, rgba(139,92,246,.08) 0%, transparent 28%);
+  filter:blur(18px);
+  pointer-events:none;
+}
+
+/* form panel */
+.form-card{
+  position:relative;
+  z-index:2;
+  padding:1.5rem 0 0 0;
+  max-width:540px;
+  margin-left:auto;
+}
+.form-card .meta{margin-bottom:2rem;}
+.field{margin-bottom:1.7rem;}
+.field label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.6rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--stone-3);
+  margin-bottom:.7rem;
+}
+.field input,
+.field textarea{
+  width:100%;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--hair);
+  color:var(--stone);
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:.98rem;
+  line-height:1.5;
+  padding:.55rem 0 .85rem 0;
+  outline:none;
+  transition:border-color .35s ease, color .35s ease;
+  resize:none;
+}
+.field textarea{min-height:5.6rem;}
+.field input::placeholder,
+.field textarea::placeholder{color:var(--stone-4);font-weight:400;}
+.field input:focus,
+.field textarea:focus{border-bottom-color:var(--ac);}
+.field input:focus::placeholder,
+.field textarea:focus::placeholder{color:var(--stone-3);}
+
+.form-actions{margin-top:2.2rem;}
+.btn-send{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.9rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.72rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--ac);
+  background:transparent;
+  border:1px solid var(--ac);
+  padding:1rem 2.4rem;
+  cursor:pointer;
+  transition:background .3s ease, color .3s ease, letter-spacing .3s ease, box-shadow .3s ease;
+}
+.btn-send:hover{
+  background:rgba(var(--ac-rgb),.08);
+  letter-spacing:.32em;
+  box-shadow:0 0 28px rgba(var(--ac-rgb),.18);
+}
+.btn-send svg{width:14px;height:14px;}
+
+/* ════════════════════════════════════════════════════════
+   REACH — emails / middle copy / italic editorial
+   ════════════════════════════════════════════════════════ */
+.reach{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.05fr 1fr 1fr;
+  gap:clamp(2rem,5vw,5rem);
+  padding-top:5rem;
+  padding-bottom:5rem;
+  border-top:1px solid var(--hair-2);
+}
+.reach .meta{margin-bottom:2.2rem;}
+.reach-list{display:flex;flex-direction:column;gap:1.6rem;}
+.reach-row{
+  display:grid;
+  grid-template-columns:36px 1fr;
+  gap:1rem;
+  align-items:start;
+}
+.reach-row svg{display:block;width:22px;height:22px;color:var(--ac);}
+.reach-row a{
+  display:block;
+  font-family:'Satoshi',sans-serif;
+  font-weight:500;
+  font-size:1.02rem;
+  color:var(--stone);
+  text-decoration:none;
+  letter-spacing:-.005em;
+  transition:color .3s ease;
+}
+.reach-row a:hover{color:var(--ac);}
+.reach-row .sub{
+  display:block;
+  margin-top:.35rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.62rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--stone-3);
+}
+
+.reach-copy{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:1rem;
+  line-height:1.7;
+  color:var(--stone-2);
+  max-width:34ch;
+}
+
+.reach-editorial{
+  font-family:'Canela','Georgia',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(1.6rem,2.4vw,2.2rem);
+  line-height:1.18;
+  color:var(--stone);
+  letter-spacing:-.005em;
+  align-self:center;
+}
+.reach-editorial .ac{color:var(--ac);}
+
+/* ════════════════════════════════════════════════════════
+   GLOBAL PRESENCE — cities + dotted world map
+   ════════════════════════════════════════════════════════ */
+.global{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+  padding-top:5rem;
+  padding-bottom:7rem;
+  border-top:1px solid var(--hair-2);
+}
+.global .meta{margin-bottom:2.4rem;}
+.cities{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem 1.4rem;
+}
+.city{position:relative;}
+.city .pin{
+  display:inline-block;
+  width:6px;height:6px;
+  background:var(--ac);
+  border-radius:50%;
+  box-shadow:0 0 10px rgba(var(--ac-rgb),.55);
+  margin-bottom:.9rem;
+}
+.city h4{
+  font-family:'Satoshi',sans-serif;
+  font-weight:500;
+  font-size:1.05rem;
+  letter-spacing:-.005em;
+  color:var(--stone);
+  margin-bottom:.35rem;
+}
+.city .country{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:400;
+  font-size:.6rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--ac);
+  margin-bottom:1.1rem;
+}
+.city .coord{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:300;
+  font-size:.68rem;
+  letter-spacing:.04em;
+  color:var(--stone-3);
+}
+
+.world{position:relative;}
+.world svg{display:block;width:100%;height:auto;}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════ */
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr;gap:3.5rem;}
+  .hero-right{min-height:auto;}
+  .burst{inset:-2rem -1rem -1rem -1rem;}
+  .form-card{margin-left:0;}
+
+  .reach{grid-template-columns:1fr;gap:3rem;}
+  .reach-editorial{font-size:1.6rem;}
+
+  .global{grid-template-columns:1fr;}
+  .cities{grid-template-columns:1fr 1fr;}
+}
+@media (max-width: 560px){
+  .section{padding:5rem 1.4rem;}
+  .pillar{grid-template-columns:42px 1fr;gap:.9rem;}
+  .pillar svg{width:34px;height:34px;}
+  .cities{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
 
-<div id="veil"></div>
-<div id="cdot"></div>
-<div id="cring"></div>
-<div class="scan"></div>
-<img id="grain" src="/grain.svg" alt="">
+<img src="/grain.svg" id="grain" alt="" aria-hidden="true">
 
 <main id="main">
 
-<!-- ══════ SECTION 01 — HERO ══════ -->
-<section id="hero">
-  <div id="hero-atm"></div>
+  <!-- HERO -->
+  <section class="section hero">
 
-  <div id="hero-left">
-    <div class="hero-label">Contact / 01</div>
-    <h1>Start the<br>conversation,<br><span class="canela">end the friction.</span></h1>
-    <p class="hero-lead">The fastest path from vision to operational reality begins with a single conversation.</p>
-    <p class="hero-body">Tell us what you're building, where you're stuck, or what you want to see become real. We'll respond with a concrete next step within two business days &mdash; not a sales pitch.</p>
-    <p class="hero-body">FORM. partners with operators, founders, executives, ministry leaders, and creative teams who are ready to move from intention to infrastructure.</p>
+    <!-- LEFT -->
+    <div class="hero-intro">
+      <span class="idx" data-reveal data-d="1">[ 06 ]</span>
+      <h1 data-reveal data-d="2">
+        start the
+        <span class="it ac">conversation.</span>
+      </h1>
+      <p class="hero-lead" data-reveal data-d="3">
+        form. helps organizations build the operational architecture behind execution.
+        share what you're building — we respond within two business days.
+      </p>
 
-    <div class="hero-cta-group">
-      <a href="#strategy-call" class="hero-cta-primary">start the conversation <span>&rarr;</span></a>
-      <a href="mailto:hello@formintel.co" class="hero-cta-secondary">send a message</a>
-    </div>
-
-    <div class="hero-promise">
-      <div class="promise-card">
-        <div class="promise-num">48h</div>
-        <div class="promise-name">Response Window</div>
+      <div class="pillars" data-reveal data-d="4">
+        <!-- pillar 1 — human first -->
+        <div class="pillar">
+          <svg viewBox="0 0 42 42" fill="none" aria-hidden="true">
+            <circle cx="21" cy="21" r="14" stroke="currentColor" stroke-opacity=".55" stroke-width="1" style="color:var(--ac)"/>
+            <circle cx="21" cy="21" r="3.2" fill="var(--ac)"/>
+          </svg>
+          <div>
+            <h3>human first.</h3>
+            <p>real people, real conversations.<br>no automated responses.</p>
+          </div>
+        </div>
+        <!-- pillar 2 — strategic clarity -->
+        <div class="pillar">
+          <svg viewBox="0 0 42 42" fill="none" aria-hidden="true">
+            <g style="color:var(--ac)">
+              <line x1="21" y1="4"  x2="21" y2="38" stroke="currentColor" stroke-width="1.1"/>
+              <line x1="4"  y1="21" x2="38" y2="21" stroke="currentColor" stroke-width="1.1"/>
+              <line x1="9"  y1="9"  x2="33" y2="33" stroke="currentColor" stroke-width=".9" stroke-opacity=".75"/>
+              <line x1="33" y1="9"  x2="9"  y2="33" stroke="currentColor" stroke-width=".9" stroke-opacity=".75"/>
+              <circle cx="21" cy="21" r="2.2" fill="currentColor"/>
+            </g>
+          </svg>
+          <div>
+            <h3>strategic clarity.</h3>
+            <p>we ask better questions<br>to understand what matters.</p>
+          </div>
+        </div>
+        <!-- pillar 3 — aligned execution -->
+        <div class="pillar">
+          <svg viewBox="0 0 42 42" fill="none" aria-hidden="true">
+            <g style="color:var(--ac)">
+              <circle cx="21" cy="6"  r="1.6" fill="currentColor"/>
+              <circle cx="32" cy="10" r="1.6" fill="currentColor" fill-opacity=".7"/>
+              <circle cx="36" cy="21" r="1.6" fill="currentColor"/>
+              <circle cx="32" cy="32" r="1.6" fill="currentColor" fill-opacity=".7"/>
+              <circle cx="21" cy="36" r="1.6" fill="currentColor"/>
+              <circle cx="10" cy="32" r="1.6" fill="currentColor" fill-opacity=".7"/>
+              <circle cx="6"  cy="21" r="1.6" fill="currentColor"/>
+              <circle cx="10" cy="10" r="1.6" fill="currentColor" fill-opacity=".7"/>
+            </g>
+          </svg>
+          <div>
+            <h3>aligned execution.</h3>
+            <p>we connect strategy, creativity,<br>and systems to drive outcomes.</p>
+          </div>
+        </div>
       </div>
-      <div class="promise-card">
-        <div class="promise-num">30m</div>
-        <div class="promise-name">the conversation</div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-right">
+
+      <!-- cosmic burst (CSS/SVG only) -->
+      <div class="burst" aria-hidden="true">
+        <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="bcore" cx="55%" cy="35%" r="60%">
+              <stop offset="0%"  stop-color="#ffffff" stop-opacity=".55"/>
+              <stop offset="22%" stop-color="#cfd8ff" stop-opacity=".18"/>
+              <stop offset="55%" stop-color="#3a2a6a" stop-opacity=".10"/>
+              <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="bgreen" cx="58%" cy="32%" r="55%">
+              <stop offset="0%" stop-color="#39FF14" stop-opacity=".22"/>
+              <stop offset="40%" stop-color="#39FF14" stop-opacity=".05"/>
+              <stop offset="100%" stop-color="#39FF14" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="streak" x1="0%" y1="55%" x2="100%" y2="38%">
+              <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
+              <stop offset="35%"  stop-color="#ffffff" stop-opacity=".55"/>
+              <stop offset="55%"  stop-color="#cfd8ff" stop-opacity=".75"/>
+              <stop offset="78%"  stop-color="#39FF14" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="bblur"><feGaussianBlur stdDeviation="1.4"/></filter>
+          </defs>
+
+          <!-- atmospheric core -->
+          <rect width="600" height="600" fill="url(#bcore)"/>
+          <rect width="600" height="600" fill="url(#bgreen)"/>
+
+          <!-- curved energy streak (the diagonal cosmic ribbon) -->
+          <path d="M30,460 C180,360 320,260 470,150 C520,115 560,95 600,80"
+                stroke="url(#streak)" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#bblur)"/>
+          <path d="M50,490 C200,400 350,290 500,180"
+                stroke="url(#streak)" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-opacity=".6"/>
+          <path d="M10,420 C170,330 320,240 480,130"
+                stroke="url(#streak)" stroke-width=".8" fill="none" stroke-linecap="round" stroke-opacity=".4"/>
+
+          <!-- particle field along the streak -->
+          <g fill="#ffffff">
+            <!-- tightly clustered bright core particles -->
+            <circle cx="380" cy="200" r="1.6" opacity=".95"/>
+            <circle cx="395" cy="190" r="1.1" opacity=".8"/>
+            <circle cx="410" cy="178" r="1.4" opacity=".85"/>
+            <circle cx="425" cy="172" r="1.0" opacity=".7"/>
+            <circle cx="440" cy="160" r="1.6" opacity=".9"/>
+            <circle cx="455" cy="155" r="1.0" opacity=".65"/>
+            <circle cx="470" cy="148" r="1.3" opacity=".8"/>
+            <circle cx="485" cy="140" r="1.0" opacity=".7"/>
+            <circle cx="500" cy="132" r="1.5" opacity=".85"/>
+            <circle cx="515" cy="125" r="1.0" opacity=".65"/>
+            <circle cx="530" cy="118" r="1.2" opacity=".75"/>
+            <circle cx="545" cy="112" r="1.0" opacity=".6"/>
+            <circle cx="560" cy="106" r="1.4" opacity=".8"/>
+            <circle cx="575" cy="100" r="1.0" opacity=".6"/>
+            <circle cx="590" cy="95"  r="1.2" opacity=".7"/>
+
+            <!-- mid-range particles -->
+            <circle cx="240" cy="320" r="1.0" opacity=".55"/>
+            <circle cx="275" cy="290" r="1.3" opacity=".7"/>
+            <circle cx="310" cy="260" r="1.0" opacity=".55"/>
+            <circle cx="345" cy="230" r="1.2" opacity=".65"/>
+            <circle cx="370" cy="210" r="1.4" opacity=".8"/>
+
+            <!-- left-side faint particles -->
+            <circle cx="120" cy="410" r="0.9" opacity=".4"/>
+            <circle cx="160" cy="380" r="1.1" opacity=".5"/>
+            <circle cx="195" cy="355" r="0.9" opacity=".4"/>
+            <circle cx="80"  cy="430" r="0.8" opacity=".35"/>
+
+            <!-- scatter / atmospheric stars -->
+            <circle cx="450" cy="90"  r="0.9" opacity=".5"/>
+            <circle cx="520" cy="60"  r="0.8" opacity=".4"/>
+            <circle cx="350" cy="120" r="0.9" opacity=".45"/>
+            <circle cx="280" cy="180" r="0.8" opacity=".4"/>
+            <circle cx="220" cy="250" r="0.8" opacity=".35"/>
+            <circle cx="180" cy="180" r="0.7" opacity=".3"/>
+            <circle cx="490" cy="220" r="0.9" opacity=".45"/>
+            <circle cx="540" cy="260" r="0.8" opacity=".4"/>
+            <circle cx="430" cy="280" r="0.7" opacity=".35"/>
+            <circle cx="560" cy="320" r="0.8" opacity=".4"/>
+            <circle cx="380" cy="350" r="0.7" opacity=".3"/>
+          </g>
+
+          <!-- a few green-tinted accent particles -->
+          <g fill="#39FF14">
+            <circle cx="475" cy="155" r="1.0" opacity=".55"/>
+            <circle cx="430" cy="178" r="0.9" opacity=".5"/>
+            <circle cx="510" cy="138" r="0.8" opacity=".45"/>
+            <circle cx="385" cy="210" r="0.8" opacity=".45"/>
+          </g>
+        </svg>
       </div>
-      <div class="promise-card">
-        <div class="promise-num">1:1</div>
-        <div class="promise-name">Founder Direct</div>
+
+      <!-- form -->
+      <form class="form-card" data-reveal data-d="2" autocomplete="on" novalidate>
+        <div class="meta">send us a message</div>
+
+        <div class="field">
+          <label for="f-name">name</label>
+          <input id="f-name" name="name" type="text" placeholder="enter your full name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">email</label>
+          <input id="f-email" name="email" type="email" placeholder="enter your work email" required>
+        </div>
+        <div class="field">
+          <label for="f-company">company</label>
+          <input id="f-company" name="company" type="text" placeholder="enter your company name">
+        </div>
+        <div class="field">
+          <label for="f-building">what are you building?</label>
+          <input id="f-building" name="building" type="text" placeholder="briefly describe what you're working on">
+        </div>
+        <div class="field">
+          <label for="f-help">how can we help?</label>
+          <textarea id="f-help" name="help" rows="3" placeholder="tell us more about your goals, challenges, and what success looks like."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-send">
+            send message
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- REACH -->
+  <section class="section reach">
+
+    <div data-reveal data-d="1">
+      <div class="meta">other ways to reach us</div>
+      <div class="reach-list">
+        <div class="reach-row">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M3.5 6.5l8.5 7 8.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <a href="mailto:hello@form.co">hello@form.co</a>
+            <span class="sub">general inquiries</span>
+          </div>
+        </div>
+        <div class="reach-row">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14 5h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 5L10 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M19 14v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V7a1.5 1.5 0 0 1 1.5-1.5H10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <a href="mailto:strategy@form.co">strategy@form.co</a>
+            <span class="sub">strategy &amp; partnerships</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="hero-right">
-    <div class="node-mesh">
-      <div class="node" id="nm-1"></div>
-      <div class="node" id="nm-2"></div>
-      <div class="node" id="nm-3"></div>
-      <div class="node" id="nm-4"></div>
+    <p class="reach-copy" data-reveal data-d="2">
+      whether you're exploring an idea, scaling a platform, or rethinking
+      what's possible — we're here to help you build what's next.
+    </p>
 
-      <div class="node-link" id="lk-1"></div>
-      <div class="node-link" id="lk-2"></div>
-      <div class="node-link" id="lk-3"></div>
+    <p class="reach-editorial" data-reveal data-d="3">
+      intelligent systems.<br>
+      real <span class="it ac">impact.</span>
+    </p>
+  </section>
 
-      <div class="node-label" id="nm-l1"><span class="accent">&middot;</span> Inbound Signal</div>
-      <div class="node-label" id="nm-l2"><span class="accent">&middot;</span> Triage</div>
-      <div class="node-label" id="nm-l3"><span class="accent">&middot;</span> Strategy</div>
-      <div class="node-label" id="nm-l4"><span class="accent">&middot;</span> Build</div>
+  <!-- GLOBAL PRESENCE -->
+  <section class="section global">
+
+    <div data-reveal data-d="1">
+      <div class="meta">global presence</div>
+      <div class="cities">
+        <div class="city">
+          <span class="pin"></span>
+          <h4>new york</h4>
+          <span class="country">united states</span>
+          <span class="coord">25.7617° N, 80.1918° W</span>
+        </div>
+        <div class="city">
+          <span class="pin"></span>
+          <h4>london</h4>
+          <span class="country">united kingdom</span>
+          <span class="coord">51.5074° N, 0.1278° W</span>
+        </div>
+        <div class="city">
+          <span class="pin"></span>
+          <h4>los angeles</h4>
+          <span class="country">united states</span>
+          <span class="coord">34.0522° N, 118.2437° W</span>
+        </div>
+      </div>
     </div>
 
-    <div class="compass-mark">
-      <div class="compass-bracket">[ &nbsp; signal received &nbsp; ]</div>
-      <div class="compass-text">"Vision deserves<br><span class="accent">infrastructure."</span></div>
-      <div class="compass-rule"></div>
+    <!-- dotted world map (CSS/SVG only — generated dot grid clipped by simplified continent silhouettes) -->
+    <div class="world" data-reveal data-d="2" aria-hidden="true">
+      <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="dots" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+            <circle cx="1.4" cy="1.4" r="1.0" fill="rgba(242,242,240,.42)"/>
+          </pattern>
+          <!-- simplified continent silhouettes used as a clip for the dot pattern -->
+          <clipPath id="continents">
+            <!-- north america -->
+            <path d="M70,80 C100,60 160,55 210,70 C240,80 250,110 240,140 C235,170 215,200 180,220 C150,235 110,235 90,210 C70,185 60,150 65,120 Z"/>
+            <!-- central / south america -->
+            <path d="M180,230 C210,225 230,250 240,290 C235,330 220,355 200,365 C185,360 175,330 178,295 Z"/>
+            <!-- europe -->
+            <path d="M380,80 C420,75 460,80 480,100 C490,120 470,140 440,148 C405,150 380,135 370,115 Z"/>
+            <!-- africa -->
+            <path d="M395,160 C430,155 470,170 480,210 C485,260 460,310 425,330 C400,335 385,310 385,275 C385,235 385,195 395,160 Z"/>
+            <!-- asia -->
+            <path d="M490,75 C560,65 640,75 700,100 C720,125 720,155 690,180 C640,200 580,210 530,200 C500,190 485,160 488,125 Z"/>
+            <!-- india / se asia -->
+            <path d="M580,180 C610,180 630,200 625,230 C615,250 595,255 580,240 C570,220 572,200 580,180 Z"/>
+            <!-- australia / oceania -->
+            <path d="M650,275 C690,270 730,280 740,300 C735,320 705,330 680,325 C660,318 648,300 650,275 Z"/>
+          </clipPath>
+        </defs>
+        <rect x="0" y="0" width="800" height="400" fill="url(#dots)" clip-path="url(#continents)"/>
+
+        <!-- city pins (approximate positions on the simplified map) -->
+        <!-- new york -->
+        <g transform="translate(190,140)">
+          <circle r="9" fill="rgba(57,255,20,.10)"/>
+          <circle r="4" fill="rgba(57,255,20,.30)"/>
+          <circle r="2" fill="#39FF14"/>
+        </g>
+        <!-- london -->
+        <g transform="translate(415,108)">
+          <circle r="9" fill="rgba(57,255,20,.10)"/>
+          <circle r="4" fill="rgba(57,255,20,.30)"/>
+          <circle r="2" fill="#39FF14"/>
+        </g>
+        <!-- los angeles -->
+        <g transform="translate(118,158)">
+          <circle r="9" fill="rgba(57,255,20,.10)"/>
+          <circle r="4" fill="rgba(57,255,20,.30)"/>
+          <circle r="2" fill="#39FF14"/>
+        </g>
+      </svg>
     </div>
-  </div>
-</section>
-
-<!-- ══════ SECTION 02 — THE CONVERSATION (INTAKE) ══════ -->
-<section id="strategy-call">
-  <div class="sc-header">
-    <div class="sc-label">the conversation / intake</div>
-    <h2>Tell us what<br>you're <span class="canela">building.</span></h2>
-    <p class="sc-sub">A few details so we arrive prepared. Everything below stays between us.</p>
-  </div>
-
-  <form id="contact-form" novalidate>
-    <div class="field">
-      <label for="f-name">Full Name <span class="req">*</span></label>
-      <input type="text" id="f-name" name="name" placeholder="Your name" required autocomplete="name">
-    </div>
-    <div class="field">
-      <label for="f-org">Organization</label>
-      <input type="text" id="f-org" name="organization" placeholder="Company, ministry, or studio" autocomplete="organization">
-    </div>
-
-    <div class="field">
-      <label for="f-email">Email <span class="req">*</span></label>
-      <input type="email" id="f-email" name="email" placeholder="you@domain.com" required autocomplete="email">
-    </div>
-    <div class="field">
-      <label for="f-phone">Phone</label>
-      <input type="tel" id="f-phone" name="phone" placeholder="Optional" autocomplete="tel">
-    </div>
-
-    <div class="field">
-      <label for="f-system">ecosystem entity of interest <span class="req">*</span></label>
-      <select id="f-system" name="system" required>
-        <option value="">select a focus area</option>
-        <option>form. strategy</option>
-        <option>form. creative</option>
-        <option>form. digital</option>
-        <option>form. ai</option>
-        <option>form. sound</option>
-        <option>form. support</option>
-        <option>form. experience</option>
-        <option>form. labs</option>
-        <option>form. continuum</option>
-        <option>multiple / not sure yet</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="f-timeline">Timeline</label>
-      <select id="f-timeline" name="timeline">
-        <option value="">When do you want to begin?</option>
-        <option>Within 30 days</option>
-        <option>1&ndash;3 months</option>
-        <option>3&ndash;6 months</option>
-        <option>Just exploring</option>
-      </select>
-    </div>
-
-    <div class="field full">
-      <label for="f-message">What are you trying to build, fix, or scale? <span class="req">*</span></label>
-      <textarea id="f-message" name="message" placeholder="A few sentences is enough. Where are you now, where do you want to be, what's in the way." required></textarea>
-    </div>
-
-    <div class="form-foot">
-      <div class="form-note">By submitting, you'll receive a response from the FORM. team within two business days. We don't share, sell, or syndicate your information.</div>
-      <button type="submit" class="form-submit">Send <span>&rarr;</span></button>
-    </div>
-  </form>
-
-  <div class="form-success" id="form-success">
-    <div class="form-success-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <h3>Signal received.</h3>
-    <p>Your message is on its way. Expect a personal reply from the FORM. team within two business days.</p>
-  </div>
-</section>
-
-<!-- ══════ SECTION 03 — DIRECT CHANNELS ══════ -->
-<section id="channels">
-  <div class="ch-header">
-    <div>
-      <div class="ch-label">Direct / 03</div>
-      <h2>Other ways<br>to <span class="canela">reach us.</span></h2>
-    </div>
-    <p class="ch-side">Prefer a direct channel? Pick the one that fits the moment. Each goes to a real person on the FORM. team.</p>
-  </div>
-
-  <div class="ch-grid">
-    <a href="mailto:hello@formintel.co" class="ch-card">
-      <div class="ch-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div class="ch-card-label">General &amp; New Work</div>
-      <div class="ch-card-line">hello@formintel.co</div>
-      <div class="ch-card-desc">Project inquiries, partnership questions, and everything that doesn't fit a category yet.</div>
-      <div class="ch-card-arrow">Compose <span>&rarr;</span></div>
-    </a>
-
-    <a href="mailto:press@formintel.co" class="ch-card">
-      <div class="ch-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
-      <div class="ch-card-label">Press &amp; Speaking</div>
-      <div class="ch-card-line">press@formintel.co</div>
-      <div class="ch-card-desc">Media requests, podcasts, conferences, and quotes for stories on operational intelligence.</div>
-      <div class="ch-card-arrow">Compose <span>&rarr;</span></div>
-    </a>
-
-    <a href="#strategy-call" class="ch-card">
-      <div class="ch-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      <div class="ch-card-label">the conversation</div>
-      <div class="ch-card-line">a 30-minute session</div>
-      <div class="ch-card-desc">skip the form. tell us a little, and we'll send a calendar with windows that fit your timezone.</div>
-      <div class="ch-card-arrow">open intake <span>&rarr;</span></div>
-    </a>
-  </div>
-</section>
-
-<!-- ══════ SECTION 04 — CLOSING ══════ -->
-<section id="closing">
-  <div class="cl-mark">[ &nbsp; the future needs FORM. &nbsp; ]</div>
-  <h2>Vision deserves<br><span class="canela">infrastructure.</span></h2>
-  <p class="cl-sub">When you're ready to make something operational, we're ready to build it with you.</p>
-</section>
+  </section>
 
 </main>
 
-<!-- CURSOR + INTERACTIONS + FORM -->
-<script>
-(function(){
-'use strict';
-const tier=window.FORM_TIER||'full';
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<div id="rev-root"></div>
 
-/* ── GRAIN ── */
-const grain=document.getElementById('grain');
-if(grain){
-  if(tier==='minimal'){grain.parentNode&&grain.parentNode.removeChild(grain);}
-  else if(tier==='reduced'){grain.style.opacity=String(window.PERF_CONFIG&&window.PERF_CONFIG.GRAIN_OPACITY_REDUCED||0.012);}
-}
-
-/* ── CURSOR ── */
-const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}});
-function _startCursorRing(){
-  if(reducedMotion)return;
-  (function cl(){
-    var _pt=document.documentElement.dataset.perf||'full';if(_pt==='minimal'||_pt==='reduced')return;
-    rx+=(mx-rx)*.055;ry+=(my-ry)*.055;if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}requestAnimationFrame(cl);
-  })();
-}
-if(tier!=='minimal')_startCursorRing();
-
-/* hover effects */
-document.querySelectorAll('a,button,.ch-card,.field input,.field select,.field textarea,.promise-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('hl'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('hl'));
-});
-['.hero-cta-primary','.form-submit','#strat'].forEach(s=>{
-  document.querySelectorAll(s).forEach(el=>{
-    el.addEventListener('mouseenter',()=>{document.body.classList.remove('hl');document.body.classList.add('hcta');});
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('hcta'));
-  });
-});
-
-/* tier upgrade */
-if(window.FORM_TIER_ONCHANGE)window.FORM_TIER_ONCHANGE.push(function(newTier,prevTier){
-  if(prevTier==='minimal'&&newTier!=='minimal')_startCursorRing();
-});
-
-/* ── FORM SUBMISSION (mailto fallback) ──
-   Composes a clean message in the visitor's mail client.
-   Replace with a real backend or form service later. */
-const form=document.getElementById('contact-form');
-const success=document.getElementById('form-success');
-if(form){
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(!form.reportValidity())return;
-    const fd=new FormData(form);
-    const lines=[
-      'Name: '+(fd.get('name')||''),
-      'Organization: '+(fd.get('organization')||'—'),
-      'Email: '+(fd.get('email')||''),
-      'Phone: '+(fd.get('phone')||'—'),
-      'System: '+(fd.get('system')||''),
-      'Timeline: '+(fd.get('timeline')||'—'),
-      '',
-      '— Message —',
-      (fd.get('message')||'')
-    ].join('\n');
-    const subject='form. — start the conversation — '+(fd.get('name')||'new inquiry');
-    const mailto='mailto:hello@formintel.co?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines);
-    /* open the user's mail client in a new context to avoid breaking the page */
-    window.location.href=mailto;
-    /* show the success state regardless — visitor gets a clear acknowledgement */
-    setTimeout(function(){
-      form.style.display='none';
-      success.classList.add('on');
-      success.scrollIntoView({behavior:'smooth',block:'center'});
-    },300);
-  });
-}
-
-/* debug peek bypass — remove before launch */
-if(location.search.includes('peek')){
-  const v=document.getElementById('veil');
-  if(v){v.style.animation='none';v.style.opacity='0';v.style.display='none';}
-  document.querySelectorAll('[style*="animation"]').forEach(el=>{
-    const cs=getComputedStyle(el);
-    if(cs.opacity==='0')el.style.opacity='1';
-  });
-  document.querySelectorAll('.hero-label,.hero-body,.hero-lead,.hero-cta-group,.hero-promise,.node,.node-link,.node-label,.compass-mark,#hero-left h1').forEach(el=>{el.style.animation='none';el.style.opacity='1';el.style.transform='none';});
-}
-
-/* ── PAGE EXIT ── */
-const veil=document.getElementById('veil');
-document.querySelectorAll('a[href]').forEach(a=>{
-  const href=a.getAttribute('href');
-  if(!href||href==='#'||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto'))return;
-  a.addEventListener('click',function(e){
-    e.preventDefault();
-    veil.style.animation='none';
-    veil.style.opacity='0';
-    veil.style.pointerEvents='all';
-    requestAnimationFrame(()=>{
-      veil.style.transition='opacity .55s cubic-bezier(.7,0,.3,1)';
-      veil.style.opacity='1';
-      setTimeout(()=>{ window.location.href=href; },580);
-    });
-  });
-});
-})();
-</script>
-<link rel="stylesheet" href="/rev.css?v=3">
 <script src="/rev.js?v=3" defer></script>
 <script src="/nav-footer.js?v=18" defer></script>
+
+<script>
+(function(){
+  function revealAll(){
+    var els = document.querySelectorAll('[data-reveal]');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+  if(document.readyState !== 'loading'){ revealAll(); }
+  else{ document.addEventListener('DOMContentLoaded', revealAll); }
+})();
+
+// form: prevent default for now (no backend wired); show inline confirmation
+(function(){
+  var form = document.querySelector('.form-card');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('.btn-send');
+    if(!btn) return;
+    btn.style.transition = 'background .3s, color .3s, letter-spacing .3s';
+    btn.style.background = 'var(--ac)';
+    btn.style.color = 'var(--onyx)';
+    btn.innerHTML = 'message received';
+    btn.disabled = true;
+  });
+})();
+</script>
+
 </body>
 </html>

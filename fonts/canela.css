@@ -1,0 +1,65 @@
+/* Canela — editorial typeface (Commercial Type, trial weights).
+   Per locked doctrine: used very sparingly (5–10% max of visible typography)
+   for emotional punctuation only. Never paragraph copy.
+   CSS family: 'Canela', Georgia, serif. */
+
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-thin.otf') format('opentype');
+  font-weight:100;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-thin-italic.otf') format('opentype');
+  font-weight:100;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-light.otf') format('opentype');
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-light-italic.otf') format('opentype');
+  font-weight:300;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-regular.otf') format('opentype');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-regular-italic.otf') format('opentype');
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-medium.otf') format('opentype');
+  font-weight:500;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-medium-italic.otf') format('opentype');
+  font-weight:500;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-bold.otf') format('opentype');
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-bold-italic.otf') format('opentype');
+  font-weight:700;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-black.otf') format('opentype');
+  font-weight:900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Canela';
+  src:url('/fonts/canela-black-italic.otf') format('opentype');
+  font-weight:900;font-style:italic;font-display:swap;
+}
