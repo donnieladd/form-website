@@ -118,126 +118,180 @@ body{
 [data-reveal][data-d="6"]{transition-delay:.70s;}
 
 /* ─────────────────────────────────────────
-   HERO — cosmic atmosphere contained in hero section, dissolves into onyx.
-   left text / right portrait composed inside the field.
+   HERO — magazine-cover composition.
+   left column: editorial typography on pure onyx, title set HUGE.
+   right column: full-bleed portrait floor-to-ceiling inside cosmic field.
+   bottom: cinematic mono ledger spanning full width.
    ───────────────────────────────────────── */
 .hero{
   position:relative;
-  display:grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(2rem,4vw,4rem);
-  align-items:center;
+  display:flex;
+  flex-direction:column;
   min-height:100vh;
-  padding-top:7rem;
-  padding-bottom:9rem;
+  max-width:none;
+  padding:0;
+  margin:0;
   overflow:hidden;
   isolation:isolate;
+  background:#050608;
+}
+.hero-grid{
+  flex:1 1 auto;
+  display:grid;
+  grid-template-columns: minmax(0,5fr) minmax(0,6fr);
+  align-items:stretch;
+  min-height:88vh;
 }
 
-/* cinematic atmosphere — the cosmic neural field, contained, masked,
-   breathing slowly. it ENDS at the hero so reading sections stay calm. */
+/* LEFT — editorial column on pure onyx */
+.hero-left{
+  position:relative;
+  z-index:3;
+  padding: clamp(7rem,11vh,10rem) clamp(1.6rem,4.5vw,5rem) clamp(3rem,6vh,5rem);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:clamp(1.4rem,2.4vh,2.2rem);
+  background:linear-gradient(90deg,#050608 78%, rgba(5,6,8,.85) 100%);
+}
+.hero-eyebrow{display:flex;flex-direction:column;gap:.5rem;}
+.hero .h1{
+  font-family:'Satoshi',sans-serif;
+  font-weight:300;
+  font-size:clamp(64px,8.6vw,148px);
+  letter-spacing:-.05em;
+  line-height:.92;
+  color:var(--stone);
+  margin:0;
+}
+.hero .h1 .last{display:block;color:var(--ac);text-shadow:0 0 22px rgba(var(--ac-rgb),.22);}
+.hero .h1 .last::after{content:'.';color:var(--ac);}
+
+/* THE TITLE — large, prominent, architectural. impossible to miss. */
+.hero-title{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  margin-top:.2rem;
+}
+.hero-title .rule{
+  flex:0 0 auto;
+  width:56px;height:1px;
+  background:var(--ac);
+  margin-top:1.05rem;
+  box-shadow:0 0 12px rgba(var(--ac-rgb),.5);
+}
+.hero-title .txt{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:clamp(22px,2.6vw,38px);
+  letter-spacing:-.014em;
+  line-height:1.16;
+  color:var(--stone);
+  text-transform:lowercase;
+}
+.hero-title .txt .amp{
+  font-family:'Canela','Georgia',serif;
+  font-style:italic;
+  font-weight:300;
+  color:var(--ac);
+  margin:0 .08em;
+}
+
+/* italic Canela pull — emotional punctuation */
+.hero-pull{
+  font-family:'Canela','Georgia',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(20px,2vw,30px);
+  letter-spacing:-.01em;
+  line-height:1.32;
+  color:var(--stone-2);
+  max-width:24ch;
+}
+.hero-pull em{font-style:italic;color:var(--stone);}
+
+/* support body */
+.hero .body{
+  font-family:'Satoshi',sans-serif;
+  font-weight:400;
+  font-size:1rem;
+  line-height:1.78;
+  color:var(--stone-2);
+  max-width:46ch;
+}
+.hero .body .ac{color:var(--ac);}
+
+/* RIGHT — full-bleed portrait inside cosmic atmosphere */
+.hero-right{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  min-height:88vh;
+}
 .hero-atm{
-  position:absolute;
-  inset:-6% -4% -2% -4%;
-  z-index:0;
-  pointer-events:none;
+  position:absolute;inset:0;z-index:0;pointer-events:none;
   overflow:hidden;
 }
 .hero-atm img{
-  position:absolute;inset:0;
-  width:100%;height:100%;
+  position:absolute;inset:-6%;
+  width:112%;height:112%;
   object-fit:cover;
-  object-position:62% 42%;
+  object-position:50% 42%;
   filter:saturate(1.05) contrast(1.02);
-  transform-origin:60% 45%;
+  transform-origin:50% 45%;
   animation:atm-drift 42s ease-in-out infinite alternate;
 }
 @keyframes atm-drift{
   from{transform:scale(1.0) translate3d(0,0,0);}
   to  {transform:scale(1.06) translate3d(-1.5%,-1%,0);}
 }
-/* dissolve hero atmosphere into onyx at bottom + edges so the page breathes */
 .hero-atm::after{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:
-    /* bottom dissolve into onyx for clean handoff to next section */
-    linear-gradient(180deg,
-      rgba(5,6,8,.55) 0%,
-      rgba(5,6,8,.20) 18%,
-      rgba(5,6,8,.0)  42%,
-      rgba(5,6,8,.45) 78%,
-      rgba(5,6,8,.95) 96%,
-      #050608 100%),
-    /* left vignette to anchor the headline */
+    /* feather right column's left edge into onyx for clean handoff to text */
     linear-gradient(90deg,
-      rgba(5,6,8,.78) 0%,
-      rgba(5,6,8,.30) 28%,
-      rgba(5,6,8,0)   55%);
+      rgba(5,6,8,.92) 0%,
+      rgba(5,6,8,.38) 14%,
+      rgba(5,6,8,0)   34%,
+      rgba(5,6,8,0)   72%,
+      rgba(5,6,8,.30) 100%),
+    /* bottom dissolve so the section ends cleanly */
+    linear-gradient(180deg,
+      rgba(5,6,8,0)   60%,
+      rgba(5,6,8,.55) 86%,
+      #050608        100%);
 }
 
-.hero .col-text{position:relative;z-index:3;max-width:620px;}
-.hero .h1{
-  margin-top:1.4rem;
-  font-family:'Satoshi',sans-serif;
-  font-weight:300;
-  font-size:clamp(72px,9vw,148px);
-  letter-spacing:-.05em;
-  line-height:.92;
-  color:var(--stone);
-}
-.hero .h1 .last{display:block;color:var(--ac);text-shadow:0 0 22px rgba(var(--ac-rgb),.22);}
-.hero .h1 .last::after{content:'.';color:var(--ac);}
-.hero .lede{
-  margin-top:2.4rem;
-  font-family:'Satoshi',sans-serif;
-  font-weight:300;
-  font-size:clamp(22px,2.1vw,32px);
-  letter-spacing:-.018em;
-  line-height:1.25;
-  color:var(--stone);
-}
-.hero .lede span{display:block;}
-.hero .body{
-  margin-top:2.6rem;
-  font-family:'Satoshi',sans-serif;
-  font-weight:400;
-  font-size:1rem;
-  line-height:1.78;
-  color:var(--stone-2);
-  max-width:48ch;
-}
-.hero .body .ac{color:var(--ac);}
-
-/* hero right — portrait composed inside the cosmic field */
+/* portrait — full-bleed in right column, floor-to-ceiling, cropped to fill */
 .portrait-stage{
-  position:relative;
+  position:absolute;
+  inset:0;
   z-index:2;
-  aspect-ratio: 1 / 1.08;
-  width:100%;
-  max-width:640px;
-  justify-self:end;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  pointer-events:none;
 }
 .portrait-stage img.portrait{
-  position:absolute;inset:0;
-  width:100%;height:100%;
+  width:auto;
+  max-width:115%;
+  height:100%;
   object-fit:contain;
   object-position:center bottom;
   filter:
     drop-shadow(0 36px 70px rgba(0,0,0,.75))
     drop-shadow(0 0 60px rgba(var(--ac-rgb),.10));
 }
-/* soft grounding pool beneath the silhouette so it sits in the field */
 .portrait-stage::after{
   content:'';
-  position:absolute;left:50%;bottom:-2%;
-  width:88%;height:30%;
+  position:absolute;left:50%;bottom:0;
+  width:80%;height:22%;
   transform:translateX(-50%);
-  background:radial-gradient(ellipse at 50% 80%,
+  background:radial-gradient(ellipse at 50% 100%,
     rgba(5,6,8,.7) 0%,
-    rgba(5,6,8,.28) 45%,
+    rgba(5,6,8,.25) 45%,
     transparent 80%);
   z-index:1;pointer-events:none;
-  filter:blur(6px);
+  filter:blur(8px);
 }
 
 /* scroll cue at bottom of hero — small architectural mark */
@@ -317,20 +371,6 @@ body{
 }
 .horizon .horizon-mark .ac{color:var(--ac);}
 
-/* hero side meta */
-.hero .side-meta{
-  position:absolute;top:50%;right:clamp(1rem,3vw,3rem);
-  transform:translateY(-50%);
-  text-align:right;
-  display:flex;flex-direction:column;gap:.6rem;
-  z-index:4;
-  pointer-events:none;
-}
-.hero .side-meta .role{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:.62rem;letter-spacing:.30em;text-transform:uppercase;
-  color:var(--stone-2);line-height:1.6;
-}
 .spine{
   position:fixed;
   top:50%;left:14px;
@@ -344,15 +384,17 @@ body{
 }
 .spine .ac{color:var(--ac);}
 
-/* hero capability strip */
+/* hero ledger — full-width capability strip across the bottom */
 .cap-strip{
-  margin-top:5rem;
+  position:relative;z-index:4;
   display:grid;
   grid-template-columns:repeat(6, minmax(0,1fr));
   gap:1rem;
   border-top:1px solid var(--rule);
-  padding-top:1.4rem;
-  grid-column:1 / -1;
+  padding:1.6rem clamp(1.6rem,4.5vw,5rem);
+  background:rgba(5,6,8,.78);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
 }
 .cap-strip .cap{
   font-family:'IBM Plex Mono',monospace;
@@ -551,9 +593,9 @@ body{
    responsive
    ───────────────────────────────────────── */
 @media (max-width: 1100px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:5rem;}
-  .hero .side-meta{position:static;transform:none;text-align:left;margin-top:1.4rem;align-items:flex-start;}
-  .portrait-stage{justify-self:center;max-width:520px;}
+  .hero-grid{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:7rem clamp(1.4rem,5vw,2rem) 3rem;background:#050608;}
+  .hero-right{min-height:78vh;}
   .band-story{grid-template-columns:1fr;}
   .band-story .col-philosophy{border-left:none;border-top:1px solid var(--rule);padding-left:0;padding-top:2rem;}
   .cap-strip{grid-template-columns:repeat(3,1fr);gap:1.4rem 1rem;}
@@ -561,6 +603,9 @@ body{
 }
 @media (max-width: 720px){
   .section{padding:6rem clamp(1.2rem,5vw,2rem);}
+  .hero .h1{font-size:clamp(54px,14vw,88px);}
+  .hero-title .txt{font-size:clamp(20px,5vw,28px);}
+  .hero-pull{font-size:clamp(18px,4.6vw,24px);}
   .cap-strip{grid-template-columns:repeat(2,1fr);}
   .sys-row{grid-template-columns:60px 1fr;gap:.8rem 1rem;}
   .sys-row .desc{grid-column:1 / -1;margin-top:.4rem;}
@@ -576,41 +621,52 @@ body{
 
 <main id="main">
 
-  <!-- ───────── HERO ───────── -->
-  <section class="section hero" id="hero">
+  <!-- ───────── HERO — magazine-cover split ───────── -->
+  <section class="hero" id="hero">
 
-    <!-- cinematic cosmic atmosphere, contained to hero, dissolves into onyx -->
-    <div class="hero-atm" aria-hidden="true">
-      <img src="/founder-bg.avif?v=2" alt="">
-    </div>
+    <div class="hero-grid">
 
-    <div class="col-text">
-      <span class="idx" data-reveal>[ 04 ]</span>
-      <span class="idx-sub" data-reveal data-d="1">founder.</span>
-      <h1 class="h1" data-reveal data-d="2">
-        dontae <span class="last">ladson</span>
-      </h1>
-      <div class="lede" data-reveal data-d="3">
-        <span>systems architect.</span>
-        <span>creative leader.</span>
-        <span>operational futurist.</span>
+      <!-- LEFT : editorial typography column on pure onyx -->
+      <div class="hero-left">
+        <div class="hero-eyebrow" data-reveal>
+          <span class="idx">[ 04 ]</span>
+          <span class="idx-sub">founder.</span>
+        </div>
+
+        <h1 class="h1" data-reveal data-d="1">
+          dontae <span class="last">ladson</span>
+        </h1>
+
+        <div class="hero-title" data-reveal data-d="2">
+          <span class="rule" aria-hidden="true"></span>
+          <div class="txt">
+            founder <span class="amp">&amp;</span> chief<br>systems architect
+          </div>
+        </div>
+
+        <div class="hero-pull" data-reveal data-d="3">
+          the operating substrate for the <em>future of work.</em>
+        </div>
+
+        <p class="body" data-reveal data-d="4">
+          i build intelligent systems that connect strategy, creativity, and execution —
+          <span class="ac">form.</span> is human, augmented, and responsibly intelligent.
+        </p>
       </div>
-      <p class="body" data-reveal data-d="4">
-        i build intelligent systems that connect strategy, creativity, and execution.
-        <span class="ac">form.</span> is the operational engine for the future of work — human, augmented,
-        and responsibly intelligent.
-      </p>
+
+      <!-- RIGHT : full-bleed portrait inside cosmic neural field -->
+      <div class="hero-right">
+        <div class="hero-atm" aria-hidden="true">
+          <img src="/founder-bg.avif?v=2" alt="">
+        </div>
+        <div class="portrait-stage" data-reveal data-d="2">
+          <img class="portrait" src="/founder-5-cutout.png" alt="dontae ladson, founder of form.">
+        </div>
+      </div>
+
     </div>
 
-    <div class="portrait-stage" data-reveal data-d="2" aria-hidden="false">
-      <img class="portrait" src="/founder-5-cutout.png" alt="dontae ladson, founder of form.">
-    </div>
-
-    <div class="side-meta" aria-hidden="true">
-      <div class="role">founder<br>&amp; chief systems architect</div>
-    </div>
-
-    <!-- capability strip — six signal labels -->
+    <!-- bottom ledger — six signal labels across full width -->
     <div class="cap-strip">
       <div class="cap" data-reveal data-d="1"><span class="num">01</span><span class="label">strategy</span></div>
       <div class="cap" data-reveal data-d="2"><span class="num">02</span><span class="label">systems</span></div>
