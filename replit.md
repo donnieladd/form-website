@@ -83,8 +83,8 @@ Planned integrated AI layer named `rev.` — operational intelligence, not a cha
 The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion once `ecosystem.html` is rebuilt around the nine `form.` entities. Do not link to them from any new public-facing nav, footer, or copy.
 
 ## Key Assets
-- `home-bg.mp4` — Looping cinematic video background for the homepage hero. Plays muted/loop/playsinline, gated by performance tier + `prefers-reduced-motion`, falls back to `home-bg.avif`.
-- `home-bg.avif` — Cinematic environmental field for the homepage (oceanic neural ribbons over deep dark space). Static base layer beneath `field.js` particle drift, also acts as the poster + fallback for `home-bg.mp4`.
+- `home-bg.mp4` — Cinematic homepage hero video (oceanic neural ribbons in slow motion). Plays muted/looped over the `home-bg.avif` poster on full-tier devices; gated off on reduced/minimal tiers and when `prefers-reduced-motion` is set, where the poster takes over.
+- `home-bg.avif` — Static poster + graceful fallback for the homepage hero (used as the `<video poster>` and as the always-rendered base layer beneath `field.js` particle drift).
 - `bg.avif` — Legacy atmospheric background still used by interior pages (vision, standards, founder, ecosystem, contact) until each is migrated to the shared `env-field` system.
 - `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
 - `logo-core-final-2.svg` — Hero ecosystem identity mark

@@ -172,13 +172,11 @@ a,button{cursor:pointer;}
 
 /* ══════════════════════════════════════════════════════════
    HERO VIDEO BACKGROUND
-   Sits inside .env-field, layered over .env-field-bg (the
-   home-bg.avif poster) and beneath .env-field-canvas (particle
-   drift) — same z-layer the poster image occupies. grain (z:5)
-   and hero (z:10) remain above everything.
-   The poster (home-bg.avif) acts as the graceful fallback for
-   reduced-motion users, lower-tier devices, and any environment
-   where the video can't play.
+   Sits inside .env-field, layered over .env-field-bg (the home-bg.avif
+   poster) and beneath .env-field-canvas (particle drift) — same z-layer
+   the image occupies. grain (z:5) and hero (z:10) remain above everything.
+   The poster is the graceful fallback for reduced/minimal tiers and for
+   prefers-reduced-motion.
    ══════════════════════════════════════════════════════════ */
 #hero-video,
 #hero-video-veil{
@@ -210,11 +208,11 @@ a,button{cursor:pointer;}
 <div class="env-field" aria-hidden="true">
   <div class="env-field-bg"></div>
 
-  <!-- ── HERO VIDEO BACKGROUND ──
+  <!-- ── hero video background ──
        Sits over the home-bg.avif poster (.env-field-bg) and beneath
-       the particle canvas. The performance-tier gate near the bottom
-       of <body> decides whether to play the video; if it can't,
-       the static home-bg.avif poster takes over cleanly. -->
+       the particle canvas. The inline gating <script> near the bottom
+       of <body> skips the video on reduced/minimal tiers and when
+       prefers-reduced-motion is set, leaving the poster in place. -->
   <video id="hero-video"
          muted loop playsinline preload="metadata" autoplay
          disableremoteplayback x-webkit-airplay="deny"
