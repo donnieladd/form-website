@@ -35,8 +35,8 @@
       blurb: 'sonic identity, audio environments, and the emotional resonance of a brand in motion.'
     },
     support: {
-      label: 'form. support',
-      anchor: '/ecosystem.html#support',
+      label: 'formation',
+      anchor: '/ecosystem.html#formation',
       blurb: 'continuous operational backing — the layer that keeps systems calm under pressure.'
     },
     experience: {
@@ -50,7 +50,7 @@
       blurb: 'research and emerging systems. where the next layer of the ecosystem is prototyped.'
     },
     continuum: {
-      label: 'form. continuum',
+      label: 'continuum',
       anchor: '/ecosystem.html#continuum',
       blurb: 'the long arc — the connective intelligence that holds every entity in coherence over time.'
     }
@@ -99,7 +99,7 @@
     if (/\b(ecosystem|nine|entities|all of them|overview)\b/.test(q)) {
       return [
         'the ecosystem is nine connected entities — one signal.',
-        'strategy. creative. digital. ai. sound. support. experience. labs. continuum.',
+        'strategy. creative. digital. ai. experience. labs. continuum. messages. formation.',
         'each one is operational on its own. together they form a single intelligence layer.',
         'open the full map: <a href="/ecosystem.html">ecosystem.</a>'
       ];
@@ -162,7 +162,7 @@
     return [
       'i\'ll route you. the clearest path forward is to open the conversation directly:',
       '<a href="/contact.html">● start the conversation</a>',
-      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, sound, support, experience, labs, or continuum.'
+      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, experience, labs, continuum, messages, or formation.'
     ];
   }
 
@@ -451,7 +451,7 @@
         suggestions = ['show me the ecosystem', 'start the conversation'];
       } else if (path.indexOf('/ecosystem') === 0) {
         line = 'nine entities. one signal. ask me about any of them.';
-        suggestions = ['form. strategy', 'form. ai', 'form. continuum', 'where do i start?'];
+        suggestions = ['form. strategy', 'form. ai', 'continuum', 'where do i start?'];
       } else if (path.indexOf('/contact') === 0) {
         line = 'you\'re in the right place. i can clarify anything before you write.';
         suggestions = ['what is form.?', 'show me the ecosystem'];

@@ -53,9 +53,9 @@
             '</div>' +
             '<div class="dd-list">' +
               '<a href="/ecosystem.html#products" class="dd-parent">products</a>' +
-              '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-              '<a href="/ecosystem.html#messages">form. messages</a>' +
-              '<a href="/ecosystem.html#support">form. support</a>' +
+              '<a href="/ecosystem.html#continuum">continuum</a>' +
+              '<a href="/ecosystem.html#messages">messages by form.</a>' +
+              '<a href="/ecosystem.html#formation">formation</a>' +
             '</div>' +
             '<div class="dd-list">' +
               '<a href="/ecosystem.html#labs" class="dd-parent">form. labs</a>' +
@@ -119,9 +119,9 @@
         '<div class="ft-col">' +
           '<h4>products</h4>' +
           '<span class="ft-h-rule" aria-hidden="true"></span>' +
-          '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-          '<a href="/ecosystem.html#messages">form. messages</a>' +
-          '<a href="/ecosystem.html#support">form. support</a>' +
+          '<a href="/ecosystem.html#continuum">continuum</a>' +
+          '<a href="/ecosystem.html#messages">messages by form.</a>' +
+          '<a href="/ecosystem.html#formation">formation</a>' +
         '</div>' +
 
         // CONNECT ────────────────────────────────────────────
@@ -168,9 +168,9 @@
         '<details class="ft-acc">' +
           '<summary>products<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
           '<div class="ft-acc-body">' +
-            '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-            '<a href="/ecosystem.html#messages">form. messages</a>' +
-            '<a href="/ecosystem.html#support">form. support</a>' +
+            '<a href="/ecosystem.html#continuum">continuum</a>' +
+            '<a href="/ecosystem.html#messages">messages by form.</a>' +
+            '<a href="/ecosystem.html#formation">formation</a>' +
           '</div>' +
         '</details>' +
         '<details class="ft-acc">' +

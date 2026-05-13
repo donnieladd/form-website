@@ -13,12 +13,13 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 - All public-facing ecosystem entities use the `form. {name}` lowercase prefix with trailing period.
 - The ecosystem is organized into three structural tiers — **disciplines**, **products**, and the **labs division** — and these tiers must remain visually and semantically distinct everywhere they appear (nav dropdown, ecosystem page, footer, founder page strip, etc.).
   - **Disciplines** (the five operational practices — column 1): `form. strategy`, `form. creative`, `form. digital`, `form. ai`, `form. experience`
-  - **Products** (the three operational platforms — column 2): `form. continuum`, `form. messages`, `form. support`
-    - `form. continuum` is itself a product that can extend across any discipline (strategy, creative, digital, ai, or experience).
+  - **Products** (the three operational platforms — column 2): `continuum`, `messages by form.`, `formation`
+    - Two of the three products are bare lowercase single words (`continuum`, `formation`) — they do **not** carry the `form.` prefix. Only `messages by form.` retains the brand link, in the suffix position.
+    - `continuum` is itself a product that can extend across any discipline (strategy, creative, digital, ai, or experience).
   - **Division** (separate from disciplines and products — column 3): `form. labs` → `RELAY`, `FRAME`, `AXIS` (uppercase sub-products, no `form.` prefix, mono tracking, no descriptions). `form. labs` is a division, **not** a discipline and **not** a product.
 - `form. sound` is **deprecated** and must not appear in any public-facing copy, nav, footer, or strip.
 - Total public-facing entities: **5 disciplines + 3 products + 1 division (labs) = 9** named layers, with `RELAY`, `FRAME`, `AXIS` nested under labs.
-- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`, `form. sound`. Treat these as internal-only legacy language.
+- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`, `form. sound`, `form. support`, `form. messages`, `form. continuum`. Treat these as internal-only legacy language. (`form. support` is now `formation`; `form. messages` is now `messages by form.`; `form. continuum` is now `continuum`.)
 
 ### Typography (LOCKED)
 - **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.
