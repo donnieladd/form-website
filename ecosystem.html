@@ -273,6 +273,9 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 .ent.e-labs .ent-num,.ent.e-labs .ent-name .canela{color:rgba(var(--cv-rgb),.95);}
 .ent.e-labs .ent-atm{background:radial-gradient(ellipse 55% 45% at 70% 30%,rgba(var(--cv-rgb),.07) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(var(--ac-rgb),.025) 0%,transparent 60%);}
 
+/* dropdown jump anchors — invisible, no layout impact, scroll past sticky nav */
+.ecosystem-anchor{display:block;height:0;width:0;overflow:hidden;scroll-margin-top:calc(var(--nav-h) + 1.4rem);}
+
 /* labs sub-products — RELAY / FRAME / AXIS */
 .labs-products{margin-top:4rem;padding-top:2.4rem;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);}
 .labs-product{background:#050608;padding:2.2rem 1.8rem;scroll-margin-top:calc(var(--nav-h) + 1.4rem);position:relative;transition:background .5s;}
@@ -501,6 +504,7 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   </div>
 </section>
 
+<a id="products" class="ecosystem-anchor" aria-hidden="true" tabindex="-1"></a>
 <section class="ent e-messages" id="messages">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
@@ -711,7 +715,7 @@ if(location.search.includes('peek')){
 })();
 </script>
 <link rel="stylesheet" href="/rev.css?v=3">
-<script src="/rev.js?v=3" defer></script>
+<script src="/rev.js?v=4" defer></script>
 <script src="/nav-footer.js?v=30" defer></script>
 </body>
 </html>

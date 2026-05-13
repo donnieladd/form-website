@@ -99,7 +99,7 @@
     if (/\b(ecosystem|nine|entities|all of them|overview)\b/.test(q)) {
       return [
         'the ecosystem is nine connected entities — one signal.',
-        'strategy. creative. digital. ai. experience. labs. continuum. messages. formation.',
+        'strategy. creative. digital. ai. experience. labs. continuum. messages by form. formation.',
         'each one is operational on its own. together they form a single intelligence layer.',
         'open the full map: <a href="/ecosystem.html">ecosystem.</a>'
       ];
@@ -162,7 +162,7 @@
     return [
       'i\'ll route you. the clearest path forward is to open the conversation directly:',
       '<a href="/contact.html">● start the conversation</a>',
-      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, experience, labs, continuum, messages, or formation.'
+      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, experience, labs, continuum, messages by form., or formation.'
     ];
   }
 
