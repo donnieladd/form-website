@@ -25,7 +25,7 @@
   var navHTML =
     '<header id="topnav" role="banner">' +
       '<a href="/" class="tn-brand" aria-label="form. home">' +
-        '<img src="/logo-editorial-2.svg" alt="form.">' +
+        '<span class="tn-wordmark">form<span class="tn-dot">.</span></span>' +
       '</a>' +
       '<nav class="tn-links" role="navigation">' +
         '<div class="tn-item">' +
@@ -74,60 +74,76 @@
     '</header>';
 
   // ─── FOOTER ────────────────────────────────────────────────────
+  // 5-column layout per FOOTER_FINAL_3 reference. Entity names follow
+  // locked doctrine in replit.md: 5 disciplines + 3 products + 1 division.
+  // 'form. sound' is deprecated and must not appear.
   var footerHTML =
     '<footer id="sitefooter" role="contentinfo">' +
       '<div class="ft-grid">' +
+
+        // BRAND ──────────────────────────────────────────────
         '<div class="ft-brand">' +
           '<div class="ft-mark">' +
             '<span class="ft-wordmark">form<span class="ft-dot">.</span></span>' +
           '</div>' +
-          '<div class="ft-tag">the future needs form.<br>vision needs structure.</div>' +
+          '<div class="ft-tag">the future needs form.</div>' +
+          '<div class="ft-tag-mono">VISION NEEDS STRUCTURE.</div>' +
           '<hr class="ft-rule">' +
-          '<p class="ft-desc">form. is a connected operational ecosystem — strategy, creative, digital, ai, and experience, supported by continuum, messages, and support, with form. labs as the product division behind it.</p>' +
+          '<p class="ft-desc">form. is the convergence of intelligence, systems, creativity, leadership, technology, execution, and human experience into one operational ecosystem.</p>' +
           '<a href="mailto:hello@formintel.co" class="ft-email">hello@formintel.co</a>' +
         '</div>' +
+
+        // ABOUT ──────────────────────────────────────────────
         '<div class="ft-col">' +
-          '<h4>disciplines</h4>' +
+          '<h4>about</h4>' +
+          '<span class="ft-h-rule" aria-hidden="true"></span>' +
+          '<a href="/vision.html">vision</a>' +
+          '<a href="/standards.html">standards</a>' +
+          '<a href="/founder.html">founder</a>' +
+          '<a href="/contact.html#faq">faq</a>' +
+        '</div>' +
+
+        // ECOSYSTEM ──────────────────────────────────────────
+        '<div class="ft-col">' +
+          '<h4>ecosystem</h4>' +
+          '<span class="ft-h-rule" aria-hidden="true"></span>' +
           '<a href="/ecosystem.html#strategy">form. strategy</a>' +
           '<a href="/ecosystem.html#creative">form. creative</a>' +
           '<a href="/ecosystem.html#digital">form. digital</a>' +
           '<a href="/ecosystem.html#ai">form. ai</a>' +
           '<a href="/ecosystem.html#experience">form. experience</a>' +
-        '</div>' +
-        '<div class="ft-col">' +
-          '<h4>products &amp; division</h4>' +
-          '<a href="/ecosystem.html#continuum">form. continuum</a>' +
-          '<a href="/ecosystem.html#messages">form. messages</a>' +
-          '<a href="/ecosystem.html#support">form. support</a>' +
           '<a href="/ecosystem.html#labs">form. labs</a>' +
-          '<a href="/ecosystem.html#relay">RELAY</a>' +
-          '<a href="/ecosystem.html#frame">FRAME</a>' +
-          '<a href="/ecosystem.html#access">ACCESS</a>' +
         '</div>' +
+
+        // PRODUCTS ───────────────────────────────────────────
         '<div class="ft-col">' +
-          '<h4>explore</h4>' +
-          '<a href="/">home</a>' +
-          '<a href="/vision.html">vision</a>' +
-          '<a href="/standards.html">standards</a>' +
-          '<a href="/founder.html">founder</a>' +
-          '<a href="/ecosystem.html">ecosystem</a>' +
-          '<a href="/contact.html">contact</a>' +
+          '<h4>products</h4>' +
+          '<span class="ft-h-rule" aria-hidden="true"></span>' +
+          '<a href="/ecosystem.html#continuum">continuum</a>' +
+          '<a href="/ecosystem.html#messages">messages</a>' +
+          '<a href="/ecosystem.html#support">support</a>' +
         '</div>' +
+
+        // CONNECT ────────────────────────────────────────────
         '<div class="ft-col">' +
           '<h4>connect</h4>' +
-          '<a href="/contact.html">start the conversation</a>' +
-          '<a href="mailto:hello@formintel.co">hello@formintel.co</a>' +
+          '<span class="ft-h-rule" aria-hidden="true"></span>' +
+          '<a href="/contact.html">contact</a>' +
+          '<a href="https://instagram.com/" target="_blank" rel="noopener">instagram</a>' +
+          '<a href="https://linkedin.com/" target="_blank" rel="noopener">linkedin</a>' +
           '<div class="ft-icons">' +
             '<a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></svg></a>' +
             '<a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="7.5" r=".8" fill="currentColor"/><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"/><line x1="12" y1="11" x2="12" y2="17"/></svg></a>' +
             '<a href="mailto:hello@formintel.co" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg></a>' +
           '</div>' +
         '</div>' +
+
       '</div>' +
+
+      // BOTTOM BAR
       '<div class="ft-bottom">' +
         '<span>© 2026 form. all rights reserved.</span>' +
-        '<span>built for what comes next.</span>' +
-        '<span></span>' +
+        '<span>built for the future.</span>' +
       '</div>' +
     '</footer>';
 
