@@ -188,13 +188,16 @@ a,button{cursor:pointer;}
 #hero-video,
 #hero-video-b{
   object-fit:cover;
-  background:#050608;
-  opacity:0;
-  transition:opacity .8s linear;
-  /* video plays at its native grade — no filter applied */
+  background:transparent;       /* let .env-field-bg poster show through —
+                                   no dark midpoint during the swap */
+  opacity:1;                    /* both layers fully opaque by default */
+  transition:opacity 1.6s cubic-bezier(.45,0,.55,1);
+  z-index:1;
 }
-#hero-video.is-active,
-#hero-video-b.is-active{opacity:1;}
+#hero-video.is-top,
+#hero-video-b.is-top{z-index:2;}
+#hero-video.is-fading,
+#hero-video-b.is-fading{opacity:0;}
 #hero-video-veil{
   /* focused legibility pool — a soft centered atmosphere behind the type
      keeps `form.`, tagline and CTA readable while the video stays bright
@@ -272,17 +275,14 @@ a,button{cursor:pointer;}
   b.style.display = 'block';
   veil.style.display = 'block';
 
-  /* Crossfade window: start fading the next clip in this many seconds
-     before the current clip's natural end. 0.9s is long enough to fully
-     mask the loop seam, short enough that the type stays unaffected. */
-  var FADE = 0.9;
-  /* Re-arm guard so a single timeupdate burst doesn't trigger twice. */
+  /* Crossfade window: start the swap this many seconds before the
+     active clip's natural end. The incoming clip plays underneath at
+     full opacity; the outgoing clip on top fades to 0. Because there's
+     never a moment where both layers are partially opaque over black,
+     there's no luminance dip — just one stream dissolving into another
+     identical stream. */
+  var FADE = 1.6;
   var swapping = false;
-
-  function setActive(showEl, hideEl){
-    showEl.classList.add('is-active');
-    hideEl.classList.remove('is-active');
-  }
 
   function arm(active, idle){
     function onTime(){
@@ -294,17 +294,23 @@ a,button{cursor:pointer;}
       try { idle.currentTime = 0; } catch(e){}
       var pp = idle.play();
       var doSwap = function(){
-        setActive(idle, active);
-        active.removeEventListener('timeupdate', onTime);
-        active.removeEventListener('ended', onEnded);
-        /* hand control to the now-active clip */
+        /* idle is already on top of nothing (z:1) and fully opaque, but
+           it's currently underneath the active clip (z:2). Fade the
+           active (top) clip out — the idle underneath is revealed with
+           zero brightness change. */
+        active.classList.add('is-fading');
         setTimeout(function(){
-          /* park the previous clip back at 0 once it's faded out so its
-             next turn starts clean. */
+          /* Promote the (now visible) idle to top and reset the old top
+             so it's ready for its next turn underneath. */
+          idle.classList.add('is-top');
+          active.classList.remove('is-top');
+          active.classList.remove('is-fading');
           try { active.pause(); active.currentTime = 0; } catch(e){}
+          active.removeEventListener('timeupdate', onTime);
+          active.removeEventListener('ended', onEnded);
           swapping = false;
           arm(idle, active);
-        }, FADE * 1000 + 60);
+        }, FADE * 1000 + 80);
       };
       if(pp && typeof pp.then === 'function'){
         pp.then(doSwap).catch(doSwap);
@@ -321,11 +327,12 @@ a,button{cursor:pointer;}
     active.addEventListener('ended', onEnded);
   }
 
-  /* Prime B silently so its first frame is decoded and ready when we
-     need to fade it in. */
+  /* Prime B silently so its first frame is decoded and ready the
+     moment we promote it. */
   try { b.load(); } catch(e){}
 
-  setActive(a, b);
+  /* A starts on top, B sits underneath at full opacity but hidden by A. */
+  a.classList.add('is-top');
   var pa = a.play();
   function bail(){
     teardown(a); teardown(b);
