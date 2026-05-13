@@ -171,16 +171,15 @@ a,button{cursor:pointer;}
 /* nav glass treatment lives in nav-footer.css (single source of truth, locked doctrine) */
 
 /* ══════════════════════════════════════════════════════════
-   HERO VIDEO BACKGROUND — REVERSIBLE TRIAL (task #32)
-   To revert: delete this CSS block, the #hero-video <video>
-   element + #hero-video-veil + the inline gating <script>
-   below in the body, and the home-bg.mp4 file. Nothing else
-   in this page or anywhere else in the codebase depends on
-   the video — the original home-bg.avif poster takes over.
+   HERO VIDEO BACKGROUND
+   Sits inside .env-field, layered over .env-field-bg (the
+   home-bg.avif poster) and beneath .env-field-canvas (particle
+   drift) — same z-layer the poster image occupies. grain (z:5)
+   and hero (z:10) remain above everything.
+   The poster (home-bg.avif) acts as the graceful fallback for
+   reduced-motion users, lower-tier devices, and any environment
+   where the video can't play.
    ══════════════════════════════════════════════════════════ */
-/* video sits inside .env-field, layered over .env-field-bg (the home-bg.avif
-   poster) and beneath .env-field-canvas (particle drift) — same z-layer the
-   image already occupies. grain (z:5) and hero (z:10) remain above everything. */
 #hero-video,
 #hero-video-veil{
   position:absolute;inset:0;width:100%;height:100%;
@@ -211,12 +210,11 @@ a,button{cursor:pointer;}
 <div class="env-field" aria-hidden="true">
   <div class="env-field-bg"></div>
 
-  <!-- ── HERO VIDEO BACKGROUND — REVERSIBLE TRIAL (task #32) ──
+  <!-- ── HERO VIDEO BACKGROUND ──
        Sits over the home-bg.avif poster (.env-field-bg) and beneath
-       the particle canvas. To revert: delete this <video>, the
-       #hero-video-veil div directly below, the inline gating <script>
-       near the bottom of <body>, the matching CSS block in <style>,
-       and the home-bg.mp4 file. The original homepage is restored. -->
+       the particle canvas. The performance-tier gate near the bottom
+       of <body> decides whether to play the video; if it can't,
+       the static home-bg.avif poster takes over cleanly. -->
   <video id="hero-video"
          muted loop playsinline preload="metadata" autoplay
          disableremoteplayback x-webkit-airplay="deny"
@@ -230,9 +228,9 @@ a,button{cursor:pointer;}
   <div class="env-field-veil"></div>
 </div>
 
-<!-- hero-video performance-tier gate (task #32 — reversible trial).
+<!-- hero-video performance-tier gate.
      Skips the video on reduced/minimal tiers and when prefers-reduced-motion
-     is set, leaving the static home-bg.avif poster in place exactly as today. -->
+     is set, leaving the static home-bg.avif poster in place. -->
 <script>
 (function(){
   var v = document.getElementById('hero-video');

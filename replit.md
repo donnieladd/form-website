@@ -67,7 +67,7 @@ home   vision   standards   founder   ecosystem   contact   ● start the conver
 Planned integrated AI layer named `rev.` — operational intelligence, not a chatbot. Calm, clear, infrastructural. Avoid floating chat bubbles, customer-support aesthetics, neon AI gimmicks. Possible patterns: intelligence dock, signal interface, command palette, adaptive sidebar, ambient prompt layer.
 
 ## Production Pages
-- `index.html` — Cinematic single-viewport hero (no scroll content). `form` wordmark + signal-green square dot, two-line tagline, `ENTER FORM →` CTA leading to `vision.html`.
+- `index.html` — Cinematic single-viewport hero (no scroll content). `form` wordmark + signal-green square dot, two-line tagline, `ENTER FORM →` CTA leading to `vision.html`. The hero background is a looping muted `home-bg.mp4` layered over the `home-bg.avif` poster, gated by a performance-tier check (skips video on reduced-motion / lower-tier devices and falls back to the static poster).
 - `vision.html` — Cinematic 7-section operational doctrine (philosophical entry point)
 - `standards.html` — Combined values + principles operational standards page
 - `founder.html` — Human reflective founder narrative
@@ -83,7 +83,8 @@ Planned integrated AI layer named `rev.` — operational intelligence, not a cha
 The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion once `ecosystem.html` is rebuilt around the nine `form.` entities. Do not link to them from any new public-facing nav, footer, or copy.
 
 ## Key Assets
-- `home-bg.avif` — Cinematic environmental field for the homepage (oceanic neural ribbons over deep dark space). Static base layer beneath `field.js` particle drift.
+- `home-bg.mp4` — Looping cinematic video background for the homepage hero. Plays muted/loop/playsinline, gated by performance tier + `prefers-reduced-motion`, falls back to `home-bg.avif`.
+- `home-bg.avif` — Cinematic environmental field for the homepage (oceanic neural ribbons over deep dark space). Static base layer beneath `field.js` particle drift, also acts as the poster + fallback for `home-bg.mp4`.
 - `bg.avif` — Legacy atmospheric background still used by interior pages (vision, standards, founder, ecosystem, contact) until each is migrated to the shared `env-field` system.
 - `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
 - `logo-core-final-2.svg` — Hero ecosystem identity mark
