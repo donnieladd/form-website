@@ -295,25 +295,24 @@ img, svg { display: block; }
   50%     { opacity:.6; box-shadow:0 0 10px rgba(255,138,0,.5); }
 }
 
-.hero-wordmark {
-  font-family: var(--serif);
-  font-size: clamp(80px, 12vw, 160px);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -.025em;
-  line-height: .9;
-  color: var(--text-primary);
+.hero-wordmark-img {
   display: block;
+  width: auto;
+  height: auto;
+  max-width: min(640px, 92%);
+  margin-left: -8px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
-.hero-period { color: var(--amber); font-style: normal; }
 .hero-byform {
   font-family: var(--mono);
   font-size: .9rem;
   font-weight: 500;
   letter-spacing: .3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--amber);
-  margin-top: 18px;
+  margin-top: 14px;
+  margin-left: 6px;
 }
 
 .hero-bottom {
@@ -1047,7 +1046,7 @@ img, svg { display: block; }
   #footer { padding: 36px 20px; flex-direction: column; gap: 24px; align-items: flex-start; }
   #final-cta { padding: 64px 20px; }
 
-  .hero-wordmark { font-size: clamp(56px, 14vw, 80px); }
+  .hero-wordmark-img { max-width: 88%; margin-left: -4px; }
   .hero-byform { font-size: .8rem; }
   .hero-tagline { font-size: 17px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
@@ -1133,7 +1132,7 @@ img, svg { display: block; }
   <div class="hero-eyebrow reveal">Sermon Series Content · Production · Strategy</div>
 
   <div class="reveal reveal-delay-1">
-    <span class="hero-wordmark">Messages<span class="hero-period">.</span></span>
+    <img src="/messages-wordmark.png" alt="messages." class="hero-wordmark-img" width="1024" height="255" decoding="async" fetchpriority="high">
     <div class="hero-byform">by form.</div>
   </div>
 
