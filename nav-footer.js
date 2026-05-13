@@ -312,11 +312,33 @@
       }catch(_){return;}
       e.preventDefault();
       overlay.classList.add('in');
+      // pause any playing <video> the moment the exit veil starts
+      // covering the page so the browser stops decoding frames behind
+      // the black overlay during the 360ms hand-off (homepage hero video).
+      try {
+        var vids = document.getElementsByTagName('video');
+        for(var i=0;i<vids.length;i++){ try { vids[i].pause(); } catch(_){} }
+      } catch(_){}
       setTimeout(function(){ window.location.href = a.href; }, 360);
     });
 
     window.addEventListener('pageshow', function(ev){
-      if(ev.persisted) overlay.classList.remove('in');
+      if(ev.persisted){
+        overlay.classList.remove('in');
+        // bfcache restore: resume any autoplay video that the browser
+        // may have left paused (homepage hero video). silently ignore
+        // browsers that reject the play() promise.
+        try {
+          var vids = document.getElementsByTagName('video');
+          for(var i=0;i<vids.length;i++){
+            var vid = vids[i];
+            if(vid.autoplay !== false && vid.paused && vid.style.display !== 'none'){
+              var pp = vid.play();
+              if(pp && typeof pp.catch === 'function') pp.catch(function(){});
+            }
+          }
+        } catch(_){}
+      }
     });
   }
 
