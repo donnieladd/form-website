@@ -65,19 +65,21 @@ a,button{cursor:pointer;}
   display:inline-block;
   font-family:'Satoshi','Inter',sans-serif;
   font-weight:300;
-  font-size:clamp(108px, 17vw, 260px);
+  font-size:clamp(132px, 21vw, 320px);
   letter-spacing:-.04em;
   line-height:.85;
   color:#f2f2f0;
   text-transform:lowercase;
   opacity:0;transform:translateY(22px);
   animation:hero-rise 1.6s cubic-bezier(.16,1,.3,1) .5s forwards;
-  text-shadow:0 0 60px rgba(5,6,8,.35);
+  text-shadow:
+    0 2px 28px rgba(5,6,8,.78),
+    0 0 80px rgba(5,6,8,.55);
 }
 .hero-dot{
   display:inline-block;flex:0 0 auto;
   /* match wordmark em base so 0.15em scales with the type */
-  font-size:clamp(108px, 17vw, 260px);
+  font-size:clamp(132px, 21vw, 320px);
   width:.15em;
   height:.15em;
   background:#39ff14;
@@ -98,10 +100,12 @@ a,button{cursor:pointer;}
 /* tagline — ibm plex mono uppercase tracked */
 .hero-tag{
   font-family:'IBM Plex Mono','SF Mono',monospace;
-  font-size:.78rem;
+  font-weight:500;
+  font-size:1.15rem;
   letter-spacing:.32em;
   text-transform:uppercase;
-  color:rgba(242,242,240,.72);
+  color:rgba(242,242,240,.92);
+  text-shadow:0 1px 18px rgba(5,6,8,.85), 0 0 36px rgba(5,6,8,.55);
   line-height:2.2;
   opacity:0;transform:translateY(8px);
   animation:hero-fade 1.4s cubic-bezier(.16,1,.3,1) 1.7s forwards;
@@ -146,22 +150,6 @@ a,button{cursor:pointer;}
   to{opacity:1;transform:translateY(0);}
 }
 
-/* corner mono meta */
-.hero-meta{
-  position:fixed;z-index:11;
-  font-family:'IBM Plex Mono','SF Mono',monospace;
-  font-size:.62rem;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:rgba(242,242,240,.36);
-  opacity:0;
-  animation:hero-fade 1.4s cubic-bezier(.16,1,.3,1) 2.5s forwards;
-  pointer-events:none;
-}
-.hero-meta-bl{bottom:24px;left:30px;}
-.hero-meta-br{bottom:24px;right:30px;}
-.hero-meta .acc{color:rgba(57,255,20,.7);}
-
 /* ── responsive ── */
 @media (max-width:900px){
   .hero{padding-top:80px;}
@@ -170,21 +158,51 @@ a,button{cursor:pointer;}
   .hero-cta{font-size:.66rem;letter-spacing:.26em;padding:1rem 2rem;}
 }
 @media (max-width:600px){
-  .hero-meta{font-size:.55rem;letter-spacing:.22em;}
-  .hero-meta-bl,.hero-meta-br{bottom:14px;}
-  .hero-meta-bl{left:16px;}
-  .hero-meta-br{right:16px;}
   .hero-tag{font-size:.6rem;letter-spacing:.2em;line-height:1.9;}
   .hero-cta{font-size:.62rem;letter-spacing:.22em;padding:.95rem 1.7rem;min-height:44px;display:inline-flex;align-items:center;}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .hero-word,.hero-dot,.hero-tag,.hero-cta,.hero-meta{
+  .hero-word,.hero-dot,.hero-tag,.hero-cta{
     opacity:1;transform:none;animation:none;
   }
 }
 
 /* nav glass treatment lives in nav-footer.css (single source of truth, locked doctrine) */
+
+/* ══════════════════════════════════════════════════════════
+   HERO VIDEO BACKGROUND — REVERSIBLE TRIAL (task #32)
+   To revert: delete this CSS block, the #hero-video <video>
+   element + #hero-video-veil + the inline gating <script>
+   below in the body, and the home-bg.mp4 file. Nothing else
+   in this page or anywhere else in the codebase depends on
+   the video — the original home-bg.avif poster takes over.
+   ══════════════════════════════════════════════════════════ */
+/* video sits inside .env-field, layered over .env-field-bg (the home-bg.avif
+   poster) and beneath .env-field-canvas (particle drift) — same z-layer the
+   image already occupies. grain (z:5) and hero (z:10) remain above everything. */
+#hero-video,
+#hero-video-veil{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;
+  display:none;       /* shown only when the perf-tier gate enables it */
+}
+#hero-video{
+  object-fit:cover;
+  background:#050608;
+  /* video plays at its native grade — no filter applied */
+}
+#hero-video-veil{
+  /* focused legibility pool — a soft centered atmosphere behind the type
+     keeps `form.`, tagline and CTA readable while the video stays bright
+     at the edges. very light corner vignette layered underneath. */
+  background:
+    radial-gradient(ellipse 46% 38% at 50% 50%, rgba(5,6,8,.55) 0%, rgba(5,6,8,.32) 55%, rgba(5,6,8,0) 85%),
+    radial-gradient(ellipse at 50% 50%, rgba(5,6,8,0) 55%, rgba(5,6,8,.22) 100%);
+}
+@media (prefers-reduced-motion: reduce){
+  #hero-video,#hero-video-veil{display:none !important;}
+}
 </style>
 </head>
 <body data-field-density="open">
@@ -192,9 +210,68 @@ a,button{cursor:pointer;}
 <!-- ── environmental field — one continuous world ── -->
 <div class="env-field" aria-hidden="true">
   <div class="env-field-bg"></div>
+
+  <!-- ── HERO VIDEO BACKGROUND — REVERSIBLE TRIAL (task #32) ──
+       Sits over the home-bg.avif poster (.env-field-bg) and beneath
+       the particle canvas. To revert: delete this <video>, the
+       #hero-video-veil div directly below, the inline gating <script>
+       near the bottom of <body>, the matching CSS block in <style>,
+       and the home-bg.mp4 file. The original homepage is restored. -->
+  <video id="hero-video"
+         muted loop playsinline preload="metadata" autoplay
+         disableremoteplayback x-webkit-airplay="deny"
+         poster="/home-bg.avif"
+         aria-hidden="true">
+    <source src="/home-bg.mp4" type="video/mp4">
+  </video>
+  <div id="hero-video-veil" aria-hidden="true"></div>
+
   <canvas class="env-field-canvas"></canvas>
   <div class="env-field-veil"></div>
 </div>
+
+<!-- hero-video performance-tier gate (task #32 — reversible trial).
+     Skips the video on reduced/minimal tiers and when prefers-reduced-motion
+     is set, leaving the static home-bg.avif poster in place exactly as today. -->
+<script>
+(function(){
+  var v = document.getElementById('hero-video');
+  var veil = document.getElementById('hero-video-veil');
+  if(!v || !veil) return;
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tier = window.FORM_TIER || document.documentElement.dataset.perf || 'full';
+  if(rm || tier !== 'full'){
+    v.removeAttribute('autoplay');
+    try { v.pause(); } catch(e){}
+    v.removeAttribute('src');
+    while(v.firstChild) v.removeChild(v.firstChild);
+    try { v.load(); } catch(e){}
+    v.style.display = 'none';
+    veil.style.display = 'none';
+    return;
+  }
+  v.style.display = 'block';
+  veil.style.display = 'block';
+  var p = v.play();
+  if(p && typeof p.catch === 'function'){
+    p.catch(function(){
+      v.style.display = 'none';
+      veil.style.display = 'none';
+    });
+  }
+  /* If a benchmark later downgrades the tier, hide the video and let the
+     static poster (.env-field-bg → home-bg.avif) take over cleanly. */
+  if(window.FORM_TIER_ONCHANGE){
+    window.FORM_TIER_ONCHANGE.push(function(next){
+      if(next !== 'full'){
+        try { v.pause(); } catch(e){}
+        v.style.display = 'none';
+        veil.style.display = 'none';
+      }
+    });
+  }
+})();
+</script>
 
 <!-- ── film grain ── -->
 <img src="/grain.svg" id="grain" alt="" aria-hidden="true">
@@ -221,14 +298,6 @@ a,button{cursor:pointer;}
     </a>
   </div>
 </main>
-
-<!-- ── corner meta ── -->
-<div class="hero-meta hero-meta-bl">
-  <span class="acc">[ 00 ]</span>&nbsp;&nbsp;form. // operational intelligence
-</div>
-<div class="hero-meta hero-meta-br">
-  v.0.1&nbsp;&nbsp;—&nbsp;&nbsp;may 2026
-</div>
 
 <script src="/field.js?v=2" defer></script>
 <script src="/rev.js?v=3" defer></script>
