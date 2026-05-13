@@ -823,7 +823,7 @@ html,body{overflow-x:hidden;}
         </div>
 
         <div class="form-note">
-          replies arrive at <span class="ac">hello@form.co</span> — answered within two business days.
+          replies arrive at <span class="ac">dontae@formstrategy.co</span> — answered within two business days.
         </div>
 
         <div class="form-actions">
@@ -858,7 +858,7 @@ html,body{overflow-x:hidden;}
             <path d="M3.5 6.5l8.5 7 8.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div>
-            <a href="mailto:hello@form.co">hello@form.co</a>
+            <a href="mailto:dontae@formstrategy.co">dontae@formstrategy.co</a>
             <span class="sub">general inquiries</span>
           </div>
         </div>
@@ -869,7 +869,7 @@ html,body{overflow-x:hidden;}
             <path d="M19 14v4a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V7a1.5 1.5 0 0 1 1.5-1.5H10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div>
-            <a href="mailto:strategy@form.co">strategy@form.co</a>
+            <a href="mailto:dontae@formstrategy.co">dontae@formstrategy.co</a>
             <span class="sub">strategy &amp; partnerships</span>
           </div>
         </div>
@@ -1030,7 +1030,7 @@ html,body{overflow-x:hidden;}
 
 <script src="/field.js?v=3" defer></script>
 <script src="/rev.js?v=3" defer></script>
-<script src="/nav-footer.js?v=28" defer></script>
+<script src="/nav-footer.js?v=29" defer></script>
 
 <script>
 (function(){
@@ -1090,14 +1090,14 @@ html,body{overflow-x:hidden;}
   if(topLink) topLink.classList.add('active');
 })();
 
-// form: hand the submission to the user's mail client targeting hello@form.co.
+// form: hand the submission to the user's mail client targeting dontae@formstrategy.co.
 // no backend is wired, so this opens a pre-composed message rather than
 // silently dropping responses. swap to a real handler (formspree / resend /
 // custom endpoint) when ready and the markup will not need to change.
 (function(){
   var form = document.querySelector('.form-card');
   if(!form) return;
-  var TO = 'hello@form.co';
+  var TO = 'dontae@formstrategy.co';
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var get = function(id){
@@ -1123,7 +1123,7 @@ html,body{overflow-x:hidden;}
       'how can we help?',
       (help     || '—'),
       '',
-      '— sent from form.co/contact'
+      '— sent from formstrategy.co/contact'
     ];
     var href = 'mailto:' + TO +
                '?subject=' + encodeURIComponent(subject) +
