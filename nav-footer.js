@@ -221,7 +221,7 @@
       var existing = document.getElementById('sitefooter');
       if(existing && existing.parentNode) existing.parentNode.removeChild(existing);
       document.body.classList.add('nf-no-footer');
-    } else if(!document.getElementById('sitefooter') && !document.body.classList.contains('nf-no-footer')){
+    } else if(!document.getElementById('sitefooter') && !document.body.classList.contains('nf-no-footer') && !document.body.classList.contains('nf-keep-page-footer')){
       var ftWrap = document.createElement('div');
       ftWrap.innerHTML = footerHTML;
       var footerEl = ftWrap.firstChild;
