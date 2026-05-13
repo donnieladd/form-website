@@ -16,7 +16,7 @@ body.nf-no-footer{overflow:hidden;}
   transition:opacity .42s cubic-bezier(.4,0,.2,1);
 }
 #nf-transition.in{opacity:1;pointer-events:auto;}
-body.nf-enter{animation:nf-fadein 1.4s cubic-bezier(.16,1,.3,1) both;}
+body.nf-enter{animation:nf-fadein 1.8s cubic-bezier(.16,1,.3,1) both;}
 @keyframes nf-fadein{from{opacity:.0001;}to{opacity:1;}}
 
 /* ══════════════════════════════════════════════════════════
@@ -31,7 +31,7 @@ body.nf-enter{animation:nf-fadein 1.4s cubic-bezier(.16,1,.3,1) both;}
   -webkit-backdrop-filter:blur(18px) saturate(1.15);
   border-bottom:1px solid rgba(255,255,255,.06);
   font-family:'IBM Plex Mono','SF Mono',monospace;
-  opacity:0;animation:tn-fade 1.2s cubic-bezier(.16,1,.3,1) 2.4s forwards;
+  opacity:0;animation:tn-fade 1.4s cubic-bezier(.16,1,.3,1) 3.0s forwards;
 }
 @keyframes tn-fade{to{opacity:1;}}
 
