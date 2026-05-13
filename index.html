@@ -179,16 +179,22 @@ a,button{cursor:pointer;}
    prefers-reduced-motion.
    ══════════════════════════════════════════════════════════ */
 #hero-video,
+#hero-video-b,
 #hero-video-veil{
   position:absolute;inset:0;width:100%;height:100%;
   pointer-events:none;
   display:none;       /* shown only when the perf-tier gate enables it */
 }
-#hero-video{
+#hero-video,
+#hero-video-b{
   object-fit:cover;
   background:#050608;
+  opacity:0;
+  transition:opacity .8s linear;
   /* video plays at its native grade — no filter applied */
 }
+#hero-video.is-active,
+#hero-video-b.is-active{opacity:1;}
 #hero-video-veil{
   /* focused legibility pool — a soft centered atmosphere behind the type
      keeps `form.`, tagline and CTA readable while the video stays bright
@@ -198,7 +204,7 @@ a,button{cursor:pointer;}
     radial-gradient(ellipse at 50% 50%, rgba(5,6,8,0) 55%, rgba(5,6,8,.22) 100%);
 }
 @media (prefers-reduced-motion: reduce){
-  #hero-video,#hero-video-veil{display:none !important;}
+  #hero-video,#hero-video-b,#hero-video-veil{display:none !important;}
 }
 </style>
 </head>
@@ -214,7 +220,15 @@ a,button{cursor:pointer;}
        of <body> skips the video on reduced/minimal tiers and when
        prefers-reduced-motion is set, leaving the poster in place. -->
   <video id="hero-video"
-         muted loop playsinline preload="metadata" autoplay
+         muted playsinline preload="auto" autoplay
+         disableremoteplayback x-webkit-airplay="deny"
+         poster="/home-bg.avif"
+         aria-hidden="true">
+    <source src="/home-bg.webm" type="video/webm">
+    <source src="/home-bg.mp4" type="video/mp4">
+  </video>
+  <video id="hero-video-b"
+         muted playsinline preload="auto"
          disableremoteplayback x-webkit-airplay="deny"
          poster="/home-bg.avif"
          aria-hidden="true">
@@ -232,37 +246,106 @@ a,button{cursor:pointer;}
      is set, leaving the static home-bg.avif poster in place. -->
 <script>
 (function(){
-  var v = document.getElementById('hero-video');
+  var a = document.getElementById('hero-video');
+  var b = document.getElementById('hero-video-b');
   var veil = document.getElementById('hero-video-veil');
-  if(!v || !veil) return;
+  if(!a || !b || !veil) return;
+
+  function teardown(el){
+    try { el.pause(); } catch(e){}
+    el.removeAttribute('autoplay');
+    el.removeAttribute('src');
+    while(el.firstChild) el.removeChild(el.firstChild);
+    try { el.load(); } catch(e){}
+    el.style.display = 'none';
+  }
+
   var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tier = window.FORM_TIER || document.documentElement.dataset.perf || 'full';
   if(rm || tier !== 'full'){
-    v.removeAttribute('autoplay');
-    try { v.pause(); } catch(e){}
-    v.removeAttribute('src');
-    while(v.firstChild) v.removeChild(v.firstChild);
-    try { v.load(); } catch(e){}
-    v.style.display = 'none';
+    teardown(a); teardown(b);
     veil.style.display = 'none';
     return;
   }
-  v.style.display = 'block';
+
+  a.style.display = 'block';
+  b.style.display = 'block';
   veil.style.display = 'block';
-  var p = v.play();
-  if(p && typeof p.catch === 'function'){
-    p.catch(function(){
-      v.style.display = 'none';
-      veil.style.display = 'none';
-    });
+
+  /* Crossfade window: start fading the next clip in this many seconds
+     before the current clip's natural end. 0.9s is long enough to fully
+     mask the loop seam, short enough that the type stays unaffected. */
+  var FADE = 0.9;
+  /* Re-arm guard so a single timeupdate burst doesn't trigger twice. */
+  var swapping = false;
+
+  function setActive(showEl, hideEl){
+    showEl.classList.add('is-active');
+    hideEl.classList.remove('is-active');
   }
-  /* If a benchmark later downgrades the tier, hide the video and let the
-     static poster (.env-field-bg → home-bg.avif) take over cleanly. */
+
+  function arm(active, idle){
+    function onTime(){
+      if(swapping) return;
+      var dur = active.duration;
+      if(!dur || isNaN(dur) || !isFinite(dur)) return;
+      if(active.currentTime < dur - FADE) return;
+      swapping = true;
+      try { idle.currentTime = 0; } catch(e){}
+      var pp = idle.play();
+      var doSwap = function(){
+        setActive(idle, active);
+        active.removeEventListener('timeupdate', onTime);
+        active.removeEventListener('ended', onEnded);
+        /* hand control to the now-active clip */
+        setTimeout(function(){
+          /* park the previous clip back at 0 once it's faded out so its
+             next turn starts clean. */
+          try { active.pause(); active.currentTime = 0; } catch(e){}
+          swapping = false;
+          arm(idle, active);
+        }, FADE * 1000 + 60);
+      };
+      if(pp && typeof pp.then === 'function'){
+        pp.then(doSwap).catch(doSwap);
+      } else {
+        doSwap();
+      }
+    }
+    function onEnded(){
+      /* Hard fallback if timeupdate didn't fire in time — keep playing
+         instead of leaving a black frame. */
+      try { active.currentTime = 0; active.play(); } catch(e){}
+    }
+    active.addEventListener('timeupdate', onTime);
+    active.addEventListener('ended', onEnded);
+  }
+
+  /* Prime B silently so its first frame is decoded and ready when we
+     need to fade it in. */
+  try { b.load(); } catch(e){}
+
+  setActive(a, b);
+  var pa = a.play();
+  function bail(){
+    teardown(a); teardown(b);
+    veil.style.display = 'none';
+  }
+  if(pa && typeof pa.catch === 'function'){
+    pa.then(function(){ arm(a, b); }).catch(bail);
+  } else {
+    arm(a, b);
+  }
+
+  /* If a benchmark later downgrades the tier, hide both videos and let
+     the static poster (.env-field-bg → home-bg.avif) take over cleanly. */
   if(window.FORM_TIER_ONCHANGE){
     window.FORM_TIER_ONCHANGE.push(function(next){
       if(next !== 'full'){
-        try { v.pause(); } catch(e){}
-        v.style.display = 'none';
+        try { a.pause(); } catch(e){}
+        try { b.pause(); } catch(e){}
+        a.style.display = 'none';
+        b.style.display = 'none';
         veil.style.display = 'none';
       }
     });
