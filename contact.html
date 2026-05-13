@@ -396,20 +396,20 @@ html,body{overflow-x:hidden;}
   position:relative;
   z-index:2;
   padding:1.5rem 0 0 0;
-  max-width:540px;
+  max-width:640px;
   margin-left:auto;
 }
-.form-card .meta{margin-bottom:2rem;}
-.field{margin-bottom:1.7rem;}
+.form-card .meta{margin-bottom:2.4rem;}
+.field{margin-bottom:2.4rem;}
 .field label{
   display:block;
   font-family:'IBM Plex Mono',monospace;
-  font-weight:400;
-  font-size:.6rem;
-  letter-spacing:.28em;
+  font-weight:500;
+  font-size:.78rem;
+  letter-spacing:.22em;
   text-transform:uppercase;
   color:var(--stone-2);
-  margin-bottom:.7rem;
+  margin-bottom:.95rem;
 }
 .field input,
 .field textarea{
@@ -420,20 +420,30 @@ html,body{overflow-x:hidden;}
   color:var(--stone);
   font-family:'Satoshi',sans-serif;
   font-weight:400;
-  font-size:.98rem;
+  font-size:1.18rem;
   line-height:1.5;
-  padding:.55rem 0 .85rem 0;
+  padding:.85rem 0 1.1rem 0;
   outline:none;
   transition:border-color .35s ease, color .35s ease;
   resize:none;
 }
-.field textarea{min-height:5.6rem;}
+.field textarea{min-height:8.5rem;font-size:1.12rem;}
 .field input::placeholder,
-.field textarea::placeholder{color:var(--stone-4);font-weight:400;}
+.field textarea::placeholder{color:var(--stone-4);font-weight:400;font-size:1rem;}
 .field input:focus,
 .field textarea:focus{border-bottom-color:var(--ac);}
 .field input:focus::placeholder,
 .field textarea:focus::placeholder{color:var(--stone-3);}
+
+.form-note{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--stone-4);
+  margin:-.6rem 0 2.4rem 0;
+}
+.form-note .ac{color:var(--ac);}
 
 .form-actions{margin-top:2.2rem;}
 .btn-send{
@@ -441,24 +451,23 @@ html,body{overflow-x:hidden;}
   align-items:center;
   justify-content:center;
   gap:.9rem;
-  font-family:'IBM Plex Mono',monospace;
-  font-weight:400;
-  font-size:.72rem;
-  letter-spacing:.28em;
-  text-transform:uppercase;
+  font-family:'Satoshi',sans-serif;
+  font-weight:500;
+  font-size:.98rem;
+  letter-spacing:.04em;
+  text-transform:none;
   color:var(--ac);
   background:transparent;
   border:1px solid var(--ac);
-  padding:1rem 2.4rem;
+  padding:1.1rem 2.6rem;
   cursor:pointer;
-  transition:background .3s ease, color .3s ease, letter-spacing .3s ease, box-shadow .3s ease;
+  transition:background .3s ease, color .3s ease, box-shadow .3s ease;
 }
 .btn-send:hover{
   background:rgba(var(--ac-rgb),.08);
-  letter-spacing:.32em;
   box-shadow:0 0 28px rgba(var(--ac-rgb),.18);
 }
-.btn-send svg{width:14px;height:14px;}
+.btn-send svg{width:18px;height:18px;}
 
 /* ════════════════════════════════════════════════════════
    REACH — emails / middle copy / italic editorial
@@ -790,27 +799,31 @@ html,body{overflow-x:hidden;}
 
       <!-- form -->
       <form class="form-card" data-reveal data-d="2" autocomplete="on" novalidate>
-        <div class="meta">send us a message</div>
+        <div class="meta">start the conversation</div>
 
         <div class="field">
-          <label for="f-name">name</label>
-          <input id="f-name" name="name" type="text" placeholder="enter your full name" required>
+          <label for="f-name">your name</label>
+          <input id="f-name" name="name" type="text" placeholder="full name" required>
         </div>
         <div class="field">
           <label for="f-email">email</label>
-          <input id="f-email" name="email" type="email" placeholder="enter your work email" required>
+          <input id="f-email" name="email" type="email" placeholder="where we should reply" required>
         </div>
         <div class="field">
-          <label for="f-company">company</label>
-          <input id="f-company" name="company" type="text" placeholder="enter your company name">
+          <label for="f-company">company or organization</label>
+          <input id="f-company" name="company" type="text" placeholder="optional">
         </div>
         <div class="field">
           <label for="f-building">what are you building?</label>
-          <input id="f-building" name="building" type="text" placeholder="briefly describe what you're working on">
+          <input id="f-building" name="building" type="text" placeholder="a sentence is plenty">
         </div>
         <div class="field">
           <label for="f-help">how can we help?</label>
-          <textarea id="f-help" name="help" rows="3" placeholder="tell us more about your goals, challenges, and what success looks like."></textarea>
+          <textarea id="f-help" name="help" rows="4" placeholder="tell us about your goals, the moment you're in, and what a great outcome looks like." required></textarea>
+        </div>
+
+        <div class="form-note">
+          replies arrive at <span class="ac">hello@form.co</span> — answered within two business days.
         </div>
 
         <div class="form-actions">
@@ -1077,19 +1090,58 @@ html,body{overflow-x:hidden;}
   if(topLink) topLink.classList.add('active');
 })();
 
-// form: prevent default for now (no backend wired); show inline confirmation
+// form: hand the submission to the user's mail client targeting hello@form.co.
+// no backend is wired, so this opens a pre-composed message rather than
+// silently dropping responses. swap to a real handler (formspree / resend /
+// custom endpoint) when ready and the markup will not need to change.
 (function(){
   var form = document.querySelector('.form-card');
   if(!form) return;
+  var TO = 'hello@form.co';
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    var get = function(id){
+      var el = form.querySelector('#' + id);
+      return el ? (el.value || '').trim() : '';
+    };
+    var name     = get('f-name');
+    var email    = get('f-email');
+    var company  = get('f-company');
+    var building = get('f-building');
+    var help     = get('f-help');
+
+    var subject = 'form. — ' + (name || 'new inquiry') +
+                  (company ? ' / ' + company : '');
+    var bodyLines = [
+      'name: '     + (name     || '—'),
+      'email: '    + (email    || '—'),
+      'company: '  + (company  || '—'),
+      '',
+      'what are you building?',
+      (building || '—'),
+      '',
+      'how can we help?',
+      (help     || '—'),
+      '',
+      '— sent from form.co/contact'
+    ];
+    var href = 'mailto:' + TO +
+               '?subject=' + encodeURIComponent(subject) +
+               '&body='    + encodeURIComponent(bodyLines.join('\n'));
+
+    window.location.href = href;
+
     var btn = form.querySelector('.btn-send');
-    if(!btn) return;
-    btn.style.transition = 'background .3s, color .3s, letter-spacing .3s';
-    btn.style.background = 'var(--ac)';
-    btn.style.color = 'var(--onyx)';
-    btn.innerHTML = 'message received';
-    btn.disabled = true;
+    if(btn){
+      btn.style.transition = 'background .3s, color .3s';
+      btn.style.background = 'var(--ac)';
+      btn.style.color = 'var(--onyx)';
+      btn.innerHTML = 'opening your mail client…';
+      btn.disabled = true;
+      setTimeout(function(){
+        btn.innerHTML = 'message ready to send';
+      }, 1200);
+    }
   });
 })();
 </script>
