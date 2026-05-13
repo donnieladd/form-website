@@ -54,7 +54,7 @@
             '<div class="dd-list">' +
               '<a href="/ecosystem.html#products" class="dd-parent">products</a>' +
               '<a href="/ecosystem.html#continuum">continuum</a>' +
-              '<a href="/ecosystem.html#messages">messages by form.</a>' +
+              '<a href="/messages.html">messages by form.</a>' +
               '<a href="/ecosystem.html#formation">formation</a>' +
             '</div>' +
             '<div class="dd-list">' +
@@ -120,7 +120,7 @@
           '<h4>products</h4>' +
           '<span class="ft-h-rule" aria-hidden="true"></span>' +
           '<a href="/ecosystem.html#continuum">continuum</a>' +
-          '<a href="/ecosystem.html#messages">messages by form.</a>' +
+          '<a href="/messages.html">messages by form.</a>' +
           '<a href="/ecosystem.html#formation">formation</a>' +
         '</div>' +
 
@@ -169,7 +169,7 @@
           '<summary>products<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
           '<div class="ft-acc-body">' +
             '<a href="/ecosystem.html#continuum">continuum</a>' +
-            '<a href="/ecosystem.html#messages">messages by form.</a>' +
+            '<a href="/messages.html">messages by form.</a>' +
             '<a href="/ecosystem.html#formation">formation</a>' +
           '</div>' +
         '</details>' +

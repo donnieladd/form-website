@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Messages. by form. — Sermon series content, production, and creative strategy for pastors who take the message seriously.">
+<title>Messages. by form. — Your Message Needs Form.</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --onyx:    #0A0A0A;
+  --onyx2:   #111113;
+  --stone:   #F2F2F0;
+  --amber:   #FF8A00;
+  --steel:   #1E232B;
+  --serif:   Georgia, 'Times New Roman', serif;
+  --sans:    'Satoshi', -apple-system, sans-serif;
+  --mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  --text-primary:   #F2F2F0;
+  --text-body:      rgba(242,242,240,.80);
+  --text-muted:     rgba(242,242,240,.50);
+  --text-ghost:     rgba(242,242,240,.28);
+  --amber-dim:      rgba(255,138,0,.60);
+  --amber-ghost:    rgba(255,138,0,.08);
+  --border:         rgba(242,242,240,.08);
+  --border-hover:   rgba(255,138,0,.40);
+
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-std: cubic-bezier(.4,0,.2,1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--onyx);
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; }
+
+/* ═══════════════════════════════════════════
+   ANIMATED BACKGROUND
+═══════════════════════════════════════════ */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--onyx);
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+.bg-orb-1 {
+  width: 55vw; height: 55vw;
+  background: radial-gradient(ellipse, rgba(255,138,0,.05) 0%, transparent 65%);
+  bottom: -10%; right: -5%;
+  animation: orb-breathe 20s ease-in-out infinite;
+}
+.bg-orb-2 {
+  width: 45vw; height: 45vw;
+  background: radial-gradient(ellipse, rgba(30,35,43,.85) 0%, transparent 70%);
+  top: -5%; left: -5%;
+  animation: orb-breathe 26s ease-in-out infinite reverse;
+}
+.bg-orb-3 {
+  width: 30vw; height: 30vw;
+  background: radial-gradient(ellipse, rgba(255,138,0,.028) 0%, transparent 65%);
+  top: 35%; left: 40%;
+  animation: orb-breathe 32s ease-in-out infinite;
+  animation-delay: -8s;
+}
+@keyframes orb-breathe {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%     { opacity: .75; transform: scale(1.05); }
+}
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: .028;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT WRAPPER
+═══════════════════════════════════════════ */
+.page-content { position: relative; z-index: 2; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 56px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(242,242,240,.05);
+  transition: background .4s var(--ease-std), border-color .4s;
+}
+#nav.scrolled {
+  background: rgba(10,10,10,.92);
+  border-bottom-color: rgba(242,242,240,.08);
+}
+/* Nav Logo — inline SVG, no background rect */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-logo svg { height: 32px; width: auto; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  transition: color .25s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--amber); }
+
+.nav-cta {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--amber);
+  border: 1px solid rgba(255,138,0,.45);
+  padding: .55rem 1.5rem;
+  white-space: nowrap;
+  transition: background .3s, border-color .3s, color .3s;
+  flex-shrink: 0;
+}
+.nav-cta:hover {
+  background: rgba(255,138,0,.1);
+  border-color: var(--amber);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════
+   SHARED SECTION STYLES
+═══════════════════════════════════════════ */
+.section {
+  padding: 96px 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.section.alt { background: rgba(17,17,19,.6); }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-family: var(--sans);
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+.section-title em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 700;
+}
+.section-intro {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-body);
+  max-width: 600px;
+  margin-top: 20px;
+}
+.amber-rule {
+  width: 40px; height: 1px;
+  background: var(--amber);
+  opacity: .5; margin: 32px 0;
+}
+
+
+/* Title line spacing for two-part headings */
+.title-space {
+  display: block;
+  margin-top: .4em;
+}
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+.reveal-delay-6 { transition-delay: .6s; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 80px 80px;
+  padding-top: 72px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 0;
+  flex-shrink: 0;
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; box-shadow:0 0 0 rgba(255,138,0,0); }
+  50%     { opacity:.6; box-shadow:0 0 10px rgba(255,138,0,.5); }
+}
+
+.hero-wordmark {
+  font-family: var(--serif);
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -.025em;
+  line-height: .9;
+  color: var(--text-primary);
+  display: block;
+}
+.hero-period { color: var(--amber); font-style: normal; }
+.hero-byform {
+  font-family: var(--mono);
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 18px;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.hero-tagline {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.hero-tagline strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
+}
+.btn-primary {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--onyx);
+  background: var(--amber);
+  padding: 1rem 2.4rem;
+  border: 1px solid var(--amber);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .3s, color .3s, border-color .3s, letter-spacing .3s var(--ease-out), transform .2s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: #FF9D2E;
+  letter-spacing: .08em;
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 1rem 2rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .3s, border-color .3s;
+  display: inline-block;
+}
+.btn-secondary:hover { color: var(--text-primary); border-color: rgba(242,242,240,.3); }
+
+/* ═══════════════════════════════════════════
+   THE GAP
+═══════════════════════════════════════════ */
+.gap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 0;
+}
+.gap-card {
+  background: var(--onyx2);
+  border: 1px solid var(--border);
+  padding: 52px 48px;
+  transition: border-color .35s var(--ease-std);
+}
+.gap-card:hover { border-color: rgba(255,138,0,.25); }
+.gap-card-label {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 28px;
+}
+.gap-big {
+  font-family: var(--sans);
+  font-size: clamp(52px,6vw,72px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: .88;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+.gap-big.dim { color: rgba(242,242,240,.12); }
+.gap-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.pull-quote {
+  background: var(--amber-ghost);
+  border-left: 2px solid var(--amber);
+  padding: 36px 48px;
+  margin-top: 6px;
+}
+.pq-text {
+  font-family: var(--serif);
+  font-size: clamp(20px,2.6vw,28px);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: -.01em;
+  line-height: 1.45;
+}
+.pq-attr {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+  margin-top: 16px;
+}
+
+/* ═══════════════════════════════════════════
+   WHAT CHANGES
+═══════════════════════════════════════════ */
+.position-statement {
+  font-family: var(--sans);
+  font-size: clamp(22px,2.8vw,32px);
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: 1.55;
+  color: var(--text-primary);
+  max-width: 860px;
+  margin-bottom: 56px;
+}
+.position-statement em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 700;
+}
+.position-statement strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  margin-top: 56px;
+}
+.pillar {
+  background: var(--onyx2);
+  border: 1px solid var(--border);
+  padding: 44px 40px;
+  transition: border-color .35s var(--ease-std), transform .35s var(--ease-std);
+}
+.pillar:hover {
+  border-color: rgba(255,138,0,.35);
+  transform: translateY(-4px);
+}
+.pillar-icon {
+  width: 10px; height: 10px;
+  background: var(--amber);
+  margin-bottom: 24px;
+}
+.pillar-title {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  letter-spacing: -.01em;
+}
+.pillar-body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-body);
+}
+
+/* ═══════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════ */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-top: 0;
+}
+.process-step {
+  padding: 36px 28px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background .3s;
+}
+.process-step:last-child { border-right: none; }
+.process-step:hover { background: rgba(255,138,0,.03); }
+.process-step::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--ease-out);
+}
+.process-step:hover::before { transform: scaleX(1); }
+.ps-num {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--amber-dim);
+  margin-bottom: 16px;
+  display: block;
+}
+.ps-title {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.ps-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.process-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+  gap: 12px;
+  margin-top: 6px;
+}
+.process-arrow::before, .process-arrow::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border);
+}
+
+/* ═══════════════════════════════════════════
+   DELIVERABLES
+═══════════════════════════════════════════ */
+.del-list { display: flex; flex-direction: column; }
+.del {
+  display: grid;
+  grid-template-columns: 72px 1fr 280px;
+  gap: 0 40px;
+  align-items: start;
+  padding: 52px 0;
+  border-bottom: 1px solid rgba(242,242,240,.04);
+  position: relative;
+  transition: background .3s;
+}
+.del:first-child { padding-top: 0; }
+.del:last-child { border-bottom: none; }
+.del::before {
+  content: '';
+  position: absolute;
+  left: -80px;
+  top: 52px;
+  width: 2px;
+  height: 0;
+  background: var(--amber);
+  transition: height .5s var(--ease-out);
+}
+.del:first-child::before { top: 0; }
+.del:hover::before { height: calc(100% - 52px); }
+.del:first-child:hover::before { height: 100%; }
+
+.del-num {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--amber-dim);
+  padding-top: 4px;
+}
+.del-title {
+  font-family: var(--sans);
+  font-size: clamp(20px,2.4vw,26px);
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+.del-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-body);
+  max-width: 560px;
+}
+.del-items-panel {
+  background: var(--onyx2);
+  border: 1px solid var(--border);
+  padding: 26px 28px;
+  transition: border-color .3s;
+}
+.del:hover .del-items-panel { border-color: rgba(255,138,0,.2); }
+.dip-label {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 14px;
+}
+.dip-item {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 2.1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.dip-item::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 4px;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  opacity: .65;
+}
+
+/* ═══════════════════════════════════════════
+   THE STANDARD
+═══════════════════════════════════════════ */
+.standard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.std-card {
+  background: var(--onyx2);
+  border: 1px solid var(--border);
+  padding: 44px 40px;
+  transition: border-color .35s, transform .35s var(--ease-std);
+}
+.std-card:hover { transform: translateY(-4px); }
+.std-card.active {
+  border-color: rgba(255,138,0,.35);
+  background: var(--amber-ghost);
+}
+.std-level {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.std-level.l1 { color: rgba(242,242,240,.2); }
+.std-level.l2 { color: rgba(242,242,240,.35); }
+.std-level.l3 { color: var(--amber-dim); }
+.std-title {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -.01em;
+}
+.std-body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.std-examples {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  line-height: 2;
+}
+.std-examples.active { color: var(--amber-dim); }
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+.price-card {
+  background: var(--onyx2);
+  border: 1px solid var(--border);
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color .35s, transform .35s var(--ease-std);
+}
+.price-card:hover { transform: translateY(-4px); border-color: rgba(255,138,0,.3); }
+.price-card.featured { border-color: rgba(255,138,0,.4); }
+.price-card.featured:hover { border-color: rgba(255,138,0,.7); }
+.price-badge {
+  position: absolute;
+  top: 18px; right: 18px;
+  font-family: var(--mono);
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(255,138,0,.35);
+  padding: 4px 10px;
+}
+.price-label {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 16px;
+}
+.price-name {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.price-name em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 700;
+}
+.price-amount {
+  font-family: var(--sans);
+  font-size: clamp(44px,5.5vw,60px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--text-primary);
+  margin: 28px 0 6px;
+}
+.price-per {
+  font-family: var(--mono);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 36px;
+}
+.price-features {
+  flex: 1;
+  border-top: 1px solid var(--border);
+  padding-top: 26px;
+}
+.price-feat-label {
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  margin-bottom: 14px;
+}
+.price-feat {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 2.1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.price-feat::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 4px;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  opacity: .55;
+}
+.price-cta {
+  margin-top: 28px;
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--amber);
+  border: 1px solid rgba(255,138,0,.4);
+  padding: 14px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background .3s, border-color .3s, color .3s, letter-spacing .3s var(--ease-out);
+  display: block;
+}
+.price-cta:hover {
+  background: rgba(255,138,0,.1);
+  border-color: var(--amber);
+  color: #fff;
+  letter-spacing: .08em;
+}
+
+/* ═══════════════════════════════════════════
+   FOUNDING OFFER
+═══════════════════════════════════════════ */
+.founding-block {
+  background: var(--amber-ghost);
+  border: 1px solid rgba(255,138,0,.2);
+  padding: 72px 72px;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 64px;
+  align-items: center;
+  transition: border-color .3s;
+}
+.founding-block:hover { border-color: rgba(255,138,0,.35); }
+.founding-headline {
+  font-family: var(--sans);
+  font-size: clamp(28px,3.5vw,40px);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.founding-headline em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 700;
+}
+.founding-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--text-body);
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+.founding-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.founding-stat {
+  border-top: 1px solid rgba(255,138,0,.2);
+  padding-top: 16px;
+}
+.founding-stat-num {
+  font-family: var(--sans);
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.founding-stat-label {
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+}
+
+/* ═══════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════ */
+#final-cta {
+  padding: 120px 80px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.final-cta-headline {
+  font-family: var(--serif);
+  font-size: clamp(40px,6vw,72px);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -.025em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.05;
+}
+.final-cta-headline span { color: var(--amber); }
+.final-cta-sub {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text-body);
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+.final-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+#footer {
+  padding: 48px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-wordmark {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: -.02em;
+}
+.footer-wordmark span { color: var(--amber); font-style: normal; }
+.footer-attr {
+  font-family: var(--mono);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--amber-dim);
+}
+.footer-meta {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+  line-height: 2;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════════ */
+
+/* Tablet — 900px */
+@media (max-width: 900px) {
+  #nav { padding: 0 32px; }
+  .nav-links { display: none; }
+  .section { padding: 72px 40px; }
+  #hero { padding: 72px 40px 60px; }
+  #footer { padding: 40px 40px; }
+  #final-cta { padding: 80px 40px; }
+  .founding-block { padding: 52px 48px; gap: 40px; }
+
+  .gap-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 6px; }
+  .standard-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr 1fr; }
+
+  .del { grid-template-columns: 56px 1fr; gap: 0 24px; }
+  .del .del-items-panel { grid-column: 2; margin-top: 20px; }
+
+  .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
+  .hero-actions { justify-content: flex-start; }
+}
+
+/* Mobile — 640px */
+@media (max-width: 640px) {
+  :root { font-size: 15px; }
+  #nav { padding: 0 20px; height: 64px; }
+  #nav .nav-cta {
+    font-size: .72rem;
+    padding: .45rem 1rem;
+    letter-spacing: .04em;
+  }
+
+  .section { padding: 56px 20px; }
+  #hero { padding: 64px 20px 48px; min-height: auto; padding-top: 96px; }
+  #footer { padding: 36px 20px; flex-direction: column; gap: 24px; align-items: flex-start; }
+  #final-cta { padding: 64px 20px; }
+
+  .hero-wordmark { font-size: clamp(56px, 14vw, 80px); }
+  .hero-byform { font-size: .8rem; }
+  .hero-tagline { font-size: 17px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-secondary { text-align: center; width: 100%; padding: 1rem 1.5rem; }
+
+  .section-title { font-size: clamp(28px, 7.5vw, 40px); }
+  .section-intro { font-size: 16px; }
+  .position-statement { font-size: clamp(18px, 4.5vw, 24px); }
+
+  .gap-grid { grid-template-columns: 1fr; }
+  .gap-card { padding: 36px 28px; }
+  .gap-big { font-size: clamp(40px,10vw,56px); }
+  .pull-quote { padding: 28px 28px; }
+  .pq-text { font-size: 18px; }
+
+  .pillars { grid-template-columns: 1fr; gap: 6px; }
+  .pillar { padding: 32px 28px; }
+
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-step { padding: 28px 20px; }
+
+  .del { grid-template-columns: 1fr; padding: 40px 0; }
+  .del::before { display: none; }
+  .del-num { margin-bottom: 12px; }
+  .del-desc { max-width: 100%; }
+  .del-items-panel { margin-top: 20px; }
+
+  .standard-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card { padding: 36px 28px; }
+  .price-card.featured { order: -1; }
+  .price-amount { font-size: clamp(40px,10vw,52px); }
+
+  .founding-block {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    gap: 40px;
+  }
+  .founding-stats { flex-direction: row; flex-wrap: wrap; gap: 0; }
+  .founding-stat { flex: 1; min-width: 100px; padding-right: 16px; }
+  .founding-headline { font-size: clamp(24px,6vw,32px); }
+  .founding-body { font-size: 16px; }
+  .founding-actions { flex-direction: column; }
+  .founding-actions .btn-primary,
+  .founding-actions .btn-secondary { width: 100%; text-align: center; }
+
+  .final-cta-headline { font-size: clamp(32px,8vw,48px); }
+  .final-cta-sub { font-size: 16px; }
+  .final-cta-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .final-cta-actions .btn-primary,
+  .final-cta-actions .btn-secondary { width: 100%; text-align: center; }
+
+  .footer-meta { text-align: left; }
+}
+
+/* Very small — 380px */
+@media (max-width: 380px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .founding-stats { flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ BACKGROUND ═══ -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+</div>
+<svg class="bg-grain" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <rect width="100%" height="100%" filter="url(#gf)"/>
+</svg>
+
+<!-- ═══ PAGE CONTENT ═══ -->
+<div class="page-content">
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="Messages. by form. home">
+    <!-- Compact logo — no background rect for nav transparency -->
+    <svg viewBox="0 0 280 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <style>
+          .nl-wm{font-family:Georgia,'Times New Roman',serif;font-size:36px;font-weight:700;font-style:italic;letter-spacing:-0.025em;fill:#F2F2F0}
+          .nl-pr{fill:#FF8A00;font-style:normal}
+          .nl-at{font-family:'IBM Plex Mono','Courier New',monospace;font-size:8px;font-weight:400;letter-spacing:0.1em;fill:#FF8A00}
+        
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+═══════════════════════════════════════════ */
+
+/* Tablet — 900px */
+@media (max-width: 900px) {
+  #nav { padding: 0 32px; }
+  .nav-links { display: none; }
+  .section { padding: 72px 40px; }
+  #hero { padding: 72px 40px 60px; }
+  #footer { padding: 40px 40px; }
+  #final-cta { padding: 80px 40px; }
+  .founding-block { padding: 52px 48px; gap: 40px; }
+
+  .gap-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 6px; }
+  .standard-grid { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr 1fr; }
+
+  .del { grid-template-columns: 56px 1fr; gap: 0 24px; }
+  .del .del-items-panel { grid-column: 2; margin-top: 20px; }
+
+  .hero-bottom { grid-template-columns: 1fr; gap: 32px; }
+  .hero-actions { justify-content: flex-start; }
+}
+
+/* Mobile — 640px */
+@media (max-width: 640px) {
+  :root { font-size: 15px; }
+  #nav { padding: 0 20px; height: 64px; }
+  #nav .nav-cta {
+    font-size: .72rem;
+    padding: .45rem 1rem;
+    letter-spacing: .04em;
+  }
+
+  .section { padding: 56px 20px; }
+  #hero { padding: 64px 20px 48px; min-height: auto; padding-top: 96px; }
+  #footer { padding: 36px 20px; flex-direction: column; gap: 24px; align-items: flex-start; }
+  #final-cta { padding: 64px 20px; }
+
+  .hero-wordmark { font-size: clamp(56px, 14vw, 80px); }
+  .hero-byform { font-size: .8rem; }
+  .hero-tagline { font-size: 17px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-secondary { text-align: center; width: 100%; padding: 1rem 1.5rem; }
+
+  .section-title { font-size: clamp(28px, 7.5vw, 40px); }
+  .section-intro { font-size: 16px; }
+  .position-statement { font-size: clamp(18px, 4.5vw, 24px); }
+
+  .gap-grid { grid-template-columns: 1fr; }
+  .gap-card { padding: 36px 28px; }
+  .gap-big { font-size: clamp(40px,10vw,56px); }
+  .pull-quote { padding: 28px 28px; }
+  .pq-text { font-size: 18px; }
+
+  .pillars { grid-template-columns: 1fr; gap: 6px; }
+  .pillar { padding: 32px 28px; }
+
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-step { padding: 28px 20px; }
+
+  .del { grid-template-columns: 1fr; padding: 40px 0; }
+  .del::before { display: none; }
+  .del-num { margin-bottom: 12px; }
+  .del-desc { max-width: 100%; }
+  .del-items-panel { margin-top: 20px; }
+
+  .standard-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-card { padding: 36px 28px; }
+  .price-card.featured { order: -1; }
+  .price-amount { font-size: clamp(40px,10vw,52px); }
+
+  .founding-block {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    gap: 40px;
+  }
+  .founding-stats { flex-direction: row; flex-wrap: wrap; gap: 0; }
+  .founding-stat { flex: 1; min-width: 100px; padding-right: 16px; }
+  .founding-headline { font-size: clamp(24px,6vw,32px); }
+  .founding-body { font-size: 16px; }
+  .founding-actions { flex-direction: column; }
+  .founding-actions .btn-primary,
+  .founding-actions .btn-secondary { width: 100%; text-align: center; }
+
+  .final-cta-headline { font-size: clamp(32px,8vw,48px); }
+  .final-cta-sub { font-size: 16px; }
+  .final-cta-actions { flex-direction: column; align-items: stretch; gap: 10px; }
+  .final-cta-actions .btn-primary,
+  .final-cta-actions .btn-secondary { width: 100%; text-align: center; }
+
+  .footer-meta { text-align: left; }
+}
+
+/* Very small — 380px */
+@media (max-width: 380px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .founding-stats { flex-direction: column; }
+}
+
+</style>
+      </defs>
+      <text x="2" y="37" class="nl-wm">messages<tspan class="nl-pr">.</tspan></text>
+      <text x="3" y="51" class="nl-at">by form.</text>
+    </svg>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#deliverables">What You Receive</a></li>
+    <li><a href="#standard">The Standard</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="nav-cta">Start the Conversation</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-eyebrow reveal">Sermon Series Content · Production · Strategy</div>
+
+  <div class="reveal reveal-delay-1">
+    <span class="hero-wordmark">Messages<span class="hero-period">.</span></span>
+    <div class="hero-byform">by form.</div>
+  </div>
+
+  <div class="hero-bottom reveal reveal-delay-2">
+    <p class="hero-tagline">
+      You have preached messages that deserved more.<br>
+      <strong>The world around them should have matched what you were carrying.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="btn-primary">Start the Conversation</a>
+      <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 01 THE GAP ═══ -->
+<section id="the-gap" class="section" aria-labelledby="gap-heading">
+  <div class="section-label reveal">01 · The Gap</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="gap-heading" class="section-title">You've felt it.<br><em>Every pastor has.</em></h2>
+    <p class="section-intro">Hours in scripture. Hours in prayer. A revelation ready to land. And then the week ends — and the thumbnails, the slides, the social posts — none of it carries what you were carrying. The message was there. The production wasn't.</p>
+  </div>
+
+  <div class="amber-rule reveal reveal-delay-2"></div>
+
+  <div class="gap-grid">
+    <div class="gap-card reveal reveal-delay-2">
+      <div class="gap-card-label">Where Most Ministries Are</div>
+      <div class="gap-big dim">Level 1</div>
+      <p class="gap-body">Canva templates. Stock photography. Comfortable type at safe sizes. Content that blends into the feed and disappears. It communicates that your church exists. It doesn't communicate that your message is worth stopping for.</p>
+    </div>
+    <div class="gap-card reveal reveal-delay-3">
+      <div class="gap-card-label">Where Your Message Deserves to Be</div>
+      <div class="gap-big">Level 3</div>
+      <p class="gap-body">Cultural creative intelligence applied to ministry. Work that doesn't look like church graphics — it looks like art. Cinematic environments built around the message. Typography at scale. Production that honors what you said from the stage. This is the standard messages. by form. delivers.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote reveal reveal-delay-4">
+    <p class="pq-text">"The message already carries spiritual weight. The presentation should carry emotional weight too."</p>
+    <div class="pq-attr">The conviction behind messages. by form.</div>
+  </div>
+</section>
+
+<!-- ═══ 02 WHAT CHANGES ═══ -->
+<section id="what-changes" class="section alt" aria-labelledby="changes-heading">
+  <div class="section-label reveal">02 · What Changes</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="changes-heading" class="section-title">Not a Design Service.<span class="title-space"><em>A Creative Partnership.</em></span></h2>
+  </div>
+
+  <p class="position-statement reveal reveal-delay-2">
+    When you partner with messages. by form., we enter the development room with you — before the first asset is made. We sit with the text together. We build the world around what you're preaching. <em>From scripture to screen.</em> Every week. <strong>Without you managing it.</strong>
+  </p>
+
+  <div class="pillars">
+    <div class="pillar reveal reveal-delay-2">
+      <div class="pillar-icon"></div>
+      <div class="pillar-title">Creative Partnership</div>
+      <p class="pillar-body">You are not handing off a brief to a vendor. You are entering a creative partnership with people who understand the weight of the message — and build to match it.</p>
+    </div>
+    <div class="pillar reveal reveal-delay-3">
+      <div class="pillar-icon"></div>
+      <div class="pillar-title">Ministry Infrastructure</div>
+      <p class="pillar-body">One retainer. No freelancer management. No scope conversations. No production gaps. A complete creative operation running consistently behind your ministry every single week.</p>
+    </div>
+    <div class="pillar reveal reveal-delay-4">
+      <div class="pillar-icon"></div>
+      <div class="pillar-title">World-Building</div>
+      <p class="pillar-body">Every series gets a world. Not a template. Not a package. A complete visual identity — key art, motion, typography, color — built from the scripture up and coherent all the way through.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 HOW IT WORKS ═══ -->
+<section id="how-it-works" class="section" aria-labelledby="process-heading">
+  <div class="section-label reveal">03 · How It Works</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="process-heading" class="section-title">We Start Where<br>the Message <em>Starts.</em></h2>
+    <p class="section-intro">Before a single asset is built, we build the foundation together. This is what separates messages. from every other content service in the faith-based space.</p>
+  </div>
+
+  <div class="amber-rule reveal reveal-delay-2"></div>
+
+  <div class="process-steps reveal reveal-delay-2">
+    <div class="process-step">
+      <span class="ps-num">Step 01</span>
+      <div class="ps-title">Discovery Session</div>
+      <p class="ps-body">We sit with you, understand your preaching calendar, your upcoming series, your long-term vision, and how you communicate. This is the foundation everything is built on.</p>
+    </div>
+    <div class="process-step">
+      <span class="ps-num">Step 02</span>
+      <div class="ps-title">Scripture Analysis</div>
+      <p class="ps-body">We go through the text together. We identify the emotional and theological core, find the angle that makes this series distinct, and establish the spiritual weight the production needs to honor.</p>
+    </div>
+    <div class="process-step">
+      <span class="ps-num">Step 03</span>
+      <div class="ps-title">Series Narrative Arc</div>
+      <p class="ps-body">Title options, week-by-week thematic structure, and the series as a coherent story — not just a collection of messages. The arc that holds the whole thing together.</p>
+    </div>
+    <div class="process-step">
+      <span class="ps-num">Step 04</span>
+      <div class="ps-title">Illustration Ideation</div>
+      <p class="ps-body">Story frameworks, visual metaphors, teaching illustrations, and demonstration ideas that bring abstract concepts to life from the stage. Developed together, before production begins.</p>
+    </div>
+    <div class="process-step">
+      <span class="ps-num">Step 05</span>
+      <div class="ps-title">Mood Board</div>
+      <p class="ps-body">We build the visual world before a single deliverable is made. Color, atmosphere, reference, tone. The mood board is locked with you before anything moves forward.</p>
+    </div>
+    <div class="process-step">
+      <span class="ps-num">Step 06</span>
+      <div class="ps-title">Creative Brief</div>
+      <p class="ps-body">A locked document capturing every direction agreed upon. This drives all production downstream. Nothing is built without it. Everything is coherent because it comes from the same source.</p>
+    </div>
+  </div>
+
+  <div class="process-arrow reveal reveal-delay-3">Then Production Begins</div>
+</section>
+
+<!-- ═══ 04 DELIVERABLES ═══ -->
+<section id="deliverables" class="section alt" aria-labelledby="del-heading">
+  <div class="section-label reveal">04 · What You Receive</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="del-heading" class="section-title">Everything.<br><em>Every Week.</em></h2>
+    <p class="section-intro">One retainer. No project fees. No per-asset billing. No surprises. Every deliverable below is included at $5,000 per month — the complete creative operation for your ministry.</p>
+  </div>
+
+  <div class="amber-rule reveal reveal-delay-2"></div>
+
+  <div class="del-list">
+
+    <div class="del reveal reveal-delay-1">
+      <div class="del-num">01</div>
+      <div>
+        <div class="del-title">Series Development</div>
+        <p class="del-desc">We do not wait for you to hand us a concept. We develop it with you. From the first conversation about scripture to the locked creative brief, you have a senior creative director in the room — someone who understands both the theological depth of what you're building and how to translate it visually.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Includes</div>
+        <div class="dip-item">Discovery session</div>
+        <div class="dip-item">Scripture analysis</div>
+        <div class="dip-item">Series narrative arc</div>
+        <div class="dip-item">Illustration ideation</div>
+        <div class="dip-item">Mood board</div>
+        <div class="dip-item">Creative brief</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-2">
+      <div class="del-num">02</div>
+      <div>
+        <div class="del-title">Series Identity</div>
+        <p class="del-desc">Every series gets a complete visual world — built from the development process and coherent all the way through. Your congregation will feel the identity before they hear the title. Key art, motion, typography, color system, and a visual brief that ensures every asset that follows speaks the same language.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Includes</div>
+        <div class="dip-item">Key art</div>
+        <div class="dip-item">Motion treatment</div>
+        <div class="dip-item">Title typography</div>
+        <div class="dip-item">Color system</div>
+        <div class="dip-item">Visual world brief</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-3">
+      <div class="del-num">03</div>
+      <div>
+        <div class="del-title">Weekly Sermon Assets</div>
+        <p class="del-desc">Every visual that touches the message — before, during, and after it's preached. Thumbnails that make people stop scrolling. Title cards and lower thirds that support what you're saying from stage. Full-screen graphics and announcement slides that look like they came from a world-class media team. Because they did.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Delivered Weekly</div>
+        <div class="dip-item">YouTube thumbnails</div>
+        <div class="dip-item">Title cards</div>
+        <div class="dip-item">Lower thirds</div>
+        <div class="dip-item">Full-screen graphics</div>
+        <div class="dip-item">Announcement slides</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-2">
+      <div class="del-num">04</div>
+      <div>
+        <div class="del-title">Bumper Video</div>
+        <p class="del-desc">One cinematic piece per series that opens your service. Not an intro animation. A mood piece — atmospheric, emotionally specific, designed to shift the room before you speak. LED wall ready. The congregation should feel something before a word is said.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Per Series</div>
+        <div class="dip-item">Series bumper video</div>
+        <div class="dip-item">Series atmosphere</div>
+        <div class="dip-item">Cinematic grade</div>
+        <div class="dip-item">LED wall ready</div>
+        <div class="dip-item">Motion identity</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-3">
+      <div class="del-num">05</div>
+      <div>
+        <div class="del-title">Series Promo Video</div>
+        <p class="del-desc">One series launch trailer built to make people show up and make people share. Produced at a level that positions your ministry as leading — not just participating. Platform-optimized, share-ready, and cinematic from the first frame.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Per Series</div>
+        <div class="dip-item">Series launch trailer</div>
+        <div class="dip-item">Platform optimized</div>
+        <div class="dip-item">Share-ready format</div>
+        <div class="dip-item">Cinematic production</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-2">
+      <div class="del-num">06</div>
+      <div>
+        <div class="del-title">Weekly Talking Head Content</div>
+        <p class="del-desc">Produced short-form video from you, every week. Scripted or guided. Platform-ready for Reels, TikTok, and YouTube Shorts. This is your voice amplified into social media at a production level that builds your personal platform alongside your church — week after week, consistently, without you thinking about it.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Delivered Weekly</div>
+        <div class="dip-item">Weekly talking head</div>
+        <div class="dip-item">Script or outline</div>
+        <div class="dip-item">Reels ready</div>
+        <div class="dip-item">Shorts ready</div>
+        <div class="dip-item">Branded treatment</div>
+      </div>
+    </div>
+
+    <div class="del reveal reveal-delay-3">
+      <div class="del-num">07</div>
+      <div>
+        <div class="del-title">Small Group Curriculum</div>
+        <p class="del-desc">One written lesson every week that takes what you preached on Sunday and carries it through the week. Discussion questions, scripture references, application points — designed to extend the message into the rooms where transformation actually happens. The sermon doesn't end when you walk off stage.</p>
+      </div>
+      <div class="del-items-panel">
+        <div class="dip-label">Delivered Weekly</div>
+        <div class="dip-item">Weekly lesson</div>
+        <div class="dip-item">Discussion questions</div>
+        <div class="dip-item">Scripture references</div>
+        <div class="dip-item">Application points</div>
+        <div class="dip-item">Branded formatting</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 05 THE STANDARD ═══ -->
+<section id="standard" class="section" aria-labelledby="std-heading">
+  <div class="section-label reveal">05 · The Standard</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="std-heading" class="section-title">Where Your Ministry<br><em>Deserves to Operate.</em></h2>
+    <p class="section-intro">The faith-based creative market operates on three levels. Most ministries never leave Level 1. A few large institutions have reached Level 2. messages. by form. delivers Level 3 to any pastor ready to operate at that standard.</p>
+  </div>
+
+  <div class="amber-rule reveal reveal-delay-2"></div>
+
+  <div class="standard-grid">
+    <div class="std-card reveal reveal-delay-2">
+      <div class="std-level l1">Level 1</div>
+      <div class="std-title">Basic Church Creative</div>
+      <p class="std-body">Templates. Stock imagery. Safe color palettes. Comfortable type sizes. Content that blends into the feed. It communicates that your church is present. It does not communicate that your message is worth stopping for. This is where the majority of ministries operate — not by choice, but by access.</p>
+      <div class="std-examples">Canva templates · Stock photography · Volunteer-made</div>
+    </div>
+    <div class="std-card reveal reveal-delay-3">
+      <div class="std-level l2">Level 2</div>
+      <div class="std-title">Institutional Church Creative</div>
+      <p class="std-body">Cinematic motion, bold editorial type, premium photography. Polished, consistent, professional. This is the current ceiling for large institutional churches with in-house creative teams of five to fifteen people and the budgets to match. Most ministries cannot reach this level through conventional means.</p>
+      <div class="std-examples">Elevation · Life.Church · Hillsong · Large in-house teams</div>
+    </div>
+    <div class="std-card active reveal reveal-delay-4">
+      <div class="std-level l3">Level 3 — Messages. by form.</div>
+      <div class="std-title">Cultural Creative Intelligence</div>
+      <p class="std-body">Work that does not look like church graphics — it looks like art. Editorial fashion influence, album art ambition, cinematic restraint — all applied to spiritual content with full theological understanding. This level operates with cultural awareness that no template service can replicate. It is the standard your message has always deserved. Now it is accessible.</p>
+      <div class="std-examples active">Messages. by form. · From scripture to screen · $5K / month</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 06 PRICING ═══ -->
+<section id="pricing" class="section alt" aria-labelledby="pricing-heading">
+  <div class="section-label reveal">06 · Pricing</div>
+  <div class="reveal reveal-delay-1">
+    <h2 id="pricing-heading" class="section-title">One Retainer.<br><em>Everything Covered.</em></h2>
+    <p class="section-intro">No project fees. No per-asset billing. No scope conversations. Choose your level of coverage and everything runs from there — cleanly, consistently, every week.</p>
+  </div>
+
+  <div class="amber-rule reveal reveal-delay-2"></div>
+
+  <div class="pricing-grid">
+    <div class="price-card featured reveal reveal-delay-2">
+      <div class="price-badge">Most Chosen</div>
+      <div class="price-label">Pastor Package</div>
+      <div class="price-name"><em>messages.</em> by form.</div>
+      <div class="price-amount">$5,000</div>
+      <div class="price-per">per month · all inclusive</div>
+      <div class="price-features">
+        <div class="price-feat-label">Everything Included</div>
+        <div class="price-feat">Series Development</div>
+        <div class="price-feat">Series Identity &amp; Key Art</div>
+        <div class="price-feat">Weekly Sermon Assets</div>
+        <div class="price-feat">Series Bumper Video</div>
+        <div class="price-feat">Series Promo Video</div>
+        <div class="price-feat">Weekly Talking Head Content</div>
+        <div class="price-feat">Weekly Small Group Curriculum</div>
+      </div>
+      <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="price-cta">Start the Conversation →</a>
+    </div>
+
+    <div class="price-card reveal reveal-delay-3">
+      <div class="price-label">Church Add-On</div>
+      <div class="price-name">form <em>Social.</em></div>
+      <div class="price-amount">$3,500</div>
+      <div class="price-per">per month · add to Messages.</div>
+      <div class="price-features">
+        <div class="price-feat-label">Full Social Management</div>
+        <div class="price-feat">Platform strategy</div>
+        <div class="price-feat">Scheduling &amp; posting</div>
+        <div class="price-feat">Caption &amp; copy writing</div>
+        <div class="price-feat">Community management</div>
+        <div class="price-feat">Monthly analytics report</div>
+      </div>
+      <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="price-cta">Add to messages. →</a>
+    </div>
+
+    <div class="price-card reveal reveal-delay-4">
+      <div class="price-label">Full Stack Bundle</div>
+      <div class="price-name">Complete <em>Operation.</em></div>
+      <div class="price-amount">$8,500</div>
+      <div class="price-per">per month · best value</div>
+      <div class="price-features">
+        <div class="price-feat-label">Both Products · One Relationship</div>
+        <div class="price-feat">Everything in messages.</div>
+        <div class="price-feat">Everything in FORM Social</div>
+        <div class="price-feat">One point of contact</div>
+        <div class="price-feat">Unified creative strategy</div>
+        <div class="price-feat">Everything. Handled.</div>
+      </div>
+      <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="price-cta">Get the Full Stack →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 07 FOUNDING OFFER ═══ -->
+<section id="founding" class="section" aria-labelledby="founding-heading">
+  <div class="section-label reveal">07 · Get Started</div>
+
+  <div class="founding-block reveal reveal-delay-1">
+    <div>
+      <h2 id="founding-heading" class="founding-headline">
+        three founding spots.<br>
+        One locked rate.<br>
+        <em>Yours if you move first.</em>
+      </h2>
+      <p class="founding-body">
+        The first three pastors who partner with messages. by form. lock in the current rate for as long as the relationship continues. After the founding cohort closes, the price increases. This is not artificial urgency — it is an honest acknowledgment that the pastors who move first shape the product, and that trust deserves to be rewarded.
+      </p>
+      <p class="founding-body" style="margin-top:0; margin-bottom:0;">
+        To start: reach out directly. We will schedule a discovery conversation, walk through your upcoming series, and determine whether this is the right creative partnership for where your ministry is going.
+      </p>
+      <div style="margin-top:32px; display:flex; gap:14px;">
+        <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="btn-primary">Start the Conversation</a>
+        <a href="#deliverables" class="btn-secondary">Review What's Included</a>
+      </div>
+    </div>
+    <div class="founding-stats">
+      <div class="founding-stat">
+        <div class="founding-stat-num">3</div>
+        <div class="founding-stat-label">Founding Spots Remaining</div>
+      </div>
+      <div class="founding-stat">
+        <div class="founding-stat-num">$5K</div>
+        <div class="founding-stat-label">Locked Founding Rate</div>
+      </div>
+      <div class="founding-stat">
+        <div class="founding-stat-num">7</div>
+        <div class="founding-stat-label">Deliverable Categories Monthly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section id="final-cta" aria-label="Final call to action">
+  <div class="final-cta-headline reveal">
+    your message needs <span>form.</span>
+  </div>
+  <p class="final-cta-sub reveal reveal-delay-1">
+    You have already done the hard part. You carried the word. Let us build the world around it.
+  </p>
+  <div class="final-cta-actions reveal reveal-delay-2">
+    <a href="mailto:dontae@formintel.co?subject=messages.%20by%20form.%20%E2%80%94%20Starting%20the%20Conversation&body=Hi%20Dontae%2C%0A%0AI%20came%20across%20messages.%20by%20form.%20and%20I%27m%20ready%20to%20start%20the%20conversation.%0A%0AI%27d%20love%20to%20schedule%20a%20discovery%20session%20to%20talk%20through%20my%20upcoming%20series%20and%20explore%20what%20this%20partnership%20could%20look%20like%20for%20my%20ministry.%0A%0ALooking%20forward%20to%20connecting.%0A%0A%5BYour%20Name%5D%0A%5BChurch%20Name%5D" class="btn-primary">Start the Conversation</a>
+    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="footer">
+  <div class="footer-brand">
+    <div class="footer-wordmark">Messages<span>.</span></div>
+    <div class="footer-attr">by form.</div>
+  </div>
+  <div class="footer-meta">
+    <div>Sermon Series Content · Production · Strategy</div>
+    <div>your message needs form.</div>
+    <div>© 2026 form. All rights reserved.</div>
+  </div>
+</footer>
+
+</div><!-- /page-content -->
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── NAV scroll state ── */
+  var nav = document.getElementById('nav');
+  var lastY = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    if(y > 40){ nav.classList.add('scrolled'); }
+    else { nav.classList.remove('scrolled'); }
+    lastY = y;
+  }, {passive: true});
+
+  /* ── Scroll reveal ── */
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+  reveals.forEach(function(el){ observer.observe(el); });
+
+  /* ── Nav active link tracking ── */
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var sectionObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.getAttribute('id');
+        navLinks.forEach(function(a){
+          a.style.color = '';
+          if(a.getAttribute('href') === '#' + id){
+            a.style.color = 'var(--amber)';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(function(s){ sectionObserver.observe(s); });
+
+})();
+</script>
+</body>
+</html>
