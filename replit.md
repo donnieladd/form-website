@@ -86,7 +86,6 @@ The five legacy `*-systems.html` pages (`business-systems`, `intelligence-system
 - `home-bg.avif` — Cinematic environmental field for the homepage (oceanic neural ribbons over deep dark space). Static base layer beneath `field.js` particle drift.
 - `bg.avif` — Legacy atmospheric background still used by interior pages (vision, standards, founder, ecosystem, contact) until each is migrated to the shared `env-field` system.
 - `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
-- `logo-editorial-2.svg` — Primary nav/sidebar logo
 - `logo-core-final-2.svg` — Hero ecosystem identity mark
 - `logo-lockup-black.svg`, `tagline-black.svg` — Brand lockup assets
 

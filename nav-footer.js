@@ -79,8 +79,7 @@
       '<div class="ft-grid">' +
         '<div class="ft-brand">' +
           '<div class="ft-mark">' +
-            '<img src="/logo-editorial-2.svg" alt="form." class="ft-wordmark">' +
-            '<span class="ft-mark-dot" aria-hidden="true"></span>' +
+            '<span class="ft-wordmark">form<span class="ft-dot">.</span></span>' +
           '</div>' +
           '<div class="ft-tag">the future needs form.<br>vision needs structure.</div>' +
           '<hr class="ft-rule">' +

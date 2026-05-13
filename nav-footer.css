@@ -206,17 +206,17 @@ body.nf-mobile-open{overflow:hidden;}
 }
 #sitefooter .ft-brand{display:flex;flex-direction:column;padding-right:2rem;}
 #sitefooter .ft-mark{
-  position:relative;display:inline-block;width:100%;max-width:340px;
-  margin:-.2rem 0 1.4rem -4px;line-height:0;
+  position:relative;display:inline-flex;align-items:baseline;
+  margin:-.2rem 0 1.4rem 0;line-height:1;
 }
 #sitefooter .ft-wordmark{
-  display:block;width:100%;height:auto;
+  font-family:'Satoshi','Inter',sans-serif;
+  font-weight:500;font-size:clamp(2.6rem,4vw,3.4rem);
+  letter-spacing:-.035em;line-height:1;
+  color:#F2F2F0;text-transform:lowercase;
+  display:inline-flex;align-items:baseline;
 }
-#sitefooter .ft-mark-dot{
-  position:absolute;right:-2px;bottom:14%;
-  width:18px;height:18px;background:#39FF14;
-  box-shadow:0 0 16px rgba(57,255,20,.35);
-}
+#sitefooter .ft-wordmark .ft-dot{color:#F2F2F0;}
 #sitefooter .ft-tag{
   font-family:'Satoshi','Inter',sans-serif;
   font-size:1.02rem;font-weight:400;letter-spacing:.005em;line-height:1.55;
@@ -302,7 +302,7 @@ body.nf-mobile-open{overflow:hidden;}
   #topnav .tn-cta{display:none;}
   #sitefooter{padding:1.6rem 1rem .9rem;}
   #sitefooter .ft-grid{grid-template-columns:1fr;gap:1.2rem;}
-  #sitefooter .ft-wordmark{height:48px;}
+  #sitefooter .ft-wordmark{font-size:2.4rem;}
   #sitefooter .ft-tag{font-size:.6rem;letter-spacing:.22em;}
   #sitefooter .ft-desc{font-size:.78rem;}
   #sitefooter .ft-col h4{font-size:.74rem;}
