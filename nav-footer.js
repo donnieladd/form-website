@@ -140,6 +140,54 @@
 
       '</div>' +
 
+      // ── MOBILE-ONLY ACCORDION ─────────────────────────────
+      // Shown only ≤720px via CSS. Desktop .ft-grid hides at the
+      // same breakpoint. Uses native <details>/<summary> for a11y +
+      // CSS-only toggle (no JS).
+      '<div class="ft-mobile">' +
+        '<details class="ft-acc">' +
+          '<summary>about<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<div class="ft-acc-body">' +
+            '<a href="/vision.html">vision</a>' +
+            '<a href="/standards.html">standards</a>' +
+            '<a href="/founder.html">founder</a>' +
+            '<a href="/contact.html#faq">faq</a>' +
+          '</div>' +
+        '</details>' +
+        '<details class="ft-acc">' +
+          '<summary>ecosystem<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<div class="ft-acc-body">' +
+            '<a href="/ecosystem.html#strategy">form. strategy</a>' +
+            '<a href="/ecosystem.html#creative">form. creative</a>' +
+            '<a href="/ecosystem.html#digital">form. digital</a>' +
+            '<a href="/ecosystem.html#ai">form. ai</a>' +
+            '<a href="/ecosystem.html#experience">form. experience</a>' +
+            '<a href="/ecosystem.html#labs">form. labs</a>' +
+          '</div>' +
+        '</details>' +
+        '<details class="ft-acc">' +
+          '<summary>products<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<div class="ft-acc-body">' +
+            '<a href="/ecosystem.html#continuum">form. continuum</a>' +
+            '<a href="/ecosystem.html#messages">form. messages</a>' +
+            '<a href="/ecosystem.html#support">form. support</a>' +
+          '</div>' +
+        '</details>' +
+        '<details class="ft-acc">' +
+          '<summary>connect<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<div class="ft-acc-body">' +
+            '<a href="/contact.html">contact</a>' +
+            '<a href="https://instagram.com/" target="_blank" rel="noopener">instagram</a>' +
+            '<a href="https://linkedin.com/" target="_blank" rel="noopener">linkedin</a>' +
+          '</div>' +
+        '</details>' +
+        '<div class="ft-mobile-icons">' +
+          '<a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></svg></a>' +
+          '<a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="11" x2="8" y2="17"/><circle cx="8" cy="7.5" r=".8" fill="currentColor"/><path d="M12 17v-4a2.5 2.5 0 0 1 5 0v4"/><line x1="12" y1="11" x2="12" y2="17"/></svg></a>' +
+          '<a href="mailto:hello@formintel.co" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg></a>' +
+        '</div>' +
+      '</div>' +
+
       // BOTTOM BAR
       '<div class="ft-bottom">' +
         '<span>© 2026 form. all rights reserved.</span>' +
