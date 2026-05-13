@@ -119,10 +119,11 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 .hero-meta{margin-bottom:3.5rem;}
 .hero-headline{
   font-family:'Satoshi',sans-serif;font-weight:300;
-  font-size:clamp(3rem,8vw,9rem);line-height:.96;letter-spacing:-.024em;
+  font-size:clamp(2.6rem,7vw,7.4rem);line-height:1.02;letter-spacing:-.024em;
   color:var(--stone);max-width:1280px;margin-bottom:3rem;
+  text-shadow:0 2px 24px rgba(5,6,8,.85), 0 0 1px rgba(5,6,8,.6);
 }
-.hero-headline .canela{font-weight:400;color:rgba(var(--stone-rgb),.96);}
+.hero-headline .canela{font-style:italic;font-weight:400;color:var(--stone);display:block;margin-top:.45rem;}
 .hero-tag{
   font-family:'Satoshi',sans-serif;font-weight:300;
   font-size:1.18rem;line-height:1.7;color:rgba(var(--stone-rgb),.6);
@@ -260,8 +261,8 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 .ent.e-ai .ent-num,.ent.e-ai .ent-name .canela{color:var(--ac);}
 .ent.e-ai .ent-atm{background:radial-gradient(ellipse 60% 50% at 25% 60%,rgba(var(--ac-rgb),.045) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 80% 20%,rgba(var(--ib-rgb),.04) 0%,transparent 60%);}
 
-.ent.e-sound .ent-num,.ent.e-sound .ent-name .canela{color:rgba(var(--amber-rgb),.95);}
-.ent.e-sound .ent-atm{background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(var(--amber-rgb),.06) 0%,transparent 60%);}
+.ent.e-messages .ent-num,.ent.e-messages .ent-name .canela{color:rgba(var(--amber-rgb),.95);}
+.ent.e-messages .ent-atm{background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(var(--amber-rgb),.06) 0%,transparent 60%);}
 
 .ent.e-formation .ent-num,.ent.e-formation .ent-name .canela{color:rgba(var(--stone-rgb),.85);}
 .ent.e-formation .ent-atm{background:linear-gradient(180deg,transparent 0%,rgba(var(--stone-rgb),.018) 100%);}
@@ -338,7 +339,7 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 <section id="s-hero">
   <div class="hero-stack">
     <div class="hero-meta r"><div class="meta"><span class="idx">[ ecosystem ]</span> connected operational architecture.</div></div>
-    <h1 class="hero-headline r">a connected operational ecosystem. <span class="canela">nine entities. one signal.</span></h1>
+    <h1 class="hero-headline r">a connected operational ecosystem.<span class="canela">nine entities. one signal.</span></h1>
     <p class="hero-tag r">form. is not a service menu. it is an operational architecture — nine intentional layers designed to reinforce each other and to compound over time.</p>
   </div>
   <div class="hero-coords r">
@@ -389,7 +390,7 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
         <a href="#creative"><g class="em-node" transform="translate(500,80)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> creative</text></g></a>
         <a href="#digital"><g class="em-node" transform="translate(830,120)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> digital</text></g></a>
         <a href="#ai"><g class="em-node" transform="translate(920,250)"><circle r="5" fill="#39FF14" opacity=".85"/><text x="14" y="4" text-anchor="start" class="em-label"><tspan class="canela-svg">form.</tspan> ai</text></g></a>
-        <a href="#sound"><g class="em-node" transform="translate(830,380)"><circle r="5" fill="#FF8A00" opacity=".85"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> sound</text></g></a>
+        <a href="#messages"><g class="em-node" transform="translate(830,380)"><circle r="5" fill="#FF8A00" opacity=".85"/><text y="22" text-anchor="middle" class="em-label">messages <tspan class="canela-svg">by form.</tspan></text></g></a>
         <a href="#formation"><g class="em-node" transform="translate(500,430)"><circle r="5" fill="#F2F2F0" opacity=".75"/><text y="22" text-anchor="middle" class="em-label">formation</text></g></a>
         <a href="#experience"><g class="em-node" transform="translate(170,380)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> experience</text></g></a>
         <a href="#labs"><g class="em-node" transform="translate(80,250)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text x="-14" y="4" text-anchor="end" class="em-label"><tspan class="canela-svg">form.</tspan> labs</text></g></a>
@@ -500,24 +501,24 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   </div>
 </section>
 
-<section class="ent e-sound" id="sound">
+<section class="ent e-messages" id="messages">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
       <div class="ent-meta r"><span class="ent-num">[ 05 / 09 ]</span><span class="ent-meta-rule"></span></div>
-      <h2 class="ent-name r"><span class="canela">form.</span> sound</h2>
-      <p class="ent-tag r">audio, score, and sonic identity systems for environments built to be heard as much as seen.</p>
+      <h2 class="ent-name r">messages <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">sermon series content, production, and strategy — the operational layer that lets a message land with the weight it was carried in.</p>
     </div>
     <div class="ent-right">
-      <p class="ent-body r">form. sound is the audible signature of an operational identity — score, sonic branding, environmental audio, and the subtle rhythms that <em>make presence felt before it's seen.</em></p>
+      <p class="ent-body r">messages by form. is the production wing of the ecosystem built for ministries — translating preached messages into series identity, thumbnails, slides, social, and rollout systems so the world around the message <em>matches what was being carried.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">sonic identity</div>
-        <div class="ent-cap">original score</div>
-        <div class="ent-cap">environmental audio</div>
-        <div class="ent-cap">production sound</div>
-        <div class="ent-cap">audio branding systems</div>
-        <div class="ent-cap">spatial composition</div>
+        <div class="ent-cap">series identity</div>
+        <div class="ent-cap">thumbnail systems</div>
+        <div class="ent-cap">slide design</div>
+        <div class="ent-cap">social rollout</div>
+        <div class="ent-cap">message strategy</div>
+        <div class="ent-cap">production direction</div>
       </div>
     </div>
   </div>
@@ -602,9 +603,9 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
           <div class="lp-tag">structural intelligence canvas.</div>
           <p class="lp-body">an environment for mapping organizations, their decisions, and the architecture beneath them — <em>structure made visible.</em></p>
         </article>
-        <article class="labs-product" id="access">
+        <article class="labs-product" id="axis">
           <div class="lp-num">[ labs / 03 ]</div>
-          <div class="lp-name">ACCESS</div>
+          <div class="lp-name">AXIS</div>
           <div class="lp-tag">long-arc operating system.</div>
           <p class="lp-body">the platform underneath continuum partnerships — cadences, reviews, and compounding intelligence over years, <em>not engagements.</em></p>
         </article>

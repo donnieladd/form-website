@@ -29,10 +29,10 @@
       anchor: '/ecosystem.html#ai',
       blurb: 'applied intelligence — workflows, routing, and operational cognition. rev. lives here.'
     },
-    sound: {
-      label: 'form. sound',
-      anchor: '/ecosystem.html#sound',
-      blurb: 'sonic identity, audio environments, and the emotional resonance of a brand in motion.'
+    messages: {
+      label: 'messages by form.',
+      anchor: '/ecosystem.html#messages',
+      blurb: 'sermon series content, production, and strategy — built for ministries who need the world around the message to match what was being carried.'
     },
     support: {
       label: 'formation',
@@ -69,7 +69,7 @@
     if (/\b(brand|identity|design|visual|logo)\b/.test(q)) return 'creative';
     if (/\b(web|site|app|product|platform|digital)\b/.test(q)) return 'digital';
     if (/\b(ai|intelligence|automation|workflow|llm|model)\b/.test(q)) return 'ai';
-    if (/\b(audio|music|sonic|sound)\b/.test(q)) return 'sound';
+    if (/\b(sermon|preach|ministry|church|series|pastor|messages)\b/.test(q)) return 'messages';
     if (/\b(event|space|physical|live|venue|environment)\b/.test(q)) return 'experience';
     if (/\b(research|prototype|experiment|emerging|new)\b/.test(q)) return 'labs';
     if (/\b(strategy|positioning|architecture|framework|plan)\b/.test(q)) return 'strategy';
