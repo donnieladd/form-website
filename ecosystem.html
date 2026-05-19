@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>form. — ecosystem.</title>
-<meta name="description" content="a connected operational ecosystem. nine entities. one intelligence layer. form. strategy, creative, digital, ai, experience, labs, continuum, messages by form., formation.">
+<meta name="description" content="a structured operational ecosystem. four divisions, twelve entities, one intelligence layer. form. services, form. products, form. labs, form. learning.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
 <script src="/performance-tier.js"></script>
 <script src="/performance-config.js"></script>
@@ -276,7 +276,7 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 /* dropdown jump anchors — invisible, no layout impact, scroll past sticky nav */
 .ecosystem-anchor{display:block;height:0;width:0;overflow:hidden;scroll-margin-top:calc(var(--nav-h) + 1.4rem);}
 
-/* labs sub-products — RELAY / FRAME / AXIS */
+/* legacy labs-product card grid (deprecated — kept for any residual styling parity; new doctrine treats relay/frame/axis as first-class entities) */
 .labs-products{margin-top:4rem;padding-top:2.4rem;border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);}
 .labs-product{background:#050608;padding:2.2rem 1.8rem;scroll-margin-top:calc(var(--nav-h) + 1.4rem);position:relative;transition:background .5s;}
 .labs-product:hover{background:rgba(var(--cv-rgb),.025);}
@@ -291,6 +291,75 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 
 .ent.e-continuum .ent-num,.ent.e-continuum .ent-name .canela{color:var(--ac);}
 .ent.e-continuum .ent-atm{background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(var(--ac-rgb),.04) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 30% 90%,rgba(var(--ib-rgb),.05) 0%,transparent 60%);}
+
+/* new labs entity color classes (relay / frame / axis as first-class entities) */
+.ent.e-relay .ent-num,.ent.e-relay .ent-name .canela{color:rgba(var(--cv-rgb),.92);}
+.ent.e-relay .ent-atm{background:radial-gradient(ellipse 60% 45% at 30% 40%,rgba(var(--cv-rgb),.06) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(var(--ib-rgb),.035) 0%,transparent 60%);}
+.ent.e-frame .ent-num,.ent.e-frame .ent-name .canela{color:rgba(var(--cv-rgb),.92);}
+.ent.e-frame .ent-atm{background:radial-gradient(ellipse 55% 45% at 70% 60%,rgba(var(--cv-rgb),.06) 0%,transparent 60%),radial-gradient(ellipse 45% 40% at 20% 20%,rgba(var(--rose-rgb),.035) 0%,transparent 60%);}
+.ent.e-axis .ent-num,.ent.e-axis .ent-name .canela{color:rgba(var(--cv-rgb),.92);}
+.ent.e-axis .ent-atm{background:radial-gradient(ellipse 60% 45% at 50% 30%,rgba(var(--cv-rgb),.055) 0%,transparent 60%),radial-gradient(ellipse 45% 40% at 25% 85%,rgba(var(--ac-rgb),.025) 0%,transparent 60%);}
+
+/* form. learning — intellect by form. */
+.ent.e-intellect .ent-num,.ent.e-intellect .ent-name .canela{color:var(--ac);}
+.ent.e-intellect .ent-atm{background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(var(--ac-rgb),.055) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 85% 80%,rgba(var(--ib-rgb),.04) 0%,transparent 60%);}
+
+/* DIVISION INTRO SECTIONS ━━━━━━━━━━━━━━━━━━━━━━━ */
+.div-intro{padding:11rem 8vw 5rem;position:relative;scroll-margin-top:calc(var(--nav-h) + 1.4rem);}
+.div-intro .div-inner{max-width:1280px;margin:0 auto;}
+.div-meta{display:flex;align-items:center;gap:1.4rem;margin-bottom:2.6rem;}
+.div-num{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(var(--ac-rgb),.7);}
+.div-rule{flex:1;height:1px;background:var(--rule);max-width:520px;}
+.div-name{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.4rem,5.6vw,5.6rem);line-height:.98;letter-spacing:-.022em;color:var(--stone);margin-bottom:1.6rem;}
+.div-name .canela{font-style:italic;font-weight:400;}
+.div-lede{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.24rem;line-height:1.65;color:rgba(var(--stone-rgb),.88);max-width:760px;margin-bottom:1.4rem;}
+.div-body{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.02rem;line-height:1.85;color:rgba(var(--stone-rgb),.62);max-width:680px;}
+.d-services .div-num{color:rgba(var(--ib-rgb),.85);}
+.d-products .div-num{color:rgba(var(--amber-rgb),.85);}
+.d-labs .div-num{color:rgba(var(--cv-rgb),.85);}
+.d-learning .div-num{color:rgba(var(--ac-rgb),.85);}
+
+/* continuum partnership tiers */
+.tier-strip{margin-top:2.2rem;padding-top:1.8rem;border-top:1px solid var(--rule);}
+.tier-label{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.4);margin-bottom:1.2rem;}
+.tier-chips{display:flex;flex-wrap:wrap;gap:.55rem;}
+.tier-chip{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(var(--ac-rgb),.88);padding:.55rem .9rem;border:1px solid rgba(var(--ac-rgb),.3);border-radius:2px;background:rgba(var(--ac-rgb),.02);}
+
+/* intellect audience strip */
+.audience-strip{margin-top:2.2rem;padding-top:1.8rem;border-top:1px solid var(--rule);}
+.audience-label{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.4);margin-bottom:1.1rem;}
+.audience-list{font-family:'Satoshi',sans-serif;font-weight:300;font-size:.98rem;line-height:1.9;color:rgba(var(--stone-rgb),.7);}
+
+/* OPERATIONAL PHILOSOPHY */
+#s-philosophy{padding:12rem 8vw 9rem;border-top:1px solid var(--rule);position:relative;}
+.phil-stack{max-width:1280px;margin:0 auto;}
+.phil-meta{margin-bottom:3.6rem;}
+.phil-headline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(2.2rem,4.8vw,4.4rem);line-height:1.08;letter-spacing:-.02em;color:var(--stone);max-width:1080px;margin-bottom:4.2rem;}
+.phil-headline em{font-family:'Canela','Georgia',serif;font-style:italic;font-weight:300;}
+.phil-list{display:grid;grid-template-columns:1fr 1fr;gap:0 4rem;border-top:1px solid var(--rule);}
+.phil-row{display:flex;align-items:flex-start;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid var(--rule);}
+.phil-num{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.26em;color:rgba(var(--ac-rgb),.55);min-width:2.4rem;padding-top:.3rem;}
+.phil-text{font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.08rem;line-height:1.6;color:rgba(var(--stone-rgb),.86);}
+.phil-coda{margin-top:4rem;padding-top:2.4rem;border-top:1px solid var(--rule);font-family:'Satoshi',sans-serif;font-weight:300;font-size:1.14rem;line-height:1.78;color:rgba(var(--stone-rgb),.7);max-width:920px;}
+.phil-coda em{font-family:'Canela','Georgia',serif;font-style:italic;color:rgba(var(--stone-rgb),.94);}
+@media(max-width:780px){.phil-list{grid-template-columns:1fr;}}
+
+/* RELATIONSHIPS */
+#s-relations{padding:10rem 8vw;border-top:1px solid var(--rule);}
+.rel-stack{max-width:1280px;margin:0 auto;}
+.rel-meta{margin-bottom:3.4rem;}
+.rel-headline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.12;color:var(--stone);max-width:920px;margin-bottom:4rem;}
+.rel-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:4rem;align-items:flex-start;}
+.rel-cap-label{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.4);margin-bottom:1.4rem;}
+.rel-table{width:100%;}
+.rel-head{display:grid;grid-template-columns:1fr 1.3fr;gap:1rem;padding:.8rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.42);}
+.rel-row{display:grid;grid-template-columns:1fr 1.3fr;gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--rule);font-family:'Satoshi',sans-serif;font-weight:300;font-size:.96rem;line-height:1.5;color:rgba(var(--stone-rgb),.74);}
+.rel-row .rel-l{color:rgba(var(--stone-rgb),.94);}
+.rel-row .canela{font-style:italic;}
+@media(max-width:880px){.rel-grid{grid-template-columns:1fr;gap:3rem;}}
+
+/* SVG node sub-label */
+.em-sub{font-family:'IBM Plex Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;fill:rgba(242,242,240,.42);}
 
 /* ══════════════════════════════════
    CLOSING SIGNAL
@@ -325,7 +394,7 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   #atm{animation:none;}
 }
 </style>
-<link rel="stylesheet" href="/nav-footer.css?v=18">
+<link rel="stylesheet" href="/nav-footer.css?v=19">
 <link rel="stylesheet" href="/mobile.css?v=12">
 </head>
 <body>
@@ -342,13 +411,13 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 <section id="s-hero">
   <div class="hero-stack">
     <div class="hero-meta r"><div class="meta"><span class="idx">[ ecosystem ]</span> connected operational architecture.</div></div>
-    <h1 class="hero-headline r">a connected operational ecosystem.<span class="canela">nine entities. one signal.</span></h1>
-    <p class="hero-tag r">form. is not a service menu. it is an operational architecture — nine intentional layers designed to reinforce each other and to compound over time.</p>
+    <h1 class="hero-headline r">a structured operational ecosystem.<span class="canela">four divisions. twelve entities. one signal.</span></h1>
+    <p class="hero-tag r">form. is not a service menu. it is an operational architecture — four divisions and twelve intentional entities designed to reinforce each other and to compound over time.</p>
   </div>
   <div class="hero-coords r">
-    <span>9 entities</span>
-    <span>1 intelligence layer</span>
-    <span>built to operate as one</span>
+    <span>4 divisions</span>
+    <span>12 entities</span>
+    <span>one intelligence layer</span>
   </div>
 </section>
 
@@ -356,80 +425,76 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 <section id="s-map">
   <div class="map-stack">
     <div class="map-meta r"><div class="meta"><span class="idx">[ 02 ]</span> ecosystem map.</div></div>
-    <h2 class="map-title r">each layer is designed to reinforce the others. <em>nothing operates in isolation.</em></h2>
+    <h2 class="map-title r">four divisions. one signal at the center. <em>nothing operates in isolation.</em></h2>
 
     <div class="eco-map r">
       <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-        <!-- connecting lines (radial from center) -->
         <g class="em-lines">
-          <line class="em-line" x1="500" y1="250" x2="170" y2="120"/>
-          <line class="em-line" x1="500" y1="250" x2="500" y2="80"/>
-          <line class="em-line" x1="500" y1="250" x2="830" y2="120"/>
-          <line class="em-line" x1="500" y1="250" x2="170" y2="380"/>
-          <line class="em-line" x1="500" y1="250" x2="500" y2="430"/>
-          <line class="em-line" x1="500" y1="250" x2="830" y2="380"/>
-          <line class="em-line" x1="500" y1="250" x2="80" y2="250"/>
-          <line class="em-line" x1="500" y1="250" x2="920" y2="250"/>
-          <!-- outer ring connections -->
-          <line class="em-line" x1="170" y1="120" x2="500" y2="80"/>
-          <line class="em-line" x1="500" y1="80" x2="830" y2="120"/>
-          <line class="em-line" x1="830" y1="120" x2="920" y2="250"/>
-          <line class="em-line" x1="920" y1="250" x2="830" y2="380"/>
-          <line class="em-line" x1="830" y1="380" x2="500" y2="430"/>
-          <line class="em-line" x1="500" y1="430" x2="170" y2="380"/>
-          <line class="em-line" x1="170" y1="380" x2="80" y2="250"/>
-          <line class="em-line" x1="80" y1="250" x2="170" y2="120"/>
+          <line class="em-line" x1="500" y1="250" x2="500" y2="90"/>
+          <line class="em-line" x1="500" y1="250" x2="900" y2="250"/>
+          <line class="em-line" x1="500" y1="250" x2="500" y2="410"/>
+          <line class="em-line" x1="500" y1="250" x2="100" y2="250"/>
+          <line class="em-line" x1="500" y1="90"  x2="900" y2="250"/>
+          <line class="em-line" x1="900" y1="250" x2="500" y2="410"/>
+          <line class="em-line" x1="500" y1="410" x2="100" y2="250"/>
+          <line class="em-line" x1="100" y1="250" x2="500" y2="90"/>
         </g>
 
         <!-- center node: form. -->
         <g class="em-node em-pulse" transform="translate(500,250)">
-          <circle r="8" fill="#39FF14" opacity=".9"/>
-          <circle r="18" fill="none" stroke="#39FF14" stroke-width=".6" opacity=".4"/>
-          <text y="44" text-anchor="middle" class="em-label" style="font-size:.78rem;fill:#F2F2F0;"><tspan class="canela-svg">form.</tspan></text>
+          <circle r="9" fill="#39FF14" opacity=".95"/>
+          <circle r="20" fill="none" stroke="#39FF14" stroke-width=".6" opacity=".42"/>
+          <text y="50" text-anchor="middle" class="em-label" style="font-size:.78rem;fill:#F2F2F0;"><tspan class="canela-svg">form.</tspan></text>
         </g>
 
-        <!-- 8 perimeter nodes -->
-        <a href="#strategy"><g class="em-node" transform="translate(170,120)"><circle r="5" fill="#2962FF" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> strategy</text></g></a>
-        <a href="#creative"><g class="em-node" transform="translate(500,80)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> creative</text></g></a>
-        <a href="#digital"><g class="em-node" transform="translate(830,120)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text y="-14" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> digital</text></g></a>
-        <a href="#ai"><g class="em-node" transform="translate(920,250)"><circle r="5" fill="#39FF14" opacity=".85"/><text x="14" y="4" text-anchor="start" class="em-label"><tspan class="canela-svg">form.</tspan> ai</text></g></a>
-        <a href="#messages"><g class="em-node" transform="translate(830,380)"><circle r="5" fill="#FF8A00" opacity=".85"/><text y="22" text-anchor="middle" class="em-label">messages <tspan class="canela-svg">by form.</tspan></text></g></a>
-        <a href="#formation"><g class="em-node" transform="translate(500,430)"><circle r="5" fill="#F2F2F0" opacity=".75"/><text y="22" text-anchor="middle" class="em-label">formation</text></g></a>
-        <a href="#experience"><g class="em-node" transform="translate(170,380)"><circle r="5" fill="#9B4DFF" opacity=".85"/><text y="22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> experience</text></g></a>
-        <a href="#labs"><g class="em-node" transform="translate(80,250)"><circle r="5" fill="#8B5CF6" opacity=".85"/><text x="-14" y="4" text-anchor="end" class="em-label"><tspan class="canela-svg">form.</tspan> labs</text></g></a>
-        <!-- continuum is the binding signal at center — labeled below for clickable reach -->
+        <!-- 4 division nodes -->
+        <a href="#services"><g class="em-node" transform="translate(500,90)"><circle r="6" fill="#2962FF" opacity=".9"/><text y="-22" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> services</text><text y="-8" text-anchor="middle" class="em-sub">5 disciplines</text></g></a>
+        <a href="#products"><g class="em-node" transform="translate(900,250)"><circle r="6" fill="#FF8A00" opacity=".9"/><text x="-16" y="-4" text-anchor="end" class="em-label"><tspan class="canela-svg">form.</tspan> products</text><text x="-16" y="14" text-anchor="end" class="em-sub">3 products</text></g></a>
+        <a href="#labs"><g class="em-node" transform="translate(500,410)"><circle r="6" fill="#8B5CF6" opacity=".9"/><text y="32" text-anchor="middle" class="em-label"><tspan class="canela-svg">form.</tspan> labs</text><text y="48" text-anchor="middle" class="em-sub">3 platforms</text></g></a>
+        <a href="#learning"><g class="em-node" transform="translate(100,250)"><circle r="6" fill="#39FF14" opacity=".9"/><text x="16" y="-4" text-anchor="start" class="em-label"><tspan class="canela-svg">form.</tspan> learning</text><text x="16" y="14" text-anchor="start" class="em-sub">intellect by form.</text></g></a>
       </svg>
     </div>
 
-    <a href="#continuum" class="map-continuum r" aria-label="continuum — the binding signal">
+    <a href="#continuum" class="map-continuum r" aria-label="continuum by form. — the binding signal">
       <span class="mc-mark" aria-hidden="true"></span>
-      <span class="mc-num">[ 09 / 09 ]</span>
-      <span class="mc-name">continuum</span>
-      <span class="mc-tag">— the binding signal at the center. the long arc.</span>
+      <span class="mc-num">[ signal ]</span>
+      <span class="mc-name">continuum <span class="canela">by form.</span></span>
+      <span class="mc-tag">— the binding signal across divisions. the long arc.</span>
     </a>
   </div>
 </section>
 
 <!-- ══════════ ENTITY SECTIONS ══════════ -->
 
+<!-- ────── DIVISION 01 — form. services ────── -->
+<a id="services" class="ecosystem-anchor" aria-hidden="true" tabindex="-1"></a>
+<section class="div-intro d-services">
+  <div class="div-inner">
+    <div class="div-meta r"><span class="div-num">[ division / 01 ]</span><span class="div-rule"></span></div>
+    <h2 class="div-name r"><span class="canela">form.</span> services</h2>
+    <p class="div-lede r">execution & client work.</p>
+    <p class="div-body r">service-based operational and creative execution for clients, ministries, organizations, and brands. five disciplines, each operational on its own, all reinforcing the same architecture.</p>
+  </div>
+</section>
+
 <section class="ent e-strategy" id="strategy">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 01 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 01 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r"><span class="canela">form.</span> strategy</h2>
-      <p class="ent-tag r">operational clarity for organizations navigating scale, alignment, and long-term infrastructure.</p>
+      <p class="ent-tag r">business strategy, operational systems, leadership consulting, ministry strategy, and organizational development.</p>
     </div>
     <div class="ent-right">
       <p class="ent-body r">form. strategy is the operating layer underneath everything else — the structural thinking that shapes how an organization makes decisions, allocates attention, and grows without losing its identity. <em>strategy here is not a deck. it is an operational architecture you can run.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">organizational architecture</div>
-        <div class="ent-cap">long-arc planning</div>
-        <div class="ent-cap">operating system design</div>
-        <div class="ent-cap">leadership clarity systems</div>
+        <div class="ent-cap">business strategy</div>
+        <div class="ent-cap">operational systems</div>
+        <div class="ent-cap">leadership consulting</div>
+        <div class="ent-cap">ministry strategy</div>
+        <div class="ent-cap">organizational development</div>
         <div class="ent-cap">decision frameworks</div>
-        <div class="ent-cap">positioning architecture</div>
       </div>
     </div>
   </div>
@@ -439,20 +504,20 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 02 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 02 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r"><span class="canela">form.</span> creative</h2>
-      <p class="ent-tag r">narrative, design, and visual systems that preserve emotional resonance inside modern infrastructure.</p>
+      <p class="ent-tag r">creative direction, campaigns, visual identity systems, storytelling, media, and marketing infrastructure.</p>
     </div>
     <div class="ent-right">
       <p class="ent-body r">form. creative is where signal becomes language. brand, narrative, design, and visual identity treated as operational assets — built to last, built to scale, and <em>built to feel like the organization actually behind them.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">brand identity systems</div>
-        <div class="ent-cap">narrative architecture</div>
-        <div class="ent-cap">art direction</div>
+        <div class="ent-cap">creative direction</div>
+        <div class="ent-cap">campaigns</div>
+        <div class="ent-cap">visual identity systems</div>
+        <div class="ent-cap">storytelling & media</div>
         <div class="ent-cap">editorial systems</div>
-        <div class="ent-cap">design language</div>
-        <div class="ent-cap">visual continuity</div>
+        <div class="ent-cap">marketing infrastructure</div>
       </div>
     </div>
   </div>
@@ -462,20 +527,20 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 03 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 03 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r"><span class="canela">form.</span> digital</h2>
-      <p class="ent-tag r">web, product, and interface systems engineered for clarity, performance, and connected execution.</p>
+      <p class="ent-tag r">website development, application development, digital systems, and technical infrastructure.</p>
     </div>
     <div class="ent-right">
-      <p class="ent-body r">form. digital builds the surfaces an organization meets the world through — websites, products, interfaces, internal tools — engineered as <em>operational instruments,</em> not marketing artifacts.</p>
+      <p class="ent-body r">form. digital builds the surfaces an organization meets the world through — websites, products, applications, internal tools — engineered as <em>operational instruments,</em> not marketing artifacts.</p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">website architecture</div>
-        <div class="ent-cap">product engineering</div>
-        <div class="ent-cap">interface systems</div>
+        <div class="ent-cap">website development</div>
+        <div class="ent-cap">application development</div>
+        <div class="ent-cap">digital systems</div>
+        <div class="ent-cap">interface engineering</div>
+        <div class="ent-cap">technical infrastructure</div>
         <div class="ent-cap">internal tooling</div>
-        <div class="ent-cap">design engineering</div>
-        <div class="ent-cap">infrastructure</div>
       </div>
     </div>
   </div>
@@ -485,43 +550,109 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 04 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 04 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r"><span class="canela">form.</span> ai</h2>
-      <p class="ent-tag r">adaptive intelligence increasing awareness, decision velocity, and operational responsiveness.</p>
+      <p class="ent-tag r">ai implementation, workflow automation, operational intelligence systems, and ai architecture.</p>
     </div>
     <div class="ent-right">
       <p class="ent-body r">form. ai is intelligence treated as infrastructure — calm, integrated, and intentional. not a chatbot. not a feature. an operational layer that <em>extends an organization's awareness without replacing its judgment.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">intelligence architecture</div>
+        <div class="ent-cap">ai implementation</div>
         <div class="ent-cap">workflow automation</div>
+        <div class="ent-cap">operational intelligence</div>
+        <div class="ent-cap">ai architecture</div>
         <div class="ent-cap">decision support systems</div>
-        <div class="ent-cap">internal copilots</div>
-        <div class="ent-cap">data orchestration</div>
         <div class="ent-cap">rev. integration layer</div>
       </div>
     </div>
   </div>
 </section>
 
+<section class="ent e-experience" id="experience">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 05 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r"><span class="canela">form.</span> experience</h2>
+      <p class="ent-tag r">worship, production, live experiences, environments, speaking, and performance systems.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">form. experience is the integration layer — worship, production, live experiences, environments, speaking, and the staged moments that <em>make an organization's philosophy something people can stand inside of.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">worship & production</div>
+        <div class="ent-cap">live experiences</div>
+        <div class="ent-cap">environments & space</div>
+        <div class="ent-cap">speaking</div>
+        <div class="ent-cap">performance systems</div>
+        <div class="ent-cap">narrative direction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── DIVISION 02 — form. products ────── -->
 <a id="products" class="ecosystem-anchor" aria-hidden="true" tabindex="-1"></a>
+<section class="div-intro d-products">
+  <div class="div-inner">
+    <div class="div-meta r"><span class="div-num">[ division / 02 ]</span><span class="div-rule"></span></div>
+    <h2 class="div-name r"><span class="canela">form.</span> products</h2>
+    <p class="div-lede r">embedded partnership systems.</p>
+    <p class="div-body r">structured operational products designed for long-term organizational support — three products built to live alongside an organization rather than in front of it.</p>
+  </div>
+</section>
+
+<section class="ent e-continuum" id="continuum">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 06 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r">continuum <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">long-term operational partnership infrastructure for organizations, ministries, and businesses.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">continuum by form. is the longest arc of the ecosystem — a sustained, multi-year operational partnership for organizations that want intelligence, structure, and presence to compound. <em>the work is measured in years, not deliverables.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">long-arc partnership</div>
+        <div class="ent-cap">embedded intelligence</div>
+        <div class="ent-cap">structural review cadence</div>
+        <div class="ent-cap">multi-entity coordination</div>
+        <div class="ent-cap">operational compounding</div>
+        <div class="ent-cap">presence as infrastructure</div>
+      </div>
+      <div class="tier-strip r">
+        <div class="tier-label">partnership terms</div>
+        <div class="tier-chips">
+          <span class="tier-chip">6 months</span>
+          <span class="tier-chip">12 months</span>
+          <span class="tier-chip">18 months</span>
+          <span class="tier-chip">24 months</span>
+          <span class="tier-chip">36 months</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="ent e-messages" id="messages">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 05 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 07 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r">messages <span class="canela">by form.</span></h2>
-      <p class="ent-tag r">sermon series content, production, and strategy — the operational layer that lets a message land with the weight it was carried in.</p>
+      <p class="ent-tag r">sermon series development, ministry storytelling, communication systems, and campaign ecosystems.</p>
     </div>
     <div class="ent-right">
       <p class="ent-body r">messages by form. is the production wing of the ecosystem built for ministries — translating preached messages into series identity, thumbnails, slides, social, and rollout systems so the world around the message <em>matches what was being carried.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
+        <div class="ent-cap">sermon series development</div>
+        <div class="ent-cap">ministry storytelling</div>
+        <div class="ent-cap">communication systems</div>
+        <div class="ent-cap">campaign ecosystems</div>
         <div class="ent-cap">series identity</div>
-        <div class="ent-cap">thumbnail systems</div>
-        <div class="ent-cap">slide design</div>
-        <div class="ent-cap">social rollout</div>
-        <div class="ent-cap">message strategy</div>
         <div class="ent-cap">production direction</div>
       </div>
     </div>
@@ -532,110 +663,194 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 06 / 09 ]</span><span class="ent-meta-rule"></span></div>
+      <div class="ent-meta r"><span class="ent-num">[ 08 / 12 ]</span><span class="ent-meta-rule"></span></div>
       <h2 class="ent-name r">formation</h2>
-      <p class="ent-tag r">operational continuity, advisory, and ongoing care for the systems we build alongside you.</p>
+      <p class="ent-tag r">executive leadership infrastructure, fractional executive support, ministry consulting, leadership systems, operational coaching, and organizational development.</p>
     </div>
     <div class="ent-right">
-      <p class="ent-body r">formation is the long after the launch — operational continuity, advisory, optimization, and the quiet ongoing care that keeps complex systems running. <em>nothing we build is meant to be abandoned at delivery.</em></p>
+      <p class="ent-body r">formation is the leadership infrastructure of the ecosystem — fractional executive support, ministry consulting, leadership systems, and ongoing operational coaching for the people responsible for carrying the weight of an organization. <em>infrastructure for the person, not just the company.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">operational continuity</div>
-        <div class="ent-cap">advisory partnership</div>
-        <div class="ent-cap">system maintenance</div>
-        <div class="ent-cap">performance optimization</div>
-        <div class="ent-cap">team enablement</div>
-        <div class="ent-cap">embedded operations</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ent e-experience" id="experience">
-  <div class="ent-atm" aria-hidden="true"></div>
-  <div class="ent-inner">
-    <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 07 / 09 ]</span><span class="ent-meta-rule"></span></div>
-      <h2 class="ent-name r"><span class="canela">form.</span> experience</h2>
-      <p class="ent-tag r">end-to-end environments where leadership, communication, and culture are felt as one signal.</p>
-    </div>
-    <div class="ent-right">
-      <p class="ent-body r">form. experience is the integration layer — gatherings, environments, internal culture, and the staged moments that <em>make an organization's philosophy something people can stand inside of.</em></p>
-      <div class="ent-cap-label r">capabilities</div>
-      <div class="ent-caps r">
-        <div class="ent-cap">live experience design</div>
-        <div class="ent-cap">cultural architecture</div>
-        <div class="ent-cap">internal communication</div>
-        <div class="ent-cap">environment & space</div>
+        <div class="ent-cap">fractional executive support</div>
+        <div class="ent-cap">ministry consulting</div>
         <div class="ent-cap">leadership systems</div>
-        <div class="ent-cap">narrative direction</div>
+        <div class="ent-cap">operational coaching</div>
+        <div class="ent-cap">organizational development</div>
+        <div class="ent-cap">advisory partnership</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="ent e-labs" id="labs">
+<!-- ────── DIVISION 03 — form. labs ────── -->
+<a id="labs" class="ecosystem-anchor" aria-hidden="true" tabindex="-1"></a>
+<section class="div-intro d-labs">
+  <div class="div-inner">
+    <div class="div-meta r"><span class="div-num">[ division / 03 ]</span><span class="div-rule"></span></div>
+    <h2 class="div-name r"><span class="canela">form.</span> labs</h2>
+    <p class="div-lede r">internal product innovation, technology development, and software infrastructure.</p>
+    <p class="div-body r">three platforms born from the practice itself — operational communication intelligence, ai-native cinematic assembly, and strategic operational infrastructure.</p>
+  </div>
+</section>
+
+<section class="ent e-relay" id="relay">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 08 / 09 ]</span><span class="ent-meta-rule"></span></div>
-      <h2 class="ent-name r"><span class="canela">form.</span> labs</h2>
-      <p class="ent-tag r">internal product development — the operational tools and platforms born from our own practice.</p>
+      <div class="ent-meta r"><span class="ent-num">[ 09 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r">relay <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">operational communication and intelligence infrastructure.</p>
     </div>
     <div class="ent-right">
-      <p class="ent-body r">form. labs is where the rest of the ecosystem becomes product. internal tools, operational platforms, and the experiments that <em>turn lived practice into reusable infrastructure.</em></p>
+      <p class="ent-body r">relay by form. is the coordination layer for teams running complex, multi-channel operations — communication treated as infrastructure so nothing falls between the lines. <em>signal in, signal out, nothing lost between.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">internal products</div>
-        <div class="ent-cap">platform engineering</div>
-        <div class="ent-cap">research & prototyping</div>
-        <div class="ent-cap">tooling systems</div>
-        <div class="ent-cap">rev. development</div>
-        <div class="ent-cap">applied intelligence</div>
-      </div>
-
-      <div class="labs-products r">
-        <article class="labs-product" id="relay">
-          <div class="lp-num">[ labs / 01 ]</div>
-          <div class="lp-name">RELAY</div>
-          <div class="lp-tag">operational signal routing.</div>
-          <p class="lp-body">a coordination layer for teams running complex, multi-channel operations — <em>signal in, signal out, nothing lost between.</em></p>
-        </article>
-        <article class="labs-product" id="frame">
-          <div class="lp-num">[ labs / 02 ]</div>
-          <div class="lp-name">FRAME</div>
-          <div class="lp-tag">structural intelligence canvas.</div>
-          <p class="lp-body">an environment for mapping organizations, their decisions, and the architecture beneath them — <em>structure made visible.</em></p>
-        </article>
-        <article class="labs-product" id="axis">
-          <div class="lp-num">[ labs / 03 ]</div>
-          <div class="lp-name">AXIS</div>
-          <div class="lp-tag">long-arc operating system.</div>
-          <p class="lp-body">the platform underneath continuum partnerships — cadences, reviews, and compounding intelligence over years, <em>not engagements.</em></p>
-        </article>
+        <div class="ent-cap">operational communication</div>
+        <div class="ent-cap">signal routing</div>
+        <div class="ent-cap">multi-channel coordination</div>
+        <div class="ent-cap">team intelligence</div>
+        <div class="ent-cap">real-time orchestration</div>
+        <div class="ent-cap">system observability</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="ent e-continuum" id="continuum">
+<section class="ent e-frame" id="frame">
   <div class="ent-atm" aria-hidden="true"></div>
   <div class="ent-inner">
     <div class="ent-left">
-      <div class="ent-meta r"><span class="ent-num">[ 09 / 09 ]</span><span class="ent-meta-rule"></span></div>
-      <h2 class="ent-name r">continuum</h2>
-      <p class="ent-tag r">long-form intelligence partnership — sustained operational presence over years, not engagements.</p>
+      <div class="ent-meta r"><span class="ent-num">[ 10 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r">frame <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">ai-native cinematic assembly and editing systems.</p>
     </div>
     <div class="ent-right">
-      <p class="ent-body r">continuum is the longest arc of the ecosystem — a sustained, multi-year operational partnership for organizations that want intelligence, structure, and presence to compound. <em>the work is measured in years, not deliverables.</em></p>
+      <p class="ent-body r">frame by form. is the cinematic assembly layer — an ai-native environment for shaping video, motion, and scene composition with the cadence and restraint of a film room rather than a feed. <em>cinema-grade pacing at software speed.</em></p>
       <div class="ent-cap-label r">capabilities</div>
       <div class="ent-caps r">
-        <div class="ent-cap">long-arc partnership</div>
-        <div class="ent-cap">embedded intelligence</div>
-        <div class="ent-cap">structural review cadence</div>
-        <div class="ent-cap">multi-entity coordination</div>
-        <div class="ent-cap">operational compounding</div>
-        <div class="ent-cap">presence as infrastructure</div>
+        <div class="ent-cap">ai-native editing</div>
+        <div class="ent-cap">cinematic assembly</div>
+        <div class="ent-cap">scene composition</div>
+        <div class="ent-cap">video orchestration</div>
+        <div class="ent-cap">generative motion</div>
+        <div class="ent-cap">post-production intelligence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ent e-axis" id="axis">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 11 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r">axis <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">strategic operational infrastructure platform.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">axis by form. is the strategic operational platform underneath continuum partnerships — cadences, reviews, and compounding intelligence across years rather than engagements. <em>the operating system for long-arc work.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">strategic operations</div>
+        <div class="ent-cap">long-arc orchestration</div>
+        <div class="ent-cap">partnership cadence</div>
+        <div class="ent-cap">decision intelligence</div>
+        <div class="ent-cap">multi-org coordination</div>
+        <div class="ent-cap">compounding architecture</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────── DIVISION 04 — form. learning ────── -->
+<a id="learning" class="ecosystem-anchor" aria-hidden="true" tabindex="-1"></a>
+<section class="div-intro d-learning">
+  <div class="div-inner">
+    <div class="div-meta r"><span class="div-num">[ division / 04 ]</span><span class="div-rule"></span></div>
+    <h2 class="div-name r"><span class="canela">form.</span> learning</h2>
+    <p class="div-lede r">education & credential infrastructure.</p>
+    <p class="div-body r">educational systems, credential infrastructure, ai-native learning environments, and institutional education architecture — one platform built to operate at the scale of an entire institution.</p>
+  </div>
+</section>
+
+<section class="ent e-intellect" id="intellect">
+  <div class="ent-atm" aria-hidden="true"></div>
+  <div class="ent-inner">
+    <div class="ent-left">
+      <div class="ent-meta r"><span class="ent-num">[ 12 / 12 ]</span><span class="ent-meta-rule"></span></div>
+      <h2 class="ent-name r">intellect <span class="canela">by form.</span></h2>
+      <p class="ent-tag r">the world's first ai-native university — a next-generation learning platform built to operate at institutional scale.</p>
+    </div>
+    <div class="ent-right">
+      <p class="ent-body r">intellect by form. is education treated as infrastructure. courses, certifications, study systems, ai tutoring, assessments, credentialing, and the institutional architecture beneath them — <em>a platform built so learning compounds the way capital does.</em></p>
+      <div class="ent-cap-label r">capabilities</div>
+      <div class="ent-caps r">
+        <div class="ent-cap">courses</div>
+        <div class="ent-cap">certifications</div>
+        <div class="ent-cap">study systems</div>
+        <div class="ent-cap">ai tutoring</div>
+        <div class="ent-cap">assessments & credentialing</div>
+        <div class="ent-cap">institutional learning infrastructure</div>
+      </div>
+      <div class="audience-strip r">
+        <div class="audience-label">designed for</div>
+        <div class="audience-list">individuals · ministries · organizations · enterprises · future academic institutions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OPERATIONAL PHILOSOPHY ══════════ -->
+<section id="s-philosophy">
+  <div class="phil-stack">
+    <div class="phil-meta r"><div class="meta"><span class="idx">[ doctrine ]</span> operational philosophy.</div></div>
+    <h2 class="phil-headline r">the connective tissue. <em>seven beliefs the ecosystem is built on.</em></h2>
+    <div class="phil-list r">
+      <div class="phil-row"><span class="phil-num">01</span><span class="phil-text">clarity creates freedom.</span></div>
+      <div class="phil-row"><span class="phil-num">02</span><span class="phil-text">systems shape culture.</span></div>
+      <div class="phil-row"><span class="phil-num">03</span><span class="phil-text">intelligence should support humanity.</span></div>
+      <div class="phil-row"><span class="phil-num">04</span><span class="phil-text">execution is compassion.</span></div>
+      <div class="phil-row"><span class="phil-num">05</span><span class="phil-text">creativity requires structure.</span></div>
+      <div class="phil-row"><span class="phil-num">06</span><span class="phil-text">operational health creates sustainability.</span></div>
+      <div class="phil-row"><span class="phil-num">07</span><span class="phil-text">meaningful work requires intentional infrastructure.</span></div>
+    </div>
+    <p class="phil-coda r">the goal is not simply to build brands, software, or experiences. the goal is to build systems that help people, organizations, ministries, and leaders <em>operate with greater alignment, sustainability, intelligence, and purpose.</em></p>
+  </div>
+</section>
+
+<!-- ══════════ ECOSYSTEM RELATIONSHIPS ══════════ -->
+<section id="s-relations">
+  <div class="rel-stack">
+    <div class="rel-meta r"><div class="meta"><span class="idx">[ relations ]</span> ecosystem cross-reference.</div></div>
+    <h2 class="rel-headline r">how every division and entity maps together.</h2>
+    <div class="rel-grid">
+      <div>
+        <div class="rel-cap-label r">divisions → function</div>
+        <div class="rel-table r">
+          <div class="rel-head"><div>division</div><div>function</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> services</div><div>execution & client work</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> products</div><div>embedded partnerships</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> labs</div><div>internal software & innovation</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> learning</div><div>education & credential infrastructure</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="rel-cap-label r">entity → division</div>
+        <div class="rel-table r">
+          <div class="rel-head"><div>entity</div><div>division</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> strategy</div><div><span class="canela">form.</span> services</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> creative</div><div><span class="canela">form.</span> services</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> digital</div><div><span class="canela">form.</span> services</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> ai</div><div><span class="canela">form.</span> services</div></div>
+          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> experience</div><div><span class="canela">form.</span> services</div></div>
+          <div class="rel-row"><div class="rel-l">continuum <span class="canela">by form.</span></div><div><span class="canela">form.</span> products</div></div>
+          <div class="rel-row"><div class="rel-l">messages <span class="canela">by form.</span></div><div><span class="canela">form.</span> products</div></div>
+          <div class="rel-row"><div class="rel-l">formation</div><div><span class="canela">form.</span> products</div></div>
+          <div class="rel-row"><div class="rel-l">relay <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
+          <div class="rel-row"><div class="rel-l">frame <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
+          <div class="rel-row"><div class="rel-l">axis <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
+          <div class="rel-row"><div class="rel-l">intellect <span class="canela">by form.</span></div><div><span class="canela">form.</span> learning</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -645,8 +860,8 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 <section id="s-close">
   <div class="close-stack">
     <div class="close-meta r"><div class="meta"><span class="idx">[ signal ]</span> closing.</div></div>
-    <h2 class="close-headline r">nine entities. one intelligence layer. <em>built to operate as one.</em></h2>
-    <div class="close-sub r">form. is not a service menu. it is a connected operational ecosystem designed to compound across years.</div>
+    <h2 class="close-headline r">four divisions. twelve entities. one intelligence layer. <em>built to operate as one.</em></h2>
+    <div class="close-sub r">form. is not a service menu. it is a structured operational ecosystem designed to compound across years.</div>
     <a href="/contact.html" class="t-link r">start the conversation</a>
   </div>
 </section>
@@ -715,7 +930,7 @@ if(location.search.includes('peek')){
 })();
 </script>
 <link rel="stylesheet" href="/rev.css?v=3">
-<script src="/rev.js?v=4" defer></script>
-<script src="/nav-footer.js?v=30" defer></script>
+<script src="/rev.js?v=5" defer></script>
+<script src="/nav-footer.js?v=31" defer></script>
 </body>
 </html>

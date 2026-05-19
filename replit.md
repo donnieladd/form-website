@@ -9,17 +9,61 @@ Every page must feel emotionally distinct but share the same ecosystem DNA. Avoi
 
 ## Locked Doctrine (DO NOT VIOLATE)
 
-### Naming System (LOCKED)
-- All public-facing ecosystem entities use the `form. {name}` lowercase prefix with trailing period.
-- The ecosystem is organized into three structural tiers — **disciplines**, **products**, and the **labs division** — and these tiers must remain visually and semantically distinct everywhere they appear (nav dropdown, ecosystem page, footer, founder page strip, etc.).
-  - **Disciplines** (the five operational practices — column 1): `form. strategy`, `form. creative`, `form. digital`, `form. ai`, `form. experience`
-  - **Products** (the three operational platforms — column 2): `continuum`, `messages by form.`, `formation`
-    - Two of the three products are bare lowercase single words (`continuum`, `formation`) — they do **not** carry the `form.` prefix. Only `messages by form.` retains the brand link, in the suffix position.
-    - `continuum` is itself a product that can extend across any discipline (strategy, creative, digital, ai, or experience).
-  - **Division** (separate from disciplines and products — column 3): `form. labs` → `RELAY`, `FRAME`, `AXIS` (uppercase sub-products, no `form.` prefix, mono tracking, no descriptions). `form. labs` is a division, **not** a discipline and **not** a product.
-- `form. sound` is **deprecated** and must not appear in any public-facing copy, nav, footer, or strip.
-- Total public-facing entities: **5 disciplines + 3 products + 1 division (labs) = 9** named layers, with `RELAY`, `FRAME`, `AXIS` nested under labs.
-- Deprecated transitional terminology (do **not** use in any new public-facing copy): `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems`, `form. sound`, `form. support`, `form. messages`, `form. continuum`. Treat these as internal-only legacy language. (`form. support` is now `formation`; `form. messages` is now `messages by form.`; `form. continuum` is now `continuum`.)
+### Naming System (LOCKED — Updated)
+- form. is a **structured operational ecosystem** organized into **four divisions**. Every division and every entity inside it must remain visually and semantically distinct everywhere it appears (nav dropdown, ecosystem page, footer, founder page strip, rev. responses, etc.).
+- The four divisions:
+  - **`form. services`** — execution & client work. Contains the **5 disciplines**: `form. strategy`, `form. creative`, `form. digital`, `form. ai`, `form. experience`.
+  - **`form. products`** — embedded partnership systems. Contains **3 products**: `continuum by form.`, `messages by form.`, `formation`.
+    - `continuum by form.` is offered in tiered partnership terms: **6-month, 12-month, 18-month, 24-month, 36-month**. (Previously named bare `continuum` — that bare form is now deprecated.)
+    - `formation` is the only product that does not carry the `by form.` suffix. It is fractional/executive leadership infrastructure (ministry consulting, leadership systems, operational coaching, organizational development).
+  - **`form. labs`** — internal product innovation & software infrastructure. Contains **3 labs products**: `relay by form.`, `frame by form.`, `axis by form.`. All three are lowercase with the `by form.` suffix. The previous uppercase `RELAY` / `FRAME` / `AXIS` styling is deprecated.
+  - **`form. learning`** — education & credential infrastructure. Contains **1 platform**: `intellect by form.` — positioned as the world's first AI-native university (courses, certifications, study systems, AI tutoring, assessments, credentialing, institutional learning infrastructure).
+- Total public-facing layers: **4 divisions + 12 entities** (5 services + 3 products + 3 labs products + 1 learning platform).
+- Division-level brand naming always uses the `form. {name}` lowercase prefix with trailing period (`form. services`, `form. products`, `form. labs`, `form. learning`).
+- Entity-level naming pattern: most entities carry either the `form. {name}` prefix (the 5 service disciplines, plus the division names themselves) **or** the `{name} by form.` suffix (continuum by form., messages by form., relay by form., frame by form., axis by form., intellect by form.). The single exception is `formation` (bare lowercase, no prefix or suffix).
+- Deprecated names (do **not** use in any public-facing copy):
+  - `form. sound` — removed entirely.
+  - bare `continuum` — now `continuum by form.`
+  - uppercase `RELAY`, `FRAME`, `ACCESS`, `AXIS` (as standalone labels) — now lowercase `relay by form.`, `frame by form.`, `axis by form.` (`ACCESS` was renamed to `axis by form.`).
+  - `form. support` (now `formation`), `form. messages` (now `messages by form.`), `form. continuum` (now `continuum by form.`).
+  - `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems` — all internal-only legacy language, never public.
+
+### Ecosystem Relationships (LOCKED)
+Cross-reference table that must be preserved in all public-facing structure:
+
+| Division | Function |
+| --- | --- |
+| form. services | execution & client work |
+| form. products | embedded partnerships |
+| form. labs | internal software & innovation |
+| form. learning | education & credential infrastructure |
+
+| Product / Entity | Division |
+| --- | --- |
+| form. strategy | form. services |
+| form. creative | form. services |
+| form. digital | form. services |
+| form. ai | form. services |
+| form. experience | form. services |
+| continuum by form. | form. products |
+| messages by form. | form. products |
+| formation | form. products |
+| relay by form. | form. labs |
+| frame by form. | form. labs |
+| axis by form. | form. labs |
+| intellect by form. | form. learning |
+
+### Operational Philosophy (LOCKED)
+form. is built on the belief that:
+- clarity creates freedom
+- systems shape culture
+- intelligence should support humanity
+- execution is compassion
+- creativity requires structure
+- operational health creates sustainability
+- meaningful work requires intentional infrastructure
+
+The goal is not simply to build brands, software, or experiences. The goal is to build systems that help people, organizations, ministries, and leaders operate with greater alignment, sustainability, intelligence, and purpose.
 
 ### Typography (LOCKED)
 - **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.

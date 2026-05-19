@@ -44,7 +44,7 @@
           '<a href="/ecosystem.html" class="tn-link' + cls('/ecosystem.html') + '">ecosystem</a>' +
           '<div class="tn-dropdown dd-eco">' +
             '<div class="dd-list">' +
-              '<a href="/ecosystem.html" class="dd-parent">disciplines</a>' +
+              '<a href="/ecosystem.html#services" class="dd-parent">form. services</a>' +
               '<a href="/ecosystem.html#strategy">form. strategy</a>' +
               '<a href="/ecosystem.html#creative">form. creative</a>' +
               '<a href="/ecosystem.html#digital">form. digital</a>' +
@@ -52,16 +52,20 @@
               '<a href="/ecosystem.html#experience">form. experience</a>' +
             '</div>' +
             '<div class="dd-list">' +
-              '<a href="/ecosystem.html#products" class="dd-parent">products</a>' +
-              '<a href="/ecosystem.html#continuum">continuum</a>' +
+              '<a href="/ecosystem.html#products" class="dd-parent">form. products</a>' +
+              '<a href="/ecosystem.html#continuum">continuum by form.</a>' +
               '<a href="/messages.html">messages by form.</a>' +
               '<a href="/ecosystem.html#formation">formation</a>' +
             '</div>' +
             '<div class="dd-list">' +
               '<a href="/ecosystem.html#labs" class="dd-parent">form. labs</a>' +
-              '<a href="/ecosystem.html#relay" class="dd-up">RELAY</a>' +
-              '<a href="/ecosystem.html#frame" class="dd-up">FRAME</a>' +
-              '<a href="/ecosystem.html#axis" class="dd-up">AXIS</a>' +
+              '<a href="/ecosystem.html#relay">relay by form.</a>' +
+              '<a href="/ecosystem.html#frame">frame by form.</a>' +
+              '<a href="/ecosystem.html#axis">axis by form.</a>' +
+            '</div>' +
+            '<div class="dd-list">' +
+              '<a href="/ecosystem.html#learning" class="dd-parent">form. learning</a>' +
+              '<a href="/ecosystem.html#intellect">intellect by form.</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -76,7 +80,10 @@
   // ─── FOOTER ────────────────────────────────────────────────────
   // 5-column layout per FOOTER_FINAL_3 reference. Entity names follow
   // locked doctrine in replit.md: 5 disciplines + 3 products + 1 division.
-  // 'form. sound' is deprecated and must not appear.
+  // Doctrine: 4 divisions × 12 entities. Deprecated names that
+  // must never appear: form. sound, bare continuum, uppercase
+  // RELAY/FRAME/AXIS/ACCESS, form. support, form. messages,
+  // form. continuum, *-systems pages.
   var footerHTML =
     '<footer id="sitefooter" role="contentinfo">' +
       '<div class="ft-grid">' +
@@ -103,25 +110,31 @@
           '<a href="/contact.html#faq">faq</a>' +
         '</div>' +
 
-        // ECOSYSTEM ──────────────────────────────────────────
+        // SERVICES ───────────────────────────────────────────
         '<div class="ft-col">' +
-          '<h4>ecosystem</h4>' +
+          '<h4>services</h4>' +
           '<span class="ft-h-rule" aria-hidden="true"></span>' +
           '<a href="/ecosystem.html#strategy">form. strategy</a>' +
           '<a href="/ecosystem.html#creative">form. creative</a>' +
           '<a href="/ecosystem.html#digital">form. digital</a>' +
           '<a href="/ecosystem.html#ai">form. ai</a>' +
           '<a href="/ecosystem.html#experience">form. experience</a>' +
-          '<a href="/ecosystem.html#labs">form. labs</a>' +
         '</div>' +
 
-        // PRODUCTS ───────────────────────────────────────────
+        // PLATFORMS ──────────────────────────────────────────
+        // Products + labs + learning entities, listed in division
+        // order. Footer carries all 7 product-tier entities so users
+        // can reach any platform from any page.
         '<div class="ft-col">' +
-          '<h4>products</h4>' +
+          '<h4>platforms</h4>' +
           '<span class="ft-h-rule" aria-hidden="true"></span>' +
-          '<a href="/ecosystem.html#continuum">continuum</a>' +
+          '<a href="/ecosystem.html#continuum">continuum by form.</a>' +
           '<a href="/messages.html">messages by form.</a>' +
           '<a href="/ecosystem.html#formation">formation</a>' +
+          '<a href="/ecosystem.html#relay">relay by form.</a>' +
+          '<a href="/ecosystem.html#frame">frame by form.</a>' +
+          '<a href="/ecosystem.html#axis">axis by form.</a>' +
+          '<a href="/ecosystem.html#intellect">intellect by form.</a>' +
         '</div>' +
 
         // CONNECT ────────────────────────────────────────────
@@ -155,22 +168,25 @@
           '</div>' +
         '</details>' +
         '<details class="ft-acc">' +
-          '<summary>ecosystem<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<summary>services<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
           '<div class="ft-acc-body">' +
             '<a href="/ecosystem.html#strategy">form. strategy</a>' +
             '<a href="/ecosystem.html#creative">form. creative</a>' +
             '<a href="/ecosystem.html#digital">form. digital</a>' +
             '<a href="/ecosystem.html#ai">form. ai</a>' +
             '<a href="/ecosystem.html#experience">form. experience</a>' +
-            '<a href="/ecosystem.html#labs">form. labs</a>' +
           '</div>' +
         '</details>' +
         '<details class="ft-acc">' +
-          '<summary>products<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
+          '<summary>platforms<span class="ft-acc-icon" aria-hidden="true"></span></summary>' +
           '<div class="ft-acc-body">' +
-            '<a href="/ecosystem.html#continuum">continuum</a>' +
+            '<a href="/ecosystem.html#continuum">continuum by form.</a>' +
             '<a href="/messages.html">messages by form.</a>' +
             '<a href="/ecosystem.html#formation">formation</a>' +
+            '<a href="/ecosystem.html#relay">relay by form.</a>' +
+            '<a href="/ecosystem.html#frame">frame by form.</a>' +
+            '<a href="/ecosystem.html#axis">axis by form.</a>' +
+            '<a href="/ecosystem.html#intellect">intellect by form.</a>' +
           '</div>' +
         '</details>' +
         '<details class="ft-acc">' +

@@ -7,52 +7,95 @@
   if (window.__revInit) return;
   window.__revInit = true;
 
-  // ─── doctrine: the nine entities ───────────────────────────
+  // ─── doctrine: four divisions, twelve entities ─────────────
+  // Mirrors locked doctrine in replit.md: services / products /
+  // labs / learning. Division-level keys also routable so rev.
+  // can answer "what is form. services" etc.
   var ENTITIES = {
+    // ── form. services (5 disciplines) ─────────────────────
     strategy: {
       label: 'form. strategy',
       anchor: '/ecosystem.html#strategy',
-      blurb: 'operational architecture, positioning, and decision frameworks. where structure begins.'
+      blurb: 'business strategy, operational systems, leadership consulting, ministry strategy, and organizational development.'
     },
     creative: {
       label: 'form. creative',
       anchor: '/ecosystem.html#creative',
-      blurb: 'brand systems, narrative, and visual identity built as infrastructure — not decoration.'
+      blurb: 'creative direction, campaigns, visual identity systems, storytelling, media, and marketing infrastructure.'
     },
     digital: {
       label: 'form. digital',
       anchor: '/ecosystem.html#digital',
-      blurb: 'web, product, and digital surfaces designed as operational extensions of the brand.'
+      blurb: 'website development, application development, digital systems, and technical infrastructure.'
     },
     ai: {
       label: 'form. ai',
       anchor: '/ecosystem.html#ai',
-      blurb: 'applied intelligence — workflows, routing, and operational cognition. rev. lives here.'
-    },
-    messages: {
-      label: 'messages by form.',
-      anchor: '/ecosystem.html#messages',
-      blurb: 'sermon series content, production, and strategy — built for ministries who need the world around the message to match what was being carried.'
-    },
-    support: {
-      label: 'formation',
-      anchor: '/ecosystem.html#formation',
-      blurb: 'continuous operational backing — the layer that keeps systems calm under pressure.'
+      blurb: 'ai implementation, workflow automation, operational intelligence systems, and ai architecture. rev. lives here.'
     },
     experience: {
       label: 'form. experience',
       anchor: '/ecosystem.html#experience',
-      blurb: 'physical, spatial, and live ecosystems — environments where the brand becomes a place.'
+      blurb: 'worship, production, live experiences, environments, speaking, and performance systems.'
+    },
+    // ── form. products (3) ─────────────────────────────────
+    continuum: {
+      label: 'continuum by form.',
+      anchor: '/ecosystem.html#continuum',
+      blurb: 'long-term operational partnership infrastructure — available in 6, 12, 18, 24, and 36 month terms.'
+    },
+    messages: {
+      label: 'messages by form.',
+      anchor: '/ecosystem.html#messages',
+      blurb: 'sermon series development, ministry storytelling, communication systems, and campaign ecosystems.'
+    },
+    formation: {
+      label: 'formation',
+      anchor: '/ecosystem.html#formation',
+      blurb: 'executive leadership infrastructure — fractional executive support, ministry consulting, leadership systems, and operational coaching.'
+    },
+    // ── form. labs (3 platforms) ───────────────────────────
+    relay: {
+      label: 'relay by form.',
+      anchor: '/ecosystem.html#relay',
+      blurb: 'operational communication and intelligence infrastructure.'
+    },
+    frame: {
+      label: 'frame by form.',
+      anchor: '/ecosystem.html#frame',
+      blurb: 'ai-native cinematic assembly and editing systems.'
+    },
+    axis: {
+      label: 'axis by form.',
+      anchor: '/ecosystem.html#axis',
+      blurb: 'strategic operational infrastructure platform — the operating system underneath continuum partnerships.'
+    },
+    // ── form. learning (1 platform) ────────────────────────
+    intellect: {
+      label: 'intellect by form.',
+      anchor: '/ecosystem.html#intellect',
+      blurb: "the world's first ai-native university — courses, certifications, study systems, ai tutoring, assessments, and credentialing at institutional scale."
+    },
+    // ── division-level anchors (for queries about a whole division) ──
+    services: {
+      label: 'form. services',
+      anchor: '/ecosystem.html#services',
+      blurb: 'execution & client work — the five service disciplines: strategy, creative, digital, ai, and experience.'
+    },
+    products: {
+      label: 'form. products',
+      anchor: '/ecosystem.html#products',
+      blurb: 'embedded partnership systems — continuum by form., messages by form., and formation.'
     },
     labs: {
       label: 'form. labs',
       anchor: '/ecosystem.html#labs',
-      blurb: 'research and emerging systems. where the next layer of the ecosystem is prototyped.'
+      blurb: 'internal product innovation — relay by form., frame by form., and axis by form.'
     },
-    continuum: {
-      label: 'continuum',
-      anchor: '/ecosystem.html#continuum',
-      blurb: 'the long arc — the connective intelligence that holds every entity in coherence over time.'
+    learning: {
+      label: 'form. learning',
+      anchor: '/ecosystem.html#learning',
+      blurb: 'education & credential infrastructure — home of intellect by form., the ai-native university.'
     }
   };
 
@@ -67,14 +110,18 @@
     }
     // semantic fallbacks
     if (/\b(brand|identity|design|visual|logo)\b/.test(q)) return 'creative';
-    if (/\b(web|site|app|product|platform|digital)\b/.test(q)) return 'digital';
+    if (/\b(web|site|app|website|platform|digital)\b/.test(q)) return 'digital';
     if (/\b(ai|intelligence|automation|workflow|llm|model)\b/.test(q)) return 'ai';
     if (/\b(sermon|preach|ministry|church|series|pastor|messages)\b/.test(q)) return 'messages';
-    if (/\b(event|space|physical|live|venue|environment)\b/.test(q)) return 'experience';
-    if (/\b(research|prototype|experiment|emerging|new)\b/.test(q)) return 'labs';
-    if (/\b(strategy|positioning|architecture|framework|plan)\b/.test(q)) return 'strategy';
-    if (/\b(support|maintenance|ongoing|operations)\b/.test(q)) return 'support';
-    if (/\b(long.?term|continuity|coherence|over time)\b/.test(q)) return 'continuum';
+    if (/\b(worship|production|live|event|environment|speaking|performance|venue)\b/.test(q)) return 'experience';
+    if (/\b(university|course|certification|tutoring|credential|education|learn|student|school|institution)\b/.test(q)) return 'intellect';
+    if (/\b(communication|relay|signal|routing|coordination)\b/.test(q)) return 'relay';
+    if (/\b(video|edit|cinematic|frame|film|footage|motion)\b/.test(q)) return 'frame';
+    if (/\b(axis|operating system|long.?arc|cadence|orchestration)\b/.test(q)) return 'axis';
+    if (/\b(research|prototype|experiment|emerging|new product)\b/.test(q)) return 'labs';
+    if (/\b(strategy|positioning|architecture|framework|plan|consulting)\b/.test(q)) return 'strategy';
+    if (/\b(fractional|executive|leadership|coaching|advisory|maintenance|ongoing|operations)\b/.test(q)) return 'formation';
+    if (/\b(partnership|long.?term|continuity|coherence|over time|years)\b/.test(q)) return 'continuum';
     return null;
   }
 
@@ -91,15 +138,18 @@
         'form. is an operational intelligence company.',
         'we build the systems beneath strategy, brand, technology, and intelligence — and hold them in coherence as one ecosystem.',
         'the core idea: <em>intelligence without structure creates noise.</em> form. is the structure.',
-        { suggest: ['the nine entities', 'where do i start?', 'the founder'] }
+        { suggest: ['the four divisions', 'where do i start?', 'the founder'] }
       ];
     }
 
     // intent: ecosystem overview
-    if (/\b(ecosystem|nine|entities|all of them|overview)\b/.test(q)) {
+    if (/\b(ecosystem|division|divisions|entities|twelve|four|all of them|overview)\b/.test(q)) {
       return [
-        'the ecosystem is nine connected entities — one signal.',
-        'strategy. creative. digital. ai. experience. labs. continuum. messages by form. formation.',
+        'the ecosystem is four divisions and twelve entities — one signal.',
+        '<em>form. services</em> — strategy, creative, digital, ai, experience.',
+        '<em>form. products</em> — continuum by form., messages by form., formation.',
+        '<em>form. labs</em> — relay by form., frame by form., axis by form.',
+        '<em>form. learning</em> — intellect by form.',
         'each one is operational on its own. together they form a single intelligence layer.',
         'open the full map: <a href="/ecosystem.html">ecosystem.</a>'
       ];
@@ -162,7 +212,7 @@
     return [
       'i\'ll route you. the clearest path forward is to open the conversation directly:',
       '<a href="/contact.html">● start the conversation</a>',
-      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, experience, labs, continuum, messages by form., or formation.'
+      'or tell me which surface you\'re thinking about — strategy, creative, digital, ai, experience, continuum by form., messages by form., formation, relay by form., frame by form., axis by form., or intellect by form.'
     ];
   }
 
@@ -450,7 +500,7 @@
         line = 'this page is the founder\'s reflection. i can route you onward when ready.';
         suggestions = ['show me the ecosystem', 'start the conversation'];
       } else if (path.indexOf('/ecosystem') === 0) {
-        line = 'nine entities. one signal. ask me about any of them.';
+        line = 'four divisions. twelve entities. one signal. ask me about any of them.';
         suggestions = ['form. strategy', 'form. ai', 'continuum', 'where do i start?'];
       } else if (path.indexOf('/contact') === 0) {
         line = 'you\'re in the right place. i can clarify anything before you write.';
