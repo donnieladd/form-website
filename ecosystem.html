@@ -351,11 +351,17 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
 .rel-headline{font-family:'Satoshi',sans-serif;font-weight:300;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.12;color:var(--stone);max-width:920px;margin-bottom:4rem;}
 .rel-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:4rem;align-items:flex-start;}
 .rel-cap-label{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.4);margin-bottom:1.4rem;}
-.rel-table{width:100%;}
-.rel-head{display:grid;grid-template-columns:1fr 1.3fr;gap:1rem;padding:.8rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.42);}
-.rel-row{display:grid;grid-template-columns:1fr 1.3fr;gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--rule);font-family:'Satoshi',sans-serif;font-weight:300;font-size:.96rem;line-height:1.5;color:rgba(var(--stone-rgb),.74);}
-.rel-row .rel-l{color:rgba(var(--stone-rgb),.94);}
-.rel-row .canela{font-style:italic;}
+.rel-table{width:100%;border-collapse:collapse;table-layout:fixed;}
+.rel-table col,.rel-table th,.rel-table td{box-sizing:border-box;}
+.rel-table thead{display:table-header-group;}
+.rel-table tbody{display:table-row-group;}
+.rel-table .rel-head th{text-align:left;font-weight:400;padding:.8rem 1rem .8rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(var(--stone-rgb),.42);}
+.rel-table .rel-head th:last-child{padding-right:0;}
+.rel-table .rel-row th,.rel-table .rel-row td{text-align:left;font-weight:300;padding:.95rem 1rem .95rem 0;border-bottom:1px solid var(--rule);font-family:'Satoshi',sans-serif;font-size:.96rem;line-height:1.5;color:rgba(var(--stone-rgb),.74);vertical-align:top;}
+.rel-table .rel-row th:last-child,.rel-table .rel-row td:last-child{padding-right:0;}
+.rel-table .rel-row th{width:42%;}
+.rel-table .rel-row .rel-l,.rel-table .rel-row th.rel-l{color:rgba(var(--stone-rgb),.94);font-weight:300;}
+.rel-table .canela{font-style:italic;}
 @media(max-width:880px){.rel-grid{grid-template-columns:1fr;gap:3rem;}}
 
 /* SVG node sub-label */
@@ -805,15 +811,15 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
   <div class="phil-stack">
     <div class="phil-meta r"><div class="meta"><span class="idx">[ doctrine ]</span> operational philosophy.</div></div>
     <h2 class="phil-headline r">the connective tissue. <em>seven beliefs the ecosystem is built on.</em></h2>
-    <div class="phil-list r">
-      <div class="phil-row"><span class="phil-num">01</span><span class="phil-text">clarity creates freedom.</span></div>
-      <div class="phil-row"><span class="phil-num">02</span><span class="phil-text">systems shape culture.</span></div>
-      <div class="phil-row"><span class="phil-num">03</span><span class="phil-text">intelligence should support humanity.</span></div>
-      <div class="phil-row"><span class="phil-num">04</span><span class="phil-text">execution is compassion.</span></div>
-      <div class="phil-row"><span class="phil-num">05</span><span class="phil-text">creativity requires structure.</span></div>
-      <div class="phil-row"><span class="phil-num">06</span><span class="phil-text">operational health creates sustainability.</span></div>
-      <div class="phil-row"><span class="phil-num">07</span><span class="phil-text">meaningful work requires intentional infrastructure.</span></div>
-    </div>
+    <ol class="phil-list r" aria-label="seven operational beliefs">
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">01</span><span class="phil-text">clarity creates freedom.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">02</span><span class="phil-text">systems shape culture.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">03</span><span class="phil-text">intelligence should support humanity.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">04</span><span class="phil-text">execution is compassion.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">05</span><span class="phil-text">creativity requires structure.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">06</span><span class="phil-text">operational health creates sustainability.</span></li>
+      <li class="phil-row"><span class="phil-num" aria-hidden="true">07</span><span class="phil-text">meaningful work requires intentional infrastructure.</span></li>
+    </ol>
     <p class="phil-coda r">the goal is not simply to build brands, software, or experiences. the goal is to build systems that help people, organizations, ministries, and leaders <em>operate with greater alignment, sustainability, intelligence, and purpose.</em></p>
   </div>
 </section>
@@ -825,32 +831,36 @@ body.hl #cring{width:34px;height:34px;border-color:rgba(var(--ac-rgb),.45);}
     <h2 class="rel-headline r">how every division and entity maps together.</h2>
     <div class="rel-grid">
       <div>
-        <div class="rel-cap-label r">divisions → function</div>
-        <div class="rel-table r">
-          <div class="rel-head"><div>division</div><div>function</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> services</div><div>execution & client work</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> products</div><div>embedded partnerships</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> labs</div><div>internal software & innovation</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> learning</div><div>education & credential infrastructure</div></div>
-        </div>
+        <div class="rel-cap-label r" id="rel-cap-div">divisions → function</div>
+        <table class="rel-table r" aria-labelledby="rel-cap-div">
+          <thead><tr class="rel-head"><th scope="col">division</th><th scope="col">function</th></tr></thead>
+          <tbody>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> services</th><td>execution &amp; client work</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> products</th><td>embedded partnerships</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> labs</th><td>internal software &amp; innovation</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> learning</th><td>education &amp; credential infrastructure</td></tr>
+          </tbody>
+        </table>
       </div>
       <div>
-        <div class="rel-cap-label r">entity → division</div>
-        <div class="rel-table r">
-          <div class="rel-head"><div>entity</div><div>division</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> strategy</div><div><span class="canela">form.</span> services</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> creative</div><div><span class="canela">form.</span> services</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> digital</div><div><span class="canela">form.</span> services</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> ai</div><div><span class="canela">form.</span> services</div></div>
-          <div class="rel-row"><div class="rel-l"><span class="canela">form.</span> experience</div><div><span class="canela">form.</span> services</div></div>
-          <div class="rel-row"><div class="rel-l">continuum <span class="canela">by form.</span></div><div><span class="canela">form.</span> products</div></div>
-          <div class="rel-row"><div class="rel-l">messages <span class="canela">by form.</span></div><div><span class="canela">form.</span> products</div></div>
-          <div class="rel-row"><div class="rel-l">formation</div><div><span class="canela">form.</span> products</div></div>
-          <div class="rel-row"><div class="rel-l">relay <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
-          <div class="rel-row"><div class="rel-l">frame <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
-          <div class="rel-row"><div class="rel-l">axis <span class="canela">by form.</span></div><div><span class="canela">form.</span> labs</div></div>
-          <div class="rel-row"><div class="rel-l">intellect <span class="canela">by form.</span></div><div><span class="canela">form.</span> learning</div></div>
-        </div>
+        <div class="rel-cap-label r" id="rel-cap-ent">entity → division</div>
+        <table class="rel-table r" aria-labelledby="rel-cap-ent">
+          <thead><tr class="rel-head"><th scope="col">entity</th><th scope="col">division</th></tr></thead>
+          <tbody>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> strategy</th><td><span class="canela">form.</span> services</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> creative</th><td><span class="canela">form.</span> services</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> digital</th><td><span class="canela">form.</span> services</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> ai</th><td><span class="canela">form.</span> services</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row"><span class="canela">form.</span> experience</th><td><span class="canela">form.</span> services</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">continuum <span class="canela">by form.</span></th><td><span class="canela">form.</span> products</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">messages <span class="canela">by form.</span></th><td><span class="canela">form.</span> products</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">formation</th><td><span class="canela">form.</span> products</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">relay <span class="canela">by form.</span></th><td><span class="canela">form.</span> labs</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">frame <span class="canela">by form.</span></th><td><span class="canela">form.</span> labs</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">axis <span class="canela">by form.</span></th><td><span class="canela">form.</span> labs</td></tr>
+            <tr class="rel-row"><th class="rel-l" scope="row">intellect <span class="canela">by form.</span></th><td><span class="canela">form.</span> learning</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

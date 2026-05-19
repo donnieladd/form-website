@@ -501,7 +501,7 @@
         suggestions = ['show me the ecosystem', 'start the conversation'];
       } else if (path.indexOf('/ecosystem') === 0) {
         line = 'four divisions. twelve entities. one signal. ask me about any of them.';
-        suggestions = ['form. strategy', 'form. ai', 'continuum', 'where do i start?'];
+        suggestions = ['form. strategy', 'form. ai', 'continuum by form.', 'where do i start?'];
       } else if (path.indexOf('/contact') === 0) {
         line = 'you\'re in the right place. i can clarify anything before you write.';
         suggestions = ['what is form.?', 'show me the ecosystem'];

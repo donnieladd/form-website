@@ -106,7 +106,7 @@ home   vision   standards   founder   ecosystem   contact   ● start the conver
 - `vision.` — philosophical, immersive, future-facing, vast, cinematic. Large atmospheric environments, deep negative space, slow topology movement.
 - `standards.` — structured, disciplined, architectural, operational, human. Less atmosphere, more grid systems, more line systems, more operational rhythm. Combines former core values + core principles.
 - `founder.` — human, reflective, warm, cinematic, intimate. Less infrastructure-heavy, more texture and emotional pacing. Not a résumé.
-- `ecosystem.` — connected, modular, adaptive, alive, systemic. Each of the nine `form. {entity}` layers should feel visually distinct with its own atmosphere, motion behavior, and pacing.
+- `ecosystem.` — connected, modular, adaptive, alive, systemic. Each of the 4 divisions and 12 entities (5 services + 3 products + 3 labs products + 1 learning platform) should feel visually distinct with its own atmosphere, motion behavior, and pacing.
 
 ### Future: Rev. Intelligence Layer
 Planned integrated AI layer named `rev.` — operational intelligence, not a chatbot. Calm, clear, infrastructural. Avoid floating chat bubbles, customer-support aesthetics, neon AI gimmicks. Possible patterns: intelligence dock, signal interface, command palette, adaptive sidebar, ambient prompt layer.
@@ -116,7 +116,7 @@ Planned integrated AI layer named `rev.` — operational intelligence, not a cha
 - `vision.html` — Cinematic 7-section operational doctrine (philosophical entry point)
 - `standards.html` — Combined values + principles operational standards page
 - `founder.html` — Human reflective founder narrative
-- `ecosystem.html` — Connected ecosystem map (10 entities + 3 labs sub-products)
+- `ecosystem.html` — Connected ecosystem map (4 divisions × 12 entities + operational philosophy + relationships cross-reference)
 - `contact.html` — `start the conversation` intake page
 
 ## Environmental Continuity System
@@ -125,7 +125,7 @@ Planned integrated AI layer named `rev.` — operational intelligence, not a cha
 - Site uses **page-to-page navigation** (not single-scroll). Each page is its own load with cinematic transition overlay handled by `nav-footer.js`.
 
 ### Deprecated / Pending Removal
-The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion once `ecosystem.html` is rebuilt around the nine `form.` entities. Do not link to them from any new public-facing nav, footer, or copy.
+The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion. `ecosystem.html` has been rebuilt around the 4 divisions × 12 entities doctrine. Do not link to the legacy pages from any new public-facing nav, footer, or copy.
 
 ## Key Assets
 - `home-bg.av1.webm` — Modern AV1 WebM encoding of the homepage hero video (~3.7 MB, ~33% smaller than the VP9 WebM and ~58% smaller than the MP4). Listed first inside `#hero-video` with an explicit `codecs=av01...` type so modern Chrome/Firefox/Edge load it; browsers without AV1 support skip past it to the VP9 WebM, then the MP4. Same dimensions, duration, and visual content as `home-bg.mp4`.
