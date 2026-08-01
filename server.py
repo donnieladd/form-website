@@ -281,7 +281,18 @@ class CachingHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = 5000
+    import sys
+
+    port = int(os.environ.get("PORT", "5050"))
+    if len(sys.argv) > 1:
+        for i, arg in enumerate(sys.argv[1:], start=1):
+            if arg in ("--port", "-p") and i < len(sys.argv) - 1:
+                port = int(sys.argv[i + 1])
+                break
+            if arg.startswith("--port="):
+                port = int(arg.split("=", 1)[1])
+                break
+
     handler = CachingHTTPRequestHandler
     with http.server.HTTPServer(("0.0.0.0", port), handler) as httpd:
         compression = "gzip + Brotli" if BROTLI_AVAILABLE else "gzip"

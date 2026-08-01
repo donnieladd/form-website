@@ -1,0 +1,227 @@
+:root {
+  --fi-black: #000000;
+  --fi-ink: #ffffff;
+  --fi-ink-soft: rgba(255, 255, 255, 0.88);
+  --fi-ink-muted: rgba(255, 255, 255, 0.58);
+  --fi-ink-ghost: rgba(255, 255, 255, 0.34);
+  --fi-blue: #3366ff;
+  --fi-blue-bright: #4a6fff;
+  --fi-blue-soft: rgba(51, 102, 255, 0.82);
+  --fi-line: rgba(255, 255, 255, 0.1);
+  --fi-line-strong: rgba(255, 255, 255, 0.16);
+  --fi-card: rgba(255, 255, 255, 0.035);
+  --fi-card-hover: rgba(255, 255, 255, 0.055);
+  --fi-card-raised: rgba(255, 255, 255, 0.05);
+  --fi-amber: #ff8a00;
+  --fi-gradient: linear-gradient(90deg, #007aff 0%, #6000ff 100%);
+  --fi-radius-sm: 10px;
+  --fi-radius-md: 14px;
+  --fi-radius-pill: 9999px;
+  --fi-nav-h: 68px;
+  --fi-max: 1320px;
+  --fi-gutter: clamp(20px, 4vw, 40px);
+  --fi-sans: "Satoshi", "Inter", system-ui, sans-serif;
+  --fi-mono: "IBM Plex Mono", "SF Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.fi-body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--fi-black);
+  color: var(--fi-ink);
+  font-family: var(--fi-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.fi-body a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fi-body img {
+  max-width: 100%;
+  display: block;
+}
+
+.fi-shell {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.fi-container {
+  width: min(var(--fi-max), calc(100% - var(--fi-gutter) * 2));
+  margin-inline: auto;
+}
+
+.fi-blue-dot {
+  color: var(--fi-blue);
+}
+
+.fi-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--fi-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fi-blue-soft);
+  font-weight: 500;
+}
+
+.fi-eyebrow::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fi-blue);
+  box-shadow: 0 0 8px rgba(51, 102, 255, 0.65);
+  flex-shrink: 0;
+}
+
+.fi-heading-xl {
+  margin: 0;
+  font-size: clamp(2.75rem, 5.4vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.fi-heading-lg {
+  margin: 0;
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.fi-lead {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--fi-ink-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+.fi-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--fi-radius-pill);
+  border: 1px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.fi-btn:hover {
+  transform: translateY(-1px);
+}
+
+.fi-btn-primary {
+  background: var(--fi-gradient);
+  color: #fff;
+}
+
+.fi-btn-nav-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.34);
+  color: var(--fi-ink);
+  min-height: 38px;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.82rem;
+}
+
+.fi-btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--fi-ink);
+}
+
+.fi-heading-accent {
+  color: var(--fi-blue);
+}
+
+.fi-btn-light {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.fi-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--fi-ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.fi-link-arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.fi-section {
+  position: relative;
+  padding: clamp(5rem, 9vw, 7.5rem) 0;
+}
+
+.fi-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--fi-ink);
+}
+
+.fi-icon-box svg {
+  width: 18px;
+  height: 18px;
+}
+
+.fi-prism {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(48px);
+}
+
+.fi-prism-left {
+  left: -6%;
+  bottom: 6%;
+  width: 240px;
+  height: 240px;
+  background: linear-gradient(135deg, rgba(255, 60, 120, 0.32), rgba(0, 122, 255, 0.28), rgba(255, 200, 80, 0.22));
+  opacity: 0.55;
+}
+
+.fi-prism-right {
+  right: -2%;
+  top: 16%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 138, 0, 0.22), transparent 70%);
+  opacity: 0.5;
+}

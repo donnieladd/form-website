@@ -1,0 +1,36 @@
+# OS / editor cruft
+.DS_Store
+._*
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / build output
+node_modules/
+.next/
+dist/
+build/
+
+# Deploy / platform
+.vercel/
+.replit_cache/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Archives / scratch
+*.zip
+
+# Replit upload scratch.
+# 461MB of unreferenced source uploads — not used by any live page and far too
+# large for version control. The files remain on disk; they are simply not tracked.
+# If any of these become production assets, move them into /intel/assets/ instead.
+attached_assets/

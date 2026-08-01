@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "brand": "form.",
+  "generatedAt": "2026-06-24",
+  "higgsfieldWorkspace": "user-higgsfield",
+  "canonicalAuthority": "source/board-art-direction-lock.png",
+  "tokens": {
+    "nearBlack": "#0A0D12",
+    "softWhite": "#F4F5F7",
+    "mutedGray": "#A7ADB7",
+    "dimGray": "#6F7682",
+    "accentBlue": "#3D6BFF",
+    "typographyUI": "Manrope",
+    "logoRule": "always lowercase form. with blue period"
+  },
+  "referenceElements": [
+    {"name": "form-logo-primary", "elementId": "9c5c2285-10cc-44f1-8a93-d71f48d89f56", "category": "prop", "mediaId": "47411dcc-49a0-40b8-8837-a25da8dfa033", "source": "A1-primary-blue-period.png"},
+    {"name": "form-logo-monochrome", "elementId": "b2d40fb8-74e0-4b45-8d6b-ad9739e78cce", "category": "prop", "mediaId": "569a4f5d-8eeb-4051-bdd9-99c2b85ed859", "source": "A2-monochrome-white.png"},
+    {"name": "form-logo-light-bg", "elementId": "995a5907-0686-4863-ab1c-7f751175e5dd", "category": "prop", "mediaId": "a6523107-9e1c-4156-833c-792b38e0b7b1", "source": "A3-black-on-light.png"},
+    {"name": "form-logo-accent-flare", "elementId": "ff4ac63c-bc15-40c3-87cc-0b23916690f2", "category": "prop", "mediaId": "a34d0c80-b858-4a49-a9d5-999b624f1d16", "source": "A4-accent-flare.png"},
+    {"name": "form-atmosphere-cinematic", "elementId": "8820b256-8d56-4c3c-b9d8-f15844b4b9c0", "category": "environment", "mediaId": "a768ee95-af1a-4a2d-9a05-5d736922d5db", "source": "A5-cinematic-circle.png"},
+    {"name": "form-atmosphere-prism", "elementId": "4be1fc78-990a-42b0-9946-abadafeda9c6", "category": "environment", "mediaId": "c31152de-4c41-437b-af1c-527fb9441e1e", "source": "A6-prism-atmosphere.png"},
+    {"name": "form-brand-art-direction", "elementId": "eaee07a9-a949-427a-9855-a750f4a27c42", "category": "environment", "mediaId": "06d0aedb-3908-42c4-aa48-53071bb56bc8", "source": "board-art-direction-lock.png"},
+    {"name": "form-ui-website-dna", "elementId": "957153fe-4dc0-4bcb-861b-3e7a5d07a917", "category": "environment", "mediaId": "cc4974cb-448f-4999-a814-53ab3fca5def", "source": "board-website-dna.png"},
+    {"name": "form-brand-ecosystem-board", "elementId": "30b826e4-543e-43ca-9c9f-83f22eb63687", "category": "environment", "mediaId": "e6d7f5d0-401b-49c7-bc67-64de1090b4ff", "source": "board-ecosystem.png"},
+    {"name": "form-campaign-announcement", "elementId": "a51cb930-70c2-4f05-8c8f-1c4bf9af4e8c", "category": "environment", "mediaId": "fda59dec-fd7a-4153-aa35-434cce1c6dbb", "source": "E1-brand-announcement.png"},
+    {"name": "form-campaign-relay", "elementId": "9c1de7dc-9e43-4c53-80de-c2cdf6cbe1b6", "category": "environment", "mediaId": "f938373d-50a6-4927-b003-1ffde2aa1bc6", "source": "E2-relay-launch.png"},
+    {"name": "form-campaign-messages", "elementId": "d6016606-ffd5-46fe-846d-b093a5561baa", "category": "environment", "mediaId": "84a24653-d173-4a8b-b128-98ea67da8fe9", "source": "E3-messages-launch.png"},
+    {"name": "form-campaign-continuum", "elementId": "3815dc37-be7a-496a-96b9-64b163d78630", "category": "environment", "mediaId": "a607e1fc-9aa8-4635-8098-e6992b7cf7b8", "source": "E4-continuum-partnership.png"},
+    {"name": "form-campaign-ecosystem", "elementId": "31aef5f3-e900-46a6-a153-3c9daf745255", "category": "environment", "mediaId": "b81daa77-7c5b-4fe0-acf1-876f903d6f87", "source": "E5-ecosystem-overview.png"},
+    {"name": "form-campaign-conversation", "elementId": "bfca641a-f276-4daf-81d5-4bc0bf3cea2d", "category": "environment", "mediaId": "2374187e-86a3-4603-aa5b-b31b0add5994", "source": "E6-start-conversation.png"}
+  ],
+  "generations": [
+    {"batch": "B-icons", "model": "nano_banana_2", "jobId": "1df24574-fb0d-459c-9a5d-37e860f58862", "export": "exports/icons/icon-set-3x3-hf.png"},
+    {"batch": "C-ui", "model": "marketing_studio_image", "jobId": "ad118d26-5872-4ffd-b80f-8e809dfc06f7", "export": "exports/ui/component-system-sheet-hf.png"},
+    {"batch": "D-atmosphere", "model": "nano_banana_2", "jobId": "c73b34a7-b4f1-4d0e-98dd-affbf7f30373", "export": "exports/atmosphere/cinematic-hall-hf.png"},
+    {"batch": "D-atmosphere", "model": "nano_banana_2", "jobId": "21027aae-3571-4be3-b434-a5f08cb6ad35", "export": "exports/atmosphere/prism-flare-hf.png"},
+    {"batch": "A-logos", "model": "remove_background", "jobId": "2f106c61-dc68-4a4c-94c6-b5dd584f6a53", "export": "exports/logos/A1-primary-transparent-hf.png"},
+    {"batch": "A-logos", "model": "nano_banana_pro", "jobId": "e66f51bf-24e6-4709-bbb2-e5db1add231e", "export": "exports/logos/A5-cinematic-circle-hf.png"},
+    {"batch": "F-applications", "model": "nano_banana_pro", "jobId": "c7a3633c-333a-491b-9465-f0f79618f279", "export": "mockups/core/website-hero-hf.png"},
+    {"batch": "F-applications", "model": "nano_banana_pro", "jobId": "33868e37-8a62-40e0-8c9d-719fe25709f3", "export": "mockups/applications/social-post-hf.png"},
+    {"batch": "F-applications", "model": "marketing_studio_image", "jobId": "59196bd5-4499-4eeb-82f8-7f58cd513af1", "export": "mockups/editorial/proposal-document-hf.png"},
+    {"batch": "F-applications", "model": "marketing_studio_image", "jobId": "f08a7c00-aa91-41b9-97ae-64d8e9d60404", "export": "mockups/applications/product-dashboard-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "d68e02b4-ac24-4c2e-ba47-cf3ffeea4020", "export": "mockups/campaigns/E1-brand-announcement-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "26402e65-bc0f-45ca-bb22-83363271fcfe", "export": "mockups/campaigns/E2-relay-launch-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "c37b40a0-17bf-4d03-aac4-100bcbd8038c", "export": "mockups/campaigns/E3-messages-launch-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "9f53339b-6bfc-4f15-a0a3-cb891e4c079d", "export": "mockups/campaigns/E4-continuum-partnership-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "1d8eb7fc-1b43-495e-967a-f8d37dbfdcc6", "export": "mockups/campaigns/E5-ecosystem-overview-hf.png"},
+    {"batch": "E-campaigns", "model": "nano_banana_pro", "jobId": "a56b8305-0133-4344-849b-53070336b009", "export": "mockups/campaigns/E6-start-conversation-hf.png"},
+    {"batch": "authority", "model": "nano_banana_pro", "jobId": "7c8dade4-fe6e-40bd-beef-aa4a534d1b06", "export": "mockups/authority/institutional-slide-hf.png"}
+  ],
+  "modelRouting": {
+    "logos": "nano_banana_pro + remove_background",
+    "icons": "nano_banana_2",
+    "uiComponents": "marketing_studio_image",
+    "atmosphere": "nano_banana_2",
+    "campaigns": "nano_banana_pro + reference elements"
+  },
+  "estimatedCreditsUsed": 28
+}

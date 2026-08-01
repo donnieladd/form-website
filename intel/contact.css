@@ -1,0 +1,277 @@
+.fi-contact-hero {
+  position: relative;
+  padding-top: calc(var(--fi-nav-h) + 3rem);
+  padding-bottom: 2rem;
+  overflow: hidden;
+}
+
+.fi-contact-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5%;
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, rgba(255, 60, 120, 0.18), rgba(0, 122, 255, 0.16), rgba(255, 200, 80, 0.12));
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+.fi-contact-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: end;
+}
+
+.fi-contact-hero .fi-heading-xl {
+  margin: 1rem 0;
+}
+
+.fi-contact-note {
+  color: var(--fi-ink-muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  border-left: 1px solid var(--fi-line);
+  padding-left: 1.5rem;
+}
+
+.fi-contact-anchor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  color: var(--fi-blue);
+  font-size: 0.88rem;
+}
+
+.fi-contact-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: 4rem;
+}
+
+.fi-form-panel {
+  padding: 1.5rem;
+  border: 1px solid var(--fi-line);
+  border-radius: var(--fi-radius-md);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fi-form-panel h2 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 1.35rem;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.fi-form-panel > p {
+  margin: 0 0 1.5rem;
+  color: var(--fi-ink-muted);
+  font-size: 0.92rem;
+}
+
+.fi-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.fi-form-grid.full {
+  grid-template-columns: 1fr;
+}
+
+.fi-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--fi-ink-muted);
+}
+
+.fi-field input,
+.fi-field select,
+.fi-field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--fi-radius-sm);
+  border: 1px solid var(--fi-line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--fi-ink);
+  font: inherit;
+}
+
+.fi-field textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.fi-field input:focus,
+.fi-field select:focus,
+.fi-field textarea:focus {
+  outline: none;
+  border-color: rgba(51, 102, 255, 0.45);
+}
+
+.fi-char-count {
+  margin-top: 0.35rem;
+  text-align: right;
+  font-size: 0.72rem;
+  color: var(--fi-ink-ghost);
+}
+
+.fi-form-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-top: 1rem;
+  color: var(--fi-ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.fi-form-note::before {
+  content: "🔒";
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.fi-sidebar-section + .fi-sidebar-section {
+  margin-top: 1.5rem;
+}
+
+.fi-sidebar-label {
+  font-family: var(--fi-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fi-blue-soft);
+  margin-bottom: 0.45rem;
+}
+
+.fi-sidebar-headline {
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.fi-sidebar-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid var(--fi-line);
+  border-radius: var(--fi-radius-md);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fi-sidebar-card + .fi-sidebar-card {
+  margin-top: 0.65rem;
+}
+
+.fi-sidebar-card .fi-icon-box {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.fi-sidebar-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.92rem;
+  text-transform: lowercase;
+}
+
+.fi-sidebar-card p {
+  margin: 0;
+  color: var(--fi-ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.fi-sidebar-card > svg:last-child {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--fi-blue);
+}
+
+.fi-sidebar-mail {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--fi-line);
+  color: var(--fi-ink-soft);
+  font-size: 0.86rem;
+}
+
+.fi-sidebar-mail:first-of-type {
+  border-top: 1px solid var(--fi-line);
+}
+
+.fi-sidebar-mail svg:first-child {
+  width: 15px;
+  height: 15px;
+  color: var(--fi-blue);
+  flex-shrink: 0;
+}
+
+.fi-sidebar-mail svg:last-child {
+  margin-left: auto;
+  width: 13px;
+  height: 13px;
+  color: var(--fi-blue);
+}
+
+.fi-steps {
+  margin-top: 0.5rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.fi-steps li {
+  position: relative;
+  padding-left: 2rem;
+  padding-bottom: 1.25rem;
+  color: var(--fi-ink-soft);
+  font-size: 0.88rem;
+}
+
+.fi-steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(51, 102, 255, 0.45);
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  color: var(--fi-blue);
+}
+
+.fi-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 24px;
+  width: 1px;
+  height: calc(100% - 12px);
+  border-left: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 900px) {
+  .fi-contact-hero-grid,
+  .fi-contact-layout,
+  .fi-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fi-contact-note {
+    border-left: none;
+    padding-left: 0;
+  }
+}

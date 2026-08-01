@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continuum — form.</title>
+  <meta name="description" content="Continuum is form.'s long-term partnership infrastructure—structured engagements that sustain strategy over time.">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/intel/tokens.css">
+  <link rel="stylesheet" href="/intel/nav-footer.css">
+  <link rel="stylesheet" href="/intel/components.css">
+  <style>
+    /* Page-local: continuum.html only. Inline per FORM_UI_DOCTRINE isolation rule. */
+    .fi-cont-hero {
+      padding: calc(var(--fi-nav-h) + clamp(4rem, 9vw, 7rem)) 0 clamp(3rem, 6vw, 4.5rem);
+    }
+    .fi-cont-hero .fi-heading-xl { margin-bottom: 1.25rem; }
+    .fi-cont-hero .fi-lead { max-width: 42rem; margin-bottom: 2rem; }
+
+    .fi-cont-note {
+      display: block;
+      margin: 0 0 0.7rem;
+      color: var(--fi-ink-muted);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    .fi-svc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    @media (max-width: 820px) { .fi-svc-grid { grid-template-columns: 1fr; } }
+
+    .fi-svc-card {
+      position: relative;
+      padding: 1.75rem;
+      border-radius: var(--fi-radius-md);
+      border: 1px solid var(--fi-line);
+      background: rgba(255, 255, 255, 0.025);
+      overflow: hidden;
+    }
+    .fi-svc-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -10%;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      filter: blur(52px);
+      opacity: 0.22;
+      pointer-events: none;
+      background: var(--fi-blue);
+    }
+    .fi-svc-card h3 { margin: 0 0 0.3rem; font-size: 1.35rem; text-transform: lowercase; }
+    .fi-svc-sub { color: var(--fi-blue); font-size: 0.86rem; margin-bottom: 1rem; }
+    .fi-svc-card p { margin: 0 0 1.25rem; color: var(--fi-ink-muted); line-height: 1.65; font-size: 0.92rem; }
+
+    .fi-svc-cta { text-align: center; max-width: 640px; margin-inline: auto; }
+    .fi-svc-cta .fi-hero-actions { justify-content: center; margin-top: 1.75rem; }
+  </style>
+</head>
+<body class="fi-body">
+  <div class="fi-shell">
+    <div id="fi-nav-mount"></div>
+
+    <main>
+      <section class="fi-cont-hero" aria-labelledby="continuum-title">
+        <div class="fi-container">
+          <div class="fi-eyebrow">long-term partnership</div>
+          <h1 class="fi-heading-xl" id="continuum-title">most work ends at launch<span class="fi-heading-accent">.</span> this doesn't<span class="fi-heading-accent">.</span></h1>
+          <p class="fi-lead">Continuum is form.'s ongoing partnership structure — for organizations that don't need one system built, they need someone accountable for the whole operation as it changes. A standing seat, not a series of projects.</p>
+          <div class="fi-hero-actions">
+            <a href="/contact.html" class="fi-btn fi-btn-primary">start the conversation →</a>
+            <a href="/services.html" class="fi-btn fi-btn-ghost">see the six systems →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="fi-section" aria-labelledby="why-title">
+        <div class="fi-container fi-continuum">
+          <div>
+            <div class="fi-eyebrow">what it is</div>
+            <h2 class="fi-heading-lg" id="why-title">the build is the easy part<span class="fi-heading-accent">.</span></h2>
+            <p class="fi-lead" style="margin-bottom:1.5rem">A system built in March is a system drifting by September — new staff, new volume, new priorities, and nobody who owns the drift. Continuum exists because most operational failure isn't a bad build. It's a good build nobody maintained.</p>
+            <ul class="fi-check-list">
+              <li>A named partner who knows your operation</li>
+              <li>Standing access across all six systems</li>
+              <li>Architecture built for your org, not a template</li>
+              <li>Systems refined as the business changes</li>
+              <li>Direct line for the decisions that can't wait</li>
+              <li>Quarterly review against what you actually said you wanted</li>
+            </ul>
+            <a href="/contact.html" class="fi-btn fi-btn-light">start the conversation →</a>
+          </div>
+          <div class="fi-timeline" aria-label="Continuum partnership timeline">
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>3 months — Foundation</strong><span class="fi-cont-note">We learn the operation from inside it. First system scoped and built.</span><div class="fi-progress"><span style="width:20%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>6 months — Implementation</strong><span class="fi-cont-note">Systems in real use by real staff. Breakage found and fixed under load.</span><div class="fi-progress"><span style="width:40%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>12 months — Integration</strong><span class="fi-cont-note">The systems stop being separate. Handoffs close. One architecture.</span><div class="fi-progress"><span style="width:60%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>18 months — Optimization</strong><span class="fi-cont-note">Refinement against a year of evidence, not assumptions.</span><div class="fi-progress"><span style="width:80%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>24+ months — Partnership</strong><span class="fi-cont-note">Institutional memory. We know why every decision was made.</span><div class="fi-progress"><span style="width:100%"></span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fi-section fi-section-labs" aria-labelledby="fit-title">
+        <div class="fi-container">
+          <div class="fi-labs-head">
+            <div class="fi-eyebrow">fit</div>
+            <h2 class="fi-heading-lg" id="fit-title">continuum isn't for everyone<span class="fi-heading-accent">.</span></h2>
+            <p class="fi-lead">It's a standing commitment on both sides. Here's the honest read on whether it's yours.</p>
+          </div>
+          <div class="fi-svc-grid">
+            <article class="fi-svc-card">
+              <h3>this is for you if</h3>
+              <div class="fi-svc-sub">The operation is the problem, not one system</div>
+              <p>You're running something with real weight — staff, budget, a weekly obligation that can't slip — and the operational load has outgrown the people carrying it informally. You've fixed the same category of problem more than once. You want someone accountable, not another vendor.</p>
+              <a class="fi-link-arrow" href="/contact.html">Start the conversation <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            </article>
+            <article class="fi-svc-card">
+              <h3>this isn't for you if</h3>
+              <div class="fi-svc-sub">Start with one system instead</div>
+              <p>You have one clear, bounded problem — a site, a budget rebuild, a course. That's a project, and a project is cheaper, faster, and the honest recommendation. Continuum only earns its cost when the work is continuous. If it isn't yet, we'll say so and build the one thing.</p>
+              <a class="fi-link-arrow" href="/services.html">See the six systems <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="fi-section" aria-labelledby="cont-cta-title">
+        <div class="fi-container fi-svc-cta">
+          <div class="fi-eyebrow" style="justify-content:center;margin-bottom:1rem;">ready when you are</div>
+          <h2 class="fi-heading-lg" id="cont-cta-title">start with a conversation<span class="fi-heading-accent">.</span></h2>
+          <p class="fi-lead" style="margin-inline:auto;text-align:center;">No pitch deck. We'll ask what's actually breaking, tell you whether Continuum fits, and recommend the smaller engagement if it doesn't.</p>
+          <div class="fi-hero-actions">
+            <a href="/contact.html" class="fi-btn fi-btn-primary">start the conversation →</a>
+          </div>
+        </div>
+        <div class="fi-prism fi-prism-left" aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <div id="fi-footer-mount"></div>
+  </div>
+  <script src="/intel/nav-footer.js"></script>
+</body>
+</html>

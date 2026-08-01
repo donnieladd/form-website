@@ -1,396 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FORM. — Operational Intelligence</title>
-<meta name="description" content="form. is an operational intelligence ecosystem. the future needs form. vision needs structure.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2339FF14'/%3E%3C/svg%3E">
-
-<script src="/performance-tier.js"></script>
-<script src="/performance-config.js"></script>
-<script src="/perf-observer.js"></script>
-
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@200,300,400,500,700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/fonts/canela.css">
-
-<link rel="stylesheet" href="/field.css?v=3">
-<link rel="stylesheet" href="/nav-footer.css?v=19">
-<link rel="stylesheet" href="/rev.css?v=3">
-
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-body{
-  background:#050608;min-height:100vh;overflow:hidden;
-  -webkit-font-smoothing:antialiased;color:#f2f2f0;
-  font-family:'Satoshi','Inter',system-ui,sans-serif;
-  cursor:default;
-}
-a,button{cursor:pointer;}
-
-/* ── grain — atmospheric film overlay above field, below content ── */
-#grain{
-  position:fixed;inset:0;width:100%;height:100%;
-  pointer-events:none;z-index:5;opacity:.07;
-  mix-blend-mode:overlay;
-}
-
-/* ══════════════════════════════════════════════════════════
-   HERO — invitation / emergence
-   ══════════════════════════════════════════════════════════ */
-.hero{
-  position:relative;z-index:10;
-  min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  padding:64px 2rem 2rem;
-}
-.hero-inner{
-  text-align:center;max-width:1200px;
-  display:flex;flex-direction:column;align-items:center;
-  gap:3.2rem;
-}
-
-/* the wordmark — restrained satoshi + signal-green square dot
-   geometry mirrors logo-core-final-2.svg exactly:
-   square is ~15% of cap-height, sits ON the baseline,
-   gap from the m is ~6.5% of cap-height */
-.hero-mark{
-  display:inline-flex;
-  align-items:baseline;            /* pin dot bottom to m baseline */
-  gap:clamp(6px, 1vw, 17px);       /* ≈0.065 × font-size */
-  line-height:1;
-}
-.hero-word{
-  display:inline-block;
-  font-family:'Satoshi','Inter',sans-serif;
-  font-weight:300;
-  font-size:clamp(132px, 21vw, 320px);
-  letter-spacing:-.04em;
-  line-height:.85;
-  color:#f2f2f0;
-  text-transform:lowercase;
-  opacity:0;transform:translateY(22px);
-  animation:hero-rise 2.6s cubic-bezier(.16,1,.3,1) 1.1s forwards;
-  text-shadow:
-    0 2px 28px rgba(5,6,8,.78),
-    0 0 80px rgba(5,6,8,.55);
-}
-.hero-dot{
-  display:inline-block;flex:0 0 auto;
-  /* match wordmark em base so 0.15em scales with the type */
-  font-size:clamp(132px, 21vw, 320px);
-  width:.15em;
-  height:.15em;
-  background:#39ff14;
-  box-shadow:
-    0 0 18px rgba(57,255,20,.55),
-    0 0 38px rgba(57,255,20,.22);
-  opacity:0;transform:scale(.78);
-  transform-origin:center bottom;
-  animation:hero-dot 2.2s cubic-bezier(.22,1,.36,1) 2.5s forwards;
-}
-@keyframes hero-rise{
-  to{opacity:1;transform:translateY(0);}
-}
-@keyframes hero-dot{
-  to{opacity:1;transform:scale(1);}
-}
-
-/* tagline — ibm plex mono uppercase tracked */
-.hero-tag{
-  font-family:'IBM Plex Mono','SF Mono',monospace;
-  font-weight:500;
-  font-size:1.15rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:rgba(242,242,240,.92);
-  text-shadow:0 1px 18px rgba(5,6,8,.85), 0 0 36px rgba(5,6,8,.55);
-  line-height:2.2;
-  opacity:0;transform:translateY(8px);
-  animation:hero-fade 2.2s cubic-bezier(.16,1,.3,1) 3.4s forwards;
-}
-.hero-tag .accent{color:#39ff14;}
-.hero-tag-rule{
-  display:block;margin:1.2rem auto 0;
-  width:34px;height:1px;background:rgba(242,242,240,.35);
-  border:none;
-}
-
-/* CTA — thin signal-green outline rectangle, ENTER FORM → */
-.hero-cta{
-  display:inline-flex;align-items:center;gap:1em;
-  font-family:'IBM Plex Mono','SF Mono',monospace;
-  font-size:.74rem;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:#39ff14;
-  text-decoration:none;cursor:pointer;
-  border:1px solid rgba(57,255,20,.55);
-  padding:1.15rem 2.6rem;
-  background:rgba(57,255,20,.025);
-  transition:
-    background .55s cubic-bezier(.16,1,.3,1),
-    border-color .55s cubic-bezier(.16,1,.3,1),
-    box-shadow .55s cubic-bezier(.16,1,.3,1),
-    letter-spacing .55s cubic-bezier(.16,1,.3,1);
-  opacity:0;transform:translateY(8px);
-  animation:hero-fade 2.2s cubic-bezier(.16,1,.3,1) 4.4s forwards;
-}
-.hero-cta:hover{
-  background:rgba(57,255,20,.08);
-  border-color:#39ff14;
-  box-shadow:0 0 32px rgba(57,255,20,.18);
-  letter-spacing:.36em;
-}
-.hero-cta svg{width:14px;height:14px;transition:transform .45s cubic-bezier(.16,1,.3,1);}
-.hero-cta:hover svg{transform:translateX(4px);}
-
-@keyframes hero-fade{
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* ── responsive ── */
-@media (max-width:900px){
-  .hero{padding-top:80px;}
-  .hero-inner{gap:2.4rem;}
-  .hero-tag{font-size:.66rem;letter-spacing:.26em;line-height:2;}
-  .hero-cta{font-size:.66rem;letter-spacing:.26em;padding:1rem 2rem;}
-}
-@media (max-width:600px){
-  .hero-tag{font-size:.6rem;letter-spacing:.2em;line-height:1.9;}
-  .hero-cta{font-size:.62rem;letter-spacing:.22em;padding:.95rem 1.7rem;min-height:44px;display:inline-flex;align-items:center;}
-}
-
-@media (prefers-reduced-motion:reduce){
-  .hero-word,.hero-dot,.hero-tag,.hero-cta{
-    opacity:1;transform:none;animation:none;
-  }
-}
-
-/* nav glass treatment lives in nav-footer.css (single source of truth, locked doctrine) */
-
-/* ══════════════════════════════════════════════════════════
-   HERO VIDEO BACKGROUND
-   Sits inside .env-field, layered over .env-field-bg (the home-bg.avif
-   poster) and beneath .env-field-canvas (particle drift) — same z-layer
-   the image occupies. grain (z:5) and hero (z:10) remain above everything.
-   The poster is the graceful fallback for reduced/minimal tiers and for
-   prefers-reduced-motion.
-   ══════════════════════════════════════════════════════════ */
-#hero-video,
-#hero-video-b,
-#hero-video-veil{
-  position:absolute;inset:0;width:100%;height:100%;
-  pointer-events:none;
-  display:none;       /* shown only when the perf-tier gate enables it */
-}
-#hero-video,
-#hero-video-b{
-  object-fit:cover;
-  background:transparent;       /* let .env-field-bg poster show through —
-                                   no dark midpoint during the swap */
-  opacity:1;                    /* both layers fully opaque by default */
-  transition:opacity 1.6s cubic-bezier(.45,0,.55,1);
-  z-index:1;
-}
-#hero-video.is-top,
-#hero-video-b.is-top{z-index:2;}
-#hero-video.is-fading,
-#hero-video-b.is-fading{opacity:0;}
-#hero-video-veil{
-  /* focused legibility pool — a soft centered atmosphere behind the type
-     keeps `form.`, tagline and CTA readable while the video stays bright
-     at the edges. very light corner vignette layered underneath. */
-  background:
-    radial-gradient(ellipse 46% 38% at 50% 50%, rgba(5,6,8,.55) 0%, rgba(5,6,8,.32) 55%, rgba(5,6,8,0) 85%),
-    radial-gradient(ellipse at 50% 50%, rgba(5,6,8,0) 55%, rgba(5,6,8,.22) 100%);
-}
-@media (prefers-reduced-motion: reduce){
-  #hero-video,#hero-video-b,#hero-video-veil{display:none !important;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form. — Operational Intelligence</title>
+  <meta name="description" content="Form is an AI-augmented operational intelligence company. We build the systems behind execution—uniting strategy, technology, and human intelligence.">
+  <link rel="canonical" href="https://formintel.co/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://formintel.co/">
+  <meta property="og:title" content="form. — Operational Intelligence">
+  <meta property="og:description" content="The systems behind movement. Operational architecture for organizations ready to scale impact.">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/intel/tokens.css">
+  <link rel="stylesheet" href="/intel/nav-footer.css">
+  <link rel="stylesheet" href="/intel/components.css">
 </head>
-<body data-field-density="open">
+<body class="fi-body fi-body-home">
+  <div class="fi-shell">
+    <div id="fi-nav-mount"></div>
 
-<!-- ── environmental field — one continuous world ── -->
-<div class="env-field" aria-hidden="true">
-  <div class="env-field-bg"></div>
+    <main>
+      <section class="fi-hero" aria-labelledby="hero-title">
+        <div class="fi-hero-media">
+          <img src="/intel/assets/hero.jpg" alt="" width="1920" height="1080">
+        </div>
+        <div class="fi-container fi-hero-content">
+          <div class="fi-eyebrow">operational architecture</div>
+          <h1 class="fi-heading-xl" id="hero-title">the systems behind movement<span class="fi-heading-accent">.</span></h1>
+          <p class="fi-lead">form. builds the operational infrastructure underneath how an organization actually runs — the workflows, the staffing, the budgets, the systems a weekend depends on. Not a framework. Not a deck. The thing you run on.</p>
+          <div class="fi-hero-actions">
+            <a href="/contact.html" class="fi-btn fi-btn-primary">start a project →</a>
+            <a href="/continuum.html" class="fi-btn fi-btn-ghost">explore continuum →</a>
+          </div>
+          <div class="fi-hero-meta">• atl • clt • mia • bhm • gvl</div>
+        </div>
+      </section>
 
-  <!-- ── hero video background ──
-       Sits over the home-bg.avif poster (.env-field-bg) and beneath
-       the particle canvas. The inline gating <script> near the bottom
-       of <body> skips the video on reduced/minimal tiers and when
-       prefers-reduced-motion is set, leaving the poster in place. -->
-  <video id="hero-video"
-         muted playsinline preload="auto" autoplay
-         disableremoteplayback x-webkit-airplay="deny"
-         poster="/home-bg.avif"
-         aria-hidden="true">
-    <source src="/home-bg.av1.webm" type="video/webm; codecs=av01.0.05M.08">
-    <source src="/home-bg.webm" type="video/webm">
-    <source src="/home-bg.mp4" type="video/mp4">
-  </video>
-  <video id="hero-video-b"
-         muted playsinline preload="auto"
-         disableremoteplayback x-webkit-airplay="deny"
-         poster="/home-bg.avif"
-         aria-hidden="true">
-    <source src="/home-bg.av1.webm" type="video/webm; codecs=av01.0.05M.08">
-    <source src="/home-bg.webm" type="video/webm">
-    <source src="/home-bg.mp4" type="video/mp4">
-  </video>
-  <div id="hero-video-veil" aria-hidden="true"></div>
+      <section class="fi-section" id="ecosystem" aria-labelledby="eco-title">
+        <div class="fi-container">
+          <div class="fi-eco-head">
+            <div>
+              <div class="fi-eyebrow">our ecosystem</div>
+              <h2 class="fi-heading-lg" id="eco-title">six disciplines<span class="fi-heading-accent">.</span> one operation<span class="fi-heading-accent">.</span></h2>
+            </div>
+            <p class="fi-lead">Most firms sell you one of these and leave the seams to you. form. works across all six, so the handoffs between them are designed instead of improvised.</p>
+          </div>
+          <div class="fi-eco-grid">
+            <article class="fi-eco-card" id="strategy">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M3 12h18"/><path d="M12 3 15 8l-3 2-3-2 3-5Z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>strategy</h3>
+              <p>Clarity that aligns vision with operational reality.</p>
+            </article>
+            <article class="fi-eco-card" id="creative">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>creative &amp; marketing</h3>
+              <p>Ideas and narratives that move culture and people.</p>
+            </article>
+            <article class="fi-eco-card" id="digital">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="8" height="8" rx="2"/><rect x="12" y="12" width="8" height="8" rx="2"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>digital</h3>
+              <p>Platforms and experiences engineered to perform.</p>
+            </article>
+            <article class="fi-eco-card" id="ai">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 8.2l5-.7L12 3Z"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>ai</h3>
+              <p>Intelligence that amplifies teams and outcomes.</p>
+            </article>
+            <article class="fi-eco-card" id="support">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>support</h3>
+              <p>Systems and people that keep you advancing.</p>
+            </article>
+            <article class="fi-eco-card" id="experience">
+              <div class="fi-eco-card-top"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12 12 4M8 4h4v4"/></svg></div>
+              <h3>experience</h3>
+              <p>Worship, production, and the staged moments people stand inside of.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-  <canvas class="env-field-canvas"></canvas>
-  <div class="env-field-veil"></div>
-</div>
+      <section class="fi-section fi-section-labs" id="labs" aria-labelledby="labs-title">
+        <div class="fi-container">
+          <div class="fi-labs-head">
+            <div class="fi-eyebrow">the six systems</div>
+            <h2 class="fi-heading-lg" id="labs-title">six systems<span class="fi-heading-accent">.</span> one architecture<span class="fi-heading-accent">.</span></h2>
+            <p class="fi-lead">Six products, each solving one recurring operational problem. Built individually. Designed to work as one system.</p>
+          </div>
+          <div class="fi-labs-grid">
+            <div class="fi-labs-col">
+              <div class="fi-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+              <h3>run it</h3>
+              <div class="fi-labs-sub">Operations &amp; Staffing</div>
+              <p>The systems that keep an organization moving when the person who knows how isn't in the room.</p>
+              <a class="fi-product-row" href="/services.html#processes"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><strong>processes by form.</strong><span>SOPs, ownership, workflow</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+              <a class="fi-product-row" href="/services.html#people"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div><strong>people by form.</strong><span>Search, placement, assimilation</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            </div>
+            <div class="fi-labs-col">
+              <div class="fi-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+              <h3>say it</h3>
+              <div class="fi-labs-sub">Learning &amp; Communication</div>
+              <p>Getting what one person knows into everyone else — as curriculum, and as the message that reaches the room.</p>
+              <a class="fi-product-row" href="/services.html#intellect"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div><div><strong>intellect by form.</strong><span>Curriculum &amp; assessment</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+              <a class="fi-product-row" href="/services.html#messages"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><strong>messages by form.</strong><span>Church communications</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            </div>
+            <div class="fi-labs-col">
+              <div class="fi-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></div>
+              <h3>account for it</h3>
+              <div class="fi-labs-sub">Finance &amp; Production</div>
+              <p>Where the numbers and the moment both have to hold up — under an audit, and in front of a room.</p>
+              <a class="fi-product-row" href="/services.html#ledger"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></div><div><strong>Ledger by form.</strong><span>Budgeting &amp; reporting</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+              <a class="fi-product-row" href="/services.html#sound"><div class="fi-icon-box" style="width:32px;height:32px;border-radius:8px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div><strong>form. sound</strong><span>Playback &amp; live production</span></div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:2.5rem">
+            <a href="/services.html" class="fi-btn fi-btn-ghost">see every service →</a>
+          </div>
+        </div>
+      </section>
 
-<!-- hero-video performance-tier gate.
-     Skips the video on reduced/minimal tiers and when prefers-reduced-motion
-     is set, leaving the static home-bg.avif poster in place. -->
-<script>
-(function(){
-  var a = document.getElementById('hero-video');
-  var b = document.getElementById('hero-video-b');
-  var veil = document.getElementById('hero-video-veil');
-  if(!a || !b || !veil) return;
+      <section class="fi-section" id="continuum" aria-labelledby="continuum-title">
+        <div class="fi-container fi-continuum">
+          <div>
+            <div class="fi-eyebrow">long-term partnership</div>
+            <h2 class="fi-heading-lg" id="continuum-title">most work ends at launch<span class="fi-heading-accent">.</span></h2>
+            <p class="fi-lead">A system built in March is a system drifting by September. Continuum is form.'s standing partnership — for organizations that need someone accountable for the whole operation as it changes, not another project that ends.</p>
+            <ul class="fi-check-list">
+              <li>A named partner who knows your operation</li>
+              <li>Standing access across all six systems</li>
+              <li>Architecture built for your org, not a template</li>
+              <li>Systems refined as the business changes</li>
+              <li>Direct line for the decisions that can't wait</li>
+              <li>Quarterly review against what you actually said you wanted</li>
+            </ul>
+            <a href="/continuum.html" class="fi-btn fi-btn-light">Explore Continuum →</a>
+          </div>
+          <div class="fi-timeline" aria-label="Continuum partnership timeline">
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>3 months — Foundation</strong><div class="fi-progress"><span style="width:20%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>6 months — Implementation</strong><div class="fi-progress"><span style="width:40%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>12 months — Integration</strong><div class="fi-progress"><span style="width:60%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>18 months — Optimization</strong><div class="fi-progress"><span style="width:80%"></span></div></div></div>
+            <div class="fi-timeline-item"><div></div><div class="fi-timeline-card"><strong>24+ months — Partnership</strong><div class="fi-progress"><span style="width:100%"></span></div></div></div>
+          </div>
+        </div>
+        <div class="fi-prism fi-prism-left" aria-hidden="true"></div>
+      </section>
+    </main>
 
-  function teardown(el){
-    try { el.pause(); } catch(e){}
-    el.removeAttribute('autoplay');
-    el.removeAttribute('src');
-    while(el.firstChild) el.removeChild(el.firstChild);
-    try { el.load(); } catch(e){}
-    el.style.display = 'none';
-  }
-
-  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var tier = window.FORM_TIER || document.documentElement.dataset.perf || 'full';
-  if(rm || tier !== 'full'){
-    teardown(a); teardown(b);
-    veil.style.display = 'none';
-    return;
-  }
-
-  a.style.display = 'block';
-  b.style.display = 'block';
-  veil.style.display = 'block';
-
-  /* Crossfade window: start the swap this many seconds before the
-     active clip's natural end. The incoming clip plays underneath at
-     full opacity; the outgoing clip on top fades to 0. Because there's
-     never a moment where both layers are partially opaque over black,
-     there's no luminance dip — just one stream dissolving into another
-     identical stream. */
-  var FADE = 1.6;
-  var swapping = false;
-
-  function arm(active, idle){
-    function onTime(){
-      if(swapping) return;
-      var dur = active.duration;
-      if(!dur || isNaN(dur) || !isFinite(dur)) return;
-      if(active.currentTime < dur - FADE) return;
-      swapping = true;
-      try { idle.currentTime = 0; } catch(e){}
-      var pp = idle.play();
-      var doSwap = function(){
-        /* idle is already on top of nothing (z:1) and fully opaque, but
-           it's currently underneath the active clip (z:2). Fade the
-           active (top) clip out — the idle underneath is revealed with
-           zero brightness change. */
-        active.classList.add('is-fading');
-        setTimeout(function(){
-          /* Promote the (now visible) idle to top and reset the old top
-             so it's ready for its next turn underneath. */
-          idle.classList.add('is-top');
-          active.classList.remove('is-top');
-          active.classList.remove('is-fading');
-          try { active.pause(); active.currentTime = 0; } catch(e){}
-          active.removeEventListener('timeupdate', onTime);
-          active.removeEventListener('ended', onEnded);
-          swapping = false;
-          arm(idle, active);
-        }, FADE * 1000 + 80);
-      };
-      if(pp && typeof pp.then === 'function'){
-        pp.then(doSwap).catch(doSwap);
-      } else {
-        doSwap();
-      }
-    }
-    function onEnded(){
-      /* Hard fallback if timeupdate didn't fire in time — keep playing
-         instead of leaving a black frame. */
-      try { active.currentTime = 0; active.play(); } catch(e){}
-    }
-    active.addEventListener('timeupdate', onTime);
-    active.addEventListener('ended', onEnded);
-  }
-
-  /* Prime B silently so its first frame is decoded and ready the
-     moment we promote it. */
-  try { b.load(); } catch(e){}
-
-  /* A starts on top, B sits underneath at full opacity but hidden by A. */
-  a.classList.add('is-top');
-  var pa = a.play();
-  function bail(){
-    teardown(a); teardown(b);
-    veil.style.display = 'none';
-  }
-  if(pa && typeof pa.catch === 'function'){
-    pa.then(function(){ arm(a, b); }).catch(bail);
-  } else {
-    arm(a, b);
-  }
-
-  /* If a benchmark later downgrades the tier, hide both videos and let
-     the static poster (.env-field-bg → home-bg.avif) take over cleanly. */
-  if(window.FORM_TIER_ONCHANGE){
-    window.FORM_TIER_ONCHANGE.push(function(next){
-      if(next !== 'full'){
-        try { a.pause(); } catch(e){}
-        try { b.pause(); } catch(e){}
-        a.style.display = 'none';
-        b.style.display = 'none';
-        veil.style.display = 'none';
-      }
-    });
-  }
-})();
-</script>
-
-<!-- ── film grain ── -->
-<img src="/grain.svg" id="grain" alt="" aria-hidden="true">
-
-<!-- ── hero ── -->
-<main class="hero">
-  <div class="hero-inner">
-    <div class="hero-mark">
-      <span class="hero-word">form</span>
-      <span class="hero-dot" aria-hidden="true"></span>
-    </div>
-
-    <div class="hero-tag">
-      the future needs <span class="accent">form.</span><br>
-      vision needs structure.
-    </div>
-
-    <a href="/vision.html" class="hero-cta" aria-label="enter form">
-      <span>enter form</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="13,6 19,12 13,18"/>
-      </svg>
-    </a>
+    <div id="fi-footer-mount"></div>
   </div>
-</main>
-
-<script src="/field.js?v=2" defer></script>
-<script src="/rev.js?v=5" defer></script>
-<script src="/nav-footer.js?v=31" defer></script>
-
+  <script src="/intel/nav-footer.js"></script>
 </body>
 </html>
