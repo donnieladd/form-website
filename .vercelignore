@@ -1,0 +1,74 @@
+# Paths are ANCHORED with a leading slash on purpose. An unanchored pattern like
+# `nav-footer.css` would also match `intel/nav-footer.css` and strip the nav and
+# footer off every page.
+
+# 278MB of unreferenced Replit upload scratch
+/attached_assets/
+
+# Archives and build sources — not part of the shipped site
+/_first-attempt/
+/_build/
+
+# Local dev server (Replit). Vercel serves this statically; no runtime needed.
+/server.py
+/main.py
+/pyproject.toml
+/replit.nix
+/replit.md
+/.replit
+/__pycache__/
+/scripts/
+/screenshots/
+/.claude/
+
+# Working docs, not web content
+/TALKING-POINTS.md
+/SERVICES-COPY.md
+/FORM_UI_DOCTRINE.md
+/PERFORMANCE_BUDGET.md
+/CHANGELOG.md
+/README.md
+
+# First-attempt CSS/JS — superseded by /intel/, referenced by no live page
+/field.css
+/field.js
+/mobile.css
+/rev.css
+/rev.js
+/nav-footer.css
+/nav-footer.js
+/perf-observer.js
+/performance-config.js
+/performance-tier.js
+/tokens/
+/design-refs/
+/brand-kit/
+
+# Unreferenced media from the first attempt
+/home-bg.mp4
+/home-bg.webm
+/home-bg.av1.webm
+/home-bg.avif
+/founder-1.png
+/founder-1.avif
+/founder-1-cutout.png
+/founder-5.png
+/founder-5.avif
+/founder-5-cutout.png
+/founder-5-cutout-v2.png
+/founder-portrait.png
+/founder-warp.avif
+/founder-bg.avif
+/vision-bg.avif
+/standards-bg.avif
+/ecosystem-bg.avif
+/contact-bg.avif
+/bg.avif
+/messages-wordmark.png
+
+# Canela is licensed/trial and is used by no live page (the site loads Satoshi +
+# IBM Plex Mono from CDN). Publishing trial font files would be a licensing risk.
+/fonts/
+
+# OS
+.DS_Store

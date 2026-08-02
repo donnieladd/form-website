@@ -34,3 +34,5 @@ build/
 # large for version control. The files remain on disk; they are simply not tracked.
 # If any of these become production assets, move them into /intel/assets/ instead.
 attached_assets/
+.vercel
+.env*
