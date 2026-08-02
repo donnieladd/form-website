@@ -5,7 +5,8 @@
   var navItems = [
     { href: "/about.html", label: "about" },
     { href: "/services.html", label: "services" },
-    { href: "/messages.html", label: "messages" },
+    { href: "/work.html", label: "work" },
+    { href: "/digital.html", label: "digital" },
     { href: "/continuum.html", label: "continuum" },
     { href: "/founder.html", label: "founder" },
   ];
@@ -100,18 +101,18 @@
     "<h3>the six systems</h3>" +
     '<ul class="fi-footer-list">' +
     [
-      { anchor: "intellect", label: "intellect by form." },
-      { anchor: "processes", label: "processes by form." },
-      { anchor: "people", label: "people by form." },
-      { anchor: "messages", label: "messages by form." },
-      { anchor: "ledger", label: "Ledger by form." },
-      { anchor: "sound", label: "form. sound" },
+      { page: "intellect", label: "intellect by form." },
+      { page: "processes", label: "processes by form." },
+      { page: "people", label: "people by form." },
+      { page: "messages", label: "messages by form." },
+      { page: "ledger", label: "Ledger by form." },
+      { page: "sound", label: "form. sound" },
     ]
       .map(function (item) {
         return (
-          '<li><a href="/services.html#' +
-          item.anchor +
-          '">' +
+          '<li><a href="/' +
+          item.page +
+          '.html">' +
           item.label +
           " " +
           arrow +
