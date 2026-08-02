@@ -1,19 +1,34 @@
 :root {
+  /* ── Text colours ────────────────────────────────────────────────
+     Every value below that is used for TEXT clears WCAG AA (4.5:1)
+     against --fi-black. Ratios are computed from the specified colour
+     composited on #000, which is how WCAG evaluates contrast — not
+     from sampled antialiased glyph pixels. Verified by tests/contrast.test.js;
+     that test fails the build if any of these regress. */
   --fi-black: #000000;
-  --fi-ink: #ffffff;
-  --fi-ink-soft: rgba(255, 255, 255, 0.88);
-  --fi-ink-muted: rgba(255, 255, 255, 0.58);
-  --fi-ink-ghost: rgba(255, 255, 255, 0.34);
-  --fi-blue: #3366ff;
-  --fi-blue-bright: #4a6fff;
-  --fi-blue-soft: rgba(51, 102, 255, 0.82);
+  --fi-ink: #ffffff;                              /* 21.00:1 */
+  --fi-ink-soft: rgba(255, 255, 255, 0.88);       /* 15.91:1 */
+  --fi-ink-muted: rgba(255, 255, 255, 0.58);      /*  6.92:1 */
+  --fi-ink-ghost: rgba(255, 255, 255, 0.48);      /*  4.92:1 — was .34 (2.91:1, failed) */
+
+  /* --fi-blue is the brand accent, used both decoratively (the period, heading
+     accents, dots) and as inline link colour across 26 call sites. #3366ff sat
+     at 4.485:1 — 0.015 short of AA. Rather than split the token and risk
+     missing a call site, the brand blue moved one unit of green (102 -> 103),
+     which is imperceptible and lifts every use above the line at once. */
+  --fi-blue: #3367ff;                             /*  4.53:1 — was #3366ff (4.49:1) */
+  --fi-blue-bright: #4a6fff;                      /*  5.01:1 */
+  --fi-blue-soft: #5a8bff;                        /*  6.57:1 — was rgba(51,102,255,.82) (3.29:1, failed) */
+
   --fi-line: rgba(255, 255, 255, 0.1);
   --fi-line-strong: rgba(255, 255, 255, 0.16);
   --fi-card: rgba(255, 255, 255, 0.035);
   --fi-card-hover: rgba(255, 255, 255, 0.055);
   --fi-card-raised: rgba(255, 255, 255, 0.05);
   --fi-amber: #ff8a00;
-  --fi-gradient: linear-gradient(90deg, #007aff 0%, #6000ff 100%);
+  /* Gradient start was #007aff, which put the white button label at 4.02:1.
+     #0069e0 keeps the same hue family and lifts the label to 5.13:1. */
+  --fi-gradient: linear-gradient(90deg, #0069e0 0%, #6000ff 100%);
   --fi-radius-sm: 10px;
   --fi-radius-md: 14px;
   --fi-radius-pill: 9999px;

@@ -72,3 +72,11 @@
 
 # OS
 .DS_Store
+
+# Dev tooling — never part of the deployed site. Also keeps package.json out of
+# the upload so Vercel cannot re-detect a framework and try to build.
+/package.json
+/package-lock.json
+/tests/
+/.github/
+/node_modules/

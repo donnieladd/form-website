@@ -1,0 +1,47 @@
+name: verify
+
+# Mechanical pre-ship gate. This must pass before anything reaches production.
+# It exists because the alternative — a human reading diffs carefully — already
+# failed once: an unanchored .vercelignore pattern would have shipped every page
+# with no nav and no footer, and was caught only by chance inspection.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies by design — the suite uses Node built-ins only, so there
+      # is no install step and no supply chain to audit for the test harness.
+      - name: Assert zero runtime dependencies
+        run: |
+          if grep -qE '"(dependencies|devDependencies)"' package.json; then
+            echo "package.json gained dependencies — review supply chain before merging."
+            exit 1
+          fi
+          echo "confirmed: no dependencies"
+
+      - name: Verify
+        run: npm run verify
+
+      - name: Assert no secrets are tracked
+        run: |
+          if git ls-files | grep -iE '\.env$|\.env\.|\.pem$|\.key$|secret|credential'; then
+            echo "a secret-shaped file is tracked — remove it before merging."
+            exit 1
+          fi
+          echo "confirmed: no secret-shaped files tracked"

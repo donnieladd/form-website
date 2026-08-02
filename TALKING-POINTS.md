@@ -150,7 +150,7 @@ Plus the documentation to maintain it.
 - Weekly small group curriculum
 
 **What you get in your hands:** Everything above, every week, on a monthly retainer.
-🔶 $5,000/month — *confirm this is current before quoting.*
+Scoped per ministry — never quoted before the conversation.
 
 ---
 
@@ -211,21 +211,31 @@ Have a real bracket ready, even a wide one.*
 
 # PART 5 — Money
 
-**What's published today:**
-- `messages by form.` — 🔶 $5,000/mo · with social add-on 🔶 $3,500/mo · bundled 🔶 $8,500/mo
+**form. does not publish rates.** Nothing on the site carries a number, and that
+is deliberate — it's how firms at this level operate. Pricing is set in a written
+proposal after the problem is understood.
 
-**Everything else:** scoped per engagement, quoted in writing before anything starts.
+**When they ask "what does it cost?" — and they will, early:**
+> "I don't quote before I understand the problem. If I did, I'd either overcharge
+> you or underestimate the work, and both of those end badly. Give me one
+> conversation and you'll have a real number in writing."
 
-**How to say it if they push for a number early:**
-> "I don't quote before I understand the problem — I'd either overcharge you or
-> underestimate it. Give me one conversation and you'll have a real number in writing."
+That answer is not evasion — it's the same reason you don't publish. Say it with
+confidence and it reads as standard practice, because it is.
 
-**On the retainer vs. project question:**
+**If they push a second time** (some will, to test you):
+> "Fair. What I can tell you is how it's structured: monthly retainer for ongoing
+> work, fixed scope for a defined build, and everything in writing before anything
+> starts. The number depends on the size of the operation — tell me about yours."
+
+**What NOT to do:** don't name a figure to fill a silence, don't give a "ballpark"
+you'd have to walk back, and don't apologise for not having a price sheet. The
+absence of published pricing is a signal, not a gap.
+
+**On retainer vs. project:**
 > "If you've got one clear problem — a site, a budget rebuild, a course — that's a
 > project, and a project is cheaper and faster. A retainer only earns its cost when
 > the work is continuous. If it isn't yet, I'll tell you."
-
----
 
 # PART 6 — Objection handling
 

@@ -1,0 +1,13 @@
+{
+  "name": "form-intel-website",
+  "private": true,
+  "type": "module",
+  "description": "form. marketing site \u2014 static HTML/CSS/JS, no runtime dependencies.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "verify": "node --test tests/*.test.js"
+  }
+}
