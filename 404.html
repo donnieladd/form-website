@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Not found — form.</title>
+  <meta name="description" content="That page doesn't exist.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/intel/tokens.css">
+  <link rel="stylesheet" href="/intel/nav-footer.css">
+  <link rel="stylesheet" href="/intel/components.css">
+  <style>
+    /* Page-local: 404.html only. */
+    .fi-404 {
+      min-height: 72vh;
+      display: grid;
+      align-content: center;
+      padding: calc(var(--fi-nav-h) + clamp(3rem, 7vw, 5rem)) 0 clamp(3rem, 7vw, 5rem);
+    }
+    .fi-404-code {
+      font-family: var(--fi-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fi-blue-soft);
+      margin-bottom: 1.25rem;
+    }
+    .fi-404 .fi-heading-xl { margin-bottom: 1.25rem; max-width: 18ch; }
+    .fi-404 .fi-lead { margin-bottom: 2rem; }
+    .fi-404-links {
+      margin-top: 2.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--fi-line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+    }
+    .fi-404-links a {
+      color: var(--fi-ink-soft);
+      font-size: 0.88rem;
+      text-transform: lowercase;
+    }
+    .fi-404-links a:hover { color: var(--fi-ink); }
+  </style>
+</head>
+<body class="fi-body">
+  <div class="fi-shell">
+    <div id="fi-nav-mount"></div>
+
+    <main>
+      <section class="fi-404">
+        <div class="fi-container">
+          <div class="fi-404-code">error 404</div>
+          <h1 class="fi-heading-xl">this one doesn't exist<span class="fi-heading-accent">.</span></h1>
+          <p class="fi-lead">Either the address is off by a character, or the page moved when the site was rebuilt. Both are fixable — here's where everything actually lives.</p>
+          <div class="fi-hero-actions">
+            <a href="/" class="fi-btn fi-btn-primary">back home →</a>
+            <a href="/services.html" class="fi-btn fi-btn-ghost">see what we build →</a>
+          </div>
+          <nav class="fi-404-links" aria-label="Site pages">
+            <a href="/about.html">about</a>
+            <a href="/services.html">services</a>
+            <a href="/messages.html">messages</a>
+            <a href="/continuum.html">continuum</a>
+            <a href="/founder.html">founder</a>
+            <a href="/contact.html">contact</a>
+          </nav>
+        </div>
+        <div class="fi-prism fi-prism-right" aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <div id="fi-footer-mount"></div>
+  </div>
+  <script src="/intel/nav-footer.js"></script>
+</body>
+</html>

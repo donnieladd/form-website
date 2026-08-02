@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /privacy.html
+Disallow: /terms.html
+Disallow: /_first-attempt/
+Disallow: /_build/
+
+Sitemap: https://formintel.co/sitemap.xml
