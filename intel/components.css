@@ -538,6 +538,42 @@
   );
 }
 
+/* Chromatic conic sweep.
+   The black vignette below can only subtract light, and this site's canvas is
+   #000 — there is nothing to subtract, so on flat sections it measured a
+   2/255 delta (invisible). This layer supplies the conic character by ADDING
+   light instead: a low-alpha angular sweep of the brand prism hues (signal
+   blue -> violet -> amber -> rim blue), screen-blended so it lifts off black.
+   Radially masked to the outer frame so the centre stays clean. Static. */
+.fi-atmosphere__conic {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 218deg at 50% 50%,
+    rgba(51, 102, 255, 0.20) 0deg,
+    rgba(96, 0, 255, 0.13) 68deg,
+    rgba(255, 138, 0, 0.16) 148deg,
+    rgba(51, 102, 255, 0.10) 222deg,
+    rgba(90, 182, 255, 0.19) 298deg,
+    rgba(51, 102, 255, 0.20) 360deg
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 48%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 38%,
+    rgba(0, 0, 0, 0.5) 68%,
+    rgba(0, 0, 0, 1) 96%
+  );
+  mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 48%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 38%,
+    rgba(0, 0, 0, 0.5) 68%,
+    rgba(0, 0, 0, 1) 96%
+  );
+  mix-blend-mode: screen;
+}
+
 /* Film grain.
    NOTE ON BLEND MODE: the brand sheet specifies mix-blend-mode: overlay,
    which was authored against the first-attempt pages' mid-tone photographic

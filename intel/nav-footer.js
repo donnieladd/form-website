@@ -168,6 +168,7 @@
     layer.className = "fi-atmosphere";
     layer.setAttribute("aria-hidden", "true");
     layer.innerHTML =
+      '<div class="fi-atmosphere__conic"></div>' +
       '<div class="fi-atmosphere__vignette"></div>' +
       '<div class="fi-atmosphere__grain"></div>';
     document.body.appendChild(layer);
