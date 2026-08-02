@@ -472,3 +472,93 @@
     margin-top: 0;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ATMOSPHERE — static conic vignette + film grain
+   Applied site-wide. Injected by intel/nav-footer.js so every page
+   gets an identical layer.
+
+   Brand reference:
+     --opacity-grain          .022   (tokens/rendering-hierarchy.css)
+     --opacity-grain-reduced  .012   (under load pressure)
+     --z-tier-atmosphere      3      (tier 1, "Atmosphere")
+     Tier 1 spec: will-change auto (static), grain is an additive blend.
+
+   Per FORM_UI_DOCTRINE both layers are STATIC — no animation, no
+   cursor coupling, no pulsing. Atmosphere, not a HUD.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --fi-grain-opacity: 0.022;
+  --fi-vignette-corner: 0.44;
+  --fi-vignette-edge: 0.22;
+}
+
+.fi-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  /* NOT `contain: strict` — that implies `contain: size`, which zeroes the
+     layer's used height and makes the overlay disappear. Paint/layout/style
+     containment gives the isolation without the sizing side effect. */
+  contain: layout style paint;
+}
+
+/* Conic vignette.
+   The conic sweep supplies angular variation so the falloff is never
+   perfectly symmetric; a radial mask keeps the centre fully clear so
+   type is never dimmed. Corners land darkest. */
+.fi-atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 218deg at 50% 50%,
+    rgba(0, 0, 0, 0.42) 0deg,
+    rgba(0, 0, 0, 0.22) 48deg,
+    rgba(0, 0, 0, 0.38) 128deg,
+    rgba(0, 0, 0, 0.24) 196deg,
+    rgba(0, 0, 0, 0.44) 268deg,
+    rgba(0, 0, 0, 0.26) 320deg,
+    rgba(0, 0, 0, 0.42) 360deg
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 88% 84% at 50% 48%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 58%,
+    rgba(0, 0, 0, 0.42) 82%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 88% 84% at 50% 48%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 58%,
+    rgba(0, 0, 0, 0.42) 82%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Film grain.
+   NOTE ON BLEND MODE: the brand sheet specifies mix-blend-mode: overlay,
+   which was authored against the first-attempt pages' mid-tone photographic
+   backgrounds. Overlay against #000 resolves to #000 — the grain would be
+   mathematically invisible on this site's flat-black sections. `screen`
+   preserves the intent (a whisper of additive texture) on a near-black
+   canvas. Opacity is unchanged from the brand token. */
+.fi-atmosphere__grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("/grain.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: var(--fi-grain-opacity);
+  mix-blend-mode: screen;
+  will-change: auto;
+}
+
+/* Honour the existing performance tier system. */
+[data-tier-level="1"] .fi-atmosphere__grain { opacity: 0.012; }
+[data-tier-level="2"] .fi-atmosphere__grain { display: none; }
+
+/* Printing should never carry atmosphere. */
+@media print { .fi-atmosphere { display: none; } }

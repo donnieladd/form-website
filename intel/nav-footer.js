@@ -158,7 +158,24 @@
     '<div class="fi-prism fi-prism-left" aria-hidden="true"></div>' +
     "</footer>";
 
+  /* Static conic vignette + film grain. Injected once per page so every
+     page carries an identical atmosphere layer. Styles live in
+     intel/components.css under "ATMOSPHERE". Purely decorative: aria-hidden
+     and pointer-events:none, so it never reaches the accessibility tree. */
+  function injectAtmosphere() {
+    if (document.querySelector(".fi-atmosphere")) return;
+    var layer = document.createElement("div");
+    layer.className = "fi-atmosphere";
+    layer.setAttribute("aria-hidden", "true");
+    layer.innerHTML =
+      '<div class="fi-atmosphere__vignette"></div>' +
+      '<div class="fi-atmosphere__grain"></div>';
+    document.body.appendChild(layer);
+  }
+
   function inject() {
+    injectAtmosphere();
+
     var navMount = document.getElementById("fi-nav-mount");
     var footerMount = document.getElementById("fi-footer-mount");
     if (navMount) navMount.innerHTML = navHTML;
