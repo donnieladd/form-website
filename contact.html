@@ -28,6 +28,16 @@
   <meta name="twitter:title" content="Start a Project — form.">
   <meta name="twitter:description" content="Start the conversation with form. Tell us about the opportunity, challenge, or system you need help building.">
   <meta name="twitter:image" content="https://formintel.co/og-image.png">
+  <style>
+    /* Honeypot: off-canvas rather than display:none, which some bots detect. */
+    .fi-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+    .fi-form-status { margin-top:1rem; font-size:0.9rem; line-height:1.6; }
+    .fi-form-status:empty { display:none; }
+    .fi-form-status[data-state="ok"]      { color:#3ddc84; }
+    .fi-form-status[data-state="error"]   { color:#ff8a00; }
+    .fi-form-status[data-state="sending"] { color:var(--fi-ink-muted); }
+    .fi-form-status a { color:var(--fi-blue); text-decoration:underline; }
+  </style>
 </head>
 <body class="fi-body">
   <div class="fi-shell">
@@ -51,7 +61,7 @@
           <div class="fi-eyebrow">project inquiry</div>
           <h2>Give us a clear picture of what you need.</h2>
           <p>The more context you provide, the more useful our response will be.</p>
-          <form action="mailto:hello@formintel.co" method="post" enctype="text/plain">
+          <form id="inquiry" action="/api/contact" method="post" novalidate>
             <div class="fi-form-grid">
               <div class="fi-field"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
               <div class="fi-field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -72,9 +82,14 @@
                 <div class="fi-char-count"><span id="char-count">0</span> / 2000</div>
               </div>
             </div>
-            <div style="margin-top:1.25rem">
-              <button type="submit" class="fi-btn fi-btn-primary">start the conversation →</button>
+            <div class="fi-hp" aria-hidden="true">
+              <label for="company_website">Company website</label>
+              <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off">
             </div>
+            <div style="margin-top:1.25rem">
+              <button type="submit" class="fi-btn fi-btn-primary" id="inquiry-submit">start the conversation →</button>
+            </div>
+            <div id="inquiry-status" class="fi-form-status" role="status" aria-live="polite"></div>
             <p class="fi-form-note">We review every inquiry carefully. If there’s a strong fit, a member of the form. team will follow up with next steps.</p>
           </form>
         </div>
@@ -128,9 +143,88 @@
     (function () {
       var message = document.getElementById("message");
       var count = document.getElementById("char-count");
-      if (!message || !count) return;
-      message.addEventListener("input", function () {
-        count.textContent = String(message.value.length);
+      if (message && count) {
+        message.addEventListener("input", function () {
+          count.textContent = String(message.value.length);
+        });
+      }
+
+      var form = document.getElementById("inquiry");
+      var status = document.getElementById("inquiry-status");
+      var submit = document.getElementById("inquiry-submit");
+      if (!form || !status || !submit) return;
+
+      var MAILTO = "hello@formintel.co";
+
+      function set(state, html) {
+        status.setAttribute("data-state", state);
+        status.innerHTML = html;
+      }
+
+      /* Never lose the lead. If the API cannot deliver, hand the visitor a
+         prefilled mail link so their message survives the failure. */
+      function fallback(reason, data) {
+        var body =
+          "Name: " + (data.name || "") + "\nOrganization: " + (data.organization || "") +
+          "\nRole: " + (data.role || "") + "\n\n" + (data.message || "");
+        var href =
+          "mailto:" + MAILTO +
+          "?subject=" + encodeURIComponent("Inquiry — " + (data.organization || data.name || "")) +
+          "&body=" + encodeURIComponent(body);
+        set("error",
+          reason + ' Your message has not been lost — ' +
+          '<a href="' + href + '">open it in your email app</a> ' +
+          'or write to <a href="mailto:' + MAILTO + '">' + MAILTO + '</a>.');
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var fd = new FormData(form);
+        var data = {};
+        fd.forEach(function (v, k) { data[k] = v; });
+        data.orgType = data["org-type"] || "";
+
+        var missing = ["name", "email", "organization", "message"].filter(function (f) {
+          return !String(data[f] || "").trim();
+        });
+        if (missing.length) {
+          set("error", "Please complete: " + missing.join(", ") + ".");
+          return;
+        }
+
+        submit.disabled = true;
+        set("sending", "Sending…");
+
+        fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        })
+          .then(function (r) {
+            return r.json().then(function (j) { return { status: r.status, body: j }; });
+          })
+          .then(function (res) {
+            if (res.status === 200 && res.body.ok) {
+              form.reset();
+              if (count) count.textContent = "0";
+              set("ok", "Thank you — that reached us. We review every inquiry and will follow up personally.");
+              return;
+            }
+            if (res.status === 400 && res.body.errors) {
+              set("error", "Please check: " + res.body.errors.join(" "));
+              return;
+            }
+            if (res.status === 429) {
+              set("error", res.body.error || "Too many attempts. Please try again shortly.");
+              return;
+            }
+            fallback(res.body.error || "We could not send that just now.", data);
+          })
+          .catch(function () {
+            fallback("We could not reach the server.", data);
+          })
+          .then(function () { submit.disabled = false; });
       });
     })();
   </script>
