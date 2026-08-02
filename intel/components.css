@@ -550,12 +550,12 @@
   inset: 0;
   background: conic-gradient(
     from 218deg at 50% 50%,
-    rgba(51, 102, 255, 0.20) 0deg,
-    rgba(96, 0, 255, 0.13) 68deg,
-    rgba(255, 138, 0, 0.16) 148deg,
-    rgba(51, 102, 255, 0.10) 222deg,
-    rgba(90, 182, 255, 0.19) 298deg,
-    rgba(51, 102, 255, 0.20) 360deg
+    rgba(51, 102, 255, 0.135) 0deg,
+    rgba(96, 0, 255, 0.088) 68deg,
+    rgba(255, 138, 0, 0.108) 148deg,
+    rgba(51, 102, 255, 0.068) 222deg,
+    rgba(90, 182, 255, 0.128) 298deg,
+    rgba(51, 102, 255, 0.135) 360deg
   );
   -webkit-mask-image: radial-gradient(
     ellipse 94% 90% at 50% 48%,
