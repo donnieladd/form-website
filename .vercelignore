@@ -73,9 +73,12 @@
 # OS
 .DS_Store
 
-# Dev tooling — never part of the deployed site. Also keeps package.json out of
-# the upload so Vercel cannot re-detect a framework and try to build.
-/package.json
+# Dev tooling — never part of the deployed site.
+# package.json is deliberately NOT excluded: without it in the upload, Vercel
+# does not detect a Node project and ships api/*.mjs as a STATIC FILE instead of
+# compiling it to a serverless function. Verified — the first deploy of the
+# contact endpoint did exactly that. It carries no dependencies and no build
+# script, so its presence cannot trigger a build.
 /package-lock.json
 /tests/
 /.github/
