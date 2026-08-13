@@ -10,6 +10,38 @@ everywhere.** A change without its reasoning written down is half a change.
 
 ---
 
+## 2026-08-13 — League Spartan adopted as the label voice
+
+Trialed on a preview deploy, adopted by the owner the same day. The rules,
+in their words: League Spartan replaces IBM Plex Mono everywhere **except**
+the "vision needs structure." slogan, and "when we use League Spartan, it
+needs to be in all caps."
+
+Mechanically:
+
+- `--fi-label` (League Spartan) is the new label-voice token — eyebrows,
+  `[ NN ]` numerals, status chips, route-card kickers, footer column heads,
+  and every page-local micro-label (14 blocks across 9 pages were found
+  using the old token inside `<style>` blocks — the shared-CSS sweep alone
+  would have missed them).
+- `--fi-mono` (IBM Plex Mono) survives with exactly one user:
+  `.fi-footer-tag`, the slogan.
+- Five blocks that previously had no `text-transform` (numeral-only labels,
+  the digital.formintel.co URL chip, founder credential categories, the
+  messages price captions) gained `uppercase` so the all-caps rule holds
+  everywhere the face appears.
+- Every head loads both families from one Google Fonts stylesheet.
+
+**Enforced, not remembered:** `tests/typography.test.js` (109 → 112 tests)
+fails the build if a League Spartan block lacks `uppercase`, if anything
+but the slogan uses `--fi-mono`, or if a page drops either family. Both
+guards were mutation-tested — each seeded violation turned the suite red.
+(The mutation testing itself ate a lesson: `git checkout` on a file with
+uncommitted real work restores the pre-work version — the components.css
+sweep had to be re-applied. Stage before you mutate.)
+
+---
+
 ## 2026-08-13 — Standard English for nav and buttons
 
 Owner's direction, verbatim scope: "use english standard writing for the Nav

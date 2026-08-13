@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=League+Spartan:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/intel/tokens.css">
   <link rel="stylesheet" href="/intel/nav-footer.css">
   <link rel="stylesheet" href="/intel/components.css">
@@ -57,7 +57,8 @@
     @media (max-width: 900px) { .fi-del { grid-template-columns: auto 1fr; } .fi-del-panel { grid-column: 1 / -1; } }
 
     .fi-del-num {
-      font-family: var(--fi-mono);
+      font-family: var(--fi-label);
+      text-transform: uppercase;
       font-size: 0.68rem;
       letter-spacing: 0.12em;
       color: var(--fi-blue-soft);
@@ -82,7 +83,7 @@
       background: rgba(255, 255, 255, 0.025);
     }
     .fi-del-panel-label {
-      font-family: var(--fi-mono);
+      font-family: var(--fi-label);
       font-size: 0.6rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -117,7 +118,7 @@
     }
     .fi-price-tag {
       display: inline-block;
-      font-family: var(--fi-mono);
+      font-family: var(--fi-label);
       font-size: 0.58rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -126,7 +127,8 @@
     }
     .fi-price h3 { margin: 0 0 0.85rem; font-size: 1.2rem; text-transform: lowercase; }
     .fi-price-per {
-      font-family: var(--fi-mono);
+      font-family: var(--fi-label);
+      text-transform: uppercase;
       font-size: 0.66rem;
       letter-spacing: 0.08em;
       color: var(--fi-ink-muted);

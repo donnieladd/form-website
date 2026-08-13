@@ -142,7 +142,7 @@
 }
 
 .fi-sidebar-label {
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
