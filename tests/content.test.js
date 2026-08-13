@@ -39,6 +39,32 @@ test("no page publishes a rate", () => {
   assert.deepEqual(offenders, [], `published rates found:\n  ${offenders.join("\n  ")}`);
 });
 
+test("no page states a statistic in visible copy", () => {
+  // Added 2026-08-13. insights.html shipped a draft headline reading "Why AI
+  // pilots stall at 40%" -- a specific, sourceless figure presented as fact.
+  // The rate check above only looks for "$", so a bare percentage went straight
+  // through the gate.
+  //
+  // Percentages are legitimate inside markup (width:40%, rgba alpha, viewport
+  // units), so tags and attributes are stripped before matching and only the
+  // text a visitor actually reads is checked. If a real, sourced figure is ever
+  // published, cite the source next to it and add it to ALLOWED below.
+  const ALLOWED = [];
+  const offenders = [];
+  for (const page of pages) {
+    const visible = read(page)
+      .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, " ")
+      .replace(/<[^>]*>/g, " ");
+    for (const m of visible.matchAll(/\d[\d,.]*\s?%/g)) {
+      const claim = m[0].trim();
+      if (ALLOWED.includes(claim)) continue;
+      const context = visible.slice(Math.max(0, m.index - 60), m.index + 30).replace(/\s+/g, " ").trim();
+      offenders.push(`${page}: "${claim}" in "...${context}..."`);
+    }
+  }
+  assert.deepEqual(offenders, [], `unsourced statistic in visible copy:\n  ${offenders.join("\n  ")}`);
+});
+
 const RETIRED = [
   "Signal Flow", "Signal Growth", "Signal Products",
   "Access by form", "Profile by form", "Scope by form",
