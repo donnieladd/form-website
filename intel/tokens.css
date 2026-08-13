@@ -114,6 +114,21 @@ body.fi-body {
   text-transform: lowercase;
 }
 
+/* The clamp floor above is 2.75rem (44px), which is wider than the content
+   column at small viewports: at 320px the gutter leaves 280px, and a single
+   long lowercase word ("transformation") measures past that. Because
+   .fi-shell sets overflow-x: hidden, the overflow is CLIPPED rather than
+   scrolled — the word is silently cut off and scrollWidth still reports no
+   overflow, so it does not show up as a layout error.
+
+   11vw is chosen to meet the old value exactly at the 400px boundary
+   (400 x 0.11 = 44px), so nothing jumps as the breakpoint is crossed. */
+@media (max-width: 400px) {
+  .fi-heading-xl {
+    font-size: clamp(1.95rem, 11vw, 2.75rem);
+  }
+}
+
 .fi-heading-lg {
   margin: 0;
   font-size: clamp(2rem, 3.4vw, 3.25rem);
