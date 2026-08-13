@@ -6,6 +6,9 @@
   "outputDirectory": null,
   "cleanUrls": false,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/sound.html", "destination": "/experience.html", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
