@@ -10,6 +10,10 @@
   <meta property="og:url" content="https://formintel.co/">
   <meta property="og:title" content="form. — Operational Intelligence">
   <meta property="og:description" content="The systems behind movement. Operational architecture for organizations ready to scale impact.">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/intel/tokens.css">
@@ -35,7 +39,14 @@
     <main>
       <section class="fi-hero" aria-labelledby="hero-title">
         <div class="fi-hero-media">
-          <img src="/intel/assets/hero.jpg" alt="" width="1920" height="1080">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="/intel/assets/hero-688.avif 688w, /intel/assets/hero-1376.avif 1376w"
+              sizes="100vw">
+            <img src="/intel/assets/hero-1376.jpg" alt="" width="1376" height="768"
+                 fetchpriority="high" decoding="async">
+          </picture>
         </div>
         <div class="fi-container fi-hero-content">
           <div class="fi-eyebrow">operational architecture</div>
