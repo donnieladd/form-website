@@ -113,3 +113,27 @@ test("the hero is served as AVIF with a decoded-size hint and high priority", ()
   assert.match(img[0], /width="1376"/, "declared width must match the real file (1376x768)");
   assert.match(img[0], /height="768"/, "declared height must match the real file (1376x768)");
 });
+
+test("no page carries an inline script — the invariant behind script-src 'self'", () => {
+  // The CSP moved from report-only to enforcing on 2026-08-13, which was only
+  // possible because contact.html's inline handler moved to /intel/contact.js.
+  // With `script-src 'self'` enforced, an inline <script> is not a style
+  // violation — it is a page whose behaviour silently died in production.
+  // This keeps the door shut.
+  const offenders = [];
+  for (const page of pages) {
+    for (const m of read(page).matchAll(/<script\b([^>]*)>/gi)) {
+      if (!/\bsrc\s*=/.test(m[1])) offenders.push(`${page}: <script${m[1]}>`);
+    }
+  }
+  assert.deepEqual(offenders, [], `inline scripts found (blocked by the enforced CSP):\n  ${offenders.join("\n  ")}`);
+});
+
+test("the CSP is enforcing, not report-only", () => {
+  const vercel = read("vercel.json");
+  assert.match(vercel, /"Content-Security-Policy"/, "the enforcing CSP header is missing from vercel.json");
+  assert.ok(
+    !vercel.includes("Content-Security-Policy-Report-Only"),
+    "report-only header still present — it was a Phase 1 stepping stone, not a companion"
+  );
+});

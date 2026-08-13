@@ -71,26 +71,26 @@ screenshot, or shared terminal.
 Set in `vercel.json` for `/(.*)`, so they cover every page and every asset with
 no per-page markup. JSON has no comments, so the reasoning lives here.
 
-`Content-Security-Policy-Report-Only` ships the **target** policy, not a
-permissive one — the point of report-only is to learn what actually breaks.
-Two known reports it will produce today, both expected:
+`Content-Security-Policy` is **enforcing** (promoted from report-only
+2026-08-13, after the one predicted violation was fixed). `script-src 'self'`
+became possible when `contact.html`'s inline handler — the only inline script
+on the site — moved to `/intel/contact.js` (loaded with `defer`; behaviour
+verified unchanged: counter, validation, submit, mailto fallback). All pages
+verified violation-free in a browser against this exact header, and
+`tests/head.test.js` fails the build if an inline `<script>` reappears or the
+header regresses to report-only.
 
-- **`script-src 'self'`** — `contact.html` carries the site's only inline
-  `<script>`. Extracting it to `/intel/contact.js` is the prerequisite for
-  enforcing this directive.
-- **`font-src … cdn.fontshare.com`** — Fontshare's CSS is fetched from
-  `api.fontshare.com`, but which host serves the woff2 could not be verified
-  from CI (the host is unreachable there). Both are allowed; the console will
-  confirm which one is real.
+Two honest limits, stated rather than hidden:
 
-`style-src` needs `'unsafe-inline'` and will for the foreseeable future. Eleven
-pages carry page-local `<style>` blocks and inline `style=` attributes are used
-throughout. Removing that requires a build step, which this repo has
-deliberately refused. The policy is honest about that rather than pretending to
-be stricter than it is.
-
-Promote to the enforcing `Content-Security-Policy` header only after the
-inline script is extracted and the console is clean across every page.
+- **`style-src` needs `'unsafe-inline'`** and will for the foreseeable future.
+  Pages carry page-local `<style>` blocks and inline `style=` attributes
+  throughout. Removing that requires a build step, which this repo has
+  deliberately refused.
+- **`font-src` allows both `api.fontshare.com` and `cdn.fontshare.com`**
+  because the woff2-serving host could not be verified from CI (unreachable
+  there). If the wrong one is blocked in production the failure mode is a
+  fallback font, not broken behaviour — check DevTools once on the live site
+  and delete whichever host never appears.
 
 ## Images
 
