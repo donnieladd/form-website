@@ -59,8 +59,18 @@ body.fi-body {
   text-rendering: optimizeLegibility;
 }
 
-.fi-body a {
+/* :not(.fi-btn) matters. `.fi-body a` scores (0,1,1) and out-specifies
+   `.fi-btn-light` at (0,1,0), so `color: inherit` was overriding that button's
+   `color: #000` — white label on a white fill, 1:1 contrast, invisible. It
+   shipped that way on the homepage and on continuum.html.
+   Excluding buttons here fixes the whole class of bug rather than patching
+   one variant, and lets each .fi-btn-* own its own colour. */
+.fi-body a:not(.fi-btn) {
   color: inherit;
+  text-decoration: none;
+}
+
+.fi-body a.fi-btn {
   text-decoration: none;
 }
 
@@ -112,6 +122,21 @@ body.fi-body {
   letter-spacing: -0.035em;
   font-weight: 500;
   text-transform: lowercase;
+}
+
+/* The clamp floor above is 2.75rem (44px), which is wider than the content
+   column at small viewports: at 320px the gutter leaves 280px, and a single
+   long lowercase word ("transformation") measures past that. Because
+   .fi-shell sets overflow-x: hidden, the overflow is CLIPPED rather than
+   scrolled — the word is silently cut off and scrollWidth still reports no
+   overflow, so it does not show up as a layout error.
+
+   11vw is chosen to meet the old value exactly at the 400px boundary
+   (400 x 0.11 = 44px), so nothing jumps as the breakpoint is crossed. */
+@media (max-width: 400px) {
+  .fi-heading-xl {
+    font-size: clamp(1.95rem, 11vw, 2.75rem);
+  }
 }
 
 .fi-heading-lg {
@@ -239,4 +264,37 @@ body.fi-body {
   height: 200px;
   background: radial-gradient(circle, rgba(255, 138, 0, 0.22), transparent 70%);
   opacity: 0.5;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────
+   The live stack has no keyframe animations, but it does have four
+   transitions and a smooth-scroll:
+
+     tokens.css:49       html { scroll-behavior: smooth }   ← vestibular trigger
+     tokens.css:147      .fi-btn transform
+     components.css:103  card background / border
+     nav-footer.css:8    nav background
+     nav-footer.css:48   nav link colour
+     nav-footer.css:114  mobile panel translateY(-110%)
+
+   smooth-scroll is the one that actually harms — services.html and the
+   practice pages deep-link to #anchors, and an animated jump is a known
+   trigger. The rest are neutralised too because separating "motion" from
+   "not motion" per-property is fragile and instant is what was asked for.
+
+   !important is required: nav-footer.css and components.css load AFTER
+   this file at equal specificity, so without it their transitions win. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

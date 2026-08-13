@@ -28,8 +28,32 @@ Dune. Apple cinematic product films. Tron Legacy atmosphere. Arrival. Interstell
 4. **De-HUD** — Intelligence "Threat Detected" card pulses slowed from 1.8s to 5.5s and dimmed to atmospheric red. Executive command-grid HUD dots dropped to 3px at 0.55 opacity, flicker slowed to 7s. Scanlines slowed (6s → 18s) and dimmed.
 5. **Atmosphere & negative space** — hero padding widened on `about.html`, `founder.html`. Eco-title typography larger and breathing. Soft depth gradients added behind hero atmosphere.
 
-## Performance contract (immutable)
-- All values must scale through the existing performance tier multipliers (`PERF_CONFIG`, `[data-perf]`, `[data-tier-level]`).
-- Brand colors, AVIF backgrounds, logos, and page structure are fixed.
-- Inline CSS preferred per page for isolation.
+## Build contract
+
+*Amended 2026-08-13. The previous version of this section was headed
+"Performance contract (immutable)" and required every value to scale through
+`PERF_CONFIG` / `[data-perf]` / `[data-tier-level]`. That contract described a
+system that no longer runs: `performance-tier.js`, `performance-config.js` and
+`perf-observer.js` are loaded by no page and excluded from deploy, nothing ever
+sets `data-tier-level`, and the two CSS rules that consumed it could never
+fire. They have been removed. A rule that cannot be enforced is not immutable,
+it is decoration — and leaving it in place made the rest of this file harder to
+trust.*
+
+- **Motion stays static where the atmosphere is concerned.** The conic sweep and
+  film grain do not animate, do not couple to the cursor, and do not pulse.
+  Signature visual moments must read correctly in a screenshot.
+- **Honour `prefers-reduced-motion`.** Enforced in `intel/tokens.css`.
+- **A pattern used on three or more pages lives in `intel/components.css`.**
+  A pattern unique to one page stays in that page's `<style>`. The old rule
+  ("inline CSS preferred per page for isolation") produced five hand-rolled
+  copies of one card and three of one numeral, which had already drifted apart.
+  Isolation was never the goal; predictability was.
+- **Contrast is tested, not eyeballed.** Every colour used for text clears
+  WCAG AA against `--fi-black`; `tests/contrast.test.js` fails the build on a
+  regression. New text colours need the same treatment.
+- **Images ship in a modern format with correct intrinsic dimensions.** The
+  declared `width`/`height` must match the real file so the browser reserves
+  the right aspect box.
+- Brand colours, logos, and page structure are fixed.
 - No emojis, anywhere.

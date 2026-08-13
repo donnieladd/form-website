@@ -89,7 +89,10 @@
   display: none;
 }
 
-@media (max-width: 1080px) {
+/* 1080 -> 1180 (2026-08-13): the reposition's labels run ~48 characters
+   against the old set's ~40. .fi-nav-links wraps inside a fixed 68px bar,
+   so between 1081 and 1179px the second line overflowed the header. */
+@media (max-width: 1180px) {
   .fi-nav-links,
   .fi-nav-actions .fi-btn {
     display: none;

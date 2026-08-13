@@ -22,6 +22,7 @@
 /.claude/
 
 # Working docs, not web content
+/DECISIONS.md
 /TALKING-POINTS.md
 /SERVICES-COPY.md
 /FORM_UI_DOCTRINE.md
@@ -29,18 +30,10 @@
 /CHANGELOG.md
 /README.md
 
-# First-attempt CSS/JS — superseded by /intel/, referenced by no live page
-/field.css
-/field.js
-/mobile.css
-/rev.css
-/rev.js
-/nav-footer.css
-/nav-footer.js
-/perf-observer.js
-/performance-config.js
-/performance-tier.js
-/tokens/
+# Design sources — not web content. (The first-attempt CSS/JS that used to be
+# listed here was deleted 2026-08-13 rather than ignored: it shipped nowhere
+# and cost only comprehension. The anchoring rule at the top of this file
+# still applies to every pattern below — see the nav-footer.css incident.)
 /design-refs/
 /brand-kit/
 

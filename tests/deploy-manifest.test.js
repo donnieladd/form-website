@@ -15,7 +15,7 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, read, sitePages } from "./lib.js";
 
@@ -72,4 +72,27 @@ test("every referenced local asset exists on disk", () => {
     }
   }
   assert.deepEqual(missing, [], `dangling asset references:\n  ${missing.join("\n  ")}`);
+});
+
+test("every doc cited by .vercelignore actually exists", () => {
+  // Added 2026-08-13. CHANGELOG.md sat in .vercelignore for the entire
+  // repositioning build while the file itself did not exist — an ignore rule
+  // for a record nobody was keeping. A citation in config reads as a promise
+  // that the thing is real; this makes a fictional citation a red build
+  // instead of a discovery someone makes weeks later.
+  //
+  // Scope: the "/*.md" entries (the working docs). Directory patterns and
+  // OS-artifact entries like .DS_Store are prophylactic — they legitimately
+  // ignore things that may not exist yet — so they are exempt.
+  const ignore = read(".vercelignore");
+  const docs = ignore
+    .split("\n")
+    .map((l) => l.trim())
+    .filter((l) => /^\/[\w.-]+\.md$/i.test(l));
+  assert.ok(docs.length >= 5, `expected the working-doc block, found ${docs.length} .md entries`);
+  const missing = docs.filter((d) => {
+    const path = join(ROOT, d.slice(1));
+    return !existsSync(path) || statSync(path).size === 0;
+  });
+  assert.deepEqual(missing, [], `docs cited by .vercelignore that are missing or empty:\n  ${missing.join("\n  ")}`);
 });

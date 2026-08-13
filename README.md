@@ -18,7 +18,7 @@ No build step. Files are served as authored.
 npm run verify
 ```
 
-49 tests, Node's built-in runner, no dependencies to install. **This must pass
+68 tests, Node's built-in runner, no dependencies to install. **This must pass
 before any production deploy.** CI runs it on every push and pull request
 (`.github/workflows/verify.yml`).
 
@@ -65,6 +65,75 @@ screenshot, or shared terminal.
 - All values HTML-escaped before rendering into the email body.
 - Never reports success it cannot back. Provider failure returns `502`/`503`
   with `fallbackEmail`, and the client surfaces the prefilled mail link.
+
+## Where the record lives
+
+Three documents, three jobs — deploy-excluded, and `tests/deploy-manifest.test.js`
+fails the build if any of them goes missing (a lesson learned: CHANGELOG.md was
+cited by `.vercelignore` for weeks before it existed):
+
+- **`CHANGELOG.md`** — the narrative record. What changed, why, what it cost,
+  with a commit anchor per phase. Start here before touching anything.
+- **`DECISIONS.md`** — the open-items ledger. What is locked, what is a
+  placeholder, who decides, and the exact edit cost when a decision lands.
+- **Commit messages** — the mechanism. Every commit states what broke or
+  what was at risk, how the change addresses it, and how it was verified.
+
+Standing rule from the owner (2026-08-13): **annotate everything, every time,
+everywhere.** A change without its reasoning written down is half a change.
+
+## Security headers
+
+Set in `vercel.json` for `/(.*)`, so they cover every page and every asset with
+no per-page markup. JSON has no comments, so the reasoning lives here.
+
+`Content-Security-Policy` is **enforcing** (promoted from report-only
+2026-08-13, after the one predicted violation was fixed). `script-src 'self'`
+became possible when `contact.html`'s inline handler — the only inline script
+on the site — moved to `/intel/contact.js` (loaded with `defer`; behaviour
+verified unchanged: counter, validation, submit, mailto fallback). All pages
+verified violation-free in a browser against this exact header, and
+`tests/head.test.js` fails the build if an inline `<script>` reappears or the
+header regresses to report-only.
+
+Two honest limits, stated rather than hidden:
+
+- **`style-src` needs `'unsafe-inline'`** and will for the foreseeable future.
+  Pages carry page-local `<style>` blocks and inline `style=` attributes
+  throughout. Removing that requires a build step, which this repo has
+  deliberately refused.
+- **`font-src` allows both `api.fontshare.com` and `cdn.fontshare.com`**
+  because the woff2-serving host could not be verified from CI (unreachable
+  there). If the wrong one is blocked in production the failure mode is a
+  fallback font, not broken behaviour — check DevTools once on the live site
+  and delete whichever host never appears.
+
+## Images
+
+`intel/assets/` holds the homepage hero at three sizes. Serve AVIF via
+`<picture>` with a real JPEG fallback:
+
+| File | Size | Role |
+|---|---|---|
+| `hero-1376.avif` | 25 KB | primary, native resolution |
+| `hero-688.avif` | 7 KB | small viewports / low DPR |
+| `hero-1376.jpg` | 42 KB | fallback for browsers without AVIF |
+
+This replaced a single 1.7 MB file named `hero.jpg` that was **actually a PNG** —
+photographic content in a lossless format, 68% of the site's total weight, and
+a Content-Type that disagreed with its extension. It also declared
+`width="1920" height="1080"` while the real file was 1376×768, so the browser
+reserved the wrong aspect box.
+
+`tests/head.test.js` asserts the declared dimensions match the real file, that
+an AVIF source exists, that the hero carries `fetchpriority="high"`, and that
+every `srcset` candidate exists on disk — `srcset` is a comma-separated list
+with width descriptors, so it slips past the `deploy-manifest` asset check.
+
+**If you re-encode:** the source is dark and low-detail, so AVIF q80 matches a
+q82 JPEG's fidelity (44.3 dB vs 44.1 dB PSNR) at 60% of the size while
+retaining 186 of 192 luma levels in the gradient — no banding. Higher quality
+buys nothing measurable.
 
 ## Deploying
 

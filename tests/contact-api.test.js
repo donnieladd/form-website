@@ -6,9 +6,14 @@
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { validate, rateLimit, esc, renderEmail, INQUIRY_TO } from "../api/contact.mjs";
+import { validate, rateLimit, esc, renderEmail, routeFor, INQUIRY_TO } from "../api/contact.mjs";
 
-test("inquiries are delivered to hello@formintel.co", () => {
+test("hello@formintel.co is the inbox that sees every inquiry", () => {
+  // Since routing landed (2026-08-13) this constant is no longer "the
+  // recipient" — it is the default recipient AND the always-CC'd house inbox.
+  // routeFor's invariant test below proves every route keeps it in to-or-cc,
+  // which is a stronger guarantee than the single-recipient one this assertion
+  // originally encoded: a misconfigured alias can delay a lead, never lose it.
   assert.equal(INQUIRY_TO, "hello@formintel.co");
 });
 
@@ -87,4 +92,87 @@ test("renderEmail escapes injected markup rather than emitting it", () => {
 test("renderEmail omits rows for absent optional fields", () => {
   const html = renderEmail({ name: "A", email: "a@b.co", organization: "C", message: "D" });
   assert.ok(!html.includes("Timeline"), "empty optional field should not render a row");
+});
+
+/* ── routeFor: deterministic inquiry routing (added 2026-08-13) ──────────
+   The routing table maps the contact form's `practice` option strings to
+   practice inboxes. These tests pin the mapping AND the invariant that makes
+   routing safe to turn on: the house inbox sees everything, always. */
+
+test("routeFor maps each practice option to its owning inbox", () => {
+  const cases = [
+    ["Something has to change — advisory & transformation", "advisory@formintel.co", "Advisory"],
+    ["We need a system built — solutions & intelligence", "solutions@formintel.co", "Solutions"],
+    ["AI — enablement, strategy, or a build", "solutions@formintel.co", "AI"],
+    ["Brand, marketing or experience — creative & experience", "creative@formintel.co", "Creative"],
+    ["Keep it running — managed services / Continuum", "managed@formintel.co", "Managed"],
+    ["form. digital — website, app or platform", "solutions@formintel.co", "Digital"],
+    ["form. creative & marketing — agency engagement", "creative@formintel.co", "Agency"],
+    ["messages by form. — message infrastructure", "creative@formintel.co", "Messages"],
+    ["form. experience — live production or placement", "creative@formintel.co", "Experience"],
+    ["A labs product — processes, people or ledger", "solutions@formintel.co", "Labs"],
+    ["form. learning — curriculum or credentialing", "solutions@formintel.co", "Learning"],
+    ["Ministry — not sure which part", "ministry@formintel.co", "Ministry"],
+  ];
+  for (const [practice, to, tag] of cases) {
+    const r = routeFor({ practice });
+    assert.equal(r.to, to, `"${practice}" should route to ${to}, got ${r.to}`);
+    assert.equal(r.tag, tag, `"${practice}" should tag [${tag}], got [${r.tag}]`);
+  }
+});
+
+test("routeFor: orgType Ministry / Church overrides the practice route", () => {
+  const r = routeFor({ practice: "form. digital — website, app or platform", orgType: "Ministry / Church" });
+  assert.equal(r.to, "ministry@formintel.co", "a church asking for a build still enters through the ministry door");
+  assert.equal(r.cc, INQUIRY_TO);
+});
+
+test("routeFor: unknown, unsure or missing input falls back unclassified", () => {
+  for (const clean of [
+    {},
+    { practice: "Not sure yet" },
+    { practice: "Multiple areas" },
+    { practice: "something entirely unrecognised" },
+  ]) {
+    const r = routeFor(clean);
+    assert.equal(r.to, INQUIRY_TO, JSON.stringify(clean));
+    assert.equal(r.reason, "unclassified");
+  }
+});
+
+test("routeFor: the house inbox is always in to-or-cc — no lead can be lost", () => {
+  // Property test over every shape of input, including garbage: whatever
+  // routeFor returns, INQUIRY_TO must be reachable. This is the invariant
+  // that makes a dead alias a delay instead of a dropped lead.
+  const inputs = [
+    null, undefined, 42, "string", {},
+    { practice: "AI — enablement, strategy, or a build" },
+    { practice: "Ministry — not sure which part" },
+    { practice: "Keep it running — managed services / Continuum", orgType: "Business" },
+    { orgType: "Ministry / Church" },
+    { practice: "Not sure yet" },
+  ];
+  for (const input of inputs) {
+    const r = routeFor(input);
+    assert.ok(
+      r.to === INQUIRY_TO || r.cc === INQUIRY_TO,
+      `input ${JSON.stringify(input)} routed to ${r.to} with cc ${r.cc} — house inbox unreachable`
+    );
+  }
+});
+
+test("routeFor survives null and partial input without throwing", () => {
+  for (const bad of [null, undefined, 0, "", [], { practice: null }, { practice: 42, orgType: {} }]) {
+    const r = routeFor(bad);
+    assert.equal(typeof r.to, "string");
+    assert.ok(r.to.includes("@"));
+  }
+});
+
+test("renderEmail records where the inquiry was routed, honestly", () => {
+  const clean = { name: "A", email: "a@b.co", organization: "Org", message: "hi" };
+  const off = renderEmail(clean, null);
+  assert.ok(off.includes("default — routing disabled"), "with routing off the audit row must say so");
+  const on = renderEmail(clean, routeFor({ practice: "Ministry — not sure which part" }));
+  assert.ok(on.includes("ministry@formintel.co"), "with routing on the audit row carries the destination");
 });
