@@ -19,11 +19,35 @@ const pages = sitePages();
 /** Pages intentionally excluded from search indexes carry their own rules. */
 const NOINDEX = new Set(["404.html", "privacy.html", "terms.html"]);
 
-test("the expected page set is present", () => {
-  assert.ok(pages.length >= 17, `expected >=17 pages, found ${pages.length}`);
-  for (const required of ["index.html", "contact.html", "404.html"]) {
-    assert.ok(pages.includes(required), `missing ${required}`);
-  }
+/**
+ * The exact shipped page set, locked 2026-08-13 at the end of the rebuild.
+ *
+ * During the 17 -> 31 build-out this was a floor (`pages.length >= 17`) so
+ * additions were free while deletions failed loudly. With the IA settled, a
+ * floor is the wrong shape: an accidental addition (a stray scratch page at
+ * root ships and gets indexed) passes silently, and an accidental deletion
+ * only fails if it dips below an arbitrary number. deepEqual makes both loud.
+ *
+ * Adding or retiring a page is supposed to touch this list — that is the
+ * point. The diff becomes a visible, reviewable statement of intent.
+ */
+const EXPECTED_PAGES = [
+  "404.html", "about.html", "advisory-transformation.html", "ai-enablement.html",
+  "businesses.html", "contact.html", "continuum.html", "creative-experience.html",
+  "creative-marketing.html", "digital.html", "experience.html", "founder.html",
+  "index.html", "industries.html", "insights.html", "intellect.html",
+  "labs.html", "learning.html", "ledger.html", "managed-services.html",
+  "messages.html", "ministries.html", "people.html", "privacy.html",
+  "processes.html", "services.html", "solutions-architecture.html",
+  "solutions-intelligence.html", "support.html", "terms.html", "work.html",
+];
+
+test("the shipped page set matches the manifest exactly", () => {
+  assert.deepEqual(
+    [...pages].sort(),
+    EXPECTED_PAGES,
+    "page set drifted from the manifest — if this change is intentional, update EXPECTED_PAGES in the same commit"
+  );
 });
 
 for (const page of pages) {

@@ -488,7 +488,8 @@
    gets an identical layer.
 
    Brand reference:
-     --opacity-grain          .022   (tokens/rendering-hierarchy.css)
+     --opacity-grain          .022   (from the original brand sheet;
+     its source file tokens/rendering-hierarchy.css was deleted 2026-08-13)
      --opacity-grain-reduced  .012   (under load pressure)
      --z-tier-atmosphere      3      (tier 1, "Atmosphere")
      Tier 1 spec: will-change auto (static), grain is an additive blend.
