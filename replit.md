@@ -1,148 +1,56 @@
-# FORM. — Operational Intelligence
+# form. — project record pointer
 
-## Project Overview
-A multi-page cinematic website for FORM., an AI-augmented operational intelligence company. Built with vanilla HTML/CSS/JS using atmospheric backgrounds, SVG logos, restrained motion systems, and a film-grain overlay system.
+**This file was rewritten on 2026-08-13. Read this header before trusting
+anything you remember about the previous version.**
 
-The site is not a traditional marketing website. It is a cinematic operational ecosystem. The experience must feel intentional, restrained, architectural, human, intelligent, emotionally mature, and structurally precise. The core emotional objective is **confidence through restraint**.
+The previous replit.md carried a "Locked Doctrine (DO NOT VIOLATE)" section
+describing a four-division / twelve-entity brand system (`form. services /
+products / labs / learning`, `relay by form.`, `frame by form.`, `axis by
+form.`, `formation`, Signal Green `#39FF14`, Canela, a `vision / standards /
+ecosystem` navigation). **None of that describes the shipped site, and most
+of it never did** — of its twelve "locked" entities, only three ever appeared
+in a live page, and several of its mandated names are now on the RETIRED
+denylist in `tests/content.test.js`, meaning reintroducing them fails CI.
 
-Every page must feel emotionally distinct but share the same ecosystem DNA. Avoid identical hero layouts, atmospheric systems, section structures, pacing, panel systems, compositions, grid behavior, or motion patterns across pages.
+That mattered because this file is read as *instructions* by Replit's agent.
+A stale doctrine here is not a harmless archive — it is an agent actively
+enforcing a retired brand against the current site. So it was replaced, not
+annotated around.
 
-## Locked Doctrine (DO NOT VIOLATE)
+## What the site actually is (2026-08-13)
 
-### Naming System (LOCKED — Updated)
-- form. is a **structured operational ecosystem** organized into **four divisions**. Every division and every entity inside it must remain visually and semantically distinct everywhere it appears (nav dropdown, ecosystem page, footer, founder page strip, rev. responses, etc.).
-- The four divisions:
-  - **`form. services`** — execution & client work. Contains the **5 disciplines**: `form. strategy`, `form. creative`, `form. digital`, `form. ai`, `form. experience`.
-  - **`form. products`** — embedded partnership systems. Contains **3 products**: `continuum by form.`, `messages by form.`, `formation`.
-    - `continuum by form.` is offered in tiered partnership terms: **6-month, 12-month, 18-month, 24-month, 36-month**. (Previously named bare `continuum` — that bare form is now deprecated.)
-    - `formation` is the only product that does not carry the `by form.` suffix. It is fractional/executive leadership infrastructure (ministry consulting, leadership systems, operational coaching, organizational development).
-  - **`form. labs`** — internal product innovation & software infrastructure. Contains **3 labs products**: `relay by form.`, `frame by form.`, `axis by form.`. All three are lowercase with the `by form.` suffix. The previous uppercase `RELAY` / `FRAME` / `AXIS` styling is deprecated.
-  - **`form. learning`** — education & credential infrastructure. Contains **1 platform**: `intellect by form.` — positioned as the world's first AI-native university (courses, certifications, study systems, AI tutoring, assessments, credentialing, institutional learning infrastructure).
-- Total public-facing layers: **4 divisions + 12 entities** (5 services + 3 products + 3 labs products + 1 learning platform).
-- Division-level brand naming always uses the `form. {name}` lowercase prefix with trailing period (`form. services`, `form. products`, `form. labs`, `form. learning`).
-- Entity-level naming pattern: most entities carry either the `form. {name}` prefix (the 5 service disciplines, plus the division names themselves) **or** the `{name} by form.` suffix (continuum by form., messages by form., relay by form., frame by form., axis by form., intellect by form.). The single exception is `formation` (bare lowercase, no prefix or suffix).
-- Deprecated names (do **not** use in any public-facing copy):
-  - `form. sound` — removed entirely.
-  - bare `continuum` — now `continuum by form.`
-  - uppercase `RELAY`, `FRAME`, `ACCESS`, `AXIS` (as standalone labels) — now lowercase `relay by form.`, `frame by form.`, `axis by form.` (`ACCESS` was renamed to `axis by form.`).
-  - `form. support` (now `formation`), `form. messages` (now `messages by form.`), `form. continuum` (now `continuum by form.`).
-  - `business systems`, `ministry systems`, `creative systems`, `executive systems`, `intelligence systems`, `experience systems` — all internal-only legacy language, never public.
+`formintel.co` is the corporate routing layer for **form. — an AI-augmented
+operations, intelligence, and solutions company.** Four practices (advisory &
+transformation · solutions & intelligence · creative & experience · managed
+services), two flagship capabilities (solutions architecture · AI enablement),
+three businesses (form. digital · form. creative & marketing · form. support),
+two divisions (form. labs · form. learning), a first-class Ministries path,
+and a contact pipeline that classifies inquiries by practice.
 
-### Ecosystem Relationships (LOCKED)
-Cross-reference table that must be preserved in all public-facing structure:
+Static HTML/CSS/JS, zero dependencies, no build step. Deployed on Vercel;
+`npm run verify` (109 tests) must pass before any deploy.
 
-| Division | Function |
-| --- | --- |
-| form. services | execution & client work |
-| form. products | embedded partnerships |
-| form. labs | internal software & innovation |
-| form. learning | education & credential infrastructure |
+## Where the truth lives — in order
 
-| Product / Entity | Division |
-| --- | --- |
-| form. strategy | form. services |
-| form. creative | form. services |
-| form. digital | form. services |
-| form. ai | form. services |
-| form. experience | form. services |
-| continuum by form. | form. products |
-| messages by form. | form. products |
-| formation | form. products |
-| relay by form. | form. labs |
-| frame by form. | form. labs |
-| axis by form. | form. labs |
-| intellect by form. | form. learning |
+1. **`CHANGELOG.md`** — the narrative record, one entry per body of work,
+   with a commit anchor per phase. Start here.
+2. **`DECISIONS.md`** — what is locked, what is a placeholder, who decides.
+3. **`README.md`** — how to run, verify, and deploy; security posture;
+   image pipeline.
+4. **`FORM_UI_DOCTRINE.md`** — the visual/interaction contract (amended
+   2026-08-13; its old "performance contract" was removed as unenforceable).
+5. **`tests/`** — the enforced subset of all of the above. When prose and
+   tests disagree, the tests are the contract.
 
-### Operational Philosophy (LOCKED)
-form. is built on the belief that:
-- clarity creates freedom
-- systems shape culture
-- intelligence should support humanity
-- execution is compassion
-- creativity requires structure
-- operational health creates sustainability
-- meaningful work requires intentional infrastructure
+## Rules that survive from the old file
 
-The goal is not simply to build brands, software, or experiences. The goal is to build systems that help people, organizations, ministries, and leaders operate with greater alignment, sustainability, intelligence, and purpose.
+- The brand mark is lowercase `form.` with the blue period — never uppercase.
+- Dark, cinematic, restrained. Typography leads; chrome is set design.
+- Lowercase headers and navigation; uppercase only for mono micro-labels.
+- No emojis anywhere in the product.
+- **Standard market language first, form. language second** — a first-time
+  visitor must understand every page without decoding internal vocabulary.
+- **Annotate everything, every time, everywhere** (owner, 2026-08-13).
 
-### Typography (LOCKED)
-- **Primary typeface — Satoshi**: headers, body, UI, navigation, ecosystem labels, operational language.
-- **Editorial typeface — Canela (italic, light/regular)**: the third approved font. Used very sparingly (5–10% max of visible typography) for emotional punctuation only. Examples: `form.`, `humanity`, `the future needs form.`, `what's next.`, `conversation.`, `impact.`. Never paragraph copy. CSS family: `'Canela', Georgia, serif`. Cormorant Garamond is **not** approved and must not be loaded.
-- **Mono — IBM Plex Mono**: metadata, indices, system labels, infrastructure annotations, micro-labels.
-- **Casing**: lowercase typography for headers, navigation, section titles, product names, ecosystem labels, footer categories, operational labels. Uppercase ONLY for metadata, micro-labels, indexing systems (`[ 01 ]`, `OPERATIONAL SYSTEMS`). Uppercase must remain minimal with increased tracking and never dominate layouts.
-
-### Layout & Spacing (LOCKED)
-- Default alignment: **left aligned**. Centered alignment only for intentional emotional hero moments.
-- Generous vertical rhythm, intentional whitespace, cinematic pacing, controlled density. Never cramped, never startup-style UI clutter.
-
-### Color (LOCKED)
-- Background: deep atmospheric near-black, never flat black. Subtle Infrastructure Blue diffusion, Cognitive Violet atmosphere, soft signal gradients.
-- Primary text: soft white (`#F2F2F0`), never pure white. Secondary text: muted gray.
-- Accent: **Signal Green `#39FF14` only** — sitewide, no exceptions. No random greens, no neon lime, no trendy gradients. Signal Green is identity infrastructure — use intentionally.
-- Color tokens defined in `tokens/colors.css`: `--ac` (Signal Green), `--ib` (Infrastructure Blue `#2962FF`), `--cv` (Cognitive Violet `#8B5CF6`), `--rose` (`#9B4DFF`), `--amber` (`#FF8A00`), `--stone` (`#F2F2F0`), `--onyx` (`#050608`).
-
-### Motion (LOCKED)
-- Slow, calm, intentional, cinematic, premium. No aggressive transitions, no excessive parallax, no flashy animations, no startup-style interaction patterns.
-
-### Atmosphere (LOCKED)
-- Subtle topology systems, atmospheric gradients, signal particles, orbital structures, cinematic grain, volumetric diffusion. Always secondary to typography and clarity. Never overwhelm readability.
-
-### Navigation (LOCKED)
-Final top-nav structure across every page:
-```
-home   vision   standards   founder   ecosystem   contact   ● start the conversation
-```
-- All navigation labels are lowercase **without** trailing periods. Trailing periods are reserved for editorial copy and the `form.` brand mark itself.
-- `ecosystem` is the only nav item with a dropdown — a three-column glass panel (disciplines / labs+products / connective layers) per the Naming System.
-- **The navigation system is identical on every page of the site, no matter the visual treatment of that page.** Same structure, same labels, same order, same brand mark, same `● start the conversation` CTA, same dropdown behavior, same typography, same glass treatment, same z-index and fixed positioning. The shared engine (`nav-footer.js` + `nav-footer.css`) is the single source of truth — pages must load these files and must not override, restyle, reorder, rename, hide, duplicate, or fork the nav. Per-page atmospheric/visual differentiation happens **beneath** the nav, never to the nav itself. The homepage is not an exception (its hero CTA `ENTER FORM →` lives inside the hero composition, not in the nav bar — the nav bar still carries `● start the conversation`).
-- **Zero visual difference, zero behavioral difference.** The nav looks, feels, and behaves identically across the entire site — same opacity, same blur, same hairline border, same background tint, same hover states, same dropdown reveal motion, same active-link signal-green underline, same brand-mark scale, same CTA treatment. It also responds to the page in the exact same way everywhere: the same fixed transparent glass layer floating over whatever atmosphere or content scrolls beneath it. Pages may not tint the nav to match their atmosphere, swap it for a "lighter" or "heavier" variant, animate it differently on entry, or alter its responsiveness to scroll. The nav is a constant — the one fixed architectural element of the entire ecosystem — and its consistency is part of the brand's confidence-through-restraint.
-
-### CTA (LOCKED)
-- **Site-wide CTA**: All CTAs use the exact phrase **`start the conversation`** prefixed with a small Signal Green dot (`●`). Typography: Satoshi Medium, lowercase, minimal styling, architectural restraint.
-- **Homepage hero exception**: The cinematic homepage hero uses **`ENTER FORM →`** as its single CTA — IBM Plex Mono uppercase, signal-green outline rectangle. This is the only page that uses this CTA. The top-nav CTA on the homepage stays `● start the conversation`.
-- Never use: `strategy call`, `consultation`, `book a call`, `schedule a consultation`.
-
-### Per-Page Emotional Architecture
-- `vision.` — philosophical, immersive, future-facing, vast, cinematic. Large atmospheric environments, deep negative space, slow topology movement.
-- `standards.` — structured, disciplined, architectural, operational, human. Less atmosphere, more grid systems, more line systems, more operational rhythm. Combines former core values + core principles.
-- `founder.` — human, reflective, warm, cinematic, intimate. Less infrastructure-heavy, more texture and emotional pacing. Not a résumé.
-- `ecosystem.` — connected, modular, adaptive, alive, systemic. Each of the 4 divisions and 12 entities (5 services + 3 products + 3 labs products + 1 learning platform) should feel visually distinct with its own atmosphere, motion behavior, and pacing.
-
-### Future: Rev. Intelligence Layer
-Planned integrated AI layer named `rev.` — operational intelligence, not a chatbot. Calm, clear, infrastructural. Avoid floating chat bubbles, customer-support aesthetics, neon AI gimmicks. Possible patterns: intelligence dock, signal interface, command palette, adaptive sidebar, ambient prompt layer.
-
-## Production Pages
-- `index.html` — Cinematic single-viewport hero (no scroll content). `form` wordmark + signal-green square dot, two-line tagline, `ENTER FORM →` CTA leading to `vision.html`. The hero background is a looping muted `home-bg.mp4` layered over the `home-bg.avif` poster, gated by a performance-tier check (skips video on reduced-motion / lower-tier devices and falls back to the static poster).
-- `vision.html` — Cinematic 7-section operational doctrine (philosophical entry point)
-- `standards.html` — Combined values + principles operational standards page
-- `founder.html` — Human reflective founder narrative
-- `ecosystem.html` — Connected ecosystem map (4 divisions × 12 entities + operational philosophy + relationships cross-reference)
-- `contact.html` — `start the conversation` intake page
-
-## Environmental Continuity System
-- `field.css` + `field.js` — shared environmental engine (oceanic ribbons + sparse drifting particle layer + slow breathing background). One continuous cinematic world inherited by every page.
-- Density tuning per page via `body[data-field-density="..."]`: `open` (home, vision), `structured` (standards), `intimate` (founder), `expanded` (ecosystem), `calm` (contact). Same DNA, different emotional state. Vision intentionally inherits the homepage's motion (open) so the philosophical entry point feels as alive as the homepage rather than slowing down.
-- Site uses **page-to-page navigation** (not single-scroll). Each page is its own load with cinematic transition overlay handled by `nav-footer.js`.
-
-### Deprecated / Pending Removal
-The five legacy `*-systems.html` pages (`business-systems`, `intelligence-systems`, `creative-systems`, `executive-systems`, `ministry-systems`) are deprecated and slated for deletion. `ecosystem.html` has been rebuilt around the 4 divisions × 12 entities doctrine. Do not link to the legacy pages from any new public-facing nav, footer, or copy.
-
-## Key Assets
-- `home-bg.av1.webm` — Modern AV1 WebM encoding of the homepage hero video (~3.7 MB, ~33% smaller than the VP9 WebM and ~58% smaller than the MP4). Listed first inside `#hero-video` with an explicit `codecs=av01...` type so modern Chrome/Firefox/Edge load it; browsers without AV1 support skip past it to the VP9 WebM, then the MP4. Same dimensions, duration, and visual content as `home-bg.mp4`.
-- `home-bg.webm` — VP9 WebM encoding of the homepage hero video (~5.4 MB vs ~9 MB MP4). Second `<source>` inside `#hero-video`, used by browsers that handle WebM but not AV1. Same dimensions, duration, and visual content as `home-bg.mp4`.
-- `home-bg.mp4` — Cinematic homepage hero video (oceanic neural ribbons in slow motion). H.264 fallback for Safari and any browser that can't decode the WebM. Plays muted/looped over the `home-bg.avif` poster on full-tier devices; gated off on reduced/minimal tiers and when `prefers-reduced-motion` is set, where the poster takes over.
-- `home-bg.avif` — Static poster + graceful fallback for the homepage hero (used as the `<video poster>` and as the always-rendered base layer beneath `field.js` particle drift).
-- `bg.avif` — Legacy atmospheric background still used by interior pages (vision, standards, founder, ecosystem, contact) until each is migrated to the shared `env-field` system.
-- `grain.svg` — Shared film-grain overlay loaded by all production pages via `<img src="/grain.svg">`
-- `logo-core-final-2.svg` — Hero ecosystem identity mark
-- `logo-lockup-black.svg`, `tagline-black.svg` — Brand lockup assets
-
-## attached_assets/ — Source-Only Folder
-All files inside `attached_assets/` are **source/reference assets only** — uploaded images, doctrine docs, and reference media used during design and development. **None of these files are referenced in any production HTML.** They should not be served in production and can be excluded from deployment bundles.
-
-## User Preferences
-- Cinematic visual quality is paramount — never degrade opacity, color grading, or blend modes
-- No emojis in code or UI
-- Inline CSS preferred for per-page style isolation
-- All canvas, grain, glow, and orbital systems are JS/CSS-only (no external file weight)
-- All locked doctrine sections above must be obeyed in every new page, edit, and component
+Anything else the old file claimed as locked: check `CHANGELOG.md` and the
+tests before believing it.

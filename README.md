@@ -66,6 +66,22 @@ screenshot, or shared terminal.
 - Never reports success it cannot back. Provider failure returns `502`/`503`
   with `fallbackEmail`, and the client surfaces the prefilled mail link.
 
+## Where the record lives
+
+Three documents, three jobs — deploy-excluded, and `tests/deploy-manifest.test.js`
+fails the build if any of them goes missing (a lesson learned: CHANGELOG.md was
+cited by `.vercelignore` for weeks before it existed):
+
+- **`CHANGELOG.md`** — the narrative record. What changed, why, what it cost,
+  with a commit anchor per phase. Start here before touching anything.
+- **`DECISIONS.md`** — the open-items ledger. What is locked, what is a
+  placeholder, who decides, and the exact edit cost when a decision lands.
+- **Commit messages** — the mechanism. Every commit states what broke or
+  what was at risk, how the change addresses it, and how it was verified.
+
+Standing rule from the owner (2026-08-13): **annotate everything, every time,
+everywhere.** A change without its reasoning written down is half a change.
+
 ## Security headers
 
 Set in `vercel.json` for `/(.*)`, so they cover every page and every asset with
