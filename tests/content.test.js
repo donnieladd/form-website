@@ -69,6 +69,14 @@ const RETIRED = [
   "Signal Flow", "Signal Growth", "Signal Products",
   "Access by form", "Profile by form", "Scope by form",
   "Bartending Masters", "Continuum OS", "formstrategy.co",
+  // 2026-08-13 repositioning: the "six disciplines / six systems" model is
+  // replaced by four practices + businesses + products, and form. sound folded
+  // into form. experience. The brand FORMS are banned, not the plain words --
+  // "we have six systems that don't talk to each other" is a client speaking
+  // ordinary English and must stay legal.
+  "the six systems", "all six systems", "six systems. one architecture",
+  "six disciplines", "one operation.",
+  "form. sound", "sound.html",
   "ecosystem.html", "login.html",
 ];
 

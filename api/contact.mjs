@@ -65,7 +65,11 @@ export function validate(body) {
     if (clean[field].length > MAX_FIELD) errors.push(`${field} exceeds ${MAX_FIELD} characters.`);
   }
   // Optional context fields, length-capped, never required.
-  for (const field of ["role", "areas", "support", "orgType", "timeline", "budget", "stage", "referral"]) {
+  // `practice` is the classification field as of 2026-08-13; `areas` is its
+  // predecessor and stays accepted because HTML pages carry no explicit
+  // cache header — a visitor on a cached contact page will still POST the
+  // old field name for a while.
+  for (const field of ["role", "practice", "areas", "support", "orgType", "timeline", "budget", "stage", "referral"]) {
     const v = typeof body[field] === "string" ? body[field].trim().slice(0, MAX_FIELD) : "";
     if (v) clean[field] = v;
   }
@@ -82,7 +86,7 @@ export function renderEmail(c) {
 <h2 style="margin:0 0 16px">New project inquiry</h2>
 <table style="border-collapse:collapse;margin-bottom:20px">
 ${row("Name", c.name)}${row("Email", c.email)}${row("Organization", c.organization)}${row("Role", c.role)}
-${row("Area", c.areas)}${row("Support", c.support)}${row("Org type", c.orgType)}
+${row("Practice", c.practice)}${row("Area", c.areas)}${row("Support", c.support)}${row("Org type", c.orgType)}
 ${row("Timeline", c.timeline)}${row("Budget", c.budget)}${row("Stage", c.stage)}${row("Heard via", c.referral)}
 </table>
 <div style="white-space:pre-wrap;border-left:3px solid #3367ff;padding-left:14px">${esc(c.message)}</div>

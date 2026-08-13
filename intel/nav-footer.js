@@ -3,12 +3,12 @@
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 
   var navItems = [
-    { href: "/about.html", label: "about" },
-    { href: "/services.html", label: "services" },
+    { href: "/services.html", label: "what we do" },
+    { href: "/businesses.html", label: "businesses" },
+    { href: "/ministries.html", label: "ministries" },
     { href: "/work.html", label: "work" },
-    { href: "/digital.html", label: "digital" },
-    { href: "/continuum.html", label: "continuum" },
-    { href: "/founder.html", label: "founder" },
+    { href: "/insights.html", label: "insights" },
+    { href: "/about.html", label: "about" },
   ];
 
   var isContactPage =
@@ -45,7 +45,7 @@
     '<div class="fi-nav-actions">' +
     '<a href="/contact.html" class="' +
     navCtaClass +
-    '">start a project ' +
+    '">talk to form. ' +
     arrow +
     "</a>" +
     '<button class="fi-nav-burger" type="button" aria-label="Open menu">☰</button>' +
@@ -71,7 +71,7 @@
     '<div class="fi-brand">form<span class="fi-brand-dot">.</span></div>' +
     '<div class="fi-footer-tag">vision needs structure.</div>' +
     '<div class="fi-footer-headline">the future needs <em class="fi-blue-dot">form.</em></div>' +
-    '<a href="/contact.html" class="fi-btn fi-btn-primary">start a project ' +
+    '<a href="/contact.html" class="fi-btn fi-btn-primary">talk to form. ' +
     arrow +
     "</a>" +
     '<div class="fi-footer-locations">' +
@@ -98,15 +98,15 @@
     "</ul>" +
     "</div>" +
     '<div class="fi-footer-col">' +
-    "<h3>the six systems</h3>" +
+    "<h3>solutions &amp; products</h3>" +
     '<ul class="fi-footer-list">' +
     [
-      { page: "intellect", label: "intellect by form." },
       { page: "processes", label: "processes by form." },
       { page: "people", label: "people by form." },
+      { page: "ledger", label: "ledger by form." },
+      { page: "intellect", label: "intellect by form." },
       { page: "messages", label: "messages by form." },
-      { page: "ledger", label: "Ledger by form." },
-      { page: "sound", label: "form. sound" },
+      { page: "experience", label: "form. experience" },
     ]
       .map(function (item) {
         return (
