@@ -93,6 +93,17 @@ const RETIRED = [
   "six disciplines", "one operation.",
   "form. sound", "sound.html",
   "ecosystem.html", "login.html",
+  // 2026-08-13 architecture directive. "Four practices" is retired as a
+  // brand promise — the count is not strategically important and must not
+  // reappear as "five" or "six" either, so the numeral forms are banned and
+  // the pages say "capabilities" instead. Creative & Experience split into
+  // Creative & Marketing and Live Experience; Managed Services became
+  // Support. Both old pages are gone, 301'd in vercel.json.
+  "four practices", "Four practices", "five practices", "six practices",
+  "Creative &amp; Experience", "Creative & Experience",
+  "creative-experience.html",
+  "Managed Services", "managed services", "managed-services.html",
+  "managed@formintel.co",
 ];
 
 test("no page references a retired entity or dead route", () => {

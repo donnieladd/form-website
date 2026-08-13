@@ -33,10 +33,10 @@ const NOINDEX = new Set(["404.html", "privacy.html", "terms.html"]);
  */
 const EXPECTED_PAGES = [
   "404.html", "about.html", "advisory-transformation.html", "ai-enablement.html",
-  "businesses.html", "contact.html", "continuum.html", "creative-experience.html",
+  "businesses.html", "contact.html", "continuum.html",
   "creative-marketing.html", "digital.html", "experience.html", "founder.html",
   "index.html", "industries.html", "insights.html", "intellect.html",
-  "labs.html", "learning.html", "ledger.html", "managed-services.html",
+  "labs.html", "learning.html", "ledger.html",
   "messages.html", "ministries.html", "people.html", "privacy.html",
   "processes.html", "services.html", "solutions-architecture.html",
   "solutions-intelligence.html", "support.html", "terms.html", "work.html",

@@ -20,15 +20,34 @@ annotated around.
 ## What the site actually is (2026-08-13)
 
 `formintel.co` is the corporate routing layer for **form. — an AI-augmented
-operations, intelligence, and solutions company.** Four practices (advisory &
-transformation · solutions & intelligence · creative & experience · managed
-services), two flagship capabilities (solutions architecture · AI enablement),
-three businesses (form. digital · form. creative & marketing · form. support),
-two divisions (form. labs · form. learning), a first-class Ministries path,
-and a contact pipeline that classifies inquiries by practice.
+operations, intelligence, and solutions company.**
+
+The public architecture separates four things that earlier versions of this
+site blurred together — **methodology**, **capability**, **specialized
+business**, and **engagement model**:
+
+- **How we work** — **Solutions Architecture**, the method behind everything.
+  It is deliberately *not* a service door competing with the capabilities.
+- **What we do** — six buyer-facing capability doors: advisory &
+  transformation · solutions & intelligence · digital services · creative &
+  marketing · live experience · support. The *count* is not a brand promise;
+  "four practices" is retired and banned in `tests/content.test.js`, and so
+  are "five"/"six practices".
+- **How we can work together** — individual engagements, or **Continuum**,
+  the ongoing partnership model. Continuum is not a practice and does not
+  live under Support.
+- **Specialized businesses** — form. digital · form. creative & marketing ·
+  form. experience · form. support. The capability is the public category;
+  the business is the operating brand that fulfils it (Digital Services →
+  form. digital, Live Experience → form. experience).
+
+Plus AI enablement as a flagship capability, two divisions (form. labs ·
+form. learning), a first-class Ministries path, and a contact pipeline that
+classifies inquiries into the CRM taxonomy and routes them to the canonical
+alias.
 
 Static HTML/CSS/JS, zero dependencies, no build step. Deployed on Vercel;
-`npm run verify` (109 tests) must pass before any deploy.
+`npm run verify` (110 tests) must pass before any deploy.
 
 ## Where the truth lives — in order
 
