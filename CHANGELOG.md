@@ -103,9 +103,30 @@ contradictions (labs "in development" above cards saying "available now"),
 and the white-on-white button. The gate is excellent at structure and blind
 to appearance and meaning. Screenshot the work. Every time.
 
+### Routing activation — live-tested 2026-08-13
+
+The five practice aliases were created in Google Workspace (MX
+`smtp.google.com`; the aliases live on the owner's user, same inbox as
+`hello@`) and **verified by real sends, not by assumption**:
+
+- 12:25 UTC, first round: advisory@, solutions@ and creative@ accepted;
+  **managed@ and ministry@ hard-bounced** ("Address not found") — they had
+  not actually saved in Admin. This is exactly what the live-test gate
+  exists to catch: with routing on, those two routes would have pointed at
+  a void (the always-CC to hello@ would still have caught every lead).
+- 12:51 UTC, after re-adding: both accepted, zero bounces. **5/5 PASS.**
+
+Verification method worth keeping: on a same-account alias Gmail keeps one
+copy (the sent message is the delivered message), so a mailer-daemon bounce
+is the only failure signal — and Google returned the failed-round bounces
+within four seconds, so short silence is conclusive acceptance.
+
 ### Still open (owner's court)
 
-- The five routing aliases + `CONTACT_ROUTING` env var (P8 activation).
+- ~~The five routing aliases~~ **Done, 5/5 live-tested.** Remaining for P8
+  activation: merge PR #1 → `vercel env add CONTACT_ROUTING production` =
+  `on` → deploy → submit one inquiry per practice on the live form and
+  confirm tag + alias + hello@ CC on each.
 - Which Fontshare host serves the woff2 — check DevTools on the live site
   once, delete the preconnect+CSP entry for whichever host never appears.
 - Field-condition Lighthouse on the live deployment (sandbox egress blocked
