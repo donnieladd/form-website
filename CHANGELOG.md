@@ -89,7 +89,14 @@ address nobody reads.
 either way — `hello@` is in to-or-cc on every route — but until those
 mailboxes exist, the practice-side copy of an inquiry has nowhere to land.
 
-`npm run verify` — 110/110 green. Page set: 31 → 29.
+> **Update, later the same day:** the owner created all eight routed aliases
+> plus `ministry@`; `managed@` was not recreated. Still outstanding is the
+> live send to each and the env flip — creation is not proof of delivery, and
+> a mistyped alias fails silently rather than loudly. The audit row in the
+> inquiry email ("Routed to: … (practice matched …)") is the end-to-end
+> confirmation once the flag is on.
+
+`npm run verify` — 111/111 green. Page set: 31 → 29.
 
 ---
 
