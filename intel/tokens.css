@@ -36,7 +36,11 @@
   --fi-max: 1320px;
   --fi-gutter: clamp(20px, 4vw, 40px);
   --fi-sans: "Satoshi", "Inter", system-ui, sans-serif;
-  --fi-mono: "IBM Plex Mono", "SF Mono", monospace;
+  /* Trial swap 2026-08-13 (owner): League Spartan replaces IBM Plex Mono for
+     the micro-label voice. It is a geometric sans, not a monospace — the
+     token keeps its historical name so the swap stays one line; rename it
+     across the codebase only if the owner adopts this as the brand. */
+  --fi-mono: "League Spartan", "Helvetica Neue", Arial, sans-serif;
 }
 
 *,
