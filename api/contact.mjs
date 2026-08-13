@@ -81,6 +81,11 @@ export function validate(body) {
  * `practice` select's option strings, matched by stable substrings so copy
  * edits to the visible labels don't silently break classification.
  *
+ * The canonical aliases, per the 2026-08-13 architecture directive:
+ *   advisory@ solutions@ digital@ creative@ experience@ support@ continuum@
+ * plus ministry@ for the ministry classification workflow and hello@ as the
+ * house inbox. `managed@` is retired — Managed Services became Support.
+ *
  * Invariants, in order of importance:
  *   1. NO LEAD IS EVER LOST. INQUIRY_TO is either the recipient or always CC'd,
  *      so the house inbox sees 100% of inquiries even if an alias is dead.
@@ -98,18 +103,45 @@ export function validate(body) {
  * is turned on. Creating them is a human step, deliberately outside this code.
  */
 const ROUTES = [
-  { match: /advisory\s*&(amp;)?\s*transformation|something has to change/i, to: "advisory@formintel.co", tag: "Advisory" },
-  { match: /solutions\s*&(amp;)?\s*intelligence|system built/i, to: "solutions@formintel.co", tag: "Solutions" },
-  { match: /\bai\b/i, to: "solutions@formintel.co", tag: "AI" },
-  { match: /creative\s*&(amp;)?\s*experience/i, to: "creative@formintel.co", tag: "Creative" },
-  { match: /managed services|continuum|keep it running/i, to: "managed@formintel.co", tag: "Managed" },
-  { match: /form\.\s*digital/i, to: "solutions@formintel.co", tag: "Digital" },
-  { match: /creative\s*&(amp;)?\s*marketing/i, to: "creative@formintel.co", tag: "Agency" },
-  { match: /messages by form/i, to: "creative@formintel.co", tag: "Messages" },
-  { match: /form\.\s*experience/i, to: "creative@formintel.co", tag: "Experience" },
-  { match: /labs product|processes, people or ledger/i, to: "solutions@formintel.co", tag: "Labs" },
-  { match: /form\.\s*learning|curriculum/i, to: "solutions@formintel.co", tag: "Learning" },
-  { match: /ministry/i, to: "ministry@formintel.co", tag: "Ministry" },
+  /* ── Current taxonomy (2026-08-13 architecture directive) ──────────────
+     One route per capability door, plus Continuum and Ministry. Tags are the
+     CRM classification values, not display labels, so a copy edit to an
+     option string never changes what the CRM records.
+
+     Ministry is matched FIRST: "Ministry Solutions" must not fall into the
+     Solutions route on the way past. */
+  { match: /ministry/i, to: "ministry@formintel.co", tag: "MINISTRY" },
+  { match: /advisory\s*&(amp;)?\s*transformation|something needs to change|something has to change/i, to: "advisory@formintel.co", tag: "ADVISORY" },
+  { match: /solutions\s*&(amp;)?\s*intelligence|system architected|system built/i, to: "solutions@formintel.co", tag: "SOLUTIONS" },
+  { match: /digital services|form\.\s*digital|technology built/i, to: "digital@formintel.co", tag: "DIGITAL" },
+  { match: /creative\s*&(amp;)?\s*marketing/i, to: "creative@formintel.co", tag: "CREATIVE" },
+  { match: /live experience|form\.\s*experience/i, to: "experience@formintel.co", tag: "EXPERIENCE" },
+
+  /* Ordering note: this legacy rule has to outrank the Continuum rule below.
+     The retired option string was "Keep it running — managed services /
+     Continuum", naming both. "Keep it running" is the buyer's actual intent
+     and managed@ — this route's predecessor — became support@, so Support
+     wins the tie. No current option string matches this pattern. */
+  { match: /managed services|keep it running/i, to: "support@formintel.co", tag: "SUPPORT" },
+
+  { match: /continuum/i, to: "continuum@formintel.co", tag: "CONTINUUM" },
+  { match: /\bsupport\b/i, to: "support@formintel.co", tag: "SUPPORT" },
+
+  /* ── Legacy option strings ─────────────────────────────────────────────
+     HTML pages carry no explicit cache header, so a visitor sitting on a
+     cached contact.html will POST the retired taxonomy for a while yet.
+     These keep those inquiries classified instead of dumping them into
+     "unclassified". Safe to delete once the old page has aged out.
+
+     "Creative & Experience" was split into two doors on 2026-08-13; the
+     legacy string carries no signal about which half the buyer meant, so it
+     routes to creative@ (the larger share of that intent) with the house
+     inbox CC'd as always. */
+  { match: /creative\s*&(amp;)?\s*experience/i, to: "creative@formintel.co", tag: "CREATIVE" },
+  { match: /messages by form/i, to: "creative@formintel.co", tag: "CREATIVE" },
+  { match: /labs product|processes, people or ledger/i, to: "solutions@formintel.co", tag: "SOLUTIONS" },
+  { match: /form\.\s*learning|curriculum/i, to: "solutions@formintel.co", tag: "SOLUTIONS" },
+  { match: /\bai\b/i, to: "solutions@formintel.co", tag: "SOLUTIONS" },
 ];
 
 export function routeFor(clean) {
@@ -119,7 +151,7 @@ export function routeFor(clean) {
   // The ministry override comes first: a church asking for a digital build
   // still enters through the ministry door.
   if (typeof clean.orgType === "string" && /ministry\s*\/\s*church/i.test(clean.orgType)) {
-    return { to: "ministry@formintel.co", cc: INQUIRY_TO, tag: "Ministry", reason: "orgType is Ministry / Church" };
+    return { to: "ministry@formintel.co", cc: INQUIRY_TO, tag: "MINISTRY", reason: "orgType is Ministry / Church" };
   }
 
   const practice = typeof clean.practice === "string" ? clean.practice : "";

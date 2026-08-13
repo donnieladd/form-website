@@ -102,15 +102,20 @@
     "</ul>" +
     "</div>" +
     '<div class="fi-footer-col">' +
-    "<h3>solutions &amp; products</h3>" +
+    "<h3>businesses &amp; products</h3>" +
     '<ul class="fi-footer-list">' +
+    /* The four specialized businesses lead, then the doorway to the product
+       lines. Retitled from "solutions & products" on 2026-08-13: the four
+       businesses are the primary specialized destinations, and burying them
+       under a products heading understated them. processes / people / ledger
+       / intellect stay reachable from form. labs and What We Do. */
     [
-      { page: "processes", label: "processes by form." },
-      { page: "people", label: "people by form." },
-      { page: "ledger", label: "ledger by form." },
-      { page: "intellect", label: "intellect by form." },
-      { page: "messages", label: "messages by form." },
+      { page: "digital", label: "form. digital" },
+      { page: "creative-marketing", label: "form. creative &amp; marketing" },
       { page: "experience", label: "form. experience" },
+      { page: "support", label: "form. support" },
+      { page: "messages", label: "messages by form." },
+      { page: "labs", label: "form. labs" },
     ]
       .map(function (item) {
         return (

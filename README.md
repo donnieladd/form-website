@@ -148,7 +148,8 @@ which would ship every page with no nav and no footer. A test guards this.
 ## Structure
 
 ```
-*.html            17 pages, each self-contained apart from /intel
+*.html            29 pages, each self-contained apart from /intel
+                  (the exact set is pinned in tests/pages.test.js)
 intel/            shared design system — tokens, components, nav+footer, product
 intel/nav-footer.js  injects nav, footer, and the atmosphere layer on every page
 api/contact.mjs   contact form handler

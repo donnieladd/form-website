@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>form. creative &amp; marketing — Creative &amp; Marketing Agency</title>
-  <meta name="description" content="A full creative and marketing agency inside form. Brand strategy and identity, campaigns, content, video, social, communications, and the creative operations underneath them.">
+  <meta name="description" content="A full creative and marketing agency inside form. Brand, campaigns, content, video, social and communications — with the creative operations layer most agencies leave out. Engagements from $7,500/month.">
   <link rel="canonical" href="https://formintel.co/creative-marketing.html">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://formintel.co/creative-marketing.html">
@@ -32,6 +32,77 @@
   <link rel="stylesheet" href="/intel/nav-footer.css">
   <link rel="stylesheet" href="/intel/components.css">
   <link rel="stylesheet" href="/intel/product.css">
+  <style>
+    /* Page-local: creative-marketing.html only. The .fi-cm-card mirrors
+       digital.html's .fi-dg-card — the "this business has its own front door"
+       unit — so the two business landing pages read as siblings. */
+    .fi-cm-card {
+      margin-top: 2.5rem;
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      border: 1px solid rgba(51, 102, 255, 0.35);
+      border-radius: var(--fi-radius-md);
+      background: rgba(51, 102, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .fi-cm-card::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -8%;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      filter: blur(64px);
+      background: var(--fi-blue);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .fi-cm-card > * { position: relative; z-index: 1; }
+    .fi-cm-wordmark {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.35rem;
+      text-transform: lowercase;
+    }
+    .fi-cm-wordmark span { color: var(--fi-blue); }
+    .fi-cm-tag {
+      font-family: var(--fi-label);
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fi-ink-muted);
+      margin-bottom: 1.35rem;
+    }
+    /* When the standalone agency site launches, replace this chip with the
+       digital.html pattern: a "Visit ..." primary button plus the .fi-dg-url
+       arrow chip carrying the live domain. One block swap, nothing else. */
+    .fi-cm-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--fi-label);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--fi-amber);
+      margin-top: 1.35rem;
+    }
+    .fi-cm-soon::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--fi-amber);
+      flex-shrink: 0;
+    }
+    .fi-cm-price {
+      font-family: var(--fi-label);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--fi-blue-soft);
+      margin-top: 0.35rem;
+    }
+  </style>
 </head>
 <body class="fi-body">
   <div class="fi-shell">
@@ -39,12 +110,19 @@
     <main>
       <section class="fi-pr-hero" aria-labelledby="pr-title">
         <div class="fi-container">
-          <div class="fi-eyebrow">a business inside form.</div>
+          <div class="fi-eyebrow">creative &amp; marketing</div>
           <h1 class="fi-heading-xl" id="pr-title">form. creative &amp; marketing<span class="fi-heading-accent">.</span></h1>
           <p class="fi-lead">A full creative and marketing agency &mdash; brand, campaigns, content, video, social and communications &mdash; with the part most agencies leave out: the operating system that lets your team keep producing after the engagement ends.</p>
-          <div class="fi-hero-actions">
-            <a href="/contact.html" class="fi-btn fi-btn-primary">Start a project &rarr;</a>
-            <a href="/creative-experience.html" class="fi-btn fi-btn-ghost">The wider practice &rarr;</a>
+
+          <div class="fi-cm-card">
+            <div class="fi-cm-wordmark">form<span>.</span> creative &amp; marketing</div>
+            <div class="fi-cm-tag">brand. campaigns. content. social.</div>
+            <p class="fi-pr-body">The agency is taking clients now, and its own dedicated site is in build. Until it launches, this page is the front door &mdash; engagements start with one conversation, and standing retainers begin at $7,500/month.</p>
+            <div class="fi-hero-actions" style="margin-top:1.75rem;margin-bottom:0">
+              <a href="/contact.html" class="fi-btn fi-btn-primary">Start a project →</a>
+              <a href="/continuum.html" class="fi-btn fi-btn-ghost">Explore Continuum →</a>
+            </div>
+            <div class="fi-cm-soon">Dedicated site in build — will launch from this page</div>
           </div>
           <div class="fi-status"><span class="fi-status-dot ok"></span>Taking work now</div>
         </div>
@@ -93,30 +171,51 @@
         </div>
       </section>
 
-      <section class="fi-section" aria-labelledby="eng-title">
+      <section class="fi-section" aria-labelledby="social-title">
+        <div class="fi-container fi-pr-split">
+          <div>
+            <div class="fi-eyebrow">a named offer</div>
+            <h2 class="fi-heading-lg" id="social-title">social by form<span class="fi-heading-accent">.</span></h2>
+            <p class="fi-lead" style="margin-top:1rem">Your social presence, run as an operation: strategy, production, posting, community and reporting under one point of contact. Engaged on its own or inside a wider retainer.</p>
+            <div class="fi-cm-price">From $5,000/month</div>
+            <div class="fi-hero-actions" style="margin-top:1.75rem;margin-bottom:0">
+              <a href="/contact.html" class="fi-btn fi-btn-ghost">Ask about social →</a>
+            </div>
+          </div>
+          <ul class="fi-check-list">
+            <li>Platform strategy and content calendar</li>
+            <li>Content production in your brand system</li>
+            <li>Scheduling, posting and caption writing</li>
+            <li>Community management</li>
+            <li>Monthly analytics report &mdash; what worked, and why</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="fi-section fi-section-signal" aria-labelledby="eng-title">
         <div class="fi-container fi-pr-split">
           <div>
             <div class="fi-eyebrow">how to engage</div>
             <h2 class="fi-heading-lg" id="eng-title">three shapes<span class="fi-heading-accent">.</span></h2>
-            <p class="fi-lead" style="margin-top:1rem">Scope and pricing are set per engagement in a written proposal. Nothing is quoted before the problem is understood.</p>
+            <p class="fi-lead" style="margin-top:1rem">Standing retainers &mdash; the agency operating as your creative department &mdash; begin at $7,500/month. Projects and specialized offers are scoped in a written proposal after one conversation about what you&rsquo;re actually carrying.</p>
           </div>
           <ul class="fi-check-list">
+            <li>A standing retainer as your creative department &mdash; from $7,500/month</li>
             <li>A defined project with a start and an end</li>
-            <li>A standing retainer as your creative department</li>
-            <li>A specialized offer &mdash; messages, or managed social</li>
+            <li>A specialized offer &mdash; messages by form., or social by form.</li>
             <li>Brand and identity work as a standalone engagement</li>
             <li>Creative operations as a build-and-hand-over</li>
           </ul>
         </div>
       </section>
 
-      <section class="fi-section fi-section-signal" aria-labelledby="cta-title">
+      <section class="fi-section" aria-labelledby="cta-title">
         <div class="fi-container fi-cta-center">
           <div class="fi-eyebrow" style="margin-bottom:1rem">next step</div>
           <h2 class="fi-heading-lg" id="cta-title">bring the thing that underperformed<span class="fi-heading-accent">.</span></h2>
           <p class="fi-lead">A campaign that didn&rsquo;t land, a brand that stopped fitting, or a team producing constantly with nothing compounding. Any of those is a good first conversation.</p>
           <div class="fi-hero-actions">
-            <a href="/contact.html" class="fi-btn fi-btn-primary">Start a project &rarr;</a>
+            <a href="/contact.html" class="fi-btn fi-btn-primary">Start a project →</a>
           </div>
         </div>
         <div class="fi-prism fi-prism-left" aria-hidden="true"></div>

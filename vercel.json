@@ -7,7 +7,9 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/sound.html", "destination": "/experience.html", "permanent": true }
+    { "source": "/sound.html", "destination": "/experience.html", "permanent": true },
+    { "source": "/creative-experience.html", "destination": "/creative-marketing.html", "permanent": true },
+    { "source": "/managed-services.html", "destination": "/support.html", "permanent": true }
   ],
   "headers": [
     {
