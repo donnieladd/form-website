@@ -62,7 +62,6 @@
 .fi-form-panel h2 {
   margin: 0.75rem 0 0.35rem;
   font-size: 1.35rem;
-  text-transform: lowercase;
   font-weight: 500;
 }
 
@@ -153,7 +152,6 @@
 .fi-sidebar-headline {
   margin: 0 0 0.85rem;
   font-size: 1.05rem;
-  text-transform: lowercase;
   font-weight: 500;
 }
 
@@ -180,7 +178,6 @@
 .fi-sidebar-card h3 {
   margin: 0 0 0.25rem;
   font-size: 0.92rem;
-  text-transform: lowercase;
 }
 
 .fi-sidebar-card p {

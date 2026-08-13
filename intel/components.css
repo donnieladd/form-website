@@ -124,7 +124,6 @@
   margin: 0;
   font-size: 0.98rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-eco-card p {
@@ -280,7 +279,6 @@
 .fi-labs-col h3 {
   margin: 0.75rem 0 0.25rem;
   font-size: 1.15rem;
-  text-transform: lowercase;
 }
 
 .fi-labs-sub {
@@ -778,7 +776,6 @@ a.fi-route-card:hover {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-route-card p {
@@ -859,7 +856,6 @@ a.fi-route-card:hover {
   font-size: clamp(1.15rem, 2.2vw, 1.6rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  text-transform: lowercase;
 }
 
 .fi-layer-note {
@@ -932,7 +928,6 @@ a.fi-route-card:hover {
   margin: 0 0 0.4rem;
   font-size: 0.92rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-stage p {
