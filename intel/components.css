@@ -601,9 +601,384 @@
   will-change: auto;
 }
 
-/* Honour the existing performance tier system. */
-[data-tier-level="1"] .fi-atmosphere__grain { opacity: 0.012; }
-[data-tier-level="2"] .fi-atmosphere__grain { display: none; }
+/* Removed 2026-08-13: two [data-tier-level] rules that degraded the grain.
+   Nothing sets that attribute — performance-tier.js is loaded by no page and
+   excluded from deploy — so the rules could never fire. They read as if a
+   tiering system were live, which is worse than having none. */
 
 /* Printing should never carry atmosphere. */
 @media print { .fi-atmosphere { display: none; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   SHARED PATTERNS
+   Added 2026-08-13.
+
+   Four primitives below were, until now, hand-redefined in per-page
+   <style> blocks: the panel surface (5x), the corner bloom (5x), the
+   centred CTA block (5x) and the [ NN ] numeral (3x). They had already
+   drifted — services.html's .fi-svc-card carries scroll-margin-top and an
+   h3 size that continuum.html's copy omits, so the same class name
+   rendered differently on different pages.
+
+   Promoting them here costs nothing: every page already links this file
+   and pages.test.js already asserts that link. A fourth stylesheet would
+   have cost an edit in every <head> and one more render-blocking request.
+
+   Page-local <style> still wins on equal specificity because it is parsed
+   after this file, so nothing changes visually the day these land. The
+   existing duplicates get retired page by page as each page is reworked.
+
+   Rule going forward: a pattern used on three or more pages lives here.
+   A pattern unique to one page stays in that page's <style>.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Surfaces ──────────────────────────────────────────────────── */
+
+.fi-panel {
+  position: relative;
+  padding: 1.5rem;
+  border: 1px solid var(--fi-line);
+  border-radius: var(--fi-radius-md);
+  background: var(--fi-card);
+  overflow: hidden;
+}
+
+.fi-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+a.fi-panel,
+.fi-panel-interactive {
+  display: block;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+a.fi-panel:hover,
+.fi-panel-interactive:hover {
+  background: var(--fi-card-hover);
+  border-color: var(--fi-line-strong);
+}
+
+/* Corner bloom. Opt in with .fi-bloom on any .fi-panel. */
+.fi-panel.fi-bloom::before {
+  content: "";
+  position: absolute;
+  inset: -20% auto auto -10%;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--fi-blue);
+  filter: blur(48px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.fi-panel.fi-bloom-right::before {
+  inset: -20% -10% auto auto;
+}
+
+.fi-panel.fi-bloom-amber::before {
+  background: var(--fi-amber);
+}
+
+/* ── Grids ─────────────────────────────────────────────────────── */
+
+.fi-grid-2,
+.fi-grid-3,
+.fi-grid-4 {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.fi-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fi-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fi-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 1100px) {
+  .fi-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .fi-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 820px) {
+  .fi-grid-2,
+  .fi-grid-3,
+  .fi-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ── The [ NN ] numeral ────────────────────────────────────────── */
+
+.fi-num {
+  display: block;
+  font-family: var(--fi-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--fi-blue-soft);
+  margin-bottom: 0.9rem;
+}
+
+/* ── Centred closing CTA ───────────────────────────────────────── */
+
+.fi-cta-center {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.fi-cta-center .fi-lead {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.fi-cta-center .fi-hero-actions {
+  justify-content: center;
+  margin-top: 1.75rem;
+  margin-bottom: 0;
+}
+
+/* ── Route card ────────────────────────────────────────────────
+   The routing unit for every hub page. The parent site's job is to send
+   a visitor to the right place, so the card leads with who it is for
+   rather than with what we call it. */
+
+.fi-route-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 210px;
+  padding: 1.35rem 1.25rem 1.2rem;
+  border: 1px solid var(--fi-line);
+  border-radius: var(--fi-radius-md);
+  background: var(--fi-card);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+a.fi-route-card:hover {
+  background: var(--fi-card-hover);
+  border-color: var(--fi-line-strong);
+}
+
+.fi-route-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+  color: var(--fi-ink-soft);
+}
+
+.fi-route-card-top svg:last-child { opacity: 0.55; }
+
+.fi-route-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.fi-route-card p {
+  margin: 0;
+  color: var(--fi-ink-muted);
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+/* Pinned to the bottom so a row of cards aligns on this line regardless
+   of how long each description runs. */
+.fi-route-for {
+  margin-top: auto;
+  padding-top: 1rem;
+  font-family: var(--fi-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fi-ink-ghost);
+}
+
+/* ── Layer stack ───────────────────────────────────────────────
+   The Solutions Architecture moment: people / process / technology /
+   data / intelligence / experience.
+
+   Each row sets --fi-layer-depth from 0 to 1 and the bleed scales with
+   it, so the stack reads as accumulating rather than repeating — which
+   is the argument the section is making. Static by doctrine: it has to
+   read correctly in a screenshot, so no scroll-driven reveal. */
+
+.fi-layers {
+  border-top: 1px solid var(--fi-line);
+  margin-top: 2.5rem;
+}
+
+.fi-layer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 0.9fr) minmax(0, 1.35fr);
+  gap: clamp(0.9rem, 3vw, 2.5rem);
+  align-items: baseline;
+  padding: clamp(1.05rem, 2.2vw, 1.5rem) clamp(0.5rem, 1.6vw, 1.25rem);
+  border-bottom: 1px solid var(--fi-line);
+  overflow: hidden;
+}
+
+.fi-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(51, 102, 255, 0.55) 0%,
+    rgba(96, 0, 255, 0.22) 45%,
+    transparent 78%
+  );
+  /* 0.11 -> 0.40 against a 0.55 base alpha lands the effective bleed at
+     0.06 -> 0.22, matching the atmosphere layer's restraint. */
+  opacity: calc(0.11 + var(--fi-layer-depth, 0) * 0.29);
+}
+
+.fi-layer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.fi-layer-index {
+  font-family: var(--fi-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--fi-ink-ghost);
+}
+
+.fi-layer-name {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+}
+
+.fi-layer-note {
+  margin: 0;
+  color: var(--fi-ink-muted);
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 820px) {
+  .fi-layer {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    row-gap: 0.4rem;
+  }
+  .fi-layer-note { grid-column: 2; }
+}
+
+/* ── Stage rail ────────────────────────────────────────────────
+   The AI Enablement sequence: readiness -> strategy -> workforce ->
+   workflows -> governance -> implementation. Horizontal rail on desktop,
+   vertical on narrow screens. Node geometry matches .fi-timeline so the
+   two read as one family. */
+
+.fi-stages {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: 2.75rem;
+}
+
+.fi-stage {
+  position: relative;
+  padding: 1.75rem 1.1rem 0 0;
+}
+
+.fi-stage::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 1px;
+  background: var(--fi-line-strong);
+}
+
+/* The rail must stop at the last node rather than run off the edge. */
+.fi-stage:last-child::before {
+  right: auto;
+  width: 11px;
+}
+
+.fi-stage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: #000;
+}
+
+.fi-stage:first-child::after {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+}
+
+.fi-stage h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.fi-stage p {
+  margin: 0;
+  color: var(--fi-ink-muted);
+  font-size: 0.79rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .fi-stages {
+    grid-template-columns: 1fr;
+    padding-left: 1.5rem;
+  }
+  .fi-stage {
+    padding: 0.7rem 0;
+  }
+  .fi-stage::before {
+    left: -1.5rem;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    height: auto;
+  }
+  .fi-stage:last-child::before {
+    bottom: auto;
+    height: 1.35rem;
+    width: 1px;
+  }
+  .fi-stage::after {
+    left: calc(-1.5rem - 5px);
+    top: 0.85rem;
+  }
+}
+
+/* ── Signal cards: neutral modifiers ───────────────────────────
+   These were .flow / .growth, named for two entities that are now on the
+   RETIRED denylist in tests/content.test.js. The test does not scan CSS,
+   so this is hygiene rather than a failing build — but a class named
+   after a retired brand is a trap for the next person. */
+
+.fi-signal-card.fi-signal-primary::before { background: var(--fi-blue); }
+
+.fi-signal-card.fi-signal-accent::before {
+  left: auto;
+  right: -10%;
+  background: var(--fi-amber);
+}
+
+.fi-signal-card.fi-signal-primary { box-shadow: inset 1px 0 0 rgba(51, 102, 255, 0.35); }
+.fi-signal-card.fi-signal-accent  { box-shadow: inset -1px 0 0 rgba(255, 138, 0, 0.28); }
