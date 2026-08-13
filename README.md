@@ -18,7 +18,7 @@ No build step. Files are served as authored.
 npm run verify
 ```
 
-49 tests, Node's built-in runner, no dependencies to install. **This must pass
+68 tests, Node's built-in runner, no dependencies to install. **This must pass
 before any production deploy.** CI runs it on every push and pull request
 (`.github/workflows/verify.yml`).
 
@@ -65,6 +65,59 @@ screenshot, or shared terminal.
 - All values HTML-escaped before rendering into the email body.
 - Never reports success it cannot back. Provider failure returns `502`/`503`
   with `fallbackEmail`, and the client surfaces the prefilled mail link.
+
+## Security headers
+
+Set in `vercel.json` for `/(.*)`, so they cover every page and every asset with
+no per-page markup. JSON has no comments, so the reasoning lives here.
+
+`Content-Security-Policy-Report-Only` ships the **target** policy, not a
+permissive one — the point of report-only is to learn what actually breaks.
+Two known reports it will produce today, both expected:
+
+- **`script-src 'self'`** — `contact.html` carries the site's only inline
+  `<script>`. Extracting it to `/intel/contact.js` is the prerequisite for
+  enforcing this directive.
+- **`font-src … cdn.fontshare.com`** — Fontshare's CSS is fetched from
+  `api.fontshare.com`, but which host serves the woff2 could not be verified
+  from CI (the host is unreachable there). Both are allowed; the console will
+  confirm which one is real.
+
+`style-src` needs `'unsafe-inline'` and will for the foreseeable future. Eleven
+pages carry page-local `<style>` blocks and inline `style=` attributes are used
+throughout. Removing that requires a build step, which this repo has
+deliberately refused. The policy is honest about that rather than pretending to
+be stricter than it is.
+
+Promote to the enforcing `Content-Security-Policy` header only after the
+inline script is extracted and the console is clean across every page.
+
+## Images
+
+`intel/assets/` holds the homepage hero at three sizes. Serve AVIF via
+`<picture>` with a real JPEG fallback:
+
+| File | Size | Role |
+|---|---|---|
+| `hero-1376.avif` | 25 KB | primary, native resolution |
+| `hero-688.avif` | 7 KB | small viewports / low DPR |
+| `hero-1376.jpg` | 42 KB | fallback for browsers without AVIF |
+
+This replaced a single 1.7 MB file named `hero.jpg` that was **actually a PNG** —
+photographic content in a lossless format, 68% of the site's total weight, and
+a Content-Type that disagreed with its extension. It also declared
+`width="1920" height="1080"` while the real file was 1376×768, so the browser
+reserved the wrong aspect box.
+
+`tests/head.test.js` asserts the declared dimensions match the real file, that
+an AVIF source exists, that the hero carries `fetchpriority="high"`, and that
+every `srcset` candidate exists on disk — `srcset` is a comma-separated list
+with width descriptors, so it slips past the `deploy-manifest` asset check.
+
+**If you re-encode:** the source is dark and low-detail, so AVIF q80 matches a
+q82 JPEG's fidelity (44.3 dB vs 44.1 dB PSNR) at 60% of the size while
+retaining 186 of 192 luma levels in the gradient — no banding. Higher quality
+buys nothing measurable.
 
 ## Deploying
 
