@@ -22,6 +22,7 @@
 /.claude/
 
 # Working docs, not web content
+/DECISIONS.md
 /TALKING-POINTS.md
 /SERVICES-COPY.md
 /FORM_UI_DOCTRINE.md
