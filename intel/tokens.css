@@ -240,3 +240,36 @@ body.fi-body {
   background: radial-gradient(circle, rgba(255, 138, 0, 0.22), transparent 70%);
   opacity: 0.5;
 }
+
+/* ── Reduced motion ──────────────────────────────────────────────────
+   The live stack has no keyframe animations, but it does have four
+   transitions and a smooth-scroll:
+
+     tokens.css:49       html { scroll-behavior: smooth }   ← vestibular trigger
+     tokens.css:147      .fi-btn transform
+     components.css:103  card background / border
+     nav-footer.css:8    nav background
+     nav-footer.css:48   nav link colour
+     nav-footer.css:114  mobile panel translateY(-110%)
+
+   smooth-scroll is the one that actually harms — services.html and the
+   practice pages deep-link to #anchors, and an animated jump is a known
+   trigger. The rest are neutralised too because separating "motion" from
+   "not motion" per-property is fragile and instant is what was asked for.
+
+   !important is required: nav-footer.css and components.css load AFTER
+   this file at equal specificity, so without it their transitions win. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
