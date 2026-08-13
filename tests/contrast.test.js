@@ -61,3 +61,46 @@ test("white button label clears AA on both ends of --fi-gradient", () => {
     );
   }
 });
+
+/**
+ * Text over the .fi-layer gradient bleed (added 2026-08-13).
+ *
+ * The tests above measure every token against #000, which is correct for the
+ * rest of the site. The Solutions Architecture layer stack is the first place
+ * that puts body text over a *lighter* backdrop: each row carries a blue-violet
+ * bleed whose opacity scales with --fi-layer-depth, so the bottom row is the
+ * worst case. Measured at 4.87:1 when it shipped — above AA, but with only
+ * 0.37 of headroom, and nothing was guarding it. Raising the bleed would have
+ * dropped body text under AA silently.
+ *
+ * The backdrop is derived from the CSS rather than hardcoded, so this fails if
+ * someone strengthens the gradient without re-checking contrast.
+ */
+test("text over the .fi-layer bleed clears WCAG AA at maximum depth", () => {
+  const comp = read("intel/components.css");
+
+  const rule = comp.match(/\.fi-layer::before\s*\{[\s\S]*?\}/);
+  assert.ok(rule, ".fi-layer::before rule not found in intel/components.css");
+
+  const firstStop = rule[0].match(/rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[\d.]+\s*\)/);
+  assert.ok(firstStop, "could not read the first gradient stop of .fi-layer::before");
+  const [stopRgb, stopAlpha] = parseColour(firstStop[0]);
+
+  // opacity: calc(BASE + var(--fi-layer-depth, 0) * RANGE) — depth maxes at 1.
+  const op = rule[0].match(/opacity:\s*calc\(\s*([\d.]+)\s*\+\s*var\([^)]*\)\s*\*\s*([\d.]+)\s*\)/);
+  assert.ok(op, "could not read the depth-scaled opacity of .fi-layer::before");
+  const maxOpacity = parseFloat(op[1]) + parseFloat(op[2]);
+  assert.ok(maxOpacity <= 1, `computed max opacity ${maxOpacity} exceeds 1`);
+
+  const backdrop = over(stopRgb, stopAlpha * maxOpacity, BLACK);
+
+  // Every token the layer stack renders text in.
+  for (const name of ["--fi-ink", "--fi-ink-muted", "--fi-ink-ghost"]) {
+    const [rgb, alpha] = parseColour(token(css, name));
+    const ratio = contrast(over(rgb, alpha, backdrop), backdrop);
+    assert.ok(
+      ratio >= AA,
+      `${name} over the .fi-layer bleed rgb(${backdrop}) is ${ratio.toFixed(2)}:1 — needs ${AA}:1`
+    );
+  }
+});
