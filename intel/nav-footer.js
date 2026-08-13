@@ -2,13 +2,17 @@
   var arrow =
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
 
+  /* Labels are standard English (Title Case) per the owner, 2026-08-13 —
+     the all-lowercase nav treatment is retired. The footer nav column reuses
+     this array but keeps its own lowercase look via `text-transform` in
+     nav-footer.css, so the change is scoped to the nav bar by design. */
   var navItems = [
-    { href: "/services.html", label: "what we do" },
-    { href: "/businesses.html", label: "businesses" },
-    { href: "/ministries.html", label: "ministries" },
-    { href: "/work.html", label: "work" },
-    { href: "/insights.html", label: "insights" },
-    { href: "/about.html", label: "about" },
+    { href: "/services.html", label: "What We Do" },
+    { href: "/businesses.html", label: "Businesses" },
+    { href: "/ministries.html", label: "Ministries" },
+    { href: "/work.html", label: "Work" },
+    { href: "/insights.html", label: "Insights" },
+    { href: "/about.html", label: "About" },
   ];
 
   var isContactPage =
@@ -29,7 +33,7 @@
   }
 
   var contactNavLink = isContactPage
-    ? '<a href="/contact.html" class="fi-nav-link active">contact</a>'
+    ? '<a href="/contact.html" class="fi-nav-link active">Contact</a>'
     : "";
 
   var navCtaClass = isContactPage ? "fi-btn fi-btn-primary" : "fi-btn fi-btn-nav-outline";
@@ -45,7 +49,7 @@
     '<div class="fi-nav-actions">' +
     '<a href="/contact.html" class="' +
     navCtaClass +
-    '">talk to form. ' +
+    '">Talk to form. ' +
     arrow +
     "</a>" +
     '<button class="fi-nav-burger" type="button" aria-label="Open menu">☰</button>' +
@@ -58,8 +62,8 @@
         return '<a href="' + item.href + '">' + item.label + "</a>";
       })
       .join("") +
-    '<a href="/contact.html">contact</a>' +
-    '<a href="/contact.html">start a project</a>' +
+    '<a href="/contact.html">Contact</a>' +
+    '<a href="/contact.html">Start a project</a>' +
     "</div>";
 
   var footerLocations = "ATL • CLT • MIA • BHM • GVL";
@@ -71,7 +75,7 @@
     '<div class="fi-brand">form<span class="fi-brand-dot">.</span></div>' +
     '<div class="fi-footer-tag">vision needs structure.</div>' +
     '<div class="fi-footer-headline">the future needs <em class="fi-blue-dot">form.</em></div>' +
-    '<a href="/contact.html" class="fi-btn fi-btn-primary">talk to form. ' +
+    '<a href="/contact.html" class="fi-btn fi-btn-primary">Talk to form. ' +
     arrow +
     "</a>" +
     '<div class="fi-footer-locations">' +
@@ -82,7 +86,7 @@
     "<h3>navigation</h3>" +
     '<ul class="fi-footer-list">' +
     navItems
-      .concat([{ href: "/contact.html", label: "contact" }])
+      .concat([{ href: "/contact.html", label: "Contact" }])
       .map(function (item) {
         return (
           "<li><a href=\"" +

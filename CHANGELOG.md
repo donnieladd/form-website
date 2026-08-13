@@ -10,6 +10,35 @@ everywhere.** A change without its reasoning written down is half a change.
 
 ---
 
+## 2026-08-13 — Standard English for nav and buttons
+
+Owner's direction, verbatim scope: "use english standard writing for the Nav
+bar and for all buttons throughout the site." The all-lowercase treatment is
+retired for those two surfaces only; headings stay lowercase because CSS
+(`text-transform: lowercase`) enforces them regardless of authored casing.
+
+The system applied, so future edits stay consistent:
+
+- **Nav labels: Title Case** ("What We Do", "Businesses", …) — including the
+  mobile panel and the contact-page nav state.
+- **Buttons: sentence case** ("Explore what we do →", "Start a project →") —
+  94 buttons across all 31 pages, rewritten by script with every change
+  printed and reviewed, not by hand.
+- **Brand and product marks stay lowercase everywhere**, per the locked brand
+  rule: "Talk to form." keeps `form.` lowercase; the `intellect by form.` and
+  `messages by form.` buttons are untouched in full.
+- **Named offerings keep proper-noun capitals** inside button text:
+  Solutions & Intelligence, Managed Services, Solutions Architecture,
+  Applied AI.
+- The footer nav column reuses the nav array but renders lowercase via its
+  own `text-transform` — deliberate, so this change touches exactly the two
+  surfaces the owner named.
+
+Verified: no test pinned the old strings; `.fi-nav-link` and `.fi-btn` carry
+no `text-transform`, so authored casing is what renders.
+
+---
+
 ## 2026-08-13 — The repositioning (Phases 0–10, PR #1)
 
 One build, eleven phases, each independently deployable. 17 → 31 pages,
