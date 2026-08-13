@@ -64,7 +64,7 @@
 }
 
 .fi-hero-meta {
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -124,7 +124,6 @@
   margin: 0;
   font-size: 0.98rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-eco-card p {
@@ -280,7 +279,6 @@
 .fi-labs-col h3 {
   margin: 0.75rem 0 0.25rem;
   font-size: 1.15rem;
-  text-transform: lowercase;
 }
 
 .fi-labs-sub {
@@ -714,9 +712,10 @@ a.fi-panel:hover,
 
 .fi-num {
   display: block;
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.62rem;
   letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--fi-blue-soft);
   margin-bottom: 0.9rem;
 }
@@ -777,7 +776,6 @@ a.fi-route-card:hover {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-route-card p {
@@ -792,7 +790,7 @@ a.fi-route-card:hover {
 .fi-route-for {
   margin-top: auto;
   padding-top: 1rem;
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -846,9 +844,10 @@ a.fi-route-card:hover {
 }
 
 .fi-layer-index {
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.62rem;
   letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--fi-ink-ghost);
 }
 
@@ -857,7 +856,6 @@ a.fi-route-card:hover {
   font-size: clamp(1.15rem, 2.2vw, 1.6rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  text-transform: lowercase;
 }
 
 .fi-layer-note {
@@ -930,7 +928,6 @@ a.fi-route-card:hover {
   margin: 0 0 0.4rem;
   font-size: 0.92rem;
   font-weight: 600;
-  text-transform: lowercase;
 }
 
 .fi-stage p {
@@ -996,7 +993,7 @@ a.fi-route-card:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;

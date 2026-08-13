@@ -36,6 +36,15 @@
   --fi-max: 1320px;
   --fi-gutter: clamp(20px, 4vw, 40px);
   --fi-sans: "Satoshi", "Inter", system-ui, sans-serif;
+  /* Label typography, adopted by the owner 2026-08-13 after a live trial.
+     Two voices, two rules — tests/typography.test.js enforces both:
+     - --fi-label (League Spartan): the micro-label voice — eyebrows,
+       [ NN ] numerals, status chips, footer column heads. ALWAYS all caps;
+       every block that uses it must carry text-transform: uppercase.
+     - --fi-mono (IBM Plex Mono): retained for EXACTLY ONE surface, the
+       "vision needs structure." slogan tag (.fi-footer-tag). Nothing else
+       may use it. */
+  --fi-label: "League Spartan", "Helvetica Neue", Arial, sans-serif;
   --fi-mono: "IBM Plex Mono", "SF Mono", monospace;
 }
 
@@ -97,7 +106,7 @@ body.fi-body {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.68rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;

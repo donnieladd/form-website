@@ -163,8 +163,12 @@
 }
 
 .fi-footer-tag {
+  /* The one surface that keeps IBM Plex Mono, by the owner's call
+     (2026-08-13): the "vision needs structure." slogan. Everything else
+     in the label voice is League Spartan via --fi-label.
+     0.62rem -> 0.74rem same day: "a little bigger" (owner). */
   font-family: var(--fi-mono);
-  font-size: 0.62rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--fi-blue-soft);
@@ -194,7 +198,7 @@
 
 .fi-footer-col h3 {
   margin: 0 0 1.1rem;
-  font-family: var(--fi-mono);
+  font-family: var(--fi-label);
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;

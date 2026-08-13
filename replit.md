@@ -47,10 +47,16 @@ Static HTML/CSS/JS, zero dependencies, no build step. Deployed on Vercel;
 - The brand mark is lowercase `form.` with the blue period — never uppercase.
 - Dark, cinematic, restrained. Typography leads; chrome is set design.
 - Lowercase headers (CSS-enforced via `text-transform`); uppercase only for
-  mono micro-labels. **Navigation and buttons use standard English as of
+  micro-labels. **Navigation and buttons use standard English as of
   2026-08-13** (owner) — Title Case nav labels, sentence-case buttons; brand
   and product marks (`form.`, `intellect by form.`, …) stay lowercase even
   there. The footer nav column keeps its lowercase look via CSS by design.
+- **Label typography (owner, 2026-08-13): League Spartan is the label voice
+  and is ALWAYS all caps.** It lives in the `--fi-label` token; every block
+  using it must carry `text-transform: uppercase`. **IBM Plex Mono survives
+  on exactly one surface** — the "vision needs structure." slogan tag
+  (`.fi-footer-tag`), via `--fi-mono`. Both rules are enforced by
+  `tests/typography.test.js`; a violation fails the build.
 - No emojis anywhere in the product.
 - **Standard market language first, form. language second** — a first-time
   visitor must understand every page without decoding internal vocabulary.
