@@ -46,7 +46,11 @@ Static HTML/CSS/JS, zero dependencies, no build step. Deployed on Vercel;
 
 - The brand mark is lowercase `form.` with the blue period — never uppercase.
 - Dark, cinematic, restrained. Typography leads; chrome is set design.
-- Lowercase headers and navigation; uppercase only for mono micro-labels.
+- Lowercase headers (CSS-enforced via `text-transform`); uppercase only for
+  mono micro-labels. **Navigation and buttons use standard English as of
+  2026-08-13** (owner) — Title Case nav labels, sentence-case buttons; brand
+  and product marks (`form.`, `intellect by form.`, …) stay lowercase even
+  there. The footer nav column keeps its lowercase look via CSS by design.
 - No emojis anywhere in the product.
 - **Standard market language first, form. language second** — a first-time
   visitor must understand every page without decoding internal vocabulary.
