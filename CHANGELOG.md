@@ -10,6 +10,39 @@ everywhere.** A change without its reasoning written down is half a change.
 
 ---
 
+## 2026-08-13 — Business landing pages + approved pricing + QA sweep
+
+Three moves, one commit:
+
+- **`creative-marketing.html` rebuilt on the `digital.html` pattern** — the
+  branded site-card with wordmark and tag, because the agency is getting its
+  own dedicated site (owner is building it now). Until it launches this page
+  is the front door; the card carries an amber "dedicated site in build"
+  chip, and the swap to a live "Visit" button + domain chip is annotated in
+  the page CSS as a one-block change. `social by form.` gets its own section
+  with scope and price.
+- **Published pricing, deliberately unbanned.** The blanket no-rates rule
+  dated from *unverified* figures shipping in 2026-08. The owner approved two
+  starting rates verbatim ("seventy five hundred bucks a month" for creative
+  & marketing retainers; social by form. "starts at five grand a month"), so
+  the guard became a per-page allowlist: `$7,500` and `$5,000` are legal on
+  `creative-marketing.html` only. Mutation-tested both ways — an unapproved
+  figure fails, an approved figure on the wrong page fails. (First mutation
+  run passed vacuously because the seed sed matched nothing — re-run with
+  the insertion verified. A mutation test that can't prove its mutation
+  landed proves nothing.)
+- **`messages.html` marked as the launchpad** for the standalone messages
+  platform site (a paid product, owner's call) — a platform card in the hero
+  mirrors the digital.html unit, with the same annotated one-block swap for
+  when the site ships. Product content unchanged; still no published price
+  for messages (none was approved).
+
+**QA sweep** across all 31 pages at 1400px and 320px in a real browser:
+zero horizontal overflow, zero clipped headings, zero page errors, nav
+holds one line at 1181px. Plus the 112-test gate, green.
+
+---
+
 ## 2026-08-13 — League Spartan adopted as the label voice
 
 Trialed on a preview deploy, adopted by the owner the same day. The rules,

@@ -26,6 +26,8 @@ Status: 🔒 locked · 🟡 placeholder shipped · ⚪ not yet built
 | — | Orphan products | `processes` / `people` / `ledger` → **form. labs**. `intellect` → **form. learning**. | 2026-08-12 |
 | — | `form. sound` | Retires as a public name; folds into **form. experience**. | 2026-08-12 |
 | — | Business units | `form. creative & marketing` and `form. support` built in this repo first, split to own domains later. `form. digital` already external. | 2026-08-12 |
+| — | Published pricing | Owner-approved starting rates only, per-page allowlisted in `tests/content.test.js`: creative & marketing retainers **from $7,500/month**, `social by form.` **from $5,000/month** (both on `creative-marketing.html`). Any other figure anywhere fails the build. | 2026-08-13 |
+| — | Standalone sites | `form. creative & marketing` gets its own site (owner building now) — `creative-marketing.html` is the landing page until launch, then links out like `digital.html` does. `messages by form.` becomes its own paid product site, launched from `messages.html`. | 2026-08-13 |
 
 ---
 

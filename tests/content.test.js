@@ -22,7 +22,21 @@ import { read, sitePages } from "./lib.js";
 
 const pages = sitePages();
 
-test("no page publishes a rate", () => {
+/**
+ * Owner-approved published rates, amended 2026-08-13. The blanket ban dated
+ * from unverified figures shipping on messages.html; on 2026-08-13 the owner
+ * explicitly approved two starting prices for the creative & marketing
+ * business ("their starting engagement, seventy five hundred bucks a month...
+ * social by form. starts at five grand a month"). The guard stays: a rate is
+ * legal ONLY as an exact figure on the exact page listed here. Anything else
+ * — a new number, an approved number on a different page — fails the build,
+ * so publishing a price remains a deliberate edit to this map.
+ */
+const APPROVED_RATES = {
+  "creative-marketing.html": ["$7,500", "$5,000"],
+};
+
+test("no page publishes a rate the owner has not approved", () => {
   // Matches $5,000 / $5000 / $5k / $25k-$75k etc. in shipped copy.
   const MONEY = /\$\s?\d[\d,]*\s?(k\b|\d{3}\b|\b)/gi;
   const offenders = [];
@@ -33,10 +47,11 @@ test("no page publishes a rate", () => {
       // published rate — the visitor states their budget, form. states nothing.
       const context = html.slice(Math.max(0, m.index - 120), m.index + 60);
       if (/<select[^>]*id="budget"|name="budget"|<option/.test(context)) continue;
+      if ((APPROVED_RATES[page] || []).includes(m[0].trim())) continue;
       offenders.push(`${page}: "${m[0].trim()}"`);
     }
   }
-  assert.deepEqual(offenders, [], `published rates found:\n  ${offenders.join("\n  ")}`);
+  assert.deepEqual(offenders, [], `unapproved rates found:\n  ${offenders.join("\n  ")}`);
 });
 
 test("no page states a statistic in visible copy", () => {
