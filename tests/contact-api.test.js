@@ -101,6 +101,10 @@ test("renderEmail omits rows for absent optional fields", () => {
 
 test("routeFor maps each practice option to its owning inbox", () => {
   const cases = [
+    ["form.strategy · systems & solutions architecture", "advisory@formintel.co", "Strategy"],
+    ["form.digital · websites, applications, AI & automation", "solutions@formintel.co", "Digital"],
+    ["form.creative & marketing · creative, marketing, communications", "creative@formintel.co", "Agency"],
+    ["form.learning · AI enablement & literacy", "solutions@formintel.co", "Learning"],
     ["Something has to change — advisory & transformation", "advisory@formintel.co", "Advisory"],
     ["We need a system built — solutions & intelligence", "solutions@formintel.co", "Solutions"],
     ["AI — enablement, strategy, or a build", "solutions@formintel.co", "AI"],
