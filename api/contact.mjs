@@ -98,12 +98,16 @@ export function validate(body) {
  * is turned on. Creating them is a human step, deliberately outside this code.
  */
 const ROUTES = [
+  // The four canonical practices (form-brand-gtm CANON, 2026-08-23). Listed
+  // first so a practice name wins over the looser "ai" match below.
+  { match: /form\.\s*strategy/i, to: "advisory@formintel.co", tag: "Strategy" },
+  { match: /form\.\s*digital/i, to: "solutions@formintel.co", tag: "Digital" },
+  { match: /form\.\s*learning/i, to: "solutions@formintel.co", tag: "Learning" },
   { match: /advisory\s*&(amp;)?\s*transformation|something has to change/i, to: "advisory@formintel.co", tag: "Advisory" },
   { match: /solutions\s*&(amp;)?\s*intelligence|system built/i, to: "solutions@formintel.co", tag: "Solutions" },
   { match: /\bai\b/i, to: "solutions@formintel.co", tag: "AI" },
   { match: /creative\s*&(amp;)?\s*experience/i, to: "creative@formintel.co", tag: "Creative" },
   { match: /managed services|continuum|keep it running/i, to: "managed@formintel.co", tag: "Managed" },
-  { match: /form\.\s*digital/i, to: "solutions@formintel.co", tag: "Digital" },
   { match: /creative\s*&(amp;)?\s*marketing/i, to: "creative@formintel.co", tag: "Agency" },
   { match: /messages by form/i, to: "creative@formintel.co", tag: "Messages" },
   { match: /form\.\s*experience/i, to: "creative@formintel.co", tag: "Experience" },
