@@ -5,7 +5,6 @@
   "installCommand": null,
   "outputDirectory": null,
   "cleanUrls": false,
-  "trailingSlash": false,
   "rewrites": [
     { "source": "/formthefuture-oct2026", "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026" },
     { "source": "/formthefuture-oct2026/:path*", "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026/:path*" }
@@ -17,7 +16,8 @@
     { "source": "/sept-26-intensive", "destination": "/formthefuture-oct2026", "permanent": true },
     { "source": "/sept-26-intensive/:path*", "destination": "/formthefuture-oct2026/:path*", "permanent": true },
     { "source": "/Friday/drop/September/SEPT-4-2026", "destination": "/the-friday-drop/sept-4-26/", "permanent": true },
-    { "source": "/friday-drop", "destination": "/the-friday-drop/sept-4-26/", "permanent": true }
+    { "source": "/friday-drop", "destination": "/the-friday-drop/sept-4-26/", "permanent": true },
+    { "source": "/the-friday-drop/sept-4-26", "destination": "/the-friday-drop/sept-4-26/", "permanent": true }
   ],
   "headers": [
     {
