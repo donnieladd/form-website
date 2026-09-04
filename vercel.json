@@ -6,53 +6,126 @@
   "outputDirectory": null,
   "cleanUrls": false,
   "rewrites": [
-    { "source": "/formthefuture-oct2026", "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026" },
-    { "source": "/formthefuture-oct2026/:path*", "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026/:path*" }
+    {
+      "source": "/formthefuture-oct2026",
+      "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026"
+    },
+    {
+      "source": "/formthefuture-oct2026/:path*",
+      "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026/:path*"
+    }
   ],
   "redirects": [
-    { "source": "/sound.html", "destination": "/experience.html", "permanent": true },
-    { "source": "/formsept2026", "destination": "/formthefuture-oct2026", "permanent": true },
-    { "source": "/formsept2026/:path*", "destination": "/formthefuture-oct2026/:path*", "permanent": true },
-    { "source": "/sept-26-intensive", "destination": "/formthefuture-oct2026", "permanent": true },
-    { "source": "/sept-26-intensive/:path*", "destination": "/formthefuture-oct2026/:path*", "permanent": true },
-    { "source": "/Friday/drop/September/SEPT-4-2026", "destination": "/the-friday-drop/sept-4-26/", "permanent": true },
-    { "source": "/friday-drop", "destination": "/the-friday-drop/sept-4-26/", "permanent": true },
-    { "source": "/the-friday-drop/sept-4-26", "destination": "/the-friday-drop/sept-4-26/", "permanent": true }
+    {
+      "source": "/sound.html",
+      "destination": "/experience.html",
+      "permanent": true
+    },
+    {
+      "source": "/formthefuture-oct2026/",
+      "destination": "/formthefuture-oct2026",
+      "permanent": true
+    },
+    {
+      "source": "/formsept2026",
+      "destination": "/formthefuture-oct2026",
+      "permanent": true
+    },
+    {
+      "source": "/formsept2026/:path*",
+      "destination": "/formthefuture-oct2026/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/sept-26-intensive",
+      "destination": "/formthefuture-oct2026",
+      "permanent": true
+    },
+    {
+      "source": "/sept-26-intensive/:path*",
+      "destination": "/formthefuture-oct2026/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/Friday/drop/September/SEPT-4-2026",
+      "destination": "/the-friday-drop/sept-4-26/",
+      "permanent": true
+    },
+    {
+      "source": "/friday-drop",
+      "destination": "/the-friday-drop/sept-4-26/",
+      "permanent": true
+    },
+    {
+      "source": "/the-friday-drop/sept-4-26",
+      "destination": "/the-friday-drop/sept-4-26/",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://cdn.fontshare.com https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'self'; object-src 'none'" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://cdn.fontshare.com https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'self'; object-src 'none'"
+        }
       ]
     },
     {
       "source": "/intel/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
       ]
     },
     {
       "source": "/(.*).(avif|png|jpg|jpeg|webp|svg|woff2|otf)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
       ]
     },
     {
       "source": "/the-friday-drop/(.*)",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "X-Frame-Options", "value": "DENY" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
       ]
     },
     {
       "source": "/the-friday-drop/(.*).html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     }
   ]
