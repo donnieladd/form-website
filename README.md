@@ -1,7 +1,8 @@
-# form. — formintel.co
+# Form Intel — formintel.co
 
-Static marketing site. Plain HTML/CSS/JS, **zero runtime dependencies**, one
-serverless function for the contact form.
+Static marketing site. Humanity in Motion V2 is the canonical homepage, built
+with plain HTML/CSS/JS, **zero runtime dependencies**, and one serverless
+function for the contact form.
 
 ## Run it locally
 
@@ -148,7 +149,10 @@ which would ship every page with no nav and no footer. A test guards this.
 ## Structure
 
 ```
-*.html            17 pages, each self-contained apart from /intel
+index.html        Humanity in Motion V2 production homepage
+*.html            supporting legacy pages, each self-contained apart from /intel
+intel/humanity-v2.*  V2 presentation and interaction layer
+intel/assets/     shared assets, including the approved V2 founder photography
 intel/            shared design system — tokens, components, nav+footer, product
 intel/nav-footer.js  injects nav, footer, and the atmosphere layer on every page
 api/contact.mjs   contact form handler

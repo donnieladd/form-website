@@ -78,6 +78,9 @@ test("IBM Plex Mono is used by exactly one surface: the slogan tag", () => {
 test("every page loads both label families from Google Fonts", () => {
   const missing = sitePages().filter((page) => {
     const html = read(page);
+    if (page === "index.html") {
+      return !(html.includes("satoshi@") && html.includes("manrope@"));
+    }
     return !(html.includes("family=IBM+Plex+Mono") && html.includes("family=League+Spartan"));
   });
   assert.deepEqual(missing, [], `pages missing a label font family in the head:\n  ${missing.join("\n  ")}`);

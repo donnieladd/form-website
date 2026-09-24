@@ -63,6 +63,19 @@ for (const page of pages) {
     assert.match(html, /<meta name="description" content="[^"]+"/, "missing meta description");
     assert.match(html, /rel="icon"/, "missing favicon");
     assert.match(html, /<html lang="/, "missing lang attribute");
+
+    if (page === "index.html") {
+      assert.match(html, /class="site-header wrap"/, "missing Humanity in Motion header");
+      assert.match(html, /id="conversation"/, "missing inquiry section");
+      assert.match(html, /intel\/humanity-v2\.js/, "missing Humanity in Motion behavior");
+      assert.match(html, /intel\/humanity-v2\.css/, "missing Humanity in Motion styles");
+      assert.match(html, /rel="canonical"/, "missing canonical");
+      assert.match(html, /property="og:image"/, "missing og:image");
+      assert.match(html, /property="og:title"/, "missing og:title");
+      assert.match(html, /name="twitter:card"/, "missing twitter:card");
+      return;
+    }
+
     assert.match(html, /id="fi-nav-mount"/, "missing nav mount");
     assert.match(html, /id="fi-footer-mount"/, "missing footer mount");
     assert.match(html, /intel\/nav-footer\.js/, "missing nav-footer.js (also injects the atmosphere layer)");
