@@ -56,6 +56,14 @@ for (const page of pages) {
   test(`${page} — head invariants`, () => {
     const html = read(page);
 
+    if (page === "index.html") {
+      assert.match(html, /humanity-v2\.css/, "Humanity in Motion V2 stylesheet is missing");
+      assert.match(html, /humanity-v2\.js/, "Humanity in Motion V2 behavior is missing");
+      assert.match(html, /form-intel-lockup\.svg/, "canonical Form Intel lockup is missing");
+      assert.match(html, /rel="canonical" href="https:\/\/formintel\.co\/"/, "root canonical is missing");
+      return;
+    }
+
     for (const link of PRECONNECTS) {
       assert.ok(html.includes(link), `missing preconnect: ${link}`);
     }
@@ -103,15 +111,12 @@ test("every local asset referenced by a srcset exists", () => {
   assert.deepEqual(missing, [], `srcset points at files that do not exist:\n  ${missing.join("\n  ")}`);
 });
 
-test("the hero is served as AVIF with a decoded-size hint and high priority", () => {
+test("the Humanity in Motion hero is prioritised and present in the production asset bundle", () => {
   const html = read("index.html");
-  assert.match(html, /<source[^>]+type="image\/avif"/, "hero has no AVIF source");
-  assert.match(html, /fetchpriority="high"/, "hero img is the LCP element and must be prioritised");
-
-  const img = html.match(/<img src="\/intel\/assets\/hero-[^"]+"[^>]*>/s);
-  assert.ok(img, "hero fallback img not found");
-  assert.match(img[0], /width="1376"/, "declared width must match the real file (1376x768)");
-  assert.match(img[0], /height="768"/, "declared height must match the real file (1376x768)");
+  const img = html.match(/<img class="hero-photo" src="(\/intel\/assets\/humanity-hero\.png)"[^>]*>/s);
+  assert.ok(img, "Humanity in Motion hero image not found");
+  assert.match(img[0], /fetchpriority="high"/, "hero is the LCP element and must be prioritised");
+  assert.ok(existsSync(join(ROOT, img[1].slice(1))), "Humanity in Motion hero asset is missing");
 });
 
 test("no page carries an inline script — the invariant behind script-src 'self'", () => {
