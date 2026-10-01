@@ -7,6 +7,14 @@
   "cleanUrls": false,
   "rewrites": [
     {
+      "source": "/rockycreek-proposal",
+      "destination": "https://rocky-creek-proposal.vercel.app/rockycreek-proposal"
+    },
+    {
+      "source": "/rockycreek-proposal/:path*",
+      "destination": "https://rocky-creek-proposal.vercel.app/rockycreek-proposal/:path*"
+    },
+    {
       "source": "/formthefuture-oct2026",
       "destination": "https://funnel-production-fb7c.up.railway.app/formthefuture-oct2026"
     },
@@ -64,7 +72,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/((?!rockycreek-proposal(?:/|$)).*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
