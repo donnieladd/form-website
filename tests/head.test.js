@@ -134,6 +134,22 @@ test("no page carries an inline script — the invariant behind script-src 'self
   assert.deepEqual(offenders, [], `inline scripts found (blocked by the enforced CSP):\n  ${offenders.join("\n  ")}`);
 });
 
+test("no em or en dash in <title> or meta description/og/twitter tags", () => {
+  // Decided 2026-10-06: public titles and descriptions use commas, periods,
+  // pipes or colons. Em and en dashes have no CMS to escape them in search
+  // engines, email previews or social cards, and the homepage shipped with
+  // "Form Intel — Humanity in Motion V2" (internal design-system name) in
+  // Google results. Mid-sentence em dashes in body copy are still allowed.
+  const TAG = /(<title>[^<]*<\/title>|<meta\s+(?:name|property)="(?:description|og:title|og:description|twitter:title|twitter:description)"\s+content="[^"]*")/gi;
+  const offenders = [];
+  for (const page of pages) {
+    for (const m of read(page).matchAll(TAG)) {
+      if (/[—–]/.test(m[0])) offenders.push(`${page}: ${m[0]}`);
+    }
+  }
+  assert.deepEqual(offenders, [], `em/en dash in metadata:\n  ${offenders.join("\n  ")}`);
+});
+
 test("the CSP is enforcing, not report-only", () => {
   const vercel = read("vercel.json");
   assert.match(vercel, /"Content-Security-Policy"/, "the enforcing CSP header is missing from vercel.json");
