@@ -2,6 +2,9 @@
 
 Draft vector reconstruction for Dontae's review, not a production release.
 
+Approved site integration is documented in [Site identity application](SITE-USAGE.md)
+and remains a separate draft PR with no merge or production release.
+
 ## Provenance
 
 The supplied `reference/FI-icon-R2-lockups-v002.png` board and

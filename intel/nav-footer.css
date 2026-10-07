@@ -31,8 +31,9 @@
   white-space: nowrap;
 }
 
-.fi-brand-dot {
-  color: var(--fi-blue);
+.fi-brand img {
+  width: 128px;
+  height: auto;
 }
 
 .fi-nav-links {
@@ -160,6 +161,11 @@
 .fi-footer-brand .fi-brand {
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   margin-bottom: 0.85rem;
+}
+
+.fi-footer-brand .fi-brand img {
+  width: auto;
+  height: 1.35em;
 }
 
 .fi-footer-tag {

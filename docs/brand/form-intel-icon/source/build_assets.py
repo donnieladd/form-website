@@ -105,7 +105,11 @@ def main():
     groups = "".join(f'<section id="{group}"><h2>{label}</h2><div class="grid">' + "".join(card for card, export in zip(cards, EXPORTS) if export[2] == group) + '</div></section>' for group, label in (("symbol", "01 / Master symbols"), ("optical", "02 / Optical crops"), ("horizontal", "03 / Horizontal lockups"), ("stacked", "04 / Stacked lockups"), ("favicon", "05 / Favicons")))
     (ROOT / "review.html").write_text('''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow"><title>Form Intel f. | Vector review</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/intel/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/intel/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/intel/assets/apple-touch-icon.png" sizes="180x180">
+<title>Form Intel f. | Vector review</title>
 <style>
 :root { color-scheme: light; font: 16px/1.5 system-ui, sans-serif; color: #05070B; background: #FAFAFA; }
 * { box-sizing: border-box; } body { margin: 0; } main { max-width: 1240px; margin: auto; padding: 40px 24px; }
