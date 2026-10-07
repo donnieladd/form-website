@@ -9,8 +9,8 @@
 @media(max-width:650px){.hero-content:before{left:-12px;top:44px;width:calc(100vw - 28px);height:320px}.graphic-press-overlay{inset:112px 20px 0}.graphic-press-overlay span:nth-child(1),.graphic-press-overlay span:nth-child(2){display:none}.graphic-press-overlay span:nth-child(3){left:10%;top:33%;font-size:96px}.kinetic-field i{width:90px}.motion-notes{grid-template-columns:1fr;gap:16px}}
 @media(prefers-reduced-motion:reduce){.kinetic-field i{animation:none!important}.site-header:after{transition:none}[data-reveal]{opacity:1!important;transform:none!important}.service-panel.is-changing{opacity:1;transform:none}}
 
-/* Form Intel master lockup. 1.02em reproduces the f-height the CSS text had, so the responsive clamp on .lockup-word still drives the size. */
-.lockup-mark{display:block;height:1.02em;width:auto}
+/* Keep the previous wordmark width within the existing navigation layout. */
+.lockup-mark{display:block;width:4.215em;height:auto}
 
 /* Founder image integration: supplied authentic photography, restrained editorial treatment. */
 .about-founder{display:grid;grid-template-columns:minmax(180px,280px) 1fr;gap:34px;align-items:start}.founder-portrait{width:100%;aspect-ratio:4 / 5;object-fit:cover;object-position:50% 22%;filter:saturate(.92) contrast(1.02);border:1px solid rgba(244,245,247,.14)}.about-founder blockquote{padding-top:2px}.human-story>img{object-position:50% 50%}
@@ -22,3 +22,4 @@
 .inquiry-actions p[data-state="ok"]{color:#b9ffd0}
 .inquiry-actions p[data-state="error"]{color:#ffb4a8}
 @media(max-width:650px){.two-fields{grid-template-columns:1fr}}
+@media(min-width:651px) and (max-width:1100px){.lockup-mark{width:auto;height:33px}}

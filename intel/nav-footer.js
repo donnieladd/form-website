@@ -41,7 +41,7 @@
   var navHTML =
     '<header class="fi-nav" role="banner">' +
     '<div class="fi-container fi-nav-inner">' +
-    '<a href="/" class="fi-brand" aria-label="form. home">form<span class="fi-brand-dot">.</span></a>' +
+    '<a href="/" class="fi-brand" aria-label="form.intel"><img src="/intel/assets/form-intel-horizontal-paper.svg" alt="" aria-hidden="true" width="2675" height="1096"></a>' +
     '<nav class="fi-nav-links" aria-label="Primary">' +
     navItems.map(navLink).join("") +
     contactNavLink +
@@ -72,7 +72,7 @@
     '<footer class="fi-footer" role="contentinfo">' +
     '<div class="fi-container fi-footer-grid">' +
     '<div class="fi-footer-brand">' +
-    '<div class="fi-brand">form<span class="fi-brand-dot">.</span></div>' +
+    '<div class="fi-brand"><img src="/intel/assets/form-intel-horizontal-paper.svg" alt="form.intel" width="2675" height="1096"></div>' +
     '<div class="fi-footer-tag">vision needs structure.</div>' +
     '<div class="fi-footer-headline">the future needs <em class="fi-blue-dot">form.</em></div>' +
     '<a href="/contact.html" class="fi-btn fi-btn-primary">Talk to form. ' +

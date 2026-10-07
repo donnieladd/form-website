@@ -59,7 +59,7 @@ for (const page of pages) {
     if (page === "index.html") {
       assert.match(html, /humanity-v2\.css/, "Humanity in Motion V2 stylesheet is missing");
       assert.match(html, /humanity-v2\.js/, "Humanity in Motion V2 behavior is missing");
-      assert.match(html, /form-intel-lockup\.svg/, "canonical Form Intel lockup is missing");
+      assert.match(html, /form-intel-horizontal-paper\.svg/, "canonical Form Intel lockup is missing");
       assert.match(html, /rel="canonical" href="https:\/\/formintel\.co\/"/, "root canonical is missing");
       return;
     }

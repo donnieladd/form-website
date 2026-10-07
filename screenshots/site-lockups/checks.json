@@ -1,0 +1,111 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "checks": [
+    {
+      "page": "index",
+      "width": 1440,
+      "headerHeight": 102,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "about",
+      "width": 1440,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "services",
+      "width": 1440,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "index",
+      "width": 390,
+      "headerHeight": 112,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "about",
+      "width": 390,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "services",
+      "width": 390,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "index",
+      "width": 320,
+      "headerHeight": 112,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "about",
+      "width": 320,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "services",
+      "width": 320,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "index",
+      "width": 768,
+      "headerHeight": 94,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "about",
+      "width": 768,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "services",
+      "width": 768,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "index",
+      "width": 1181,
+      "headerHeight": 102,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "about",
+      "width": 1181,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    },
+    {
+      "page": "services",
+      "width": 1181,
+      "headerHeight": 68,
+      "lockups": 2,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}
