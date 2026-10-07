@@ -39,7 +39,8 @@ to inherit host text color; an SVG loaded with `<img>` cannot inherit it.
 - Master viewBox: `0 0 1024 1024`. Five named parts remain separately editable.
 - Optical exports use the same paths with a tight viewBox, not a redrawn mark.
 - Standard channel width is 16 master units. The hook and stem share an edge
-  along the uninterrupted spine in the reference; no new gap is invented there.
+  along the uninterrupted spine in the reference, with a 16-unit overlap to
+  prevent an antialias hairline. No new gap is invented there.
 - One signal-period diameter, 188 master units, defines lockup gap and external
   clear space. Measure gap from visible bounds, not transparent SVG padding.
 - Horizontal wordmark height is 40% of mark height. Stacked wordmark width is
@@ -47,7 +48,9 @@ to inherit host text color; an SVG loaded with `<img>` cannot inherit it.
 - Standalone symbols and optical crops do not include full protected clear
   space. Add one period diameter outside their visible bounds when placing.
 - Use the dedicated 16 or 32 px favicon at those sizes. Use the full geometry
-  at 64 px and above; the apple touch export is 180 px. Favicons are a bounded
+  at 64 px and above; the apple touch export is 180 px. All favicons have a
+  paper background to preserve contrast on light and dark browser chrome.
+  Favicons are a bounded
   small-square exception to surrounding clear space.
 - Keep lockups at least 240 px wide horizontally or 160 px wide stacked.
   Below that, use the symbol. These are draft implementation sizing rules
