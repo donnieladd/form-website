@@ -7,6 +7,18 @@
   "cleanUrls": false,
   "rewrites": [
     {
+      "source": "/proposal/cornerstone-spartanburg-sc",
+      "destination": "https://cornerstone-spartanburg-sneak-peek.vercel.app/"
+    },
+    {
+      "source": "/proposal/cornerstone-spartanburg-sc/",
+      "destination": "https://cornerstone-spartanburg-sneak-peek.vercel.app/"
+    },
+    {
+      "source": "/proposal/cornerstone-spartanburg-sc/:path*",
+      "destination": "https://cornerstone-spartanburg-sneak-peek.vercel.app/:path*"
+    },
+    {
       "source": "/rockycreek-proposal",
       "destination": "https://rocky-creek-proposal.vercel.app/rockycreek-proposal"
     },
@@ -72,7 +84,7 @@
   ],
   "headers": [
     {
-      "source": "/((?!rockycreek-proposal(?:/|$)).*)",
+      "source": "/((?!rockycreek-proposal(?:/|$)|proposal/cornerstone-spartanburg-sc(?:/|$)).*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
