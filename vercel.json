@@ -37,6 +37,11 @@
   ],
   "redirects": [
     {
+      "source": "/proposal/cornerstone-spartanburg-sc",
+      "destination": "/proposal/cornerstone-spartanburg-sc/",
+      "permanent": true
+    },
+    {
       "source": "/sound.html",
       "destination": "/experience.html",
       "permanent": true
